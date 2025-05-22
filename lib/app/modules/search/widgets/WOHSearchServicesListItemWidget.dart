@@ -1,0 +1,223 @@
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+/*
+ * Copyright (c) 2020 .
+ */
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../common/ui.dart';
+import '../../../models/WOHEServiceModel.dart';
+import '../../../routes/WOHRoutes.dart';
+
+class SearchServicesListItemWidget extends StatelessWidget {
+  const SearchServicesListItemWidget({
+    Key key,
+    @required EService service,
+  })  : _service = service,
+        super(key: key);
+
+  final EService _service;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(WOHRoutes.E_SERVICE, arguments: {'eService': _service, 'heroTag': 'search_list'});
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: WOHUi.getBoxDecoration(),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                Hero(
+                  tag: 'search_list' + _service.id,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                    child: CachedNetworkImage(
+                      height: 80,
+                      width: 80,
+                      fit: BoxFit.cover,
+                      imageUrl: _service.firstImageUrl,
+                      placeholder: (context, url) => Image.asset(
+                        'assets/img/loading.gif',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: 80,
+                      ),
+                      errorWidget: (context, url, error) => Icon(Icons.error_outline),
+                    ),
+                  ),
+                ),
+                if (_service.eProvider.available)
+                  Container(
+                    width: 80,
+                    child: Text("Available".tr,
+                        maxLines: 1,
+                        style: Get.textTheme.bodyText2.merge(
+                          TextStyle(color: Colors.green, height: 1.4, fontSize: 10),
+                        ),
+                        softWrap: false,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.fade),
+                    decoration: BoxDecoration(
+                      color: Colors.green.withOpacity(0.2),
+                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+                  ),
+                if (!_service.eProvider.available)
+                  Container(
+                    width: 80,
+                    child: Text("Offline".tr,
+                        maxLines: 1,
+                        style: Get.textTheme.bodyText2.merge(
+                          TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
+                        ),
+                        softWrap: false,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.fade),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.2),
+                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+                  ),
+              ],
+            ),
+            SizedBox(width: 12),
+            Expanded(
+              child: Wrap(
+                runSpacing: 10,
+                alignment: WrapAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: [
+                      Text(
+                        _service.name ?? '',
+                        style: Get.textTheme.bodyText2,
+                        maxLines: 3,
+                        // textAlign: TextAlign.end,
+                      ),
+                    ],
+                  ),
+                  Divider(height: 8, thickness: 1),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 5,
+                        children: [
+                          SizedBox(
+                            height: 32,
+                            child: Chip(
+                              padding: EdgeInsets.all(0),
+                              label: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.star,
+                                    color: Get.theme.colorScheme.secondary,
+                                    size: 18,
+                                  ),
+                                  Text(_service.rate.toString(), style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.colorScheme.secondary, height: 1.4))),
+                                ],
+                              ),
+                              backgroundColor: Get.theme.colorScheme.secondary.withOpacity(0.15),
+                              shape: StadiumBorder(),
+                            ),
+                          ),
+                          Text(
+                            "From (%s)".trArgs([_service.totalReviews.toString()]),
+                            style: Get.textTheme.bodyLarge,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          if (_service.getOldPrice > 0)
+                            WOHUi.getPrice(
+                              _service.getOldPrice,
+                              style: Get.textTheme.bodyLarge.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
+                              unit: _service.getUnit,
+                            ),
+                          WOHUi.getPrice(
+                            _service.getPrice,
+                            style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
+                            unit: _service.getUnit,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.build_circle_outlined,
+                        size: 18,
+                        color: Get.theme.focusColor,
+                      ),
+                      SizedBox(width: 5),
+                      Flexible(
+                        child: Text(
+                          _service.eProvider.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          style: Get.textTheme.bodyLarge,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.place_outlined,
+                        size: 18,
+                        color: Get.theme.focusColor,
+                      ),
+                      SizedBox(width: 5),
+                      Flexible(
+                        child: Text(
+                          _service.eProvider.firstAddress,
+                          maxLines: 1,
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                          style: Get.textTheme.bodyLarge,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Divider(height: 8, thickness: 1),
+                  Wrap(
+                    spacing: 5,
+                    children: List.generate(_service.subCategories.length, (index) {
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        child: Text(_service.subCategories.elementAt(index).name, style: Get.textTheme.labelSmall.merge(TextStyle(fontSize: 10))),
+                        decoration: BoxDecoration(
+                            color: Get.theme.primaryColor,
+                            border: Border.all(
+                              color: Get.theme.focusColor.withOpacity(0.2),
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(20))),
+                      );
+                    }),
+                    runSpacing: 5,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

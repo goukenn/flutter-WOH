@@ -1,0 +1,139 @@
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:get/get.dart';
+
+import '../../../providers/laravel_provider.dart';
+import '../../global_widgets/WOHCircularLoadingWidget.dart';
+import '../controllers/WOHCategoriesController.dart';
+import '../widgets/WOHCategoryGridItemWidget.dart';
+import '../widgets/WOHCategoryListItemWidget.dart';
+
+class CategoriesView extends GetView<CategoriesController> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Categories".tr,
+            style: Get.textTheme.titleLarge,
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back_ios, color: Get.theme.hintColor),
+            onPressed: () => {Get.back()},
+          ),
+        ),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            Get.find<LaravelApiClient>().forceRefresh();
+            //controller.refreshCategories(showMessage: true);
+            Get.find<LaravelApiClient>().unForceRefresh();
+          },
+          child: ListView(
+            primary: true,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20, right: 10),
+                child: Row(children: [
+                  Expanded(
+                    child: Text(
+                      "Categories of services".tr,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      IconButton(
+                        onPressed: () {
+                          controller.layout.value = CategoriesLayout.LIST;
+                        },
+                        icon: Obx(() {
+                          return Icon(
+                            Icons.format_list_bulleted,
+                            color: controller.layout.value == CategoriesLayout.LIST ? Get.theme.colorScheme.secondary : Get.theme.focusColor,
+                          );
+                        }),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          controller.layout.value = CategoriesLayout.GRID;
+                        },
+                        icon: Obx(() {
+                          return Icon(
+                            Icons.apps,
+                            color: controller.layout.value == CategoriesLayout.GRID ? Get.theme.colorScheme.secondary : Get.theme.focusColor,
+                          );
+                        }),
+                      )
+                    ],
+                  ),
+                ]),
+              ),
+              Obx(() {
+                return Offstage(
+                  offstage: controller.layout.value != CategoriesLayout.GRID,
+                  child: controller.categories.isEmpty
+                      ? CircularLoadingWidget(height: 400)
+                      : MasonryGridView.count(
+                          primary: false,
+                          shrinkWrap: true,
+                          crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          itemCount: controller.categories.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return CategoryGridItemWidget(category: controller.categories.elementAt(index), heroTag: "heroTag");
+                          },
+                          mainAxisSpacing: 15.0,
+                          crossAxisSpacing: 15.0,
+                        ),
+                );
+              }),
+              Obx(() {
+                return Offstage(
+                  offstage: controller.layout.value != CategoriesLayout.LIST,
+                  child: controller.categories.isEmpty
+                      ? CircularLoadingWidget(height: 400)
+                      : ListView.separated(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          primary: false,
+                          itemCount: controller.categories.length,
+                          separatorBuilder: (context, index) {
+                            return SizedBox(height: 10);
+                          },
+                          itemBuilder: (context, index) {
+                            return CategoryListItemWidget(
+                              heroTag: 'category_list',
+                              expanded: index == 0,
+                              category: controller.categories.elementAt(index),
+                            );
+                          },
+                        ),
+                );
+              }),
+              // Container(
+              //   child: ListView(
+              //       primary: false,
+              //       shrinkWrap: true,
+              //       children: List.generate(controller.categories.length, (index) {
+              //         return Obx(() {
+              //           var _category = controller.categories.elementAt(index);
+              //           return Padding(
+              //             padding: const EdgeInsetsDirectional.only(start: 20),
+              //             child: Text(_category.name),
+              //           );
+              //         });
+              //       })),
+              // ),
+            ],
+          ),
+        ));
+  }
+}

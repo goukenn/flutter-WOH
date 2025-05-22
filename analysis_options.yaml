@@ -1,0 +1,8 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  errors:
+    avoid_print: ignore
+    file_names: ignore
+    overridden_fields: ignore
+    prefer_typing_uninitialized_variables: ignore
+    unnecessary_this: ignore
