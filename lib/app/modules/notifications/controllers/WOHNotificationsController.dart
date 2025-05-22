@@ -36,7 +36,7 @@ class WOHNotificationsController extends GetxController {
     for (var i = 0; i < backendList.length; i++) {
         notifications.add(backendList[backendList.length-i-1]);
     }
-    Get.find<RootController>().getNotificationsCount();
+    Get.find<WOHRootController>().getNotificationsCount();
     if (showMessage == true) {
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "List of notifications refreshed successfully".tr));
     }
@@ -50,7 +50,7 @@ class WOHNotificationsController extends GetxController {
     var list = [];
 
     for (var i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
-      NotificationModel model = NotificationModel(
+      NotificationModel model = WOHNotificationModel(
        id: WOHConstants.myBoxStorage.value.getAt(i)['id'] ,
         disable: WOHConstants.myBoxStorage.value.getAt(i)['disable'],
         isSeen: WOHConstants.myBoxStorage.value.getAt(i)['isSeen'],
@@ -100,7 +100,7 @@ class WOHNotificationsController extends GetxController {
     for (var i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
       if(WOHConstants.myBoxStorage.value.getAt(i)['id'] == notification.id)
       {
-        final remoteModel = NotificationModel(
+        final remoteModel = WOHNotificationModel(
           title: notification?.title.toString(),
           id: notification.id,
           isSeen: true,

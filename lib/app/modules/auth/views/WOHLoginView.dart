@@ -23,7 +23,7 @@ class WOHLoginView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut(() => RootController());
+    Get.lazyPut(() => WOHRootController());
 
     return WillPopScope(
       onWillPop: WOHHelper().onWillPop,

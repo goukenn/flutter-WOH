@@ -11,8 +11,8 @@ import '../controllers/WOHRootController.dart';
 class WOHRootBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<RootController>(
-      () => RootController(),
+    Get.lazyPut<WOHRootController>(
+      () => WOHRootController(),
     );
     Get.put(HomeController(), permanent: true);
     Get.put(BookingsController(), permanent: true);

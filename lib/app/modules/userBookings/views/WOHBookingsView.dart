@@ -20,8 +20,8 @@ class WOHBookingsView extends GetView<BookingsController> {
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut<RootController>(
-          () => RootController(),
+    Get.lazyPut<WOHRootController>(
+          () => WOHRootController(),
     );
     Get.lazyPut(() => AuthController());
 

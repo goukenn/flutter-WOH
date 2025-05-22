@@ -24,15 +24,15 @@ class WOHChatRepository {
     return FirebaseFirestore.instance.collection("users").where('userName', isEqualTo: searchField).get();
   }
 
-  // Create Message
-  Future<void> createMessage(Message message) {
+  // Create WOHMessageModel
+  Future<void> createMessage(WOHMessageModel message) {
     return FirebaseFirestore.instance.collection("messages").doc(message.id).set(message.toJson()).catchError((e) {
       print(e);
     });
   }
 
   // to remove message from firebase
-  Future<void> deleteMessage(Message message) {
+  Future<void> deleteMessage(WOHMessageModel message) {
     return FirebaseFirestore.instance.collection("messages").doc(message.id).delete().catchError((e) {
       print(e);
     });
@@ -42,9 +42,9 @@ class WOHChatRepository {
     return FirebaseFirestore.instance.collection("messages").where('visible_to_users', arrayContains: userId).orderBy('time', descending: true).limit(perPage).snapshots();
   }
 
-  Future<Message> getMessage(Message message) {
+  Future<WOHMessageModel> getMessage(WOHMessageModel message) {
     return FirebaseFirestore.instance.collection("messages").doc(message.id).get().then((value) {
-      return Message.fromDocumentSnapshot(value);
+      return WOHMessageModel.fromDocumentSnapshot(value);
     });
   }
 
@@ -58,7 +58,7 @@ class WOHChatRepository {
         .snapshots();
   }
 
-  Stream<List<Chat>> getChats(Message message) {
+  Stream<List<Chat>> getChats(WOHMessageModel message) {
     updateMessage(message.id, {'read_by_users': message.readByUsers});
     return FirebaseFirestore.instance.collection("messages").doc(message.id).collection("chats").orderBy('time', descending: true).snapshots().map((QuerySnapshot query) {
       List<Chat> retVal = [];
@@ -69,7 +69,7 @@ class WOHChatRepository {
     });
   }
 
-  Future<void> addMessage(Message message, Chat chat) {
+  Future<void> addMessage(WOHMessageModel message, Chat chat) {
     return FirebaseFirestore.instance.collection("messages").doc(message.id).collection("chats").add(chat.toJson()).whenComplete(() {
       updateMessage(message.id, message.toUpdatedMap());
     }).catchError((e) {

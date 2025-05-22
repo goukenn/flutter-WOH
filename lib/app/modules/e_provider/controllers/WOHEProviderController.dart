@@ -111,7 +111,7 @@ class WOHEProviderController extends GetxController {
       e.avatar = eProvider.value.images[0];
       return e;
     }).toList();
-    Message _message = new Message(_employees, name: eProvider.value.name);
+    WOHMessageModel _message = new WOHMessageModel(_employees, name: eProvider.value.name);
     Get.toNamed(WOHRoutes.CHAT, arguments: _message);
   }
 }

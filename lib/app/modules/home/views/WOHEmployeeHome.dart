@@ -28,7 +28,7 @@ class WOHEmployeeHome extends GetView<HomeController> {
           () => AuthController(),
     );
     Get.lazyPut(()=>HomeController());
-    Get.lazyPut(()=>RootController());
+    Get.lazyPut(()=>WOHRootController());
     Get.lazyPut(()=>BookingsController());
     Get.lazyPut(()=>ValidationController());
 

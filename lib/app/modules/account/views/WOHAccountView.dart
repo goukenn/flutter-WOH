@@ -20,7 +20,7 @@ class WOHAccountView extends GetView<AccountController> {
   @override
   Widget build(BuildContext context) {
     //var _currentUser = Get.find<MyAuthService>().myUser;
-    Get.lazyPut(() => RootController());
+    Get.lazyPut(() => WOHRootController());
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
@@ -395,7 +395,7 @@ class WOHAccountView extends GetView<AccountController> {
                                       style: Get.textTheme.labelSmall,
                                     ),
                                     trailing: Text(
-                                      'Get.find<RootController>().packageInfo.version.toString()',
+                                      'Get.find<WOHRootController>().packageInfo.version.toString()',
                                       style: Get.textTheme.labelSmall,
                                     ),
                                   )*/

@@ -7,7 +7,7 @@ import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHDrawerLinkWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 
-class WOHCustomPageDrawerLinkWidget extends GetView<RootController> {
+class WOHCustomPageDrawerLinkWidget extends GetView<WOHRootController> {
   const WOHCustomPageDrawerLinkWidget({
     Key key,
   }) : super(key: key);

@@ -13,7 +13,7 @@ import '../auth/controllers/WOHAuthController.dart';
 import '../custom_pages/views/WOHCustomPageDrawerLinkWidget.dart';
 import '../fidelisation/controller/WOHValidationController.dart';
 import '../home/controllers/WOHHomeController.dart';
-import '../root/controllers/WOHRootController.dart' show RootController;
+import '../root/controllers/WOHRootController.dart' show WOHRootController;
 import '../userBookings/controllers/WOHBookingsController.dart';
 import 'WOHDrawerLinkWidget.dart';
 
@@ -43,7 +43,7 @@ class main_drawer_widget extends StatelessWidget {
                     child: Obx(() {
                       return GestureDetector(
                         onTap: () async {
-                          await Get.find<RootController>().changePage(3);
+                          await Get.find<WOHRootController>().changePage(3);
                         },
                         child: UserAccountsDrawerHeader(
                           decoration: BoxDecoration(
@@ -195,7 +195,7 @@ class main_drawer_widget extends StatelessWidget {
                 style: Get.textTheme.headline4,
               ),
               trailing: Text(
-                Get.find<RootController>().packageInfo.version.toString(),
+                Get.find<WOHRootController>().packageInfo.version.toString(),
                 style: Get.textTheme.headline4,
               ),
             )

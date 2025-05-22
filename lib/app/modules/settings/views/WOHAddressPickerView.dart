@@ -69,8 +69,8 @@ class WOHAddressPickerView extends StatelessWidget {
                         /*if (Get.isRegistered<BookEServiceController>()) {
                           await Get.find<BookEServiceController>().getAddresses();
                         }*/
-                        if (Get.isRegistered<RootController>()) {
-                          await Get.find<RootController>().refreshPage(0);
+                        if (Get.isRegistered<WOHRootController>()) {
+                          await Get.find<WOHRootController>().refreshPage(0);
                         }
                         Get.back();
                       },

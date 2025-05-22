@@ -8,7 +8,7 @@ import '../../services/WOHAuthService.dart';
 import '../../services/WOHMyAuthService.dart';
 import '../root/controllers/WOHRootController.dart';
 
-class WOHNotificationsButtonWidget extends GetView<RootController> {
+class WOHNotificationsButtonWidget extends GetView<WOHRootController> {
   const WOHNotificationsButtonWidget({
     this.iconColor,
     this.labelColor,

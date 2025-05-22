@@ -205,7 +205,7 @@ class WOHUpdatePasswordWidget extends GetView<ProfileController> {
   //             onPressed: () async {
   //               Get.back();
   //               await controller.deleteUser();
-  //               await Get.find<RootController>().changePage(0);
+  //               await Get.find<WOHRootController>().changePage(0);
   //             },
   //           ),
   //         ],

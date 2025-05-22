@@ -48,8 +48,8 @@ class WOHTravelNotificationItemWidget extends GetView<NotificationsController> {
         }
         var travel = await controller.getTravelInfo(int.parse(id));
         Get.toNamed(WOHRoutes.TRAVEL_INSPECT, arguments: {'travelCard': travel, 'heroTag': 'services_carousel'});
-        //Get.find<RootController>().changePage(2);
-        //Get.toNamed(WOHRoutes.CHAT, arguments: new Message([], id: notification.id.toString()));
+        //Get.find<WOHRootController>().changePage(2);
+        //Get.toNamed(WOHRoutes.CHAT, arguments: new WOHMessageModel([], id: notification.id.toString()));
 
       },
     );

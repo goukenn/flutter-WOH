@@ -13,7 +13,7 @@ import '../repositories/WOHSettingRepository.dart';
 import 'WOHAuthService.dart';
 
 class WOHSettingsService extends GetxService {
-  final setting = Setting().obs;
+  final setting = WOHSettingModel().obs;
   final address = WOHAddressModel().obs;
   late GetStorage _box;
   late WOHSettingRepository _settingsRepo;

@@ -36,7 +36,7 @@ class WOHNewPriceNotificationItemWidget extends GetView<NotificationsController>
         print('message :'+notification.message.toString());
        var item = await controller.getSingleShipping(int.parse(id));
         Get.toNamed(WOHRoutes.CHAT, arguments: {'shippingCard': item});
-        //Get.toNamed(WOHRoutes.CHAT, arguments: new Message([], id: notification.id.toString()));
+        //Get.toNamed(WOHRoutes.CHAT, arguments: new WOHMessageModel([], id: notification.id.toString()));
 
       },
     );
