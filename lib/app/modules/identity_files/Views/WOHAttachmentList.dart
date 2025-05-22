@@ -165,7 +165,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Text("Type", style: Get.textTheme.bodyText2.merge(TextStyle(color: appColor))),
+                                                      child: Text("Type", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor))),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 12),
@@ -175,7 +175,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                     ),
                                                     SizedBox(
                                                       width: 100,
-                                                      child: Text(controller.attachmentFiles[item]['attach_custom_type'], style: Get.textTheme.bodyText2),
+                                                      child: Text(controller.attachmentFiles[item]['attach_custom_type'], style: Get.textTheme.bodyMedium),
                                                     ),
 
                                                   ],
@@ -186,7 +186,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Text("Id Number", style: Get.textTheme.bodyText2.merge(TextStyle(color: appColor))),
+                                                      child: Text("Id Number", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor))),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 12),
@@ -196,7 +196,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                     ),
                                                     SizedBox(
                                                       width: 100,
-                                                      child: Text(controller.attachmentFiles[item]['name'], style: Get.textTheme.bodyText2),
+                                                      child: Text(controller.attachmentFiles[item]['name'], style: Get.textTheme.bodyMedium),
                                                     ),
                                                   ],
                                                 ),
@@ -206,7 +206,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Text("Validity", style: Get.textTheme.bodyText2.merge(TextStyle(color: appColor))),
+                                                      child: Text("Validity", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor))),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 12),
@@ -229,7 +229,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Text("Conformity", style: Get.textTheme.bodyText2.merge(TextStyle(color: appColor))),
+                                                      child: Text("Conformity", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor))),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 12),
@@ -251,7 +251,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                             onChanged: (bool value){
 
                                             },
-                                            title: Text("Conformity", style: Get.textTheme.bodyText2.merge(TextStyle(color: appColor)))
+                                            title: Text("Conformity", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor)))
                                         )*/
                                             ]
                                         )

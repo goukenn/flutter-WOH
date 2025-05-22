@@ -48,7 +48,7 @@ class WOHDrawerLinkWidget extends StatelessWidget {
               color: Get.theme.focusColor.withOpacity(0.2),
             ),
             Expanded(
-              child: Text(text.tr, style: Get.textTheme.bodyText2.merge(TextStyle(fontSize: 14, color: !special ? buttonColor : specialColor))),
+              child: Text(text.tr, style: Get.textTheme.bodyMedium.merge(TextStyle(fontSize: 14, color: !special ? buttonColor : specialColor))),
             ),
           ],
         ),

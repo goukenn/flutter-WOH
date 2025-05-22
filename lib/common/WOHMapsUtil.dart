@@ -93,7 +93,7 @@ class WOHMapsUtil {
   //                         destinationTitle: title,
   //                         destination: coords,
   //                       ),
-  //                       title: Text(map.mapName, style: Get.textTheme.bodyText2),
+  //                       title: Text(map.mapName, style: Get.textTheme.bodyMedium),
   //                       leading: SvgPicture.asset(
   //                         map.icon,
   //                         height: 30.0,

@@ -59,7 +59,7 @@ class WOHAddressesView extends GetView<AddressController> {
                             onChanged: (value) {
                               Get.find<SettingsService>().address.value = value;
                             },
-                            title: Text(_address.description, style: Get.textTheme.bodyText2),
+                            title: Text(_address.description, style: Get.textTheme.bodyMedium),
                             subtitle: Text(_address.address, style: Get.textTheme.labelSmall),
                           ).paddingSymmetric(vertical: 10);
                         });

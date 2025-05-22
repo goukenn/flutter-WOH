@@ -33,10 +33,10 @@ class WOHCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<BookingsController>(
-          () => BookingsController(),
+    Get.lazyPut<WOHBookingsController>(
+          () => WOHBookingsController(),
     );
-    //var selected = Get.find<BookingsController>().currentState.value ;
+    //var selected = Get.find<WOHBookingsController>().currentState.value ;
     return ClipRRect(
       child: Banner(
         location: BannerLocation.topEnd,

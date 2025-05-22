@@ -45,7 +45,7 @@ class WOHThemeModeView extends GetView<ThemeModeController> {
                     onChanged: (value) {
                       controller.changeThemeMode(value);
                     },
-                    title: Text("Light Theme".tr, style: Get.textTheme.bodyText2),
+                    title: Text("Light Theme".tr, style: Get.textTheme.bodyMedium),
                   ),
                   RadioListTile(
                     value: ThemeMode.dark,
@@ -54,7 +54,7 @@ class WOHThemeModeView extends GetView<ThemeModeController> {
                     onChanged: (value) {
                       controller.changeThemeMode(value);
                     },
-                    title: Text("Dark Theme".tr, style: Get.textTheme.bodyText2),
+                    title: Text("Dark Theme".tr, style: Get.textTheme.bodyMedium),
                   ),
                   RadioListTile(
                     value: ThemeMode.system,
@@ -63,7 +63,7 @@ class WOHThemeModeView extends GetView<ThemeModeController> {
                     onChanged: (value) {
                       controller.changeThemeMode(value);
                     },
-                    title: Text("System Theme".tr, style: Get.textTheme.bodyText2),
+                    title: Text("System Theme".tr, style: Get.textTheme.bodyMedium),
                   ),
                 ],
               ),

@@ -46,7 +46,7 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                 child: Center(
                   child: Obx(() =>  !controller.buttonPressed.value ?
-                  Text("Submit form".tr, style: Get.textTheme.bodyText2.merge(TextStyle(color: Colors.white)))
+                  Text("Submit form".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.white)))
                       : SizedBox(height: 20,
                       child: SpinKitThreeBounce(color: Colors.white, size: 20))
                   )

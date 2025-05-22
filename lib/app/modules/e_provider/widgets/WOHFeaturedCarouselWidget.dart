@@ -73,7 +73,7 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
                             Text(
                               _service.name ?? '',
                               maxLines: 2,
-                              style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.hintColor)),
+                              style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.hintColor)),
                             ),
                             Wrap(
                               children: WOHUi.getStarsList(_service.rate),
@@ -100,7 +100,7 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
                                       ),
                                     WOHUi.getPrice(
                                       _service.getPrice,
-                                      style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
+                                      style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
                                       unit: _service.getUnit,
                                     ),
                                   ],

@@ -9,7 +9,7 @@ import '../../../../common/WOHUi.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../widgets/WOHBookingsListLoaderWidget.dart';
 
-class WOHFacturation extends GetView<BookingsController> {
+class WOHFacturation extends GetView<WOHBookingsController> {
 
   @override
   Widget build(BuildContext context) {

@@ -49,7 +49,7 @@ class WOHReviewItemWidget extends StatelessWidget {
                       overflow: TextOverflow.fade,
                       softWrap: false,
                       maxLines: 2,
-                      style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.hintColor)),
+                      style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.hintColor)),
                     ),
                     Text(
                       review.user.bio,

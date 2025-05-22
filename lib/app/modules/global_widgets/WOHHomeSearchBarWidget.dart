@@ -60,7 +60,7 @@ class WOHHomeSearchBarWidget extends StatelessWidget implements PreferredSize {
                     crossAxisAlignment: WrapCrossAlignment.center,
                     spacing: 4,
                     children: [
-                      Text("Filter".tr, style: Get.textTheme.bodyText2),
+                      Text("Filter".tr, style: Get.textTheme.bodyMedium),
                       Icon(
                         Icons.filter_list,
                         color: Get.theme.hintColor,

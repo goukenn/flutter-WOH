@@ -49,7 +49,7 @@ class WOHEProviderItemWidget extends StatelessWidget {
                     overflow: TextOverflow.fade,
                     softWrap: false,
                     maxLines: 2,
-                    style: Theme.of(context).textTheme.bodyText2.merge(TextStyle(color: Theme.of(context).hintColor)),
+                    style: Theme.of(context).textTheme.bodyMedium.merge(TextStyle(color: Theme.of(context).hintColor)),
                   ),
                   SizedBox(height: 5),
                   WOHUi.removeHtml(

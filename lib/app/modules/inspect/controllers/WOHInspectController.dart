@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import '../../../../WOHConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
 import '../../../models/WOHMyUserModel.dart';
 import '../../../models/WOHOptionModel.dart';
 import 'package:http/http.dart' as http;
@@ -187,25 +187,27 @@ class WOHInspectController extends GetxController {
     }
   }
 
-  TextStyle getTitleTheme(Option option) {
+  TextStyle getTitleTheme(WOHOptionModel option) {
     if (option.checked.value) {
-      return Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.colorScheme.secondary));
+      return Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
-    return Get.textTheme.bodyText2;
+    return Get.textTheme.bodyMedium!;
   }
 
-  TextStyle getSubTitleTheme(Option option) {
+  TextStyle getSubTitleTheme(WOHOptionModel option) {
     if (option.checked.value) {
-      return Get.textTheme.labelSmall.merge(TextStyle(color: Get.theme.colorScheme.secondary));
+      return Get.textTheme.labelSmall!.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
-    return Get.textTheme.labelSmall;
+    return Get.textTheme.labelSmall!;
   }
 
-  Color getColor(Option option) {
+  Color getColor(WOHOptionModel option) {
     if (option.checked.value) {
-      return Get.theme.colorScheme.secondary.withOpacity(0.1);
+      return Get.theme.colorScheme.secondary.withAlpha(20)
+      // .withOpacity(0.1)
+      ;
     }
-    return null;
+    return Color.from(alpha: 0, red: 0, green: 0, blue: 0);
   }
 
   getCategoryHairStyle(var values)async{
@@ -354,7 +356,7 @@ class WOHInspectController extends GetxController {
   requestAppointment()async{
     var date = DateFormat("yyyy-MM-dd").format(DateTime.parse(appointmentDate.value)).toString();
 
-    Get.lazyPut(() => BookingsController());
+    Get.lazyPut(() => WOHBookingsController());
 
     var dateTimeStart = DateTime.parse("$date ${selectedTime.join(",")}:00").toString().split(".").first;
     var dateTimeEnd = DateTime.parse("$date ${selectedTime.join(",")}:00").add(Duration(minutes: serviceDuration.value)).toString().split(".").first;
@@ -394,14 +396,14 @@ class WOHInspectController extends GetxController {
       var result = await response.stream.bytesToString();
       print(result);
       buttonPressed.value = false;
-      Get.find<BookingsController>().refreshBookings();
+      Get.find<WOHBookingsController>().refreshBookings();
       if(editAppointment.value){
 
         cancelBooking(appointmentDto['id']);
 
       }else{
         Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Votre demande de rendez-vous à été envoyé avec succès"));
-        Navigator.pop(Get.context);
+        Navigator.pop(Get.context!);
       }
 
     }
@@ -426,7 +428,7 @@ class WOHInspectController extends GetxController {
 
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Votre rendez-vous à été transféré avec succès"));
     }
     else {

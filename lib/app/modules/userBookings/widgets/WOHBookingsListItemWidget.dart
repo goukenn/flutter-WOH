@@ -10,7 +10,7 @@ import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
 import '../../../../main.dart';
 import '../controllers/WOHBookingsController.dart';
 
-class WOHBookingsListItemWidget extends GetView<BookingsController> {
+class WOHBookingsListItemWidget extends GetView<WOHBookingsController> {
 
   @override
   Widget build(BuildContext context) {

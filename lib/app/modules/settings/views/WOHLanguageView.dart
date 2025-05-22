@@ -53,7 +53,7 @@ class WOHLanguageView extends GetView<LanguageController> {
                       onChanged: (value) {
                         //controller.updateLocale(value);
                       },
-                      title: Text(_lang.tr, style: Get.textTheme.bodyText2),
+                      title: Text(_lang.tr, style: Get.textTheme.bodyMedium),
                     );
                   }).toList(),
                 ),

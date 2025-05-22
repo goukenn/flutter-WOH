@@ -59,7 +59,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                     width: 80,
                     child: Text("Available".tr,
                         maxLines: 1,
-                        style: Get.textTheme.bodyText2.merge(
+                        style: Get.textTheme.bodyMedium.merge(
                           TextStyle(color: Colors.green, height: 1.4, fontSize: 10),
                         ),
                         softWrap: false,
@@ -76,7 +76,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                     width: 80,
                     child: Text("Offline".tr,
                         maxLines: 1,
-                        style: Get.textTheme.bodyText2.merge(
+                        style: Get.textTheme.bodyMedium.merge(
                           TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
                         ),
                         softWrap: false,
@@ -100,7 +100,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         _service.name ?? '',
-                        style: Get.textTheme.bodyText2,
+                        style: Get.textTheme.bodyMedium,
                         maxLines: 3,
                         // textAlign: TextAlign.end,
                       ),
@@ -126,7 +126,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                                     color: Get.theme.colorScheme.secondary,
                                     size: 18,
                                   ),
-                                  Text(_service.rate.toString(), style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.colorScheme.secondary, height: 1.4))),
+                                  Text(_service.rate.toString(), style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.colorScheme.secondary, height: 1.4))),
                                 ],
                               ),
                               backgroundColor: Get.theme.colorScheme.secondary.withOpacity(0.15),
@@ -150,7 +150,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                             ),
                           WOHUi.getPrice(
                             _service.getPrice,
-                            style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
+                            style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
                             unit: _service.getUnit,
                           ),
                         ],

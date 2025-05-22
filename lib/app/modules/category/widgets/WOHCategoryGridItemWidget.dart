@@ -62,7 +62,7 @@ class WOHCategoryGridItemWidget extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     category.name ?? '',
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyMedium,
                     softWrap: false,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,

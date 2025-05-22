@@ -40,7 +40,7 @@ class WOHFilterBottomSheetWidget extends GetView<SearchController> {
                     return CircularLoadingWidget(height: 100);
                   }
                   return ExpansionTile(
-                    title: Text("Travels".tr, style: Get.textTheme.bodyText2),
+                    title: Text("Travels".tr, style: Get.textTheme.bodyMedium),
                     children: List.generate(transportMeans.length, (index) {
                       var _category = transportMeans.elementAt(index);
                       return Obx(() {

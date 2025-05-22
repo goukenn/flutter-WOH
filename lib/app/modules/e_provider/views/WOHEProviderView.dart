@@ -193,7 +193,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                           child: Text(
                             _media.name ?? '',
                             maxLines: 2,
-                            style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.primaryColor)),
+                            style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.primaryColor)),
                           ),
                         ),
                       ],
@@ -233,7 +233,7 @@ class WOHEProviderView extends GetView<EProviderController> {
           Container(
             child: Text("Available".tr,
                 maxLines: 1,
-                style: Get.textTheme.bodyText2.merge(
+                style: Get.textTheme.bodyMedium.merge(
                   TextStyle(color: Colors.green, height: 1.4, fontSize: 10),
                 ),
                 softWrap: false,
@@ -249,7 +249,7 @@ class WOHEProviderView extends GetView<EProviderController> {
           Container(
             child: Text("Offline".tr,
                 maxLines: 1,
-                style: Get.textTheme.bodyText2.merge(
+                style: Get.textTheme.bodyMedium.merge(
                   TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
                 ),
                 softWrap: false,
@@ -548,7 +548,7 @@ class WOHEProviderView extends GetView<EProviderController> {
               Container(
                 child: Text(_eProvider.type?.name?.tr ?? ' . . . ',
                     maxLines: 1,
-                    style: Get.textTheme.bodyText2.merge(
+                    style: Get.textTheme.bodyMedium.merge(
                       TextStyle(color: Get.theme.colorScheme.secondary, height: 1.4, fontSize: 10),
                     ),
                     softWrap: false,

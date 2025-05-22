@@ -69,7 +69,7 @@ class WOHCategoryListItemWidget extends StatelessWidget {
                       category.name,
                       overflow: TextOverflow.fade,
                       softWrap: false,
-                      style: Get.textTheme.bodyText2,
+                      style: Get.textTheme.bodyMedium,
                     ),
                   ),
                   // TODO get service for each category

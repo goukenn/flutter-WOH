@@ -95,7 +95,7 @@ class WOHRootController extends GetxController {
         }
       case 1:
         {
-          await Get.find<BookingsController>().refreshBookings();
+          await Get.find<WOHBookingsController>().refreshBookings();
           break;
         }
       case 2:

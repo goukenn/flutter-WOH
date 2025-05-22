@@ -90,7 +90,7 @@ class WOHSearchView extends GetView<SearchController> {
                 color: Get.theme.primaryColor,
                 child: TextField(
                   controller: controller.textEditingController,
-                  style: Get.textTheme.bodyText2,
+                  style: Get.textTheme.bodyMedium,
                   onChanged: (value)=>{
                     controller.filterSearchResults(value)
                   },
@@ -120,7 +120,7 @@ class WOHSearchView extends GetView<SearchController> {
                   children: [
                     Text(
                       "Filter".tr,
-                      style: Get.textTheme.bodyText2, //TextStyle(color: Get.theme.hintColor),
+                      style: Get.textTheme.bodyMedium, //TextStyle(color: Get.theme.hintColor),
                     ),
                     Icon(
                       Icons.filter_list,

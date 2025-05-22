@@ -72,7 +72,7 @@ class WOHTextFieldWidget extends StatelessWidget {
         children: [
           Text(
             labelText ?? "",
-            style: Get.textTheme.bodyText2.merge(TextStyle(color: labelColor)),
+            style: Get.textTheme.bodyMedium.merge(TextStyle(color: labelColor)),
             textAlign: textAlign ?? TextAlign.start,
           ),
           TextFormField(
@@ -87,7 +87,7 @@ class WOHTextFieldWidget extends StatelessWidget {
             minLines: maxLines,
             validator: validator,
             enabled: editable,
-            style: style ?? Get.textTheme.bodyText2.merge(TextStyle(color: labelColor)),
+            style: style ?? Get.textTheme.bodyMedium.merge(TextStyle(color: labelColor)),
             obscureText: obscureText ?? false,
             textAlign: textAlign ?? TextAlign.start,
             decoration: WOHUi.getInputDecoration(

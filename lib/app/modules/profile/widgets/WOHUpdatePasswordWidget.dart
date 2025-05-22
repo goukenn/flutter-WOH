@@ -25,7 +25,7 @@ class WOHUpdatePasswordWidget extends GetView<ProfileController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Change password!", style: Get.textTheme.bodyText2.merge(TextStyle(color: Colors.redAccent))),
+                Text("Change password!", style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.redAccent))),
                 Text("Fill your old password and type new password and confirm it", style: Get.textTheme.labelSmall.merge(TextStyle(color: Colors.redAccent))),
               ],
             ),
@@ -53,7 +53,7 @@ class WOHUpdatePasswordWidget extends GetView<ProfileController> {
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               color: Get.theme.colorScheme.secondary,
-              child: Text("Change".tr, style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.primaryColor))),
+              child: Text("Change".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.primaryColor))),
               elevation: 0,
               highlightElevation: 0,
               hoverElevation: 0,
@@ -91,7 +91,7 @@ class WOHUpdatePasswordWidget extends GetView<ProfileController> {
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               color: Get.theme.colorScheme.secondary,
-              child: Text("Confirm".tr, style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.primaryColor))),
+              child: Text("Confirm".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.primaryColor))),
               elevation: 0,
               highlightElevation: 0,
               hoverElevation: 0,

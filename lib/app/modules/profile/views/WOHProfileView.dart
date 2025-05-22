@@ -67,7 +67,7 @@ class WOHProfileView extends GetView<ProfileController> {
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             color: Get.theme.colorScheme.secondary,
-            child: !controller.buttonPressed.value ? Text("Update".tr, style: Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.primaryColor)))
+            child: !controller.buttonPressed.value ? Text("Update".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.primaryColor)))
                 : SizedBox(height: 10,
                 child: SpinKitThreeBounce(color: Colors.white, size: 20)),
             elevation: 0,

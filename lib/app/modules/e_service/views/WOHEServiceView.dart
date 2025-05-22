@@ -167,7 +167,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                                               child: Text(
                                                 _media.name ?? '',
                                                 maxLines: 2,
-                                                style: Get.textTheme.bodyText2.merge(TextStyle(
+                                                style: Get.textTheme.bodyMedium.merge(TextStyle(
                                                   color: Get.theme.primaryColor,
                                                   shadows: <Shadow>[
                                                     Shadow(
@@ -352,7 +352,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                 Container(
                   child: Text("  .  .  .  ".tr,
                       maxLines: 1,
-                      style: Get.textTheme.bodyText2.merge(
+                      style: Get.textTheme.bodyMedium.merge(
                         TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
                       ),
                       softWrap: false,
@@ -369,7 +369,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                 Container(
                   child: Text("Available".tr,
                       maxLines: 1,
-                      style: Get.textTheme.bodyText2.merge(
+                      style: Get.textTheme.bodyMedium.merge(
                         TextStyle(color: Colors.green, height: 1.4, fontSize: 10),
                       ),
                       softWrap: false,
@@ -386,7 +386,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                 Container(
                   child: Text("Offline".tr,
                       maxLines: 1,
-                      style: Get.textTheme.bodyText2.merge(
+                      style: Get.textTheme.bodyMedium.merge(
                         TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
                       ),
                       softWrap: false,

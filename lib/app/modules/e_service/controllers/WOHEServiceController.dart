@@ -131,9 +131,9 @@ class WOHEServiceController extends GetxController {
 
   TextStyle getTitleTheme(Option option) {
     if (option.checked.value) {
-      return Get.textTheme.bodyText2.merge(TextStyle(color: Get.theme.colorScheme.secondary));
+      return Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
-    return Get.textTheme.bodyText2;
+    return Get.textTheme.bodyMedium;
   }
 
   TextStyle getSubTitleTheme(Option option) {

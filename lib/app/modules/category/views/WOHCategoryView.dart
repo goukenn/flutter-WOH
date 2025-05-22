@@ -120,7 +120,7 @@ class WOHCategoryView extends GetView<CategoryController> {
                             width: Get.width/1.8,
                             child: TextFormField(
                               //controller: controller.textEditingController,
-                                style: Get.textTheme.bodyText2,
+                                style: Get.textTheme.bodyMedium,
                                 onChanged: (value)=> controller.filterSearchResults(value),
                                 autofocus: false,
                                 cursorColor: Get.theme.focusColor,
@@ -228,7 +228,7 @@ class WOHCategoryView extends GetView<CategoryController> {
       padding: EdgeInsets.symmetric(vertical: 6),
       child: TextFormField(
         //controller: controller.textEditingController,
-        style: Get.textTheme.bodyText2,
+        style: Get.textTheme.bodyMedium,
         onChanged: (value)=> controller.filterSearchResults(value),
         autofocus: false,
         cursorColor: Get.theme.focusColor,

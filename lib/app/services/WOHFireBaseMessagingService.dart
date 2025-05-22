@@ -183,10 +183,10 @@ class WOHFireBaseMessagingService extends GetxService {
 
   void _bookingNotification(RemoteMessage message) {
     if (Get.currentRoute == WOHRoutes.ROOT) {
-      //Get.find<BookingsController>().refreshBookings();
+      //Get.find<WOHBookingsController>().refreshBookings();
     }
     /*if (Get.currentRoute == WOHRoutes.BOOKING) {
-      Get.find<BookingsController>().refreshBooking();
+      Get.find<WOHBookingsController>().refreshBooking();
     }*/
     RemoteNotification notification = message.notification!;
     Get.showSnackbar(

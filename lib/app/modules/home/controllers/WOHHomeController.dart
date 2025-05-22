@@ -80,7 +80,7 @@ class WOHHomeController extends GetxController {
   }
 
   initValues()async{
-    Get.lazyPut(() => BookingsController());
+    Get.lazyPut(() => WOHBookingsController());
     final box = GetStorage();
     final userdata = box.read('userData');
 
@@ -89,7 +89,7 @@ class WOHHomeController extends GetxController {
     var missedList = [];
     var cancelList = [];
 
-    var data = await Get.find<BookingsController>().getAppointments(userdata['appointment_ids']);
+    var data = await Get.find<WOHBookingsController>().getAppointments(userdata['appointment_ids']);
 
     for(var i in data){
       if(i['state'] == "reserved"){
@@ -116,7 +116,7 @@ class WOHHomeController extends GetxController {
   }
 
   refreshPage()async{
-    Get.lazyPut(() => BookingsController());
+    Get.lazyPut(() => WOHBookingsController());
     final box = GetStorage();
     final userdata = box.read('userData');
     var value = await getEmployeeData(userdata['id']);
@@ -126,7 +126,7 @@ class WOHHomeController extends GetxController {
     var missedList = [];
     var cancelList = [];
 
-    var data = await Get.find<BookingsController>().getAppointments(value['appointment_ids']);
+    var data = await Get.find<WOHBookingsController>().getAppointments(value['appointment_ids']);
 
     for(var i in data){
       if(i['state'] == "reserved"){
@@ -218,13 +218,13 @@ class WOHHomeController extends GetxController {
 
   Future<void> changePage(int _index) async {
 
-    Get.lazyPut(() => BookingsController());
+    Get.lazyPut(() => WOHBookingsController());
 
     switch (_index) {
       case 0:
         {
-          await Get.find<BookingsController>().refreshBookings();
-          Get.find<BookingsController>().showBackButton.value = true;
+          await Get.find<WOHBookingsController>().refreshBookings();
+          Get.find<WOHBookingsController>().showBackButton.value = true;
           await Get.toNamed(WOHRoutes.APPOINTMENT_BOOK);
           break;
         }
@@ -401,10 +401,10 @@ class WOHHomeController extends GetxController {
                       style: ElevatedButton.styleFrom(backgroundColor: employeeInterfaceColor),
                       child: Text("Traiter le rendez-vous"),
                       onPressed: (){
-                        Get.lazyPut(()=>BookingsController());
-                        Get.find<BookingsController>().selectedAppointment.value = appointment;
-                        Get.find<BookingsController>().getAppointmentOrder(appointment["order_id"][0]);
-                        Get.find<BookingsController>().refreshBookings();
+                        Get.lazyPut(()=>WOHBookingsController());
+                        Get.find<WOHBookingsController>().selectedAppointment.value = appointment;
+                        Get.find<WOHBookingsController>().getAppointmentOrder(appointment["order_id"][0]);
+                        Get.find<WOHBookingsController>().refreshBookings();
                         currentPage.value = 3;
                         Navigator.pop(Get.context);
 

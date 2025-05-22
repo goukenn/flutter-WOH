@@ -39,15 +39,15 @@ class WOHRatingView extends GetView<RatingController> {
           Column(
             children: [
               Wrap(children: [
-                Text("Hi,".tr, style: Get.textTheme.bodyText2.merge(TextStyle(color: Colors.black))),
+                Text("Hi,".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.black))),
                 Text(controller.shippingDto['partner_id'][1],
-                  style: Get.textTheme.bodyText2.merge(TextStyle(color: Colors.black)),
+                  style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.black)),
                 )
               ]),
               SizedBox(height: 10),
               Text(
                 "How do you feel this services?".tr,
-                style: Get.textTheme.bodyText2.merge(TextStyle(color: Colors.black)),
+                style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.black)),
               ),
             ],
           ),

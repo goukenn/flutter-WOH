@@ -28,7 +28,7 @@ class main_drawer_widget extends StatelessWidget {
           () => HomeController(),
     );
     Get.lazyPut(() => ValidationController());
-    Get.lazyPut(() => BookingsController());
+    Get.lazyPut(() => WOHBookingsController());
 
     var currentUser = Get.find<AuthController>().currentUser;
     return Container(
@@ -112,8 +112,8 @@ class main_drawer_widget extends StatelessWidget {
                 text: "Rendez-vous",
                 onTap: (e) {
                   Navigator.pop(context);
-                  Get.find<BookingsController>().refreshEmployeeBookings();
-                  //Get.find<BookingsController>().filterAppointmentDates();
+                  Get.find<WOHBookingsController>().refreshEmployeeBookings();
+                  //Get.find<WOHBookingsController>().filterAppointmentDates();
                   Get.find<HomeController>().currentPage.value = 1;
                 }
             ),
@@ -124,8 +124,8 @@ class main_drawer_widget extends StatelessWidget {
                 text: "Factures",
                 onTap: (e) {
                   Navigator.pop(context);
-                  Get.find<BookingsController>().getReceipts();
-                  //Get.find<BookingsController>().filterDates();
+                  Get.find<WOHBookingsController>().getReceipts();
+                  //Get.find<WOHBookingsController>().filterDates();
                   Get.find<HomeController>().currentPage.value = 2;
                 }
             ),
@@ -136,7 +136,7 @@ class main_drawer_widget extends StatelessWidget {
                 text: "Interface POS",
                 onTap: (e) {
                   Navigator.pop(context);
-                  Get.find<BookingsController>().refreshEmployeeBookings();
+                  Get.find<WOHBookingsController>().refreshEmployeeBookings();
                   Get.find<HomeController>().currentPage.value = 3;
                 }
             ),

@@ -15,7 +15,7 @@ import 'package:flutter/services.dart';
 
 import '../widgets/WOHBookingsListItemWidget.dart';
 
-class WOHInterfacePOS extends GetView<BookingsController> {
+class WOHInterfacePOS extends GetView<WOHBookingsController> {
 
   @override
   Widget build(BuildContext context) {

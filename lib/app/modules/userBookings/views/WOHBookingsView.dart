@@ -15,7 +15,7 @@ import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHBookingsController.dart';
 import '../widgets/WOHBookingsListLoaderWidget.dart';
 
-class WOHBookingsView extends GetView<BookingsController> {
+class WOHBookingsView extends GetView<WOHBookingsController> {
 
   @override
   Widget build(BuildContext context) {
