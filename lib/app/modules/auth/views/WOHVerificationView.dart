@@ -9,7 +9,7 @@ import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../models/WOHMyUserModel.dart';
 import '../../../models/WOHSettingModel.dart';
-import '../../../repositories/WOHWHOUserRepository.dart';
+import '../../../repositories/WOHUserRepository.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../../../services/WOHSettingsService.dart';
@@ -23,10 +23,10 @@ class WOHVerificationView extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
-    final Rx<MyUser> currentUser = Get.find<MyAuthService>().myUser;
-    WOHWHOUserRepository _userRepository;
+    final Rx<WOHMyUserModel> currentUser = Get.find<MyAuthService>().myUser;
+    WOHUserRepository _userRepository;
 
-    _userRepository = WOHWHOUserRepository();
+    _userRepository = WOHUserRepository();
     Get.put(currentUser);
 
     return WillPopScope(

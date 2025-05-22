@@ -19,7 +19,7 @@ import '../../../services/WOHMyAuthService.dart';
 
 class WOHAccountController extends GetxController {
 
-  //final Rx<MyUser> currentUser = Get.find<MyAuthService>().myUser;
+  //final Rx<WOHMyUserModel> currentUser = Get.find<MyAuthService>().myUser;
   final updatePassword = false.obs;
   final deleteUser = false.obs;
   final hidePassword = true.obs;

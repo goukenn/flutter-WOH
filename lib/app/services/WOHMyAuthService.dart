@@ -6,18 +6,18 @@
 // import 'WOHSettingsService.dart';
 
 // class MyAuthService extends GetxService {
-//   final myUser? = MyUser().obs;
+//   final myUser? = WOHMyUserModel().obs;
 //   GetStorage _box;
 
-//   WOHWHOUserRepository _usersRepo;
+//   WOHUserRepository _usersRepo;
 
 //   MyAuthService() {
-//     _usersRepo = new WOHWHOUserRepository();
+//     _usersRepo = new WOHUserRepository();
 //     _box = new GetStorage();
 //   }
 
 //   Future<MyAuthService> init() async {
-//     myUser.listen((MyUser? _user) {
+//     myUser.listen((WOHMyUserModel? _user) {
 //       if (Get.isRegistered<WOHSettingsService>()) {
 //         //Get.find<WOHSettingsService>().address.value.userId = _user.id;
 //       }
@@ -29,16 +29,16 @@
 
 //   Future getCurrentUser() async {
 
-//     myUser.value = MyUser.fromJson(await _box.read('current_user'));
+//     myUser.value = WOHMyUserModel.fromJson(await _box.read('current_user'));
 //     if (_box.hasData('current_user')) {
-//       myUser.value = MyUser.fromJson(await _box.read('current_user'));
+//       myUser.value = WOHMyUserModel.fromJson(await _box.read('current_user'));
 //       //myUser.value.auth = true;
 //     } else {
 //       //myUser.value.auth = false;
 //     }
 
 //     // if (myUser.value.auth == null && _box.hasData('current_user')) {
-//     //   myUser.value = MyUser.fromJson(await _box.read('current_user'));
+//     //   myUser.value = WOHMyUserModel.fromJson(await _box.read('current_user'));
 //     //   myUser.value.auth = true;
 //     // } else {
 //     //   myUser.value.auth = false;
@@ -46,7 +46,7 @@
 //   }
 
 //   Future removeCurrentUser() async {
-//     myUser.value = new MyUser();
+//     myUser.value = new WOHMyUserModel();
 //     await _usersRepo.signOut();
 //     await _box.remove('current_user');
 //   }

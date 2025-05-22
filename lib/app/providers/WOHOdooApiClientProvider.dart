@@ -39,11 +39,11 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
     return _httpClient.isLoading(task: task, tasks: tasks);
   }
 
-  Future<bool> sendResetLinkEmail(MyUser user) async {
+  Future<bool> sendResetLinkEmail(WOHMyUserModel user) async {
     Uri _uri = getApiBaseUri("send_reset_link_email");
     Get.log(_uri.toString());
     // to remove other attributes from the user object
-    user = new MyUser(email: user.email);
+    user = new WOHMyUserModel(email: user.email);
     var response = await _httpClient.postUri(
       _uri,
       data: json.encode(user.toJson()),
@@ -56,7 +56,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  updateUser(MyUser myUser) async {
+  updateUser(WOHMyUserModel myUser) async {
     var headers = {
       'Accept': 'application/json',
       'Authorization': WOHDomain.authorization
@@ -82,7 +82,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
 
   }
 
-  updatePartner(MyUser myUser) async {
+  updatePartner(WOHMyUserModel myUser) async {
     var headers = {
       'Accept': 'application/json',
       'Authorization': WOHDomain.authorization
@@ -137,7 +137,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
   // }
 
 
-  updateToTraveler(bool value, MyUser myser) async {
+  updateToTraveler(bool value, WOHMyUserModel myser) async {
     var headers = {
       'Accept': 'application/json',
       'Authorization': WOHDomain.authorization,
@@ -161,7 +161,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
 
   }
 
-  updateToShipper(bool value, MyUser myUser) async {
+  updateToShipper(bool value, WOHMyUserModel myUser) async {
     var headers = {
       'Accept': 'application/json',
       'Authorization': WOHDomain.authorization,
@@ -184,7 +184,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<String> uploadImage(File file, MyUser myUser) async {
+  Future<String> uploadImage(File file, WOHMyUserModel myUser) async {
 
     if (Get.find<MyAuthService>().myUser.value.email==null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");

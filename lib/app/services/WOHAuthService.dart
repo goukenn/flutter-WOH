@@ -5,16 +5,17 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../models/WOHUserModel.dart';
-import '../repositories/WOHWHOUserRepository.dart';
+import '../repositories/WOHUserRepository.dart';
+import '../repositories/WOHUserRepository.dart';
 import 'WOHSettingsService.dart';
 
 class WOHAuthService extends GetxService {
   final user = WOHUserModel().obs;
   late GetStorage _box;
-  late WOHWHOUserRepository _usersRepo;
+  late WOHUserRepository _usersRepo;
 
   WOHAuthService() {
-    _usersRepo = WOHWHOUserRepository();
+    _usersRepo = WOHUserRepository();
     _box = GetStorage();
   }
 

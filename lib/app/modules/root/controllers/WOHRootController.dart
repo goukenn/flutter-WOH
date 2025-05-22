@@ -20,14 +20,14 @@ class WOHRootController extends GetxController {
   final currentIndex = 0.obs;
   final notificationsCount = 0.obs;
   final customPages = <CustomPage>[].obs;
-  NotificationsController _notificationController;
+  WOHNotificationsController _notificationController;
   //WOHNotificationRepository _notificationRepository;
   CustomPageRepository _customPageRepository;
   PackageInfo packageInfo;
 
   WOHRootController() {
     //_notificationRepository = new WOHNotificationRepository();
-    _notificationController = new NotificationsController();
+    _notificationController = new WOHNotificationsController();
     _customPageRepository = new CustomPageRepository();
   }
 

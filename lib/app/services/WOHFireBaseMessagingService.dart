@@ -120,7 +120,7 @@ class WOHFireBaseMessagingService extends GetxService {
   Future fcmOnResumeListeners() async {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       var count = 0;
-      // NotificationsController _notificationController = new NotificationsController();
+      // WOHNotificationsController _notificationController = new WOHNotificationsController();
 
       if (!Hive.isBoxOpen('backgroundMessage')) {
         await Hive.openBox('backgroundMessage');

@@ -5,8 +5,8 @@ import '../controllers/WOHNotificationsController.dart';
 class WOHNotificationsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<NotificationsController>(
-      () => NotificationsController(),
+    Get.lazyPut<WOHNotificationsController>(
+      () => WOHNotificationsController(),
     );
   }
 }

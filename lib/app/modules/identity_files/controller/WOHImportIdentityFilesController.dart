@@ -43,7 +43,7 @@ class WOHImportIdentityFilesController extends GetxController{
   TextEditingController arrTown = TextEditingController();
 
   var selectedPiece = "Select identity piece".obs;
-  final user = new MyUser().obs;
+  final user = new WOHMyUserModel().obs;
 
   var pieceList = [
     'Select identity piece'.tr,

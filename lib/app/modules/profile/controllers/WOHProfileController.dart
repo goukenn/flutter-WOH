@@ -8,16 +8,16 @@ import 'package:intl/intl.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../models/WOHMyUserModel.dart';
-import '../../../repositories/WOHWHOUserRepository.dart';
+import '../../../repositories/WOHUserRepository.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHPhoneVerificationBottomSheetWidget.dart';
 
 class WOHProfileController extends GetxController {
-  final user = new MyUser().obs;
+  final user = new WOHMyUserModel().obs;
   var url = ''.obs;
-  //final Rx<MyUser> currentUser = Get.find<MyAuthService>().myUser;
+  //final Rx<WOHMyUserModel> currentUser = Get.find<MyAuthService>().myUser;
   final hidePassword = true.obs;
   final oldPassword = "".obs;
   final newPassword = "".obs;
@@ -58,10 +58,10 @@ class WOHProfileController extends GetxController {
 
 
   GlobalKey<FormState> profileForm;
-  WOHWHOUserRepository _userRepository;
+  WOHUserRepository _userRepository;
 
   WOHProfileController() {
-    _userRepository = new WOHWHOUserRepository();
+    _userRepository = new WOHUserRepository();
   }
 
   @override

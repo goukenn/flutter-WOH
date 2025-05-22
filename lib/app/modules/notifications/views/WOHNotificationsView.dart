@@ -12,11 +12,11 @@ import '../widgets/WOHNewPriceNotificationItemWidget.dart';
 import '../widgets/WOHTravelNotificationItemWidget.dart';
 import '../widgets/WOHNotificationItemWidget.dart';
 
-class WOHNotificationsView extends GetView<NotificationsController> {
+class WOHNotificationsView extends GetView<WOHNotificationsController> {
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut(()=>NotificationsController());
+    Get.lazyPut(()=>WOHNotificationsController());
 
     return Scaffold(
       appBar: AppBar(

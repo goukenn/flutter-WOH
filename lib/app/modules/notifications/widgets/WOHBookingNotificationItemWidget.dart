@@ -11,7 +11,7 @@ import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../controllers/WOHNotificationsController.dart';
 import 'WOHNotificationItemWidget.dart';
 
-class WOHBookingNotificationItemWidget extends GetView<NotificationsController> {
+class WOHBookingNotificationItemWidget extends GetView<WOHNotificationsController> {
   WOHBookingNotificationItemWidget({Key key, this.notification}) : super(key: key);
   final model.NotificationModel notification;
 

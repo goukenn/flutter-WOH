@@ -9,7 +9,7 @@ class WOHUploadRepository {
   // .ctr default constructor
   WOHUploadRepository(this._odooApiClient);
 
-  Future image(File image, MyUser myser) {
+  Future image(File image, WOHMyUserModel myser) {
     print('Nathalie');
     return _odooApiClient.uploadImage(image, myser);
 

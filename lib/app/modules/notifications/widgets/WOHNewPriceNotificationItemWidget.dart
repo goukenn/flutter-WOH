@@ -6,7 +6,7 @@ import '../../../routes/WOHRoutes.dart';
 import '../controllers/WOHNotificationsController.dart';
 import 'WOHNotificationItemWidget.dart';
 
-class WOHNewPriceNotificationItemWidget extends GetView<NotificationsController> {
+class WOHNewPriceNotificationItemWidget extends GetView<WOHNotificationsController> {
   WOHNewPriceNotificationItemWidget({Key key, this.notification}) : super(key: key);
   final model.NotificationModel notification;
 

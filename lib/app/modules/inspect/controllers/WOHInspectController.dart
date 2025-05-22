@@ -17,7 +17,7 @@ class WOHInspectController extends GetxController {
   TextEditingController city = TextEditingController();
   var isClicked = false.obs;
   var luggageTypes = ["envelope", "briefcase", "suitcase"].obs;
-  final user = new MyUser().obs;
+  final user = new WOHMyUserModel().obs;
   var showButton = false.obs;
   var categoryId = 0.obs;
   var serviceId = 0.obs;
@@ -36,7 +36,7 @@ class WOHInspectController extends GetxController {
   var daySelected = 0.obs;
   TextEditingController birthPlaceTown = TextEditingController();
   TextEditingController residentialTown = TextEditingController();
-  //final Rx<MyUser> currentUser = Get.find<MyAuthService>().myUser;
+  //final Rx<WOHMyUserModel> currentUser = Get.find<MyAuthService>().myUser;
 
   var genderList = [
     "MALE",

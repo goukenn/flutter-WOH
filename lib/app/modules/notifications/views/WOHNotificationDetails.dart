@@ -1,33 +1,27 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, use_key_in_widget_constructors, must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../WOHColorConstants.dart';
-import '../../../providers/laravel_provider.dart';
-import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHNotificationsController.dart';
-import '../widgets/WOHBookingNotificationItemWidget.dart';
-import '../widgets/WOHNewPriceNotificationItemWidget.dart';
-import '../widgets/WOHTravelNotificationItemWidget.dart';
-import '../widgets/WOHNotificationItemWidget.dart';
 
-class WOHNotificationDetails extends GetView<NotificationsController> {
+class WOHNotificationDetails extends GetView<WOHNotificationsController> {
   var notification;
 
   @override
   Widget build(BuildContext context) {
-    var arguments = Get.arguments as Map<String, dynamic>;
+    var arguments = Get.arguments as Map<String, dynamic>?;
     if (arguments != null) {
       if (arguments['notification'] != null) {
         notification = arguments['notification'];
 
-        Get.lazyPut(() => NotificationsController());
+        Get.lazyPut(() => WOHNotificationsController());
 
         return Scaffold(
             appBar: AppBar(
                 title: Text(
                   "Notification Details".tr,
-                  style: Get.textTheme.titleLarge.merge(
+                  style: Get.textTheme.titleLarge!.merge(
                       TextStyle(color: Colors.white)),
                 ),
                 centerTitle: true,
@@ -41,7 +35,7 @@ class WOHNotificationDetails extends GetView<NotificationsController> {
             ),
             bottomSheet:  viewData(
               'sent time :',
-              notification.timestamp?.toString(),
+              notification.timestamp.toString(),
               FontWeight.bold,
               Colors.grey,
               12,
@@ -76,6 +70,8 @@ class WOHNotificationDetails extends GetView<NotificationsController> {
         );
       }
     }
+    // + | add explicit throw
+    throw '';
   }
 
   Widget viewData(String title, String value, FontWeight fontWeight,
