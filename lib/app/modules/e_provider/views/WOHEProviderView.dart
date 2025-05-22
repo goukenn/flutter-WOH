@@ -33,9 +33,9 @@ class WOHEProviderView extends GetView<EProviderController> {
         return Scaffold(
           body: RefreshIndicator(
               onRefresh: () async {
-                Get.find<LaravelApiClient>().forceRefresh();
+                Get.find<WOHLaravelApiClientProvider>().forceRefresh();
                 controller.refreshEProvider(showMessage: true);
-                Get.find<LaravelApiClient>().unForceRefresh();
+                Get.find<WOHLaravelApiClientProvider>().unForceRefresh();
               },
               child: CustomScrollView(
                 primary: true,

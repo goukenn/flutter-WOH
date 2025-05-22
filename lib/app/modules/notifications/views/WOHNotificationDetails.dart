@@ -87,7 +87,7 @@ class WOHNotificationDetails extends GetView<WOHNotificationsController> {
             style: TextStyle(fontWeight: fontWeight, color: color),
           ),
           Expanded(
-              child: Text(value ?? 'N/A',
+              child: Text(value.isEmpty? 'N/A' : value,
                   style: TextStyle(
                       fontWeight: fontWeight,
                       color: color,

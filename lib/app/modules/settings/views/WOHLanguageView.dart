@@ -36,7 +36,7 @@ class WOHLanguageView extends GetView<LanguageController> {
           primary: true,
           children: [
             Obx(() {
-              if (Get.find<LaravelApiClient>().isLoading(task: 'getTranslations')) {
+              if (Get.find<WOHLaravelApiClientProvider>().isLoading(task: 'getTranslations')) {
                 return LanguagesLoaderWidget();
               }
               return Container(

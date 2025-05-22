@@ -13,16 +13,16 @@ class WOHEProviderEServicesView extends GetView<EServicesController> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () async {
-          if (!Get.find<LaravelApiClient>().isLoading(tasks: [
+          if (!Get.find<WOHLaravelApiClientProvider>().isLoading(tasks: [
             'getEProviderEServices',
             'getEProviderPopularEServices',
             'getEProviderMostRatedEServices',
             'getEProviderAvailableEServices',
             'getEProviderFeaturedEServices'
           ])) {
-            Get.find<LaravelApiClient>().forceRefresh();
+            Get.find<WOHLaravelApiClientProvider>().forceRefresh();
             controller.refreshEServices(showMessage: true);
-            Get.find<LaravelApiClient>().unForceRefresh();
+            Get.find<WOHLaravelApiClientProvider>().unForceRefresh();
           }
         },
         child: CustomScrollView(

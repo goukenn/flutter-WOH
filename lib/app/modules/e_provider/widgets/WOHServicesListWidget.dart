@@ -14,7 +14,7 @@ class WOHServicesListWidget extends GetView<EServicesController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (Get.find<LaravelApiClient>().isLoading(tasks: [
+      if (Get.find<WOHLaravelApiClientProvider>().isLoading(tasks: [
             'getEProviderEServices',
             'getEProviderPopularEServices',
             'getEProviderMostRatedEServices',

@@ -33,9 +33,9 @@ class WOHEServiceView extends GetView<EServiceController> {
           bottomNavigationBar: buildBottomWidget(_eService),
           body: RefreshIndicator(
               onRefresh: () async {
-                Get.find<LaravelApiClient>().forceRefresh();
+                Get.find<WOHLaravelApiClientProvider>().forceRefresh();
                 controller.refreshEService(showMessage: true);
-                Get.find<LaravelApiClient>().unForceRefresh();
+                Get.find<WOHLaravelApiClientProvider>().unForceRefresh();
               },
               child: CustomScrollView(
                 primary: true,

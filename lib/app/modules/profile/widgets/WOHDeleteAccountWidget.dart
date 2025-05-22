@@ -29,7 +29,7 @@ class WOHDeleteAccountWidget extends GetView<ProfileController> {
           ),
           SizedBox(width: 10),
           Obx(() {
-            if (Get.find<LaravelApiClient>().isLoading(task: 'deleteUser')) {
+            if (Get.find<WOHLaravelApiClientProvider>().isLoading(task: 'deleteUser')) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: SizedBox(

@@ -29,9 +29,9 @@ class WOHCategoriesView extends GetView<CategoriesController> {
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            Get.find<LaravelApiClient>().forceRefresh();
+            Get.find<WOHLaravelApiClientProvider>().forceRefresh();
             //controller.refreshCategories(showMessage: true);
-            Get.find<LaravelApiClient>().unForceRefresh();
+            Get.find<WOHLaravelApiClientProvider>().unForceRefresh();
           },
           child: ListView(
             primary: true,

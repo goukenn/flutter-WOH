@@ -1,15 +1,12 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../WOHColorConstants.dart';
-import '../../../providers/laravel_provider.dart';
+import '../../../providers/WOHLaravelApiClientProvider.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHNotificationsController.dart';
-import '../widgets/WOHBookingNotificationItemWidget.dart';
-import '../widgets/WOHNewPriceNotificationItemWidget.dart';
-import '../widgets/WOHTravelNotificationItemWidget.dart';
 import '../widgets/WOHNotificationItemWidget.dart';
 
 class WOHNotificationsView extends GetView<WOHNotificationsController> {
@@ -22,7 +19,7 @@ class WOHNotificationsView extends GetView<WOHNotificationsController> {
       appBar: AppBar(
         title: Text(
           "Notifications".tr,
-          style: Get.textTheme.titleLarge.merge(TextStyle(color: Colors.white)),
+          style: Get.textTheme.titleLarge!.merge(TextStyle(color: Colors.white)),
         ),
         centerTitle: true,
         backgroundColor: appBarColor,
@@ -35,9 +32,9 @@ class WOHNotificationsView extends GetView<WOHNotificationsController> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          Get.find<LaravelApiClient>().forceRefresh();
+          Get.find<WOHLaravelApiClientProvider>().forceRefresh();
           await controller.refreshNotifications(showMessage: true);
-          Get.find<LaravelApiClient>().unForceRefresh();
+          Get.find<WOHLaravelApiClientProvider>().unForceRefresh();
         },
         child: ListView(
           primary: true,
@@ -67,7 +64,7 @@ class WOHNotificationsView extends GetView<WOHNotificationsController> {
             primary: false,
             itemBuilder: (context, index) {
               var _notification = controller.notifications.elementAt(index);
-                return NotificationItemWidget(
+                return WOHNotificationItemWidget(
                   notification: _notification,
                   onDismissed: (notification) {
                     controller.removeNotification(notification);

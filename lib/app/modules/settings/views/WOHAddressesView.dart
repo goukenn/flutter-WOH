@@ -34,9 +34,9 @@ class WOHAddressesView extends GetView<AddressController> {
               ),
         body: RefreshIndicator(
           onRefresh: () async {
-            Get.find<LaravelApiClient>().forceRefresh();
+            Get.find<WOHLaravelApiClientProvider>().forceRefresh();
             //await controller.refreshAddresses(showMessage: true);
-            Get.find<LaravelApiClient>().unForceRefresh();
+            Get.find<WOHLaravelApiClientProvider>().unForceRefresh();
           },
           child: Obx(() {
             return ListView(
