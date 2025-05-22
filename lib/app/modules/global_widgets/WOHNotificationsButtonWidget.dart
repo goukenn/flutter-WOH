@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 import '../../routes/WOHRoutes.dart';
 import '../../services/WOHAuthService.dart';
 import '../../services/WOHMyAuthService.dart';
 import '../root/controllers/WOHRootController.dart';
 
-class NotificationsButtonWidget extends GetView<RootController> {
-  const NotificationsButtonWidget({
+class WOHNotificationsButtonWidget extends GetView<RootController> {
+  const WOHNotificationsButtonWidget({
     this.iconColor,
     this.labelColor,
     Key key,

@@ -10,15 +10,15 @@ import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import 'package:http/http.dart' as http;
 import '../../../models/WOHMyUserModel.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
 
-class ImportIdentityFilesController extends GetxController{
+class WOHImportIdentityFilesController extends GetxController{
 
   final _picker = ImagePicker();
 
@@ -74,9 +74,9 @@ class ImportIdentityFilesController extends GetxController{
   getUserInfo(int id) async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse(Domain.serverPort+'/read/res.partner?ids=$id'));
+    var request = http.Request('GET', Uri.parse(WOHConstants.serverPort+'/read/res.partner?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -96,9 +96,9 @@ class ImportIdentityFilesController extends GetxController{
   getAttachmentFiles()async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/ir.attachment?ids=$listAttachment&fields=%5B%22attach_custom_type%22%2C%22name%22%2C%22duration_rest%22%2C%22validity%22%2C%22conformity%22%5D&with_context=%7B%7D&with_company=1'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/ir.attachment?ids=$listAttachment&fields=%5B%22attach_custom_type%22%2C%22name%22%2C%22duration_rest%22%2C%22validity%22%2C%22conformity%22%5D&with_context=%7B%7D&with_company=1'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -222,10 +222,10 @@ class ImportIdentityFilesController extends GetxController{
   sendImages(int id, File identityFile)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Content-Type': 'multipart/form-data',
     };
-    var request = http.MultipartRequest('POST', Uri.parse('${Domain.serverPort}/upload/ir.attachment/$id/datas'));
+    var request = http.MultipartRequest('POST', Uri.parse('${WOHConstants.serverPort}/upload/ir.attachment/$id/datas'));
     request.files.add(await http.MultipartFile.fromPath('ufile', identityFile.path));
     request.headers.addAll(headers);
 
@@ -276,10 +276,10 @@ class ImportIdentityFilesController extends GetxController{
   createAttachment() async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
 
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/create/ir.attachment?values={'
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/create/ir.attachment?values={'
         '"attach_custom_type": "$identityPieceSelected",'
         '"name": "${number.value}",'
         '"partner_id": "${currentUser.value.id}",'

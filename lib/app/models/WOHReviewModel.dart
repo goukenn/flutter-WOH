@@ -6,7 +6,7 @@ import 'WOHEServiceModel.dart';
 import 'parents/WOHModel.dart';
 import 'WOHUserModel.dart';
 
-class Review extends WOHModel {
+class WOHReviewModel extends WOHModel {
   String? id;
   double? rate;
   String? review;
@@ -14,9 +14,9 @@ class Review extends WOHModel {
   WOHUserModel? user;
   EService eService;
 
-  Review({this.id, this.rate, this.review, this.createdAt, this.user, this.eService});
+  WOHReviewModel({this.id, this.rate, this.review, this.createdAt, this.user, this.eService});
 
-  Review.fromJson(Map<String, dynamic> json) {
+  WOHReviewModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     rate = doubleFromJson(json, 'rate');
     review = stringFromJson(json, 'review');
@@ -40,7 +40,7 @@ class Review extends WOHModel {
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is Review &&
+          other is WOHReviewModel &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           rate == other.rate &&

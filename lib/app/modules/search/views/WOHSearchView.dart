@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../global_widgets/WOHFilterBottomSheetWidget.dart';
 import '../controllers/WOHSearchController.dart';
 
-class SearchView extends GetView<SearchController> {
+class WOHSearchView extends GetView<SearchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

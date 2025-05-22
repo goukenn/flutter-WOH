@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../../home/controllers/WOHHomeController.dart';
 
-class CategoryController extends GetxController {
+class WOHCategoryController extends GetxController {
   final page = 0.obs;
   final isLoading = true.obs;
   final isDone = false.obs;

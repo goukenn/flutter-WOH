@@ -43,8 +43,3 @@ const Color blue = Color.fromRGBO(70,83,179,1);
 const appBarColor = Color.fromRGBO(40,40,48, 1);
 
 
-class Palette {
-  static const Color background = Color(0xFFFFFFFF);
-  static const Color Text = Color(0xF5F5F5F5);
-  static const Color wrapperBg = Color(0xFF212121);
-}

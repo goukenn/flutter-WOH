@@ -16,7 +16,7 @@ import '../../notifications/controllers/WOHNotificationsController.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../../userBookings/views/WOHBookingsView.dart';
 
-class RootController extends GetxController {
+class WOHRootController extends GetxController {
   final currentIndex = 0.obs;
   final notificationsCount = 0.obs;
   final customPages = <CustomPage>[].obs;
@@ -25,7 +25,7 @@ class RootController extends GetxController {
   CustomPageRepository _customPageRepository;
   PackageInfo packageInfo;
 
-  RootController() {
+  WOHRootController() {
     //_notificationRepository = new WOHNotificationRepository();
     _notificationController = new NotificationsController();
     _customPageRepository = new CustomPageRepository();
@@ -43,7 +43,7 @@ class RootController extends GetxController {
     Home2View(),
     BookingsView(),
     FidelityCardWidget(),
-    AccountView(),
+    WOHAccountView(),
   ];
 
   Widget get currentPage => pages[currentIndex.value];

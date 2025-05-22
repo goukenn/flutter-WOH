@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 
-class ButtonAllTravelsWidget extends StatelessWidget implements PreferredSize {
+class WOHButtonAllTravelsWidget extends StatelessWidget implements PreferredSize {
 
   Widget buildButtonWidget() {
     return GestureDetector(

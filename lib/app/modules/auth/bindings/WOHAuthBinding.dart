@@ -5,7 +5,7 @@ import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../controllers/WOHAuthController.dart';
 
-class AuthBinding extends Bindings {
+class WOHAuthBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<AuthController>(

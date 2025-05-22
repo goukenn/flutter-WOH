@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHLoadingCards.dart';
 import '../controller/WOHImportIdentityFilesController.dart';
 
-class AttachmentView extends GetView<ImportIdentityFilesController> {
+class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
 
   @override
   Widget build(BuildContext context) {
@@ -114,8 +114,8 @@ class AttachmentView extends GetView<ImportIdentityFilesController> {
                                                       child: FadeInImage(
                                                         width: Get.width,
                                                         height: Get.height/2,
-                                                        image: NetworkImage('${Domain.serverPort}/image/ir.attachment/${controller.attachmentFiles[item]['id']}/datas?unique=true&file_response=true',
-                                                            headers: Domain.getTokenHeaders()),
+                                                        image: NetworkImage('${WOHConstants.serverPort}/image/ir.attachment/${controller.attachmentFiles[item]['id']}/datas?unique=true&file_response=true',
+                                                            headers: WOHConstants.getTokenHeaders()),
                                                         placeholder: AssetImage(
                                                             "assets/img/loading.gif"),
                                                         imageErrorBuilder:
@@ -145,8 +145,8 @@ class AttachmentView extends GetView<ImportIdentityFilesController> {
                                                   width: 80,
                                                   height: 80,
                                                   fit: BoxFit.cover,
-                                                  image: NetworkImage('${Domain.serverPort}/image/ir.attachment/${controller.attachmentFiles[item]['id']}/datas?unique=true&file_response=true',
-                                                      headers: Domain.getTokenHeaders()),
+                                                  image: NetworkImage('${WOHConstants.serverPort}/image/ir.attachment/${controller.attachmentFiles[item]['id']}/datas?unique=true&file_response=true',
+                                                      headers: WOHConstants.getTokenHeaders()),
                                                   placeholder: AssetImage(
                                                       "assets/img/loading.gif"),
                                                   imageErrorBuilder:

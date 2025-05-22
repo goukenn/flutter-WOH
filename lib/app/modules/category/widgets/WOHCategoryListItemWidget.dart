@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHCategoryModel.dart';
 import '../../../routes/WOHRoutes.dart';
 
-class CategoryListItemWidget extends StatelessWidget {
+class WOHCategoryListItemWidget extends StatelessWidget {
   final WOHCategoryModel category;
   final String heroTag;
   final bool expanded;
 
-  CategoryListItemWidget({Key key, this.category, this.heroTag, this.expanded}) : super(key: key);
+  WOHCategoryListItemWidget({Key key, this.category, this.heroTag, this.expanded}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

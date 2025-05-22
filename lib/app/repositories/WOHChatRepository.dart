@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import '../models/WOHChatModel.dart';
 import '../models/WOHMessageModel.dart';
 
-class ChatRepository {
+class WOHChatRepository {
   Future<void> addUserInfo(userData) async {
     FirebaseFirestore.instance.collection("users").add(userData).catchError((e) {
       print(e.toString());

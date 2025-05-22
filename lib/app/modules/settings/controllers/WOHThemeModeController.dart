@@ -4,11 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class ThemeModeController extends GetxController {
+class WOHThemeModeController extends GetxController {
   final selectedThemeMode = ThemeMode.light.obs;
   GetStorage _box;
 
-  ThemeModeController() {
+  WOHThemeModeController() {
     _box = new GetStorage();
   }
 

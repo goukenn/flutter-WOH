@@ -5,13 +5,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEProviderModel.dart';
 
-class EProviderItemWidget extends StatelessWidget {
+class WOHEProviderItemWidget extends StatelessWidget {
   final EProvider provider;
 
-  EProviderItemWidget({Key key, this.provider}) : super(key: key);
+  WOHEProviderItemWidget({Key key, this.provider}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

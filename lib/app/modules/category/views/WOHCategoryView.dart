@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../main.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHTravelCardWidget.dart';
@@ -10,7 +10,7 @@ import '../../global_widgets/WOHLoadingCards.dart';
 import '../../home/controllers/WOHHomeController.dart';
 import '../controllers/WOHCategoryController.dart';
 
-class CategoryView extends GetView<CategoryController> {
+class WOHCategoryView extends GetView<CategoryController> {
   @override
   Widget build(BuildContext context) {
 
@@ -84,7 +84,7 @@ class CategoryView extends GetView<CategoryController> {
                 padding: EdgeInsets.all(5),
                 alignment: Alignment.center,
                 width: 120,
-                child: Text(controller.travelType.value.toUpperCase(), style: Get.textTheme.headline2.merge(TextStyle(color: Colors.white))),
+                child: Text(controller.travelType.value.toUpperCase(), style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.white))),
                 decoration: BoxDecoration(
                     color: controller.travelType.value != "air" ? Colors.white.withOpacity(0.4) : interfaceColor.withOpacity(0.4),
                     border: Border.all(
@@ -200,7 +200,7 @@ class CategoryView extends GetView<CategoryController> {
                                   text: Text(""),
                                   user: controller.travelList[index]['partner_id'][1],
                                   rating: controller.travelList[index]['average_rating'].toStringAsFixed(1),
-                                  imageUrl: '${Domain.serverPort}/image/res.partner/${controller.travelList[index]['partner_id'][0]}/image_1920?unique=true&file_response=true'
+                                  imageUrl: '${WOHConstants.serverPort}/image/res.partner/${controller.travelList[index]['partner_id'][0]}/image_1920?unique=true&file_response=true'
 
                               ),
                             ),

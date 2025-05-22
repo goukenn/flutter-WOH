@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../controllers/WOHRatingController.dart';
 
-class RatingBinding extends Bindings {
+class WOHRatingBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<RatingController>(

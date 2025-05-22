@@ -6,7 +6,7 @@ import '../../routes/WOHRoutes.dart';
 import '../search/controllers/WOHSearchController.dart';
 import 'WOHFilterBottomSheetWidget.dart';
 
-class HomeSearchBarWidget extends StatelessWidget implements PreferredSize {
+class WOHHomeSearchBarWidget extends StatelessWidget implements PreferredSize {
 
   final controller = Get.find<SearchController>();
 

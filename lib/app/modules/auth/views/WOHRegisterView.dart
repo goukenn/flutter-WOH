@@ -6,19 +6,19 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHHelper.dart';
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../models/WOHSettingModel.dart';
 import '../../../routes/WOHRoutes.dart';
-import '../../../services/settings_service.dart';
+import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHPhoneFieldWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
-class RegisterView extends GetView<AuthController> {
+class WOHRegisterView extends GetView<AuthController> {
   final Setting _settings = Get.find<SettingsService>().setting.value;
   String dropdownvalueGender = 'Select your gender'.tr;
   String dropdownvaluePiece = 'Select an identity piece'.tr;
@@ -51,7 +51,7 @@ class RegisterView extends GetView<AuthController> {
       onWillPop: WOHHelper().onWillPop,
       child: Scaffold(
         body: Form(
-          key: Domain.riKey1,
+          key: WOHConstants.riKey1,
           child: ListView(
             primary: true,
             children: [
@@ -75,7 +75,7 @@ class RegisterView extends GetView<AuthController> {
                       padding: const EdgeInsets.all(20),
                       child: Text(
                         "\nCréer un compte".tr,
-                        style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
+                        style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -250,7 +250,7 @@ class RegisterView extends GetView<AuthController> {
                     color: controller.accepted.value ? interfaceColor : interfaceColor.withOpacity(0.3),
                     onPressed: controller.accepted.value ? () async{
 
-                      if(Domain.riKey1.currentState.validate()){
+                      if(WOHConstants.riKey1.currentState.validate()){
                         if(controller.password.value == controller.confirmPassword.value)
                         {
                           await controller.register();

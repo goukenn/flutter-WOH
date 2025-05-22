@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'WOHMediaModel.dart';
 import 'parents/WOHModel.dart';
 
-class Option extends WOHModel {
+class WOHOptionModel extends WOHModel {
   String? id;
   String? optionGroupId;
   String? eServiceId;
@@ -14,9 +14,9 @@ class Option extends WOHModel {
   String? description;
   var checked = false.obs;
 
-  Option({this.id, this.optionGroupId, this.eServiceId, this.name, this.price, this.image, this.description, this.checked});
+  WOHOptionModel({this.id, this.optionGroupId, this.eServiceId, this.name, this.price, this.image, this.description, this.checked});
 
-  Option.fromJson(Map<String, dynamic> json) {
+  WOHOptionModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     optionGroupId = stringFromJson(json, 'option_group_id', defaultValue: '0');
     eServiceId = stringFromJson(json, 'e_service_id', defaultValue: '0');
@@ -43,7 +43,7 @@ class Option extends WOHModel {
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is Option &&
+          other is WOHOptionModel &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           optionGroupId == other.optionGroupId &&

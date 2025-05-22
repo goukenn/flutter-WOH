@@ -5,13 +5,13 @@ import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 
 import '../../../models/WOHAddressModel.dart';
 import '../../../services/WOHAuthService.dart';
-import '../../../services/settings_service.dart';
+import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 
-class AddressPickerView extends StatelessWidget {
-  AddressPickerView();
+class WOHAddressPickerView extends StatelessWidget {
+  WOHAddressPickerView();
 
   @override
   Widget build(BuildContext context) {

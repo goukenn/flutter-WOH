@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import '../models/WOHCustomPageModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
-class CustomPageRepository {
+class WOHCustomPageRepository {
   WOHLaravelApiClientProvider _laravelApiClient;
 
-  CustomPageRepository() {
+  WOHCustomPageRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHNotificationModel.dart' as model;
 
-class NotificationItemWidget extends StatelessWidget {
-  NotificationItemWidget({Key key, this.notification, this.onDismissed, this.onTap, this.icon}) : super(key: key);
+class WOHNotificationItemWidget extends StatelessWidget {
+  WOHNotificationItemWidget({Key key, this.notification, this.onDismissed, this.onTap, this.icon}) : super(key: key);
   final model.NotificationModel notification;
   final ValueChanged<model.NotificationModel> onDismissed;
   final ValueChanged<model.NotificationModel> onTap;

@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../controllers/WOHInspectController.dart';
 
-class InspectView extends GetView<InspectController> {
+class WOHInspectView extends GetView<InspectController> {
 
   @override
   Widget build(BuildContext context) {

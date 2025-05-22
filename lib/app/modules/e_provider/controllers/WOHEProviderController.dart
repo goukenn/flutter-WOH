@@ -1,7 +1,7 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHAwardModel.dart';
 import '../../../models/WOHEProviderModel.dart';
 import '../../../models/WOHEServiceModel.dart';
@@ -13,7 +13,7 @@ import '../../../models/user_model.dart';
 import '../../../repositories/WOHEProviderRepository.dart';
 import '../../../routes/WOHRoutes.dart';
 
-class EProviderController extends GetxController {
+class WOHEProviderController extends GetxController {
   final eProvider = EProvider().obs;
   final reviews = <Review>[].obs;
   final awards = <Award>[].obs;
@@ -24,7 +24,7 @@ class EProviderController extends GetxController {
   String heroTag = "";
   EProviderRepository _eProviderRepository;
 
-  EProviderController() {
+  WOHEProviderController() {
     _eProviderRepository = new EProviderRepository();
   }
 

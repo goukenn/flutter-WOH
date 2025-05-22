@@ -14,15 +14,16 @@ import 'WOHReviewModel.dart';
 import 'WOHTaxModel.dart';
 import 'WOHUserModel.dart';
 
-class EProvider extends WOHModel {
+class WOHEProviderModel extends WOHModel {
+  @override
   String? id;
   String? name;
   String? description;
   List<WOHMediaModel>? images;
   String? phoneNumber;
   String? mobileNumber;
-  EProviderType type;
-  List<AvailabilityHour>? availabilityHours;
+  EProviderType? type;
+  List<WOHAvailabilityHourModel>? availabilityHours;
   double? availabilityRange;
   bool? available;
   bool? featured;
@@ -36,7 +37,7 @@ class EProvider extends WOHModel {
   bool? verified;
   int? bookingsInProgress;
 
-  EProvider(
+  WOHEProviderModel(
       {this.id,
       this.name,
       this.description,
@@ -56,7 +57,7 @@ class EProvider extends WOHModel {
       this.verified,
       this.bookingsInProgress});
 
-  EProvider.fromJson(Map<String, dynamic> json) {
+  WOHEProviderModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     name = transStringFromJson(json, 'name');
     description = transStringFromJson(json, 'description');
@@ -64,7 +65,7 @@ class EProvider extends WOHModel {
     phoneNumber = stringFromJson(json, 'phone_number');
     mobileNumber = stringFromJson(json, 'mobile_number');
     type = objectFromJson(json, 'e_provider_type', (v) => EProviderType.fromJson(v));
-    availabilityHours = listFromJson(json, 'availability_hours', (v) => AvailabilityHour.fromJson(v));
+    availabilityHours = listFromJson(json, 'availability_hours', (v) => WOHAvailabilityHourModel.fromJson(v));
     availabilityRange = doubleFromJson(json, 'availability_range');
     available = boolFromJson(json, 'available');
     featured = boolFromJson(json, 'featured');
@@ -107,17 +108,19 @@ class EProvider extends WOHModel {
   }
 
   @override
-  bool? get hasData {
+  bool get hasData {
     return name != null;
   }
 
   Map<String, List<String>> groupedAvailabilityHours() {
     Map<String, List<String>> result = {};
-    this.availabilityHours.forEach((element) {
-      if (result.containsKey(element.day)) {
-        result[element.day].add(element.startAt + ' - ' + element.endAt);
+    this.availabilityHours?.forEach((element) {
+      var day = element.day!; 
+      var g = element.startAt! + ' - ' + element.endAt!;
+      if (result.containsKey(day)) {
+        result[day]!.add(g);
       } else {
-        result[element.day] = [element.startAt + ' - ' + element.endAt];
+        result[day] = [g];
       }
     });
     return result;
@@ -125,9 +128,9 @@ class EProvider extends WOHModel {
 
   List<String> getAvailabilityHoursData(String day) {
     List<String> result = [];
-    this.availabilityHours.forEach((element) {
+    this.availabilityHours?.forEach((element) {
       if (element.day == day) {
-        result.add(element.data);
+        result.add(element.data!);
       }
     });
     return result;
@@ -137,7 +140,7 @@ class EProvider extends WOHModel {
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is EProvider &&
+          other is WOHEProviderModel &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&

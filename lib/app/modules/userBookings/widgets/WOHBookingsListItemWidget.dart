@@ -5,12 +5,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
 import '../../../../main.dart';
 import '../controllers/WOHBookingsController.dart';
 
-class BookingsListItemWidget extends GetView<BookingsController> {
+class WOHBookingsListItemWidget extends GetView<BookingsController> {
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class BookingsListItemWidget extends GetView<BookingsController> {
         child: Container(
             padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 3, right: 0),
             child: Drawer(
-                backgroundColor: Palette.background,
+                backgroundColor: WOHPalette.background,
                 child: Obx(() => Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -112,7 +112,7 @@ class BookingsListItemWidget extends GetView<BookingsController> {
                                                 width: 50,
                                                 height: 50,
                                                 fit: BoxFit.cover,
-                                                image: Domain.googleUser ? NetworkImage(Domain.googleImage) : NetworkImage('${Domain.serverPort}/image/res.partner/${list[index]['partner_id'][0]}/image_1920?unique=true&file_response=true', headers: Domain.getTokenHeaders()),
+                                                image: WOHConstants.googleUser ? NetworkImage(WOHConstants.googleImage) : NetworkImage('${WOHConstants.serverPort}/image/res.partner/${list[index]['partner_id'][0]}/image_1920?unique=true&file_response=true', headers: WOHConstants.getTokenHeaders()),
                                                 placeholder: AssetImage(
                                                     "assets/img/loading.gif"),
                                                 imageErrorBuilder:

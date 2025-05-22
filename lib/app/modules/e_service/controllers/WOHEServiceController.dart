@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEServiceModel.dart';
 import '../../../models/WOHFavoriteModel.dart';
 import '../../../models/WOHOptionGroupModel.dart';
@@ -10,7 +10,7 @@ import '../../../models/WOHOptionModel.dart';
 import '../../../models/WOHReviewModel.dart';
 import '../../../repositories/WOHEServiceRepository.dart';
 
-class EServiceController extends GetxController {
+class WOHEServiceController extends GetxController {
   final eService = EService().obs;
   final reviews = <Review>[].obs;
   final optionGroups = <OptionGroup>[].obs;
@@ -19,7 +19,7 @@ class EServiceController extends GetxController {
   final heroTag = ''.obs;
   EServiceRepository _eServiceRepository;
 
-  EServiceController() {
+  WOHEServiceController() {
     _eServiceRepository = new EServiceRepository();
   }
 

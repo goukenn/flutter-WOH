@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 
-class LanguagesLoaderWidget extends StatelessWidget {
-  const LanguagesLoaderWidget({
+class WOHLanguagesLoaderWidget extends StatelessWidget {
+  const WOHLanguagesLoaderWidget({
     Key key,
   }) : super(key: key);
 

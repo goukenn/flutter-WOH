@@ -3,16 +3,16 @@ import 'parents/WOHModel.dart';
 import 'WOHPaymentMethodModel.dart';
 import 'WOHPaymentStatusModel.dart';
 
-class Payment extends WOHModel {
+class WOHPaymentModel extends WOHModel {
   String? id;
   String? description;
   double? amount;
   PaymentMethod? paymentMethod;
   PaymentStatus paymentStatus;
 
-  Payment({this.id, this.description, this.amount, this.paymentMethod, this.paymentStatus});
+  WOHPaymentModel({this.id, this.description, this.amount, this.paymentMethod, this.paymentStatus});
 
-  Payment.fromJson(Map<String, dynamic> json) {
+  WOHPaymentModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     description = stringFromJson(json, 'description');
     amount = doubleFromJson(json, 'amount');

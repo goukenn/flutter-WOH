@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEProviderModel.dart';
 import '../../../models/WOHEServiceModel.dart';
 import '../../../repositories/WOHEProviderRepository.dart';
 
 enum CategoryFilter { ALL, AVAILABILITY, RATING, FEATURED, POPULAR }
 
-class EServicesController extends GetxController {
+class WOHEServicesController extends GetxController {
   final eProvider = new EProvider().obs;
   final selected = Rx<CategoryFilter>(CategoryFilter.ALL);
   final eServices = <EService>[].obs;
@@ -19,7 +19,7 @@ class EServicesController extends GetxController {
   EProviderRepository _eProviderRepository;
   ScrollController scrollController = ScrollController();
 
-  EServicesController() {
+  WOHEServicesController() {
     _eProviderRepository = new EProviderRepository();
   }
 

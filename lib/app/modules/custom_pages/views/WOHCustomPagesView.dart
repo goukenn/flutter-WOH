@@ -9,12 +9,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../providers/laravel_provider.dart';
 import '../controllers/WOHCustomPagesController.dart';
 import '../widgets/WOHCustomPageLoadingWidget.dart';
 
-class CustomPagesView extends GetView<CustomPagesController> {
+class WOHCustomPagesView extends GetView<CustomPagesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -8,7 +8,7 @@ import '../../home/controllers/WOHHomeController.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../controllers/WOHRootController.dart';
 
-class RootBinding extends Bindings {
+class WOHRootBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<RootController>(

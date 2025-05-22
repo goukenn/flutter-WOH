@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 
-class PopUpPhotoWidget extends StatelessWidget {
-  const PopUpPhotoWidget({Key key,
-    @required this.cancel,
-    @required this.confirm,
-    @required this.onTap,
-    @required this.icon,
-    @required this.title,
-    @required this.url
+class WOHPopUpPhotoWidget extends StatelessWidget {
+  const WOHPopUpPhotoWidget({Key key,
+    required this.cancel,
+    required this.confirm,
+    required this.onTap,
+    required this.icon,
+    required this.title,
+    required this.url
   }) : super(key: key);
 
   final String cancel;

@@ -6,8 +6,8 @@ import '../../../routes/WOHRoutes.dart';
 import '../controllers/WOHNotificationsController.dart';
 import 'WOHNotificationItemWidget.dart';
 
-class NewPriceNotificationItemWidget extends GetView<NotificationsController> {
-  NewPriceNotificationItemWidget({Key key, this.notification}) : super(key: key);
+class WOHNewPriceNotificationItemWidget extends GetView<NotificationsController> {
+  WOHNewPriceNotificationItemWidget({Key key, this.notification}) : super(key: key);
   final model.NotificationModel notification;
 
   @override

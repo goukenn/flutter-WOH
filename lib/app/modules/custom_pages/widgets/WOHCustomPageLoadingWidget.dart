@@ -11,8 +11,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class CustomPageLoadingWidget extends StatelessWidget {
-  const CustomPageLoadingWidget({
+class WOHCustomPageLoadingWidget extends StatelessWidget {
+  const WOHCustomPageLoadingWidget({
     Key key,
   }) : super(key: key);
 

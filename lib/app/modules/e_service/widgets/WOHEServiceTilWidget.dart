@@ -3,17 +3,16 @@
  * Copyright (c) 2020 .
  */
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
+import '../../../../common/WOHUi.dart'; 
 
-import '../../../../common/ui.dart';
-
-class EServiceTilWidget extends StatelessWidget {
-  final Widget title;
-  final Widget content;
-  final Widget actions;
+class WOHEServiceTilWidget extends StatelessWidget {
+  final Widget? title;
+  final Widget? content;
+  final Widget? actions;
   final double horizontalPadding;
 
-  const EServiceTilWidget({Key key, this.title, this.content, this.actions, this.horizontalPadding}) : super(key: key);
+  const WOHEServiceTilWidget({required Key key, this.title = null, this.content, this.actions, this.horizontalPadding = 0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

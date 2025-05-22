@@ -7,10 +7,10 @@ import '../../../models/WOHEServiceModel.dart';
 import '../../category/widgets/WOHServicesListItemWidget.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 
-class SearchServicesListWidget extends StatelessWidget {
+class WOHSearchServicesListWidget extends StatelessWidget {
   final List<EService> services;
 
-  SearchServicesListWidget({Key key, List<EService> this.services}) : super(key: key);
+  WOHSearchServicesListWidget({Key key, List<EService> this.services}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

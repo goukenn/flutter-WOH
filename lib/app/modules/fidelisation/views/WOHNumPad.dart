@@ -1,7 +1,7 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
 import 'package:flutter/material.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 
 // KeyPad widget
 // This widget is reusable and its buttons are customizable (color, size)
@@ -18,9 +18,9 @@ class NumPad extends StatelessWidget {
     this.buttonSize = 50,
     this.buttonColor = Colors.white,
     this.iconColor = Colors.amber,
-    @required this.delete,
-    @required this.onSubmit,
-    @required this.controller,
+    required this.delete,
+    required this.onSubmit,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -147,9 +147,9 @@ class NumberButton extends StatelessWidget {
   const NumberButton({
     Key key,
     this.number,
-    @required this.size,
-    @required this.color,
-    @required this.controller,
+    required this.size,
+    required this.color,
+    required this.controller,
     this.dot
   }) : super(key: key);
 

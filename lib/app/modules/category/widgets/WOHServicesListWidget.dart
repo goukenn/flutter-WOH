@@ -6,8 +6,8 @@ import '../../../providers/laravel_provider.dart';
 import '../controllers/WOHCategoryController.dart';
 import 'WOHServicesListItemWidget.dart';
 
-class ServicesListWidget extends GetView<CategoryController> {
-  ServicesListWidget({Key key}) : super(key: key);
+class WOHServicesListWidget extends GetView<CategoryController> {
+  WOHServicesListWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

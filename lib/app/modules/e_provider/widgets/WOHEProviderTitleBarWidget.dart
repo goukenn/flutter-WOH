@@ -6,10 +6,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EProviderTitleBarWidget extends StatelessWidget implements PreferredSize {
+class WOHEProviderTitleBarWidget extends StatelessWidget implements PreferredSize {
   final Widget title;
 
-  const EProviderTitleBarWidget({Key key, @required this.title}) : super(key: key);
+  const WOHEProviderTitleBarWidget({Key key, required this.title}) : super(key: key);
 
   Widget buildTitleBar() {
     return Container(

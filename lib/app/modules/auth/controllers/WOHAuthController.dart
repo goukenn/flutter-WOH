@@ -7,14 +7,14 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../../responsive.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
 
-class AuthController extends GetxController {
+class WOHAuthController extends GetxController {
   //final Rx<M>
 
   final hidePassword = true.obs;
@@ -105,15 +105,15 @@ class AuthController extends GetxController {
         if (found){
           //Get.find<MyAuthService>().myUser.value = await _userRepository.get(users[index]['partner_id'][0]['id']);
           //Get.find<MyAuthService>().myUser.value.image = photo;
-          Domain.googleUser = true;
-          Domain.googleImage = photo;
+          WOHConstants.googleUser = true;
+          WOHConstants.googleImage = photo;
 
           var foundDeviceToken= false;
           if(Get.find<MyAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
           {
             var tokensList = await getUserDeviceTokens(Get.find<MyAuthService>().myUser.value.deviceTokenIds);
             for(int i = 0; i<tokensList.length;i++){
-              if(Domain.deviceToken==tokensList[i]['token']){
+              if(WOHConstants.deviceToken==tokensList[i]['token']){
                 foundDeviceToken = true;
               }
             }
@@ -121,7 +121,7 @@ class AuthController extends GetxController {
 
           loading.value = false;
           *//*if(!foundDeviceToken){
-            await saveDeviceToken(Domain.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+            await saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
           }*//*
           Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You signed in successfully " ));
           await Get.toNamed(WOHRoutes.ROOT);
@@ -130,10 +130,10 @@ class AuthController extends GetxController {
         else{
           await createGoogleUser(name, emailAddress, phone);
           //Get.find<MyAuthService>().myUser.value.image = photo;
-          Domain.googleUser = true;
-          Domain.googleImage = photo;
+          WOHConstants.googleUser = true;
+          WOHConstants.googleImage = photo;
 
-          //await saveDeviceToken(Domain.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+          //await saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
           Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You signed in successfully " ));
           await Get.toNamed(WOHRoutes.ROOT);
 
@@ -151,10 +151,10 @@ class AuthController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Cookie': 'session_id=dc69145b99f377c902d29e0b11e6ea9bb1a6a1ba'
     };
-    var request = http.Request('POST',Uri.parse('${Domain.serverPort}/create/res.users?values={ '
+    var request = http.Request('POST',Uri.parse('${WOHConstants.serverPort}/create/res.users?values={ '
         '"name": "$name",'
         '"login": "$email",'
         //'"email": "$email",'
@@ -187,9 +187,9 @@ class AuthController extends GetxController {
 
   getAllUsers()async{
     var headers = {
-      'api-key': Domain.apiKey
+      'api-key': WOHConstants.apiKey
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort2}/res.users/search'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort2}/res.users/search'));
 
     request.headers.addAll(headers);
 
@@ -209,9 +209,9 @@ class AuthController extends GetxController {
   void sendResetLink(int userId) async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/call/res.users/action_reset_password?ids=$userId'));
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/call/res.users/action_reset_password?ids=$userId'));
 
     request.headers.addAll(headers);
 
@@ -232,9 +232,9 @@ class AuthController extends GetxController {
   getUserVerification(int id)async{
     print(id);
     var headers = {
-      'api-key': Domain.apiKey
+      'api-key': WOHConstants.apiKey
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort2}/res.users/$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort2}/res.users/$id'));
 
     request.headers.addAll(headers);
 
@@ -253,7 +253,7 @@ class AuthController extends GetxController {
         {
           var tokensList = await getUserDeviceTokens(Get.find<MyAuthService>().myUser.value.deviceTokenIds);
           for(int i = 0; i<tokensList.length;i++){
-            if(Domain.deviceToken==tokensList[i]['token']){
+            if(WOHConstants.deviceToken==tokensList[i]['token']){
               foundDeviceToken = true;
             }
           }
@@ -261,7 +261,7 @@ class AuthController extends GetxController {
         }
 /*
         if(!foundDeviceToken){
-          await saveDeviceToken(Domain.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+          await saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
         }
 */
         Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You logged in successfully " ));
@@ -329,14 +329,14 @@ class AuthController extends GetxController {
           if(partnerData[0]['fcm_token_ids'].isNotEmpty) {
             var tokensList = await getUserDeviceTokens(partnerData[0]['fcm_token_ids']);
             for(int i = 0; i<tokensList.length;i++){
-              if(Domain.deviceToken==tokensList[i]['token']){
+              if(WOHConstants.deviceToken==tokensList[i]['token']){
                 foundDeviceToken = true;
               }
             }
           }
 
           /*if(!foundDeviceToken){
-          await saveDeviceToken(Domain.deviceToken, partnerData[0]['id']);
+          await saveDeviceToken(WOHConstants.deviceToken, partnerData[0]['id']);
         }*/
 
           ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
@@ -365,9 +365,9 @@ class AuthController extends GetxController {
   Future getSpecificPartner(var id) async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/res.partner?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/res.partner?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -421,9 +421,9 @@ class AuthController extends GetxController {
   updateUser(var id)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('PUT', Uri.parse('${Domain.serverPort}/write/res.partner?ids=$id&values={'
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.partner?ids=$id&values={'
         '"email": "${email.value}",'
         '"phone": "${phone.value}",'
         '"mobile": "${phone.value}",'
@@ -482,9 +482,9 @@ class AuthController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/search_read/business.resource'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/search_read/business.resource'));
 
     request.headers.addAll(headers);
 
@@ -518,7 +518,7 @@ class AuthController extends GetxController {
                             Get.showSnackbar(WOHUi.SuccessSnackBar(message: "connexion réussi, bon retour M/Mme ${user['name']}"));
                             Get.toNamed(WOHRoutes.ROOT);
                           },
-                              child: Text("Client", style: Get.textTheme.headline2)),
+                              child: Text("Client", style: Get.textTheme.displayMedium)),
                           SizedBox(width: 10),
                           TextButton(onPressed: () {
                             isEmployee.value = true;
@@ -527,7 +527,7 @@ class AuthController extends GetxController {
                             Get.showSnackbar(WOHUi.SuccessSnackBar(message: "connexion réussi, bon retour M/Mme ${employee['display_name']}"));
                             Get.toNamed(WOHRoutes.EMPLOYEE_HOME);
                           },
-                              child: Text("employee", style: Get.textTheme.headline2)),
+                              child: Text("employee", style: Get.textTheme.displayMedium)),
                         ]
                     )
                   ]
@@ -551,9 +551,9 @@ class AuthController extends GetxController {
     loading.value = true;
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST',Uri.parse('${Domain.serverPort}/create/res.users?values={ '
+    var request = http.Request('POST',Uri.parse('${WOHConstants.serverPort}/create/res.users?values={ '
         '"name": "${name.value}",'
         '"login": "${email.value}",'
         '"password": "${password.value}",'
@@ -581,9 +581,9 @@ class AuthController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/create/fcm.device.token?values={'
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/create/fcm.device.token?values={'
         '"token": "$token",'
         '"partner_id": $id}'));
 
@@ -605,9 +605,9 @@ class AuthController extends GetxController {
   getUserDeviceTokens(List tokensList)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/fcm.device.token?ids=$tokensList'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/fcm.device.token?ids=$tokensList'));
 
     request.headers.addAll(headers);
 
@@ -627,9 +627,9 @@ class AuthController extends GetxController {
   void sendEmail(var id, var email)async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/call/res.users/action_reset_password?ids=$id'));
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/call/res.users/action_reset_password?ids=$id'));
 
     request.headers.addAll(headers);
 

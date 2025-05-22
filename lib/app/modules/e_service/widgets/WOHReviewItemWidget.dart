@@ -3,13 +3,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHReviewModel.dart';
 
-class ReviewItemWidget extends StatelessWidget {
+class WOHReviewItemWidget extends StatelessWidget {
   final Review review;
 
-  ReviewItemWidget({Key key, this.review}) : super(key: key);
+  WOHReviewItemWidget({Key key, this.review}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

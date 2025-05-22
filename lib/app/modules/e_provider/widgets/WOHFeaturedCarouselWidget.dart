@@ -3,12 +3,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHEProviderController.dart';
 
-class FeaturedCarouselWidget extends GetWidget<EProviderController> {
+class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
   @override
   Widget build(BuildContext context) {
     return Container(

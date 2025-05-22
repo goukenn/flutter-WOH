@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
 import '../../../../main.dart';
 import '../../../routes/WOHRoutes.dart';
@@ -14,7 +14,7 @@ import '../../global_widgets/WOHNotificationsButtonWidget.dart';
 import '../../global_widgets/WOHPopUpWidget.dart';
 import '../controllers/WOHHomeController.dart';
 
-class Home2View extends GetView<HomeController> {
+class WOHHome2View extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<MyAuthService>(
@@ -30,7 +30,7 @@ class Home2View extends GetView<HomeController> {
             icon: Icon(controller.multiple.value ? Icons.dashboard : Icons.view_agenda, color: Colors.white,))
         ),
         title: Text(
-               Domain.AppName,
+               WOHConstants.AppName,
                style: Get.textTheme.titleLarge.merge(TextStyle(color: Colors.white)),
              ),
         centerTitle: true,
@@ -51,7 +51,7 @@ class Home2View extends GetView<HomeController> {
                               confirm: 'Confirmer',
                               onTap: ()async{
                                 var box = GetStorage();
-                                Domain.googleUser = false;
+                                WOHConstants.googleUser = false;
                                 box.remove("userDto");
 
                                 Get.toNamed(WOHRoutes.LOGIN);

@@ -11,10 +11,10 @@ import '../../../models/WOHOptionGroupModel.dart';
 import '../controllers/WOHEServiceController.dart';
 import 'WOHOptionItemWidget.dart';
 
-class OptionGroupItemWidget extends GetWidget<EServiceController> {
-  OptionGroupItemWidget({
-    @required OptionGroup optionGroup,
-    @required EService eService,
+class WOHOptionGroupItemWidget extends GetWidget<EServiceController> {
+  WOHOptionGroupItemWidget({
+    required OptionGroup optionGroup,
+    required EService eService,
   })  : _optionGroup = optionGroup,
         _eService = eService;
 

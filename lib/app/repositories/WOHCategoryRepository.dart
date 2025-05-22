@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import '../models/WOHCategoryModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
-class CategoryRepository {
+class WOHCategoryRepository {
   WOHLaravelApiClientProvider _laravelApiClient;
 
-  CategoryRepository() {
+  WOHCategoryRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 

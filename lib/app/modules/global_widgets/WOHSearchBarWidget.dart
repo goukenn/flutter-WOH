@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../home/controllers/WOHHomeController.dart';
 
-class SearchBarWidget extends StatelessWidget {
+class WOHSearchBarWidget extends StatelessWidget {
   final controller = Get.find<HomeController>();
 
   @override

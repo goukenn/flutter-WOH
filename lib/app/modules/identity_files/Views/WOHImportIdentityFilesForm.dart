@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controller/WOHImportIdentityFilesController.dart';
 
-class ImportIdentityFilesView extends GetView<ImportIdentityFilesController> {
+class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> {
 
   @override
   Widget build(BuildContext context) {

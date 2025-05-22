@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'parents/WOHModel.dart';
 import 'WOHUserModel.dart';
 
-class Message extends WOHModel {
+class WOHMessageModel extends WOHModel {
   String? id;
 
   // conversation name for example chat with market name
@@ -24,12 +24,12 @@ class Message extends WOHModel {
   // users in the conversation
   List<WOHUserModel> users;
 
-  Message(this.users, {this.id = null, this.name = ''}) {
+  WOHMessageModel(this.users, {this.id = null, this.name = ''}) {
     visibleToUsers = this.users.map((user) => user.id).toList();
     readByUsers = [];
   }
 
-  Message.fromDocumentSnapshot(DocumentSnapshot jsonMap) {
+  WOHMessageModel.fromDocumentSnapshot(DocumentSnapshot jsonMap) {
     try {
       id = jsonMap.id;
       name = jsonMap.get('name') != null ? jsonMap.get('name').toString() : '';
@@ -80,7 +80,7 @@ class Message extends WOHModel {
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is Message &&
+          other is WOHMessageModel &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&

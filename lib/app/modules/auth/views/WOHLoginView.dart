@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hive_flutter/adapters.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHHelper.dart';
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../../responsive.dart';
 import '../../../routes/WOHRoutes.dart';
@@ -16,7 +16,7 @@ import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHAuthController.dart';
 
-class LoginView extends GetView<AuthController> {
+class WOHLoginView extends GetView<AuthController> {
 
   final box = Hive.box("myBox");
 
@@ -51,7 +51,7 @@ class LoginView extends GetView<AuthController> {
                     padding: const EdgeInsets.all(20),
                     child: Text(
                       "\nConnexion".tr,
-                      style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
+                      style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -160,10 +160,10 @@ class LoginView extends GetView<AuthController> {
                           if(controller.email.value.isNotEmpty && controller.password.value.isNotEmpty){
                             await controller.login();
 
-                            if(Domain.myBoxStorage.value.length>30){
-                              var i =Domain.myBoxStorage.value.length-1;
+                            if(WOHConstants.myBoxStorage.value.length>30){
+                              var i =WOHConstants.myBoxStorage.value.length-1;
                               while(i>=30){
-                                Domain.myBoxStorage.value.deleteAt(0);
+                                WOHConstants.myBoxStorage.value.deleteAt(0);
                                 i--;
 
                               }
@@ -175,7 +175,7 @@ class LoginView extends GetView<AuthController> {
                                   .compareTo(box.get('userEmail')) !=
                                   0) {
                                 box.put("userEmail", controller.email.value);
-                                Domain.myBoxStorage.value.clear();
+                                WOHConstants.myBoxStorage.value.clear();
                               }
                             }
 

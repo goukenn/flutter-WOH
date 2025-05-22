@@ -7,14 +7,14 @@ import 'dart:core';
 
 import 'parents/WOHModel.dart';
 
-class Award extends WOHModel {
+class WOHAwardModel extends WOHModel {
   String? id;
   String? title;
   String? description;
 
-  Award({this.id, this.title, this.description});
+  WOHAwardModel({this.id, this.title, this.description});
 
-  Award.fromJson(Map<String, dynamic> json) {
+  WOHAwardModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     title = transStringFromJson(json, 'title');
     description = transStringFromJson(json, 'description');

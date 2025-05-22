@@ -7,14 +7,14 @@ import 'dart:core';
 
 import 'parents/WOHModel.dart';
 
-class Experience extends WOHModel {
+class WOHExperienceModel extends WOHModel {
   String? id;
   String? title;
   String? description;
 
-  Experience({this.id, this.title, this.description});
+  WOHExperienceModel({this.id, this.title, this.description});
 
-  Experience.fromJson(Map<String, dynamic> json) {
+  WOHExperienceModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     title = transStringFromJson(json, 'title');
     description = transStringFromJson(json, 'description');

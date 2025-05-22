@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'parents/WOHModel.dart';
 
-class NotificationModel {
+class WOHNotificationModel {
   String? myId;
   String? id;
   String? title;
@@ -14,16 +14,16 @@ class NotificationModel {
   bool? disable;
   String? timestamp;
 
-  NotificationModel(
+  WOHNotificationModel(
       {this.id, this.title, this.message, this.isSeen, this.timestamp, this.myId, this.disable});
 
-  factory NotificationModel.fromRawJson(String? str) =>
-      NotificationModel.fromJson(json.decode(str) as Map<String, dynamic>);
+  factory WOHNotificationModel.fromRawJson(String? str) =>
+      WOHNotificationModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String? toRawJson() => json.encode(toJson());
 
-  factory NotificationModel.fromJson(Map<String, dynamic> json) =>
-      NotificationModel(
+  factory WOHNotificationModel.fromJson(Map<String, dynamic> json) =>
+      WOHNotificationModel(
         id: json['id'] == null ? "00000-0000" : json['id'] as String,
         title: json['title'] == null ? "No title" : json['title'] as String,
         message:

@@ -6,12 +6,12 @@ import 'package:get/get.dart';
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../../responsive.dart';
 
-class ValidationController extends GetxController {
+class WOHValidationController extends GetxController {
 
   final isDone = false.obs;
   var isLoading = false.obs;
@@ -107,9 +107,9 @@ class ValidationController extends GetxController {
   Future getUserInfo(var id)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/res.partner?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/res.partner?ids=$id'));
 
     request.headers.addAll(headers);
 

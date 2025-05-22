@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHHelper.dart';
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../models/WOHMyUserModel.dart';
 import '../../../models/WOHSettingModel.dart';
 import '../../../repositories/WOHWHOUserRepository.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
-import '../../../services/settings_service.dart';
+import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
-class VerificationView extends GetView<AuthController> {
+class WOHPhoneVerificationView extends GetView<AuthController> {
   final Setting _settings = Get.find<SettingsService>().setting.value;
 
   @override
@@ -158,18 +158,18 @@ class VerificationView extends GetView<AuthController> {
                               if(Get.find<MyAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
                               {
                                 for(int i = 0; i<Get.find<MyAuthService>().myUser.value.deviceTokenIds.length;i++){
-                                  if(Domain.deviceToken==Get.find<MyAuthService>().myUser.value.deviceTokenIds[i]){
+                                  if(WOHConstants.deviceToken==Get.find<MyAuthService>().myUser.value.deviceTokenIds[i]){
                                     foundDeviceToken = true;
                                   }
                                 }
 
                               }
                               else{
-                                await controller.saveDeviceToken(Domain.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
                               }
 
                               if(!foundDeviceToken){
-                                await controller.saveDeviceToken(Domain.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
                               }
                               controller.loading.value = false;
                               Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You logged in successfully " ));

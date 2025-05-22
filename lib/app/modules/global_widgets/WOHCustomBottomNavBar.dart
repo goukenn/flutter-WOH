@@ -1,7 +1,7 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
 import 'package:flutter/material.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 
 const Color PRIMARY_COLOR = inactive;
 const Color BACKGROUND_COLOR = Color(0xffE2E7F2);
@@ -13,7 +13,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
   final Function(int) onChange;
   final int currentIndex;
 
-  CustomBottomNavigationBar({this.backgroundColor = BACKGROUND_COLOR, this.itemColor = PRIMARY_COLOR, this.currentIndex = 0, @required this.children, this.onChange});
+  CustomBottomNavigationBar({this.backgroundColor = BACKGROUND_COLOR, this.itemColor = PRIMARY_COLOR, this.currentIndex = 0, required this.children, this.onChange});
 
   @override
   _CustomBottomNavigationBarState createState() => _CustomBottomNavigationBarState();
@@ -88,5 +88,5 @@ class CustomBottomNavigationItem {
   final String label;
   final Color color;
 
-  CustomBottomNavigationItem({@required this.icon, @required this.label, this.color});
+  CustomBottomNavigationItem({required this.icon, required this.label, this.color});
 }

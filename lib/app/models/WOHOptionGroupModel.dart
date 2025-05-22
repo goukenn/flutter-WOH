@@ -2,15 +2,15 @@
 import 'WOHOptionModel.dart';
 import 'parents/WOHModel.dart';
 
-class OptionGroup extends WOHModel {
+class WOHOptionGroupModel extends WOHModel {
   String? id;
   String? name;
   bool? allowMultiple;
   List<Option> options;
 
-  OptionGroup({this.id, this.name, this.options});
+  WOHOptionGroupModel({this.id, this.name, this.options});
 
-  OptionGroup.fromJson(Map<String, dynamic> json) {
+  WOHOptionGroupModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     name = transStringFromJson(json, 'name');
     allowMultiple = boolFromJson(json, 'allow_multiple');
@@ -29,7 +29,7 @@ class OptionGroup extends WOHModel {
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is OptionGroup &&
+          other is WOHOptionGroupModel &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&

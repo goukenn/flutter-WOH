@@ -7,11 +7,11 @@ import '../models/WOHFaqModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 import '../providers/WOHMockApiClientProvider.dart';
 
-class FaqRepository {
+class WOHFaqRepository {
   WOHMockApiClientProvider _apiClient;
   WOHLaravelApiClientProvider _laravelApiClient;
 
-  FaqRepository() {
+  WOHFaqRepository() {
     _laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
     this._apiClient = WOHMockApiClientProvider(httpClient: Dio());
   }

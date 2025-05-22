@@ -6,15 +6,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 
-class DrawerLinkWidget extends StatelessWidget {
+class WOHDrawerLinkWidget extends StatelessWidget {
   final IconData icon;
   final String text;
   final bool special;
   final bool drawer;
   final ValueChanged<void> onTap;
-  const DrawerLinkWidget({
+  const WOHDrawerLinkWidget({
     Key key,
     this.icon,
     this.text,

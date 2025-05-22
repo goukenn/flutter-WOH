@@ -2,16 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../providers/laravel_provider.dart';
 import '../../../services/translation_service.dart';
 import '../controllers/WOHLanguageController.dart';
 import '../widgets/WOHLanguagesLoaderWidget.dart';
 
-class LanguageView extends GetView<LanguageController> {
+class WOHLanguageView extends GetView<LanguageController> {
   final bool hideAppBar;
 
-  LanguageView({this.hideAppBar = false});
+  WOHLanguageView({this.hideAppBar = false});
 
   @override
   Widget build(BuildContext context) {

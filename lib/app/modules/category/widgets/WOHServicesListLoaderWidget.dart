@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ServicesListLoaderWidget extends StatelessWidget {
-  ServicesListLoaderWidget({Key key}) : super(key: key);
+class WOHServicesListLoaderWidget extends StatelessWidget {
+  WOHServicesListLoaderWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

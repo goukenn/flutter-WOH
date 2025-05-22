@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../controllers/WOHThemeModeController.dart';
 
-class ThemeModeView extends GetView<ThemeModeController> {
+class WOHThemeModeView extends GetView<ThemeModeController> {
   final bool hideAppBar;
 
-  ThemeModeView({this.hideAppBar = false});
+  WOHThemeModeView({this.hideAppBar = false});
 
   @override
   Widget build(BuildContext context) {

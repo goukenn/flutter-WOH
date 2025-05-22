@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 import '../../../responsive.dart';
 
-class BlockButtonWidget extends StatelessWidget {
-  const BlockButtonWidget({Key key,@required this.text, @required this.loginPage, this.color, @required this.onPressed,@required this.disabled}) : super(key: key);
+class WOHBlockButtonWidget extends StatelessWidget {
+  const WOHBlockButtonWidget({Key key,required this.text, required this.loginPage, this.color, required this.onPressed,required this.disabled}) : super(key: key);
 
   final Widget text;
   final bool loginPage;

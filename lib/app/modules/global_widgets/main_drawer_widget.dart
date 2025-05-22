@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 import '../../../main.dart';
 import '../../../responsive.dart';
 import '../../routes/WOHRoutes.dart';
@@ -17,7 +17,7 @@ import '../root/controllers/WOHRootController.dart' show RootController;
 import '../userBookings/controllers/WOHBookingsController.dart';
 import 'WOHDrawerLinkWidget.dart';
 
-class MainDrawerWidget extends StatelessWidget {
+class main_drawer_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
@@ -51,7 +51,7 @@ class MainDrawerWidget extends StatelessWidget {
                           ),
                           accountName: Text(
                             currentUser['name'],
-                            style: Theme.of(context).textTheme.headline2.merge(TextStyle(color: employeeInterfaceColor, fontSize: 15)),
+                            style: Theme.of(context).textTheme.displayMedium.merge(TextStyle(color: employeeInterfaceColor, fontSize: 15)),
                           ),
                           accountEmail: Text(""
                           ),
@@ -63,7 +63,7 @@ class MainDrawerWidget extends StatelessWidget {
                                       width: Responsive.isMobile(context) ? 100 : 150,
                                       height: Responsive.isMobile(context) ? 100 : 150,
                                       fit: BoxFit.cover,
-                                      image: Domain.googleUser ? NetworkImage(Domain.googleImage) : NetworkImage('${Domain.serverPort}/image/business.resource/${currentUser['id']}/image_1920?unique=true&file_response=true', headers: Domain.getTokenHeaders()),
+                                      image: WOHConstants.googleUser ? NetworkImage(WOHConstants.googleImage) : NetworkImage('${WOHConstants.serverPort}/image/business.resource/${currentUser['id']}/image_1920?unique=true&file_response=true', headers: WOHConstants.getTokenHeaders()),
                                       placeholder: AssetImage(
                                           "assets/img/loading.gif"),
                                       imageErrorBuilder:
@@ -178,7 +178,7 @@ class MainDrawerWidget extends StatelessWidget {
                       onTap: ()async{
                         var box = GetStorage();
                         Get.find<HomeController>().currentPage.value = 0;
-                        Domain.googleUser = false;
+                        WOHConstants.googleUser = false;
                         box.remove("userData");
                         Navigator.pop(context);
 

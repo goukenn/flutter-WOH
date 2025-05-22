@@ -20,7 +20,7 @@ import 'package:hive_flutter/adapters.dart';
 // import 'app/services/auth_service.dart';
 // import 'app/services/firebase_messaging_service.dart';
 // import 'app/services/WOHGlobalService.dart';
-// import 'app/services/settings_service.dart';
+// import 'app/services/WOHSettingsService.dart';
 import 'package:http/http.dart' as http;
 
 import 'WOHConstants.dart';

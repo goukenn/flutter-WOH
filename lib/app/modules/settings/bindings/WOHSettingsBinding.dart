@@ -6,7 +6,7 @@ import '../controllers/WOHLanguageController.dart';
 import '../controllers/WOHSettingsController.dart';
 import '../controllers/WOHThemeModeController.dart';
 
-class SettingsBinding extends Bindings {
+class WOHSettingsBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<SettingsController>(

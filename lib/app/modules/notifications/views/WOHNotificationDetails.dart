@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../providers/laravel_provider.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHNotificationsController.dart';
@@ -11,7 +11,7 @@ import '../widgets/WOHNewPriceNotificationItemWidget.dart';
 import '../widgets/WOHTravelNotificationItemWidget.dart';
 import '../widgets/WOHNotificationItemWidget.dart';
 
-class NotificationDetailsView extends GetView<NotificationsController> {
+class WOHNotificationDetails extends GetView<NotificationsController> {
   var notification;
 
   @override

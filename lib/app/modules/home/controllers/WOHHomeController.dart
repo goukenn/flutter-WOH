@@ -8,18 +8,18 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../main.dart';
 import '../../../models/WOHAddressModel.dart';
 import '../../../routes/WOHRoutes.dart';
-import '../../../services/settings_service.dart';
+import '../../../services/WOHSettingsService.dart';
 import 'package:http/http.dart' as http;
 
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../views/WOHHomeView.dart';
 
-class HomeController extends GetxController {
+class WOHHomeController extends GetxController {
   var opacity1 = 0.0.obs;
   var opacity2 = 0.0.obs;
   var opacity3 = 0.0.obs;
@@ -42,7 +42,7 @@ class HomeController extends GetxController {
   var cancel = 0.0.obs;
   Timer timer;
 
-  HomeController() {
+  WOHHomeController() {
     //_sliderRepo = new WOHSliderRepository();
     //_categoryRepository = new CategoryRepository();
     //_eServiceRepository = new EServiceRepository();
@@ -163,9 +163,9 @@ class HomeController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/business.resource?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/business.resource?ids=$ids'));
 
     request.headers.addAll(headers);
 
@@ -265,9 +265,9 @@ class HomeController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/res.partner?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/res.partner?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -300,9 +300,9 @@ class HomeController extends GetxController {
   getPoints()async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/search_read/res.config.settings?fields=%5B%22manager_required_bonus_points%22%5D&with_context=%7B%7D&with_company=1'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/search_read/res.config.settings?fields=%5B%22manager_required_bonus_points%22%5D&with_context=%7B%7D&with_company=1'));
 
     request.headers.addAll(headers);
 
@@ -372,8 +372,8 @@ class HomeController extends GetxController {
                             width: 60,
                             height: 60,
                             fit: BoxFit.cover,
-                            image: NetworkImage("${Domain.serverPort}/image/appointment.product/${service['id']}/image_1920?unique=true&file_response=true",
-                                headers: Domain.getTokenHeaders()),
+                            image: NetworkImage("${WOHConstants.serverPort}/image/appointment.product/${service['id']}/image_1920?unique=true&file_response=true",
+                                headers: WOHConstants.getTokenHeaders()),
                             placeholder: AssetImage(
                                 "assets/img/loading.gif"),
                             imageErrorBuilder:
@@ -387,8 +387,8 @@ class HomeController extends GetxController {
                           )
                       ),
                       title: Text(service['name'].split(">").first + "\n"+ service["product_price"].toString()+" €",
-                          style: Get.textTheme.headline2),
-                      subtitle: Text(duration.toString()+" minutes", style: Get.textTheme.headline2),
+                          style: Get.textTheme.displayMedium),
+                      subtitle: Text(duration.toString()+" minutes", style: Get.textTheme.displayMedium),
                     )
                   ]
                 )

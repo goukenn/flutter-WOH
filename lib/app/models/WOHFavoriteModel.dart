@@ -3,15 +3,15 @@ import 'WOHEServiceModel.dart';
 import 'WOHOptionModel.dart';
 import 'parents/WOHModel.dart';
 
-class Favorite extends WOHModel {
+class WOHFavoriteModel extends WOHModel {
   String? id;
   EService eService;
   List<Option> options;
   String? userId;
 
-  Favorite({this.id, this.eService, this.options, this.userId});
+  WOHFavoriteModel({this.id, this.eService, this.options, this.userId});
 
-  Favorite.fromJson(Map<String, dynamic> json) {
+  WOHFavoriteModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     eService = objectFromJson(json, 'e_service', (v) => EService.fromJson(v));
     options = listFromJson(json, 'options', (v) => Option.fromJson(v));

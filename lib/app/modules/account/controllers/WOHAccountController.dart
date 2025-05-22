@@ -12,12 +12,12 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
 
-class AccountController extends GetxController {
+class WOHAccountController extends GetxController {
 
   //final Rx<MyUser> currentUser = Get.find<MyAuthService>().myUser;
   final updatePassword = false.obs;
@@ -153,10 +153,10 @@ class AccountController extends GetxController {
   updateUserPassword(String newPassword) async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Cookie': 'session_id=d2c885aa27073b1ccdcf777cdab4d1d3ef5bef08'
     };
-    var request = http.Request('PUT', Uri.parse('${Domain.serverPort}/write/res.users?ids=33&values='
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.users?ids=33&values='
         '{"password": "$newPassword"}'));
 
     request.headers.addAll(headers);
@@ -206,9 +206,9 @@ class AccountController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('PUT', Uri.parse('${Domain.serverPort}/write/res.users?ids=${currentUser['user_ids'][0]}&values={'
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.users?ids=${currentUser['user_ids'][0]}&values={'
         '"name": "${userName.value}",'
         '"email": "${email.value}",'
         '"login": "${email.value}",'
@@ -297,9 +297,9 @@ class AccountController extends GetxController {
   getUserInfo(int id) async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse(Domain.serverPort+'/read/res.partner?ids=$id'));
+    var request = http.Request('GET', Uri.parse(WOHConstants.serverPort+'/read/res.partner?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -317,10 +317,10 @@ class AccountController extends GetxController {
   updateProfilePicture(File file)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Content-Type': 'multipart/form-data'
     };
-    var request = http.MultipartRequest('POST', Uri.parse('${Domain.serverPort}/upload/res.partner/${currentUser['id']}/image_1920'));
+    var request = http.MultipartRequest('POST', Uri.parse('${WOHConstants.serverPort}/upload/res.partner/${currentUser['id']}/image_1920'));
     request.files.add(await http.MultipartFile.fromPath('ufile', file.path));
     request.headers.addAll(headers);
 
@@ -353,9 +353,9 @@ class AccountController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/fcm.device.token?ids=$tokenIds'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/fcm.device.token?ids=$tokenIds'));
 
     request.headers.addAll(headers);
 
@@ -366,7 +366,7 @@ class AccountController extends GetxController {
       var data = json.decode(result);
       List ids = [];
       for(var i in data){
-        if(i['token'] == Domain.deviceToken){
+        if(i['token'] == WOHConstants.deviceToken){
           ids.add(i['id']);
         }
       }
@@ -382,9 +382,9 @@ class AccountController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('DELETE', Uri.parse('${Domain.serverPort}/unlink/fcm.device.token?ids=$ids'));
+    var request = http.Request('DELETE', Uri.parse('${WOHConstants.serverPort}/unlink/fcm.device.token?ids=$ids'));
 
     request.headers.addAll(headers);
 
@@ -405,10 +405,10 @@ class AccountController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/create/fcm.device.token?values={'
-        '"token": "${Domain.deviceToken}",'
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/create/fcm.device.token?values={'
+        '"token": "${WOHConstants.deviceToken}",'
         '"partner_id": ${Get.find<MyAuthService>().myUser.value.id}}'));
 
     request.headers.addAll(headers);
@@ -427,9 +427,9 @@ class AccountController extends GetxController {
   void deleteAccount() async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('DELETE', Uri.parse('${Domain.serverPort}/unlink/res.users?ids=${currentUser['user_ids'][0]}'));
+    var request = http.Request('DELETE', Uri.parse('${WOHConstants.serverPort}/unlink/res.users?ids=${currentUser['user_ids'][0]}'));
 
     request.headers.addAll(headers);
 

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../main.dart';
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../root/controllers/WOHRootController.dart';
@@ -15,7 +15,7 @@ import 'package:flutter/services.dart';
 
 import '../widgets/WOHBookingsListItemWidget.dart';
 
-class InterfacePOSView extends GetView<BookingsController> {
+class WOHInterfacePOS extends GetView<BookingsController> {
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class InterfacePOSView extends GetView<BookingsController> {
                                             ),
                                             padding: EdgeInsets.all(5),
                                             child: Center(
-                                                child: Icon(!controller.search.value ? Icons.search : Icons.close, color: Palette.background)
+                                                child: Icon(!controller.search.value ? Icons.search : Icons.close, color: WOHPalette.background)
                                             ),
                                           ),
                                           onTap: ()async{
@@ -197,7 +197,7 @@ class InterfacePOSView extends GetView<BookingsController> {
                                                                           width: 120,
                                                                           height: 120,
                                                                           fit: BoxFit.cover,
-                                                                          image: NetworkImage('${Domain.serverPort}/image/appointment.product/${controller.servicesByCategory[index]['id']}/image_1920?unique=true&file_response=true', headers: Domain.getTokenHeaders()),
+                                                                          image: NetworkImage('${WOHConstants.serverPort}/image/appointment.product/${controller.servicesByCategory[index]['id']}/image_1920?unique=true&file_response=true', headers: WOHConstants.getTokenHeaders()),
                                                                           placeholder: AssetImage(
                                                                               "assets/img/loading.gif"),
                                                                           imageErrorBuilder:
@@ -253,7 +253,7 @@ class InterfacePOSView extends GetView<BookingsController> {
                                                     controller.selectedAppointment.value = {},
                                                     controller.orderDto.value = {}
                                                   },
-                                                  child: Text("Annuler", style: Get.textTheme.headline2.merge(TextStyle(color: specialColor))
+                                                  child: Text("Annuler", style: Get.textTheme.displayMedium.merge(TextStyle(color: specialColor))
                                                   )
                                               ),
                                               SizedBox(width: 10)
@@ -301,7 +301,7 @@ class InterfacePOSView extends GetView<BookingsController> {
                                                                                 shape: RoundedRectangleBorder(
                                                                                     borderRadius: BorderRadius.all(Radius.circular(15.0))),
                                                                                 content: Container(
-                                                                                  //color: Palette.background
+                                                                                  //color: WOHPalette.background
                                                                                   width: Get.width/2,
                                                                                     height: 100,
                                                                                     child: Column(
@@ -671,7 +671,7 @@ class InterfacePOSView extends GetView<BookingsController> {
             Icon(Icons.warning_amber_outlined,
                 size: 60, color: inactive),
             SizedBox(height: 10),
-            Text("Confirmer l'Action", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 18, letterSpacing: 2))),
+            Text("Confirmer l'Action", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 18, letterSpacing: 2))),
           ],
         ),
         backgroundColor: backgroundColor,
@@ -679,7 +679,7 @@ class InterfacePOSView extends GetView<BookingsController> {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15.0))),
         content: Container(
-          //color: Palette.background,
+          //color: WOHPalette.background,
             height: 120,
             child: Column(
                 children: [

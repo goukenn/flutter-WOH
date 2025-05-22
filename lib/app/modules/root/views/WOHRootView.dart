@@ -9,7 +9,7 @@ import '../../global_widgets/WOHCustomBottomNavBar.dart';
 import '../../global_widgets/main_drawer_widget.dart';
 import '../controllers/WOHRootController.dart';
 
-class RootView extends GetView<RootController> {
+class WOHRootView extends GetView<RootController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {

@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 import '../../../main.dart';
 import '../userBookings/controllers/WOHBookingsController.dart';
 
-class CardWidget extends StatelessWidget {
-  const CardWidget({Key key,
+class WOHCardWidget extends StatelessWidget {
+  const WOHCardWidget({Key key,
 
     this.agent,
     this.service,
     this.price,
     this.imageUrl,
     this.onTap,
-    @required this.shippingDateStart,
-    @required this.shippingDateEnd,
-    @required this.code,
-    @required this.bookingState
+    required this.shippingDateStart,
+    required this.shippingDateEnd,
+    required this.code,
+    required this.bookingState
   }) : super(key: key);
 
   final String code;
@@ -90,7 +90,7 @@ class CardWidget extends StatelessWidget {
                                         width: Get.width,
                                         height: Get.height/2,
                                         fit: BoxFit.cover,
-                                        image: NetworkImage(this.imageUrl, headers: Domain.getTokenHeaders()),
+                                        image: NetworkImage(this.imageUrl, headers: WOHConstants.getTokenHeaders()),
                                         placeholder: AssetImage(
                                             "assets/img/loading.gif"),
                                         imageErrorBuilder:
@@ -116,7 +116,7 @@ class CardWidget extends StatelessWidget {
                                     width: 50,
                                     height: 50,
                                     fit: BoxFit.cover,
-                                    image: NetworkImage(this.imageUrl, headers: Domain.getTokenHeaders()),
+                                    image: NetworkImage(this.imageUrl, headers: WOHConstants.getTokenHeaders()),
                                     placeholder: AssetImage(
                                         "assets/img/loading.gif"),
                                     imageErrorBuilder:
@@ -136,7 +136,7 @@ class CardWidget extends StatelessWidget {
                             ),
                             TextButton(
                                 onPressed: onTap,
-                                child: Text("Voir plus", style: Get.textTheme.headline2.merge(TextStyle(color: Colors.blueAccent)))
+                                child: Text("Voir plus", style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.blueAccent)))
                             ),
                             SizedBox(width: 10)
                           ]

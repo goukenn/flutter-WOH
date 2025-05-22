@@ -5,9 +5,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
-import '../services/settings_service.dart';
+import '../services/WOHSettingsService.dart';
 
-class MyUser? {
+class WOHMyUserModel? {
   int? id;
   int? userId;
   String? name;
@@ -24,7 +24,7 @@ class MyUser? {
   var deviceTokenIds;
 
 
-  MyUser({
+  WOHMyUserModel({
     this.id,
     this.userId,
     this.name,
@@ -42,7 +42,7 @@ class MyUser? {
 
   });
 
-  factory MyUser.fromJson(Map<String, dynamic> json) => MyUser(
+  factory WOHMyUserModel.fromJson(Map<String, dynamic> json) => WOHMyUserModel(
     id: json["id"],
     userId: json['partner_id'],
     name: json["name"] ,

@@ -30,7 +30,7 @@ class TabBarController extends GetxController {
 }
 
 class TabBarWidget extends StatelessWidget implements PreferredSize {
-  TabBarWidget({Key key, @required this.tag, @required this.tabs, @required this.initialSelectedId}) {
+  TabBarWidget({Key key, required this.tag, required this.tabs, required this.initialSelectedId}) {
     tabs[0] = Padding(padding: EdgeInsetsDirectional.only(start: 15), child: tabs.elementAt(0));
     tabs[tabs.length - 1] = Padding(padding: EdgeInsetsDirectional.only(end: 15), child: tabs[tabs.length - 1]);
   }
@@ -104,10 +104,10 @@ class TabBarLoadingWidget extends StatelessWidget implements PreferredSize {
 class ChipWidget extends StatelessWidget {
   ChipWidget({
     Key key,
-    @required this.text,
+    required this.text,
     this.onSelected,
-    @required this.tag,
-    @required this.id,
+    required this.tag,
+    required this.id,
   }) : super(key: key);
 
   final String text;

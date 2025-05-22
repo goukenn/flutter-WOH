@@ -1,7 +1,7 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
 import 'parents/WOHModel.dart';
 
-class Setting extends WOHModel {
+class WOHSettingModel extends WOHModel {
   String? appName;
   bool? enableStripe;
   String? defaultTax;
@@ -29,7 +29,7 @@ class Setting extends WOHModel {
   bool? enableOtp;
   List modules;
 
-  Setting(
+  WOHSettingModel(
       {this.appName,
       this.enableStripe,
       this.defaultTax,
@@ -56,7 +56,7 @@ class Setting extends WOHModel {
       this.enableOtp,
       this.modules});
 
-  Setting.fromJson(Map<String, dynamic> json) {
+  WOHSettingModel.fromJson(Map<String, dynamic> json) {
     appName = json['app_name'];
     defaultTax = json['default_tax'];
     defaultCurrency = json['default_currency'];

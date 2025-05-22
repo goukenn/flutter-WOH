@@ -1,11 +1,11 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, prefer_const_constructors_in_immutables
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get.dart'; 
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
+import 'WOHTrianglePainter.dart';
 
-class BannerWidget extends StatelessWidget {
+class WOHBannerWidget extends StatelessWidget {
   final Color color;
   final double size;
   final Widget child;
@@ -13,12 +13,12 @@ class BannerWidget extends StatelessWidget {
   final double iconSize;
   final Color iconColor;
 
-  BannerWidget({
+  WOHBannerWidget({super.key, 
     this.color = validateColor,
     this.size = 80,
-    @required this.child,
+    required this.child,
     this.iconSize = 24,
-    @required this.title,
+    required this.title,
     this.iconColor = Colors.white,
   });
 
@@ -31,7 +31,7 @@ class BannerWidget extends StatelessWidget {
           top: 0,
           right: 0,
           child: CustomPaint(
-            painter: _TrianglePainter(color),
+            painter: WOHTrianglePainter(color),
             size: Size(size, size),
           ),
         ),
@@ -39,36 +39,19 @@ class BannerWidget extends StatelessWidget {
           top: 15,
           right: 0,
           child: Transform.rotate(
-              angle: 120,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(title, style: Get.textTheme.headline2.merge(TextStyle(color: Colors.white, fontSize: 15))
-                )
-              )
-          )
+            angle: 120,
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                title,
+                style: Get.textTheme.displayMedium!.merge(
+                  TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ),
+            ),
+          ),
         ),
       ],
     );
   }
-}
-class _TrianglePainter extends CustomPainter {
-  final Color color;
-
-  _TrianglePainter(this.color);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = color;
-
-    final path = Path()
-      ..moveTo(size.width, 0)
-      ..lineTo(0, 0)
-      ..lineTo(size.width, size.height)
-      ..close();
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(_TrianglePainter oldDelegate) => false;
 }

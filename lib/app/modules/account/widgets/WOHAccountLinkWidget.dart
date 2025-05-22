@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 
 class AccountLinkWidget extends StatelessWidget {
@@ -22,8 +22,8 @@ class AccountLinkWidget extends StatelessWidget {
     this.icon,
     this.text,
     this.label,
-    @required this.edit,
-    @required this.onChange
+    required this.edit,
+    required this.onChange
   }) : super(key: key);
 
   @override
@@ -50,7 +50,7 @@ class AccountLinkWidget extends StatelessWidget {
                     children: [
                       TextSpan(text: text, style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: appColor))),
                       TextSpan(text: "\n$label",
-                          style: Get.textTheme.headline2.merge(TextStyle(color: Colors.black, fontSize: 14))
+                          style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.black, fontSize: 14))
                       )
                     ]
                   )
@@ -88,8 +88,8 @@ class AccountWidget extends StatelessWidget {
     this.icon,
     this.text,
     this.label,
-    @required this.labelColor,
-    @required this.textColor
+    required this.labelColor,
+    required this.textColor
   }) : super(key: key);
 
   @override

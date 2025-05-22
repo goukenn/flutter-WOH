@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import '../search/controllers/WOHSearchController.dart';
 import 'WOHCircularLoadingWidget.dart';
 
-class FilterBottomSheetWidget extends GetView<SearchController> {
+class WOHFilterBottomSheetWidget extends GetView<SearchController> {
 
   List transportMeans = [
     "Water",

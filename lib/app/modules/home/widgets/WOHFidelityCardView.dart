@@ -6,12 +6,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
 import 'dart:io' as plateform;
 import '../controllers/WOHHomeController.dart';
 
-class FidelityCardWidget extends GetWidget<HomeController> {
+class WOHFidelityCardView extends GetWidget<HomeController> {
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class FidelityCardWidget extends GetWidget<HomeController> {
         },
             icon: Icon(Icons.arrow_back_ios)),
         title: Text("Fidelity Card", style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
-            letterSpacing: 2, color: Palette.background)),
+            letterSpacing: 2, color: WOHPalette.background)),
       ),
       bottomSheet: Container(
         height: Get.height/3,

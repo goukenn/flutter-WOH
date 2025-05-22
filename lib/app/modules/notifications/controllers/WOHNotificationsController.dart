@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../models/WOHNotificationModel.dart';
 import '../../../repositories/WOHNotificationRepository.dart';
@@ -12,13 +12,13 @@ import '../../../services/WOHMyAuthService.dart';
 import '../../root/controllers/WOHRootController.dart';
 import 'package:http/http.dart' as http;
 
-class NotificationsController extends GetxController {
+class WOHNotificationsController extends GetxController {
   final notifications = [].obs;
   final travelId = 0.obs;
   final chatInfo = {}.obs;
   WOHNotificationRepository _notificationRepository;
 
-  NotificationsController() {
+  WOHNotificationsController() {
     _notificationRepository = new WOHNotificationRepository();
   }
 
@@ -49,14 +49,14 @@ class NotificationsController extends GetxController {
 
     var list = [];
 
-    for (var i = 0; i < Domain.myBoxStorage.value.length; i++) {
+    for (var i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
       NotificationModel model = NotificationModel(
-       id: Domain.myBoxStorage.value.getAt(i)['id'] ,
-        disable: Domain.myBoxStorage.value.getAt(i)['disable'],
-        isSeen: Domain.myBoxStorage.value.getAt(i)['isSeen'],
-        message: Domain.myBoxStorage.value.getAt(i)['message'],
-        timestamp: Domain.myBoxStorage.value.getAt(i)['timestamp'].toString(),
-        title: Domain.myBoxStorage.value.getAt(i)['title']
+       id: WOHConstants.myBoxStorage.value.getAt(i)['id'] ,
+        disable: WOHConstants.myBoxStorage.value.getAt(i)['disable'],
+        isSeen: WOHConstants.myBoxStorage.value.getAt(i)['isSeen'],
+        message: WOHConstants.myBoxStorage.value.getAt(i)['message'],
+        timestamp: WOHConstants.myBoxStorage.value.getAt(i)['timestamp'].toString(),
+        title: WOHConstants.myBoxStorage.value.getAt(i)['title']
       );
       list.add(model);
     }
@@ -72,7 +72,7 @@ class NotificationsController extends GetxController {
 
     for (int j = 0; j < Hive.box("backgroundMessage").length; j++) {
 
-        Domain.myBoxStorage.value.add(Hive.box("backgroundMessage").getAt(j));
+        WOHConstants.myBoxStorage.value.add(Hive.box("backgroundMessage").getAt(j));
 
       }
 
@@ -83,10 +83,10 @@ class NotificationsController extends GetxController {
 
 
   Future removeNotification(NotificationModel notification) async {
-    for (var i = 0; i < Domain.myBoxStorage.value.length; i++) {
-      if(Domain.myBoxStorage.value.getAt(i)['id'] == notification.id)
+    for (var i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
+      if(WOHConstants.myBoxStorage.value.getAt(i)['id'] == notification.id)
       {
-        Domain.myBoxStorage.value.deleteAt(i);
+        WOHConstants.myBoxStorage.value.deleteAt(i);
       }
 
     }
@@ -97,8 +97,8 @@ class NotificationsController extends GetxController {
   }
 
   Future markAsReadNotification(NotificationModel notification) async {
-    for (var i = 0; i < Domain.myBoxStorage.value.length; i++) {
-      if(Domain.myBoxStorage.value.getAt(i)['id'] == notification.id)
+    for (var i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
+      if(WOHConstants.myBoxStorage.value.getAt(i)['id'] == notification.id)
       {
         final remoteModel = NotificationModel(
           title: notification?.title.toString(),
@@ -108,7 +108,7 @@ class NotificationsController extends GetxController {
           timestamp: notification.timestamp,
           disable: false,
         );
-        Domain.myBoxStorage.value.putAt(i, remoteModel.toJson());
+        WOHConstants.myBoxStorage.value.putAt(i, remoteModel.toJson());
       }
 
     }
@@ -121,10 +121,10 @@ class NotificationsController extends GetxController {
   Future getTravelInfo(int id)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Cookie': 'session_id=7c27b4e93f894c9b8b48cad4e00bb4892b5afd83'
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/m1st_hk_roadshipping.travelbooking?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/m1st_hk_roadshipping.travelbooking?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -144,9 +144,9 @@ class NotificationsController extends GetxController {
   getSingleShipping(int id) async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/m1st_hk_roadshipping.shipping?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/m1st_hk_roadshipping.shipping?ids=$id'));
 
     request.headers.addAll(headers);
 

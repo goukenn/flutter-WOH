@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../main.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../../global_widgets/WOHImageFieldWidget.dart';
@@ -15,10 +15,10 @@ import '../widgets/WOHDeleteAccountWidget.dart';
 import '../widgets/WOHUpdatePasswordWidget.dart';
 
 
-class ProfileView extends GetView<ProfileController> {
+class WOHProfileView extends GetView<ProfileController> {
   final bool hideAppBar;
 
-  ProfileView({this.hideAppBar = false}) {
+  WOHProfileView({this.hideAppBar = false}) {
     // controller.profileForm = new GlobalKey<FormState>();
   }
 

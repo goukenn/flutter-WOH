@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/WOHAuthController.dart';
 import 'WOHLoginView.dart';
 
-class SplashView extends GetView<AuthController>{
+class WOHSplashView extends GetView<AuthController>{
 
   @override
   Widget build(BuildContext context) {

@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../providers/laravel_provider.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHProfileController.dart';
 
-class DeleteAccountWidget extends GetView<ProfileController> {
-  DeleteAccountWidget({Key key}) : super(key: key);
+class WOHDeleteAccountWidget extends GetView<ProfileController> {
+  WOHDeleteAccountWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

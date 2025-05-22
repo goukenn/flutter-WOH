@@ -7,10 +7,10 @@ import '../models/WOHOptionGroupModel.dart';
 import '../models/WOHReviewModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
-class EServiceRepository {
+class WOHEServiceRepository {
   WOHLaravelApiClientProvider _laravelApiClient;
 
-  EServiceRepository() {
+  WOHEServiceRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 

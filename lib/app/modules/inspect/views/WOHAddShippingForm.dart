@@ -6,9 +6,9 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../../responsive.dart';
 import '../../account/widgets/WOHAccountLinkWidget.dart';
@@ -17,7 +17,7 @@ import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../userBookings/widgets/WOHBookingsListLoaderWidget.dart';
 import '../controllers/WOHInspectController.dart';
 
-class AddShippingView extends GetView<InspectController> {
+class WOHAddShippingForm extends GetView<InspectController> {
 
   List bookings = [];
 
@@ -353,8 +353,8 @@ class AddShippingView extends GetView<InspectController> {
                                       width: Get.width/3,
                                       height: Responsive.isTablet(context) ? 200 : 100,
                                       fit: BoxFit.cover,
-                                      image: NetworkImage('${Domain.serverPort}/image/business.resource.type/${controller.categories[index]["id"]}/image_1920?unique=true&file_response=true',
-                                          headers: Domain.getTokenHeaders()),
+                                      image: NetworkImage('${WOHConstants.serverPort}/image/business.resource.type/${controller.categories[index]["id"]}/image_1920?unique=true&file_response=true',
+                                          headers: WOHConstants.getTokenHeaders()),
                                       placeholder: AssetImage(
                                           "assets/img/loading.gif"),
                                       imageErrorBuilder:
@@ -387,7 +387,7 @@ class AddShippingView extends GetView<InspectController> {
                                             ["name"],
                                             textAlign:
                                             TextAlign.left,
-                                            style: Get.textTheme.headline2
+                                            style: Get.textTheme.displayMedium
                                         ),
                                       ],
                                     ),
@@ -449,7 +449,7 @@ class AddShippingView extends GetView<InspectController> {
                           borderRadius:
                           BorderRadius.circular(15),
                           color: controller.serviceSelected.contains(controller.services[index]['id'])
-                              ? background : Palette.background,
+                              ? background : WOHPalette.background,
                           border: controller.serviceSelected.contains(controller.services[index]['id'])
                               ? Border.all(width: 2, color: Colors.blueAccent) : null
                         ),
@@ -461,8 +461,8 @@ class AddShippingView extends GetView<InspectController> {
                                 width: Get.width/3,
                                 height: Responsive.isTablet(context) ? 240 : 150,
                                 fit: BoxFit.cover,
-                                image: NetworkImage('${Domain.serverPort}/image/appointment.product/${controller.services[index]["id"]}/image_1920?unique=true&file_response=true',
-                                    headers: Domain.getTokenHeaders()),
+                                image: NetworkImage('${WOHConstants.serverPort}/image/appointment.product/${controller.services[index]["id"]}/image_1920?unique=true&file_response=true',
+                                    headers: WOHConstants.getTokenHeaders()),
                                 placeholder: AssetImage(
                                     "assets/img/loading.gif"),
                                 imageErrorBuilder:
@@ -479,7 +479,7 @@ class AddShippingView extends GetView<InspectController> {
                             Text(controller.services[index]
                             ["name"].split(">").first, style: Get.textTheme.headline4),
                             Text(controller.services[index]
-                            ["product_price"].toString()+" €", style: Get.textTheme.headline2),
+                            ["product_price"].toString()+" €", style: Get.textTheme.displayMedium),
                             SizedBox(height: 10)
                           ]
                         )
@@ -555,7 +555,7 @@ class AddShippingView extends GetView<InspectController> {
                                     decoration: BoxDecoration(
                                         borderRadius:
                                         BorderRadius.circular(15),
-                                        color: Palette.background,
+                                        color: WOHPalette.background,
                                         border: controller.employeeSelected.contains(controller.employees[index]['id'])
                                             ? Border.all(
                                             width: 3,
@@ -570,8 +570,8 @@ class AddShippingView extends GetView<InspectController> {
                                             width: Get.width/4,
                                             height: Responsive.isTablet(context) ? 200 : 110,
                                             fit: BoxFit.cover,
-                                            image: NetworkImage('${Domain.serverPort}/image/hr.employee/${controller.employees[index]["employee_id"][0]}/image_1920?unique=true&file_response=true',
-                                                headers: Domain.getTokenHeaders()),
+                                            image: NetworkImage('${WOHConstants.serverPort}/image/hr.employee/${controller.employees[index]["employee_id"][0]}/image_1920?unique=true&file_response=true',
+                                                headers: WOHConstants.getTokenHeaders()),
                                             placeholder: AssetImage(
                                                 "assets/img/loading.gif"),
                                             imageErrorBuilder:
@@ -741,7 +741,7 @@ class AddShippingView extends GetView<InspectController> {
                                 child: Center(
                                     child: Text(controller.getTimeStringFromDouble(controller.appointTime[index]),
                                         style: TextStyle(
-                                            color: condition ? Palette.background : controller.selectedTime.contains(controller.getTimeStringFromDouble(controller.appointTime[index])) ?
+                                            color: condition ? WOHPalette.background : controller.selectedTime.contains(controller.getTimeStringFromDouble(controller.appointTime[index])) ?
                                             Colors.white : Colors.greenAccent,
                                             fontSize: 17, letterSpacing: 2)
                                     )

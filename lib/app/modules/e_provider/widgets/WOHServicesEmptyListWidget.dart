@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ServicesEmptyListWidget extends StatelessWidget {
-  const ServicesEmptyListWidget({
+class WOHServicesEmptyListWidget extends StatelessWidget {
+  const WOHServicesEmptyListWidget({
     Key key,
   }) : super(key: key);
 

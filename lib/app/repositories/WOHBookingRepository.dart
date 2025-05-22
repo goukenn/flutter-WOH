@@ -7,10 +7,10 @@ import '../models/WOHCouponModel.dart';
 import '../models/WOHReviewModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
-class BookingRepository {
+class WOHBookingRepository {
   WOHLaravelApiClientProvider _laravelApiClient;
 
-  BookingRepository() {
+  WOHBookingRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 

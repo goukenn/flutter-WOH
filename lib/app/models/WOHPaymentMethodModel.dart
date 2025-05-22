@@ -7,7 +7,7 @@ import 'WOHMediaModel.dart';
 import 'parents/WOHModel.dart';
 import 'WOHWalletModel.dart';
 
-class PaymentMethod? extends WOHModel {
+class WOHPaymentMethodModel? extends WOHModel {
   String? id;
   String? name;
   String? description;
@@ -17,9 +17,9 @@ class PaymentMethod? extends WOHModel {
   bool? isDefault;
   Wallet? wallet;
 
-  PaymentMethod({this.id, this.name, this.description, this.route, this.logo, this.wallet, this.isDefault = false});
+  WOHPaymentMethodModel({this.id, this.name, this.description, this.route, this.logo, this.wallet, this.isDefault = false});
 
-  PaymentMethod.fromJson(Map<String, dynamic> json) {
+  WOHPaymentMethodModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     name = transStringFromJson(json, 'name');
     description = transStringFromJson(json, 'description');
@@ -46,7 +46,7 @@ class PaymentMethod? extends WOHModel {
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is PaymentMethod? &&
+          other is WOHPaymentMethodModel? &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&

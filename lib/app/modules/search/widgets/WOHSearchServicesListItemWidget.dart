@@ -7,14 +7,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEServiceModel.dart';
 import '../../../routes/WOHRoutes.dart';
 
-class SearchServicesListItemWidget extends StatelessWidget {
-  const SearchServicesListItemWidget({
+class WOHSearchServicesListItemWidget extends StatelessWidget {
+  const WOHSearchServicesListItemWidget({
     Key key,
-    @required EService service,
+    required EService service,
   })  : _service = service,
         super(key: key);
 

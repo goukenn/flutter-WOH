@@ -11,7 +11,7 @@ import 'WOHTaxModel.dart';
 import 'WOHUserModel.dart';
 
 class WOHBookingModel extends WOHModel {
-   @override
+  @override
   String? id;
   String? hint;
   bool? cancel;
@@ -30,37 +30,50 @@ class WOHBookingModel extends WOHModel {
   DateTime? endsAt;
   Payment? payment;
 
-  WOHBookingModel(
-      {this.id,
-      this.hint,
-      this.cancel,
-      this.duration,
-      this.quantity,
-      this.status,
-      this.user,
-      this.eService,
-      this.eProvider,
-      this.options,
-      this.taxes,
-      this.address,
-      this.coupon,
-      this.bookingAt,
-      this.startAt,
-      this.endsAt,
-      this.payment});
+  WOHBookingModel({
+    this.id,
+    this.hint,
+    this.cancel,
+    this.duration,
+    this.quantity,
+    this.status,
+    this.user,
+    this.eService,
+    this.eProvider,
+    this.options,
+    this.taxes,
+    this.address,
+    this.coupon,
+    this.bookingAt,
+    this.startAt,
+    this.endsAt,
+    this.payment,
+  });
 
- @override
+  @override
   WOHBookingModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     hint = stringFromJson(json, 'hint');
     cancel = boolFromJson(json, 'cancel');
     duration = doubleFromJson(json, 'duration');
     quantity = intFromJson(json, 'quantity');
-    status = objectFromJson(json, 'booking_status', (v) => BookingStatus.fromJson(v));
+    status = objectFromJson(
+      json,
+      'booking_status',
+      (v) => BookingStatus.fromJson(v),
+    );
     user = objectFromJson(json, 'user', (v) => WOHUserModel.fromJson(v));
     eService = objectFromJson(json, 'e_service', (v) => EService.fromJson(v));
-    eProvider = objectFromJson(json, 'e_provider', (v) => EProvider.fromJson(v));
-    address = objectFromJson(json, 'address', (v) => WOHAddressModel.fromJson(v));
+    eProvider = objectFromJson(
+      json,
+      'e_provider',
+      (v) => EProvider.fromJson(v),
+    );
+    address = objectFromJson(
+      json,
+      'address',
+      (v) => WOHAddressModel.fromJson(v),
+    );
     coupon = objectFromJson(json, 'coupon', (v) => Coupon.fromJson(v));
     payment = objectFromJson(json, 'payment', (v) => Payment.fromJson(v));
     options = listFromJson(json, 'options', (v) => Option.fromJson(v));
@@ -74,26 +87,26 @@ class WOHBookingModel extends WOHModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
-      data['hint'] = this.hint;
-      data['duration'] = this.duration;
-      data['quantity'] = this.quantity;
-      data['cancel'] = this.cancel;
-      data['booking_status_id'] = this.status.id;
+    data['hint'] = this.hint;
+    data['duration'] = this.duration;
+    data['quantity'] = this.quantity;
+    data['cancel'] = this.cancel;
+    data['booking_status_id'] = this.status.id;
     data['coupon'] = this.coupon.toJson();
-      data['coupon_id'] = this.coupon.id;
-      data['taxes'] = this.taxes.map((e) => e.toJson()).toList();
-      if (this.options.isNotEmpty) {
+    data['coupon_id'] = this.coupon.id;
+    data['taxes'] = this.taxes.map((e) => e.toJson()).toList();
+    if (this.options.isNotEmpty) {
       data['options'] = this.options.map((e) => e.id).toList();
     }
     data['user_id'] = this.user.id;
-      data['address'] = this.address.toJson();
-      data['e_service'] = this.eService.id;
-      data['e_provider'] = this.eProvider.toJson();
-      data['payment'] = this.payment.toJson();
-      data['booking_at'] = bookingAt.toUtc().toString();
-      data['start_at'] = startAt.toUtc().toString();
-      data['ends_at'] = endsAt.toUtc().toString();
-      return data;
+    data['address'] = this.address.toJson();
+    data['e_service'] = this.eService.id;
+    data['e_provider'] = this.eProvider.toJson();
+    data['payment'] = this.payment.toJson();
+    data['booking_at'] = bookingAt.toUtc().toString();
+    data['start_at'] = startAt.toUtc().toString();
+    data['ends_at'] = endsAt.toUtc().toString();
+    return data;
   }
 
   double getTotal() {

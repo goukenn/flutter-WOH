@@ -7,14 +7,14 @@ import 'dart:core';
 
 import 'parents/WOHModel.dart';
 
-class EProviderType extends WOHModel {
+class WOHEProviderTypeModel extends WOHModel {
   String? id;
   String? name;
   double? commission;
 
-  EProviderType({this.id, this.name, this.commission});
+  WOHEProviderTypeModel({this.id, this.name, this.commission});
 
-  EProviderType.fromJson(Map<String, dynamic> json) {
+  WOHEProviderTypeModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     name = transStringFromJson(json, 'name');
     commission = doubleFromJson(json, 'commission');

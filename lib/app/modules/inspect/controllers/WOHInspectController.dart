@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../models/WOHMyUserModel.dart';
 import '../../../models/WOHOptionModel.dart';
@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 import '../../userBookings/controllers/WOHBookingsController.dart';
 
-class InspectController extends GetxController {
+class WOHInspectController extends GetxController {
 
   TextEditingController city = TextEditingController();
   var isClicked = false.obs;
@@ -98,9 +98,9 @@ class InspectController extends GetxController {
     loadCategories.value = true;
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/search_read/business.resource.type'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/search_read/business.resource.type'));
 
     request.headers.addAll(headers);
 
@@ -170,9 +170,9 @@ class InspectController extends GetxController {
   getAppointments(var ids)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/business.appointment?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/business.appointment?ids=$ids'));
 
     request.headers.addAll(headers);
 
@@ -235,9 +235,9 @@ class InspectController extends GetxController {
   getUser(int id)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/res.partner?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/res.partner?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -254,9 +254,9 @@ class InspectController extends GetxController {
   void getCategoryBarber(var ids) async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/business.resource?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/business.resource?ids=$ids'));
 
     request.headers.addAll(headers);
 
@@ -276,10 +276,10 @@ class InspectController extends GetxController {
   getCalendar(var id)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Cookie': 'session_id=24beda0f1d665f23cdaf28741023ccdefca871bf'
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/resource.calendar?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/resource.calendar?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -300,9 +300,9 @@ class InspectController extends GetxController {
   getWorkingDays(var ids)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/resource.calendar.attendance?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/resource.calendar.attendance?ids=$ids'));
 
     request.headers.addAll(headers);
 
@@ -326,10 +326,10 @@ class InspectController extends GetxController {
   getRestDays(var ids)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Cookie': 'session_id=24beda0f1d665f23cdaf28741023ccdefca871bf'
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/resource.calendar.leaves?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/resource.calendar.leaves?ids=$ids'));
 
     request.headers.addAll(headers);
 
@@ -363,9 +363,9 @@ class InspectController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request =  editAppointment.value ? http.Request('POST',Uri.parse('${Domain.serverPort}/create/business.appointment?values={ '
+    var request =  editAppointment.value ? http.Request('POST',Uri.parse('${WOHConstants.serverPort}/create/business.appointment?values={ '
         '"resource_type_id": ${appointmentDto['resource_type_id'][0]},'
         '"partner_id": ${appointmentDto['partner_id'][0]},'
         //'"description": "",'
@@ -375,7 +375,7 @@ class InspectController extends GetxController {
         '"datetime_end": "$dateTimeEnd"'
         '}'
     )) :
-    http.Request('POST',Uri.parse('${Domain.serverPort}/create/business.appointment?values={ '
+    http.Request('POST',Uri.parse('${WOHConstants.serverPort}/create/business.appointment?values={ '
         '"resource_type_id": ${categoryId.value},'
         '"partner_id": ${currentUser['partner_id']},'
     //'"description": "",'
@@ -416,9 +416,9 @@ class InspectController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/call/business.appointment/action_cancel?ids=$id'));
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/call/business.appointment/action_cancel?ids=$id'));
 
     request.headers.addAll(headers);
 

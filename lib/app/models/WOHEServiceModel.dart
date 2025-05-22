@@ -6,7 +6,7 @@ import 'WOHEProviderModel.dart';
 import 'WOHMediaModel.dart';
 import 'parents/WOHModel.dart';
 
-class EService extends WOHModel {
+class WOHEServiceModel extends WOHModel {
   String? id;
   String? name;
   String? description;
@@ -25,7 +25,7 @@ class EService extends WOHModel {
   List<WOHCategoryModel> subCategories;
   EProvider eProvider;
 
-  EService(
+  WOHEServiceModel(
       {this.id,
       this.name,
       this.description,
@@ -44,7 +44,7 @@ class EService extends WOHModel {
       this.subCategories,
       this.eProvider});
 
-  EService.fromJson(Map<String, dynamic> json) {
+  WOHEServiceModel.fromJson(Map<String, dynamic> json) {
     name = transStringFromJson(json, 'name');
     description = transStringFromJson(json, 'description');
     images = mediaListFromJson(json, 'images');
@@ -131,7 +131,7 @@ class EService extends WOHModel {
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is EService &&
+          other is WOHEServiceModel &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&

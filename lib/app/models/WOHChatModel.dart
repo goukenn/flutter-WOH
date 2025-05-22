@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import "parents/WOHModel.dart";
 import 'WOHUserModel.dart';
 
-class Chat extends WOHModel {
+class WOHChatModel extends WOHModel {
   String? id = UniqueKey().toString();
 
   // message text
@@ -19,9 +19,9 @@ class Chat extends WOHModel {
 
   WOHUserModel? user;
 
-  Chat(this.text, this.time, this.userId, this.user);
+  WOHChatModel(this.text, this.time, this.userId, this.user);
 
-  Chat.fromDocumentSnapshot(DocumentSnapshot jsonMap) {
+  WOHChatModel.fromDocumentSnapshot(DocumentSnapshot jsonMap) {
     try {
       id = jsonMap.id;
       text = jsonMap.get('text') != null ? jsonMap.get('text').toString() : '';
@@ -50,7 +50,7 @@ class Chat extends WOHModel {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      super == other && other is Chat && runtimeType == other.runtimeType && id == other.id && text == other.text && time == other.time && userId == other.userId;
+      super == other && other is WOHChatModel && runtimeType == other.runtimeType && id == other.id && text == other.text && time == other.time && userId == other.userId;
 
   @override
   int get hashCode => super.hashCode ^ id.hashCode ^ text.hashCode ^ time.hashCode ^ userId.hashCode;

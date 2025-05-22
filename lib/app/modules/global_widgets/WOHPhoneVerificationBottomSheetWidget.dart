@@ -10,7 +10,7 @@ import '../profile/controllers/WOHProfileController.dart';
 import 'WOHBlockButtonWidget.dart';
 import 'WOHTextFieldWidget.dart';
 
-class PhoneVerificationBottomSheetWidget extends GetView<ProfileController> {
+class WOHPhoneVerificationBottomSheetWidget extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     // TODO add loading while verification

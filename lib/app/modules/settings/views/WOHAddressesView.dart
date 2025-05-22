@@ -2,16 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../providers/laravel_provider.dart';
-import '../../../services/settings_service.dart';
+import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHAddressController.dart';
 
-class AddressesView extends GetView<AddressController> {
+class WOHAddressesView extends GetView<AddressController> {
   final bool hideAppBar;
 
-  AddressesView({this.hideAppBar = false});
+  WOHAddressesView({this.hideAppBar = false});
 
   @override
   Widget build(BuildContext context) {

@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../responsive.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
-class ForgotPasswordView extends GetView<AuthController> {
+class WOHForgotPasswordView extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class ForgotPasswordView extends GetView<AuthController> {
                     padding: const EdgeInsets.all(20),
                     child: Text(
                       "\nMot de pass oublié".tr,
-                      style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
+                      style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
                       textAlign: TextAlign.center,
                     ),
                   ),

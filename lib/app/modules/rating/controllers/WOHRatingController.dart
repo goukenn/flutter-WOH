@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../models/WOHBookingModel.dart';
 import '../../../models/WOHReviewModel.dart';
@@ -14,7 +14,7 @@ import '../../../services/WOHMyAuthService.dart';
 import '../../root/controllers/WOHRootController.dart';
 import 'package:http/http.dart' as http;
 
-class RatingController extends GetxController {
+class WOHRatingController extends GetxController {
 
   var shippingDto = {}.obs;
   var travellerId = 0.obs;
@@ -23,7 +23,7 @@ class RatingController extends GetxController {
   var rate = 0.obs;
   BookingRepository _bookingRepository;
 
-  RatingController() {
+  WOHRatingController() {
     _bookingRepository = new BookingRepository();
   }
 
@@ -43,9 +43,9 @@ class RatingController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/create/res.partner.rating?values=%7B%0A%20%20%22'
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/create/res.partner.rating?values=%7B%0A%20%20%22'
         'rater_id%22%3A%20${Get.find<MyAuthService>().myUser.value.id}%2C%0A%20%20%22'
         'rated_id%22%3A%20${travellerId.value}%2C%0A%20%20%22'
         'shipping_id%22%3A%20$shipping_id%2C%0A%20%20%22'

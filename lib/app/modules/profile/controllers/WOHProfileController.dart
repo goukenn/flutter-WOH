@@ -14,7 +14,7 @@ import '../../../services/WOHMyAuthService.dart';
 import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHPhoneVerificationBottomSheetWidget.dart';
 
-class ProfileController extends GetxController {
+class WOHProfileController extends GetxController {
   final user = new MyUser().obs;
   var url = ''.obs;
   //final Rx<MyUser> currentUser = Get.find<MyAuthService>().myUser;
@@ -60,7 +60,7 @@ class ProfileController extends GetxController {
   GlobalKey<FormState> profileForm;
   WOHWHOUserRepository _userRepository;
 
-  ProfileController() {
+  WOHProfileController() {
     _userRepository = new WOHWHOUserRepository();
   }
 

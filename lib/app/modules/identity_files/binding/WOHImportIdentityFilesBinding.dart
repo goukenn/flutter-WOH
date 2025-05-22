@@ -5,7 +5,7 @@ import '../../../services/WOHMyAuthService.dart';
 import '../controller/WOHImportIdentityFilesController.dart';
 
 
-class ImportIdentityFilesBinding extends Bindings {
+class WOHImportIdentityFilesBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ImportIdentityFilesController>(

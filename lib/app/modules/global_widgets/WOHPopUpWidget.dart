@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 
-class PopUpWidget extends StatelessWidget {
-  const PopUpWidget({Key key,
-    @required this.cancel,
-    @required this.confirm,
-    @required this.onTap,
-    @required this.icon,
-    @required this.title
+class WOHPopUpWidget extends StatelessWidget {
+  const WOHPopUpWidget({Key key,
+    required this.cancel,
+    required this.confirm,
+    required this.onTap,
+    required this.icon,
+    required this.title
   }) : super(key: key);
 
   final String cancel;

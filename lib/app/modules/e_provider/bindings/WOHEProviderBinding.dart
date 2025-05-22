@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/WOHEProviderController.dart';
 import '../controllers/WOHEServicesController.dart';
 
-class EProviderBinding extends Bindings {
+class WOHEProviderBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<EProviderController>(

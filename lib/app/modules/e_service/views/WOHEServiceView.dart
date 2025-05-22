@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEServiceModel.dart';
 import '../../../models/WOHMediaModel.dart';
 import '../../../providers/laravel_provider.dart';
@@ -19,7 +19,7 @@ import '../widgets/WOHEServiceTitleBarWidget.dart';
 import '../widgets/WOHOptionGroupItemWidget.dart';
 import '../widgets/WOHReviewItemWidget.dart';
 
-class EServiceView extends GetView<EServiceController> {
+class WOHEServiceView extends GetView<EServiceController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -107,7 +107,7 @@ class EServiceView extends GetView<EServiceController> {
                       children: [
                         SizedBox(height: 10),
                         buildCategories(_eService),
-                        EServiceTilWidget(
+                        WOHEServiceTilWidget(
                           title: Text("Description".tr, style: Get.textTheme.bodySmall),
                           content: Obx(() {
                             if (controller.eService.value.description == '') {
@@ -120,7 +120,7 @@ class EServiceView extends GetView<EServiceController> {
                         buildOptions(_eService),
                         buildServiceProvider(_eService),
                         if (_eService.images.isNotEmpty)
-                          EServiceTilWidget(
+                          WOHEServiceTilWidget(
                             horizontalPadding: 0,
                             title: Text("Galleries".tr, style: Get.textTheme.bodySmall).paddingSymmetric(horizontal: 20),
                             content: Container(
@@ -186,7 +186,7 @@ class EServiceView extends GetView<EServiceController> {
                                   }),
                             ),
                           ),
-                        EServiceTilWidget(
+                        WOHEServiceTilWidget(
                           title: Text("Reviews & Ratings".tr, style: Get.textTheme.bodySmall),
                           content: Column(
                             children: [
@@ -234,7 +234,7 @@ class EServiceView extends GetView<EServiceController> {
       if (controller.optionGroups.isEmpty) {
         return SizedBox();
       }
-      return EServiceTilWidget(
+      return WOHEServiceTilWidget(
         horizontalPadding: 0,
         title: Text("Options".tr, style: Get.textTheme.bodySmall).paddingSymmetric(horizontal: 20),
         content: ListView.separated(
@@ -481,13 +481,13 @@ class EServiceView extends GetView<EServiceController> {
         onTap: () {
           Get.toNamed(WOHRoutes.E_PROVIDER, arguments: {'eProvider': _eService.eProvider, 'heroTag': 'e_service_details'});
         },
-        child: EServiceTilWidget(
+        child: WOHEServiceTilWidget(
           title: Text("Service Provider".tr, style: Get.textTheme.bodySmall),
           content: EProviderItemWidget(provider: _eService.eProvider),
         ),
       );
     } else {
-      return EServiceTilWidget(
+      return WOHEServiceTilWidget(
         title: Text("Service Provider".tr, style: Get.textTheme.bodySmall),
         content: SizedBox(
           height: 60,

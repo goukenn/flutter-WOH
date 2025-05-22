@@ -5,8 +5,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../common/ui.dart';
-import '../../../../color_constants.dart';
+import '../../../../common/WOHUi.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../main.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../auth/controllers/WOHAuthController.dart';
@@ -15,7 +15,7 @@ import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHBookingsController.dart';
 import '../widgets/WOHBookingsListLoaderWidget.dart';
 
-class BookingsView extends GetView<BookingsController> {
+class WOHBookingsView extends GetView<BookingsController> {
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +43,14 @@ class BookingsView extends GetView<BookingsController> {
                 //backgroundColor: interfaceColor,
                 onPressed: ()=> Get.toNamed(WOHRoutes.ADD_SHIPPING_FORM),
                 label: Text('Prendre rendez-vous'),
-                icon: Icon(Icons.add, color: Palette.background)
+                icon: Icon(Icons.add, color: WOHPalette.background)
             ) : FloatingActionButton.extended(
                 backgroundColor: employeeInterfaceColor,
                 heroTag: null,
                 //backgroundColor: interfaceColor,
                 onPressed: ()=> Get.toNamed(WOHRoutes.ADD_SHIPPING_FORM),
                 label: Text('Ajouter un rendez-vous'),
-                icon: Icon(Icons.add, color: Palette.background)
+                icon: Icon(Icons.add, color: WOHPalette.background)
             ),
             if(Get.width > 500)
             SizedBox(width: 70)
@@ -126,7 +126,7 @@ class BookingsView extends GetView<BookingsController> {
                                   ),
                                   contentPadding: EdgeInsets.all(10),
                                   filled: true,
-                                  fillColor: Palette.background,
+                                  fillColor: WOHPalette.background,
                                   suffixIcon: IconButton(
                                       icon: Icon(Icons.calendar_today),
                                       onPressed: () {
@@ -179,22 +179,22 @@ class BookingsView extends GetView<BookingsController> {
               showCheckboxColumn: false,
               columns: [
                 DataColumn(
-                  label: Text("Reference", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Reference", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Service", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Service", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Client", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Client", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Date/heure", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Date/heure", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
                   label: Text(""),
                 ),
                 DataColumn(
-                  label: Text("Stage", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Stage", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
               ],
               rows: List.generate(
@@ -221,7 +221,7 @@ class BookingsView extends GetView<BookingsController> {
                           DataCell(Text(controller.items[index]['partner_id'][1], style: Get.textTheme.headline4)),
                           DataCell(Text("$start - $end", style: Get.textTheme.headline4)),
                           DataCell(SizedBox()),
-                          DataCell(Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.headline2.merge(
+                          DataCell(Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.displayMedium.merge(
                               TextStyle(color: bookingState == 'reserved' ? newStatus : bookingState == 'done' ? doneStatus : bookingState == 'cancel' ? specialColor : inactive)))
                           )
                         ]
@@ -276,7 +276,7 @@ class BookingsView extends GetView<BookingsController> {
                       child: CardWidget(
                         shippingDateStart: controller.items[index]['datetime_start'],
                         shippingDateEnd: controller.items[index]['datetime_end'],
-                        imageUrl: "${Domain.serverPort}/image/hr.employee/$employeeId/image_1920?unique=true&file_response=true",
+                        imageUrl: "${WOHConstants.serverPort}/image/hr.employee/$employeeId/image_1920?unique=true&file_response=true",
                         code: controller.items[index]['name'],
                         bookingState: controller.items[index]['state'],
                         //price: controller.items[index]['shipping_price'],

@@ -5,7 +5,7 @@ import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../controllers/WOHInspectController.dart';
 
-class InspectBinding extends Bindings {
+class WOHInspectBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<InspectController>(

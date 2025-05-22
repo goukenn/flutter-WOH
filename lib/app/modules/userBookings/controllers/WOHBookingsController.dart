@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import 'package:http/http.dart' as http;
 import '../../../providers/WOHOdooApiClientProvider.dart';
@@ -18,7 +18,7 @@ import '../../auth/controllers/WOHAuthController.dart';
 import '../../home/controllers/WOHHomeController.dart';
 import '../../inspect/controllers/WOHInspectController.dart';
 
-class BookingsController extends GetxController {
+class WOHBookingsController extends GetxController {
 
   var predict1 = false.obs;
   var errorCity1 = false.obs;
@@ -205,7 +205,7 @@ class BookingsController extends GetxController {
     appointments.value = list;
   }
 
-  BookingsController() {
+  WOHBookingsController() {
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),
     );
@@ -337,9 +337,9 @@ class BookingsController extends GetxController {
   Future getCategories()async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/search_read/business.resource.type'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/search_read/business.resource.type'));
 
     request.headers.addAll(headers);
 
@@ -381,9 +381,9 @@ class BookingsController extends GetxController {
   Future getCurrentUser(var id)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/res.partner?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/res.partner?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -404,9 +404,9 @@ class BookingsController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/business.appointment?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/business.appointment?ids=$ids'));
 
     request.headers.addAll(headers);
 
@@ -427,9 +427,9 @@ class BookingsController extends GetxController {
   getResources()async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/search_read/business.resource'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/search_read/business.resource'));
 
     request.headers.addAll(headers);
 
@@ -504,7 +504,7 @@ class BookingsController extends GetxController {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                             BorderRadius.circular(15),
-                                            color: selectedResource.contains(resources[item]) ? background : Palette.background,
+                                            color: selectedResource.contains(resources[item]) ? background : WOHPalette.background,
                                           ),
                                           child: Column(
                                               children: [
@@ -514,8 +514,8 @@ class BookingsController extends GetxController {
                                                         width: 200,
                                                         height: 200,
                                                         fit: BoxFit.cover,
-                                                        image: NetworkImage('${Domain.serverPort}/image/hr.employee/${resources[item]["employee_id"][0]}/image_1920?unique=true&file_response=true',
-                                                            headers: Domain.getTokenHeaders()),
+                                                        image: NetworkImage('${WOHConstants.serverPort}/image/hr.employee/${resources[item]["employee_id"][0]}/image_1920?unique=true&file_response=true',
+                                                            headers: WOHConstants.getTokenHeaders()),
                                                         placeholder: AssetImage(
                                                             "assets/img/loading.gif"),
                                                         imageErrorBuilder:
@@ -622,9 +622,9 @@ class BookingsController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('PUT', Uri.parse('${Domain.serverPort}/write/business.appointment?ids=%5B%22${selectedAppointment['id']}%22%5D&values=%7B%0A%20%20%22resource_id%22%3A%20$resourceId%0A%7D&with_context=%7B%7D&with_company=1'));
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/business.appointment?ids=%5B%22${selectedAppointment['id']}%22%5D&values=%7B%0A%20%20%22resource_id%22%3A%20$resourceId%0A%7D&with_context=%7B%7D&with_company=1'));
 
     request.headers.addAll(headers);
 
@@ -651,9 +651,9 @@ class BookingsController extends GetxController {
   Future getUserInfo(int id)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/res.partner?ids=$id'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/res.partner?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -677,11 +677,11 @@ class BookingsController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Content-Type': 'multipart/form-data',
       'Cookie': 'session_id=a5b5f221b0eca50ae954ad4923fead1063097951'
     };
-    var request = http.MultipartRequest('POST', Uri.parse('${Domain.serverPort}/upload/res.partner/$id/image_1920'));
+    var request = http.MultipartRequest('POST', Uri.parse('${WOHConstants.serverPort}/upload/res.partner/$id/image_1920'));
     request.files.add(await http.MultipartFile.fromPath('ufile', file.path));
     request.headers.addAll(headers);
 
@@ -741,9 +741,9 @@ class BookingsController extends GetxController {
         });
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/search_read/account.move'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/search_read/account.move'));
 
     request.headers.addAll(headers);
 
@@ -833,8 +833,8 @@ class BookingsController extends GetxController {
                             width: 60,
                             height: 60,
                             fit: BoxFit.cover,
-                            image: NetworkImage("${Domain.serverPort}/image/appointment.product/${service['id']}/image_1920?unique=true&file_response=true",
-                                headers: Domain.getTokenHeaders()),
+                            image: NetworkImage("${WOHConstants.serverPort}/image/appointment.product/${service['id']}/image_1920?unique=true&file_response=true",
+                                headers: WOHConstants.getTokenHeaders()),
                             placeholder: AssetImage(
                                 "assets/img/loading.gif"),
                             imageErrorBuilder:
@@ -848,8 +848,8 @@ class BookingsController extends GetxController {
                           )
                       ),
                       title: Text(service['name'].split(">").first + "\n"+ service["product_price"].toString()+" €",
-                          style: Get.textTheme.headline2),
-                      subtitle: Text(duration.toString()+" minutes", style: Get.textTheme.headline2),
+                          style: Get.textTheme.displayMedium),
+                      subtitle: Text(duration.toString()+" minutes", style: Get.textTheme.displayMedium),
                     ),
                   ],
                 ),
@@ -883,7 +883,7 @@ class BookingsController extends GetxController {
                                             SizedBox(width: 10),
                                             TextButton(
                                                 onPressed: ()=> cancelBooking(appointment['id']),
-                                                child: Text('Annuler le rendez-vous', style: Get.textTheme.headline2)
+                                                child: Text('Annuler le rendez-vous', style: Get.textTheme.displayMedium)
                                             )
                                           ]
                                       )
@@ -926,9 +926,9 @@ class BookingsController extends GetxController {
   getAppointmentOrder(var ids)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/sale.order?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/sale.order?ids=$ids'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -948,7 +948,7 @@ class BookingsController extends GetxController {
   addProductLine(var ids, var item, var data) async {
     print("$ids and ${selectedAppointment['id']}");
     var headers = {
-      'api-key': Domain.apiKey,
+      'api-key': WOHConstants.apiKey,
       'Content-Type': 'text/plain'
     };
     var request = http.Request('POST', Uri.parse('https://willonhair.shintheo.com/api/associated.product.line/create'));
@@ -981,9 +981,9 @@ class BookingsController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/call/business.appointment/action_cancel?ids=$id'));
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/call/business.appointment/action_cancel?ids=$id'));
 
     request.headers.addAll(headers);
 
@@ -1005,9 +1005,9 @@ class BookingsController extends GetxController {
   void getOrderLine(var ids) async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/sale.order.line?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/sale.order.line?ids=$ids'));
 
     request.headers.addAll(headers);
 
@@ -1033,7 +1033,7 @@ class BookingsController extends GetxController {
 
   updateAppointment(String data, String type)async{
     var headers = {
-      'api-key': Domain.apiKey,
+      'api-key': WOHConstants.apiKey,
       'Content-Type': 'text/plain',
     };
     var request = http.Request('PUT', Uri.parse('https://willonhair.shintheo.com/api/business.appointment/${selectedAppointment['id']}'));
@@ -1064,9 +1064,9 @@ class BookingsController extends GetxController {
   void markDone() async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/call/business.appointment/action_mark_done?ids=${selectedAppointment['id']}'));
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/call/business.appointment/action_mark_done?ids=${selectedAppointment['id']}'));
 
     request.headers.addAll(headers);
 
@@ -1092,9 +1092,9 @@ class BookingsController extends GetxController {
     loadOrder.value = true;
     var headers = {
       'accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse('${Domain.serverPort}/call/business.appointment/action_adapt_sale_order?ids=${selectedAppointment['id']}'));
+    var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/call/business.appointment/action_adapt_sale_order?ids=${selectedAppointment['id']}'));
 
     request.headers.addAll(headers);
 
@@ -1217,9 +1217,9 @@ class BookingsController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/product.product?ids=21,22,51'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/product.product?ids=21,22,51'));
 
     request.headers.addAll(headers);
 
@@ -1308,7 +1308,7 @@ class BookingsController extends GetxController {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Choix du bonus", style: Get.textTheme.headline2),
+              Text("Choix du bonus", style: Get.textTheme.displayMedium),
               SizedBox(height: 30),
               Expanded(
                   child: ListView.builder(
@@ -1338,8 +1338,8 @@ class BookingsController extends GetxController {
                                     child: Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(bonus[index]['discount_management'].toString().toUpperCase(), style: Get.textTheme.headline2),
-                                          Text(bonus[index]['list_price'].abs().toInt().toString(), style: Get.textTheme.headline2.
+                                          Text(bonus[index]['discount_management'].toString().toUpperCase(), style: Get.textTheme.displayMedium),
+                                          Text(bonus[index]['list_price'].abs().toInt().toString(), style: Get.textTheme.displayMedium.
                                           merge(TextStyle(fontSize: 100, color: bonusList.contains(bonus[index]) ? interfaceColor : Colors.black))
                                           )
                                         ]
@@ -1358,7 +1358,7 @@ class BookingsController extends GetxController {
 
   void useMyBonus(var value) async{
     var headers = {
-      'api-key': Domain.apiKey,
+      'api-key': WOHConstants.apiKey,
       'Content-Type': 'text/plain',
     };
     var request = http.Request('PUT', Uri.parse('https://willonhair.shintheo.com/api/business.appointment/${selectedAppointment['id']}'));
@@ -1390,9 +1390,9 @@ class BookingsController extends GetxController {
 
     var headers = {
       'accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('POST', Uri.parse( '${Domain.serverPort}/create/associated.product.line.bonus?values=%7B%0A%20%20%22'
+    var request = http.Request('POST', Uri.parse( '${WOHConstants.serverPort}/create/associated.product.line.bonus?values=%7B%0A%20%20%22'
         'product_id%22%3A%20$bonusId%2C%0A%20%20%22'
         'product_uom_qty%22%3A%201%2C%0A%20%20%22'
         'appointment_id%22%3A%20${selectedAppointment['id']}%0A%7D'));
@@ -1487,9 +1487,9 @@ class BookingsController extends GetxController {
 
       var headers = {
         'Accept': 'application/json',
-        'Authorization': Domain.authorization
+        'Authorization': WOHConstants.authorization
       };
-      var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/product.product?ids=1,38,39,40,5,6,41,42,43,10,11,44,13,14,45,46,47,48,49,50'));
+      var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/product.product?ids=1,38,39,40,5,6,41,42,43,10,11,44,13,14,45,46,47,48,49,50'));
 
       request.headers.addAll(headers);
 
@@ -1582,7 +1582,7 @@ class BookingsController extends GetxController {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Choix de la remise", style: Get.textTheme.headline2),
+              Text("Choix de la remise", style: Get.textTheme.displayMedium),
               SizedBox(height: 30),
               Expanded(
                   child: GridView.builder(
@@ -1629,9 +1629,9 @@ class BookingsController extends GetxController {
   updateUser(var point)async{
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('PUT', Uri.parse('${Domain.serverPort}/write/res.partner?ids=${selectedAppointment['partner_id'][0]}&values={'
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.partner?ids=${selectedAppointment['partner_id'][0]}&values={'
         '"client_bonus": $point'
         '}'
     ));
@@ -1718,9 +1718,9 @@ class BookingsController extends GetxController {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Domain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('GET', Uri.parse('${Domain.serverPort}/read/account.move.line?ids=$ids'));
+    var request = http.Request('GET', Uri.parse('${WOHConstants.serverPort}/read/account.move.line?ids=$ids'));
 
     request.headers.addAll(headers);
 

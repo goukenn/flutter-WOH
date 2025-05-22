@@ -8,14 +8,14 @@ import 'dart:core';
 import 'WOHMediaModel.dart';
 import 'parents/WOHModel.dart';
 
-class Gallery extends WOHModel {
+class WOHGalleryModel extends WOHModel {
   String? id;
   WOHMediaModel? image;
   String? description;
 
-  Gallery({this.id, this.image, this.description});
+  WOHGalleryModel({this.id, this.image, this.description});
 
-  Gallery.fromJson(Map<String, dynamic> json) {
+  WOHGalleryModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     image = mediaFromJson(json, 'image');
     description = transStringFromJson(json, 'description');

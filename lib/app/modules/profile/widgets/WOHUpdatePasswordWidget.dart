@@ -2,15 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../providers/laravel_provider.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHProfileController.dart';
 
-class UpdatePasswordWidget extends GetView<ProfileController> {
-  UpdatePasswordWidget({Key key}) : super(key: key);
+class WOHUpdatePasswordWidget extends GetView<ProfileController> {
+  WOHUpdatePasswordWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

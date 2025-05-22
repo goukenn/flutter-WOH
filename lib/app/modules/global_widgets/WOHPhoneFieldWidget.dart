@@ -9,10 +9,10 @@ import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 
-class PhoneFieldWidget extends StatelessWidget {
-  const PhoneFieldWidget(
+class WOHPhoneFieldWidget extends StatelessWidget {
+  const WOHPhoneFieldWidget(
       {Key key,
       this.onSaved,
       this.onChanged,

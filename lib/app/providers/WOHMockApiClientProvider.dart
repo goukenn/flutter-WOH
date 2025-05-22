@@ -27,7 +27,7 @@ class WOHMockApiClientProvider {
   final Dio httpClient;
   final Options _options = buildCacheOptions() ;//Duration(days: 3), forceRefresh: true);
 
-  WOHMockApiClientProvider({@required this.httpClient}) {
+  WOHMockApiClientProvider({required this.httpClient}) {
     httpClient.interceptors.add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
   }
 

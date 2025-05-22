@@ -6,7 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pie_chart/pie_chart.dart';
-import '../../../../color_constants.dart';
+import '../../../../WOHColorConstants.dart';
 import '../../../../main.dart';
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../fidelisation/controller/WOHValidationController.dart';
@@ -20,7 +20,7 @@ import '../../userBookings/views/WOHFacturation.dart';
 import '../../userBookings/views/WOHInterfacePOS.dart';
 import '../controllers/WOHHomeController.dart';
 
-class EmployeeHomeView extends GetView<HomeController> {
+class WOHEmployeeHome extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
 
@@ -73,8 +73,8 @@ class EmployeeHomeView extends GetView<HomeController> {
             ),
           ),
           title: Obx(() => Text( controller.currentPage.value == 0 ?
-          Domain.AppName+", Tableau de bord" : controller.currentPage.value == 1 ? Domain.AppName+",  Mes rendez-vous"
-              : controller.currentPage.value == 2 ? Domain.AppName+", Facturation" : controller.currentPage.value == 3 ? Domain.AppName+", Interface POS" : Domain.AppName+", Attribuer des points",
+          WOHConstants.AppName+", Tableau de bord" : controller.currentPage.value == 1 ? WOHConstants.AppName+",  Mes rendez-vous"
+              : controller.currentPage.value == 2 ? WOHConstants.AppName+", Facturation" : controller.currentPage.value == 3 ? WOHConstants.AppName+", Interface POS" : WOHConstants.AppName+", Attribuer des points",
             style: Get.textTheme.titleLarge.merge(TextStyle(color: employeeInterfaceColor)),
           )),
           centerTitle: true,
@@ -194,7 +194,7 @@ class EmployeeHomeView extends GetView<HomeController> {
         Padding(
             padding: EdgeInsets.only(left: 15),
             child: Text("Rendez-vous en attente",
-                style: Get.textTheme.headline2.merge(TextStyle(color: appColor, fontSize: 30)
+                style: Get.textTheme.displayMedium.merge(TextStyle(color: appColor, fontSize: 30)
                 )
             )
         ),
@@ -209,22 +209,22 @@ class EmployeeHomeView extends GetView<HomeController> {
               showCheckboxColumn: false,
               columns: [
                 DataColumn(
-                  label: Text("Reference", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Reference", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Service", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Service", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Client", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Client", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Date/heure", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Date/heure", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
                   label: Text(""),
                 ),
                 DataColumn(
-                  label: Text("Stage", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Stage", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
               ],
               rows: List.generate(
@@ -257,7 +257,7 @@ class EmployeeHomeView extends GetView<HomeController> {
                           DataCell(Text("$start - $end", style: Get.textTheme.headline4)),
                           DataCell(SizedBox()),
                           DataCell(Obx(()=>
-                              Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.headline2.merge(
+                              Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.displayMedium.merge(
                                   TextStyle(color: bookingState == 'reserved' ? newStatus : bookingState == 'done' ? doneStatus : bookingState == 'cancel' ? inactive : specialColor)))
                           )
                           )

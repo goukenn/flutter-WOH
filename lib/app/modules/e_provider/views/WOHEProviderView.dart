@@ -7,7 +7,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../common/WOHWOHMapsUtil.dart';
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEProviderModel.dart';
 import '../../../models/WOHMediaModel.dart';
 import '../../../providers/laravel_provider.dart';
@@ -20,7 +20,7 @@ import '../widgets/WOHEProviderTitleBarWidget.dart';
 import '../widgets/WOHFeaturedCarouselWidget.dart';
 import '../widgets/WOHReviewItemWidget.dart';
 
-class EProviderView extends GetView<EProviderController> {
+class WOHEProviderView extends GetView<EProviderController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {

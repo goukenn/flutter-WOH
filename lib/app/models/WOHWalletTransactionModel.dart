@@ -6,7 +6,7 @@ import 'WOHUserModel.dart';
 
 enum TransactionActions { CREDIT, DEBIT }
 
-class WalletTransaction extends WOHModel {
+class WOHWalletTransactionModel extends WOHModel {
    @override
   String? id;
   double? amount;
@@ -15,9 +15,9 @@ class WalletTransaction extends WOHModel {
   DateTime? dateTime;
   WOHUserModel? user;
 
-  WalletTransaction({this.id, this.amount, this.description, this.action, this.user});
+  WOHWalletTransactionModel({this.id, this.amount, this.description, this.action, this.user});
 
-  WalletTransaction.fromJson(Map<String, dynamic> json) {
+  WOHWalletTransactionModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     description = stringFromJson(json, 'description');
     amount = doubleFromJson(json, 'amount');

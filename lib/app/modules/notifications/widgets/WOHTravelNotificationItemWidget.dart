@@ -9,8 +9,8 @@ import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHNotificationsController.dart';
 import 'WOHNotificationItemWidget.dart';
 
-class TravelNotificationItemWidget extends GetView<NotificationsController> {
-  TravelNotificationItemWidget({Key key, this.notification}) : super(key: key);
+class WOHTravelNotificationItemWidget extends GetView<NotificationsController> {
+  WOHTravelNotificationItemWidget({Key key, this.notification}) : super(key: key);
   final model.NotificationModel notification;
 
   @override

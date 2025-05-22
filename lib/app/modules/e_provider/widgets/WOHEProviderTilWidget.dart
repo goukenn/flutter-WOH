@@ -5,15 +5,15 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 
-class EProviderTilWidget extends StatelessWidget {
+class WOHEProviderTilWidget extends StatelessWidget {
   final Widget title;
   final Widget content;
   final List<Widget> actions;
   final double horizontalPadding;
 
-  const EProviderTilWidget({Key key, this.title, this.content, this.actions, this.horizontalPadding}) : super(key: key);
+  const WOHEProviderTilWidget({Key key, this.title, this.content, this.actions, this.horizontalPadding}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

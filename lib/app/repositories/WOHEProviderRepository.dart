@@ -10,10 +10,10 @@ import '../models/WOHReviewModel.dart';
 import '../models/WOHUserModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
-class EProviderRepository {
+class WOHEProviderRepository {
   WOHLaravelApiClientProvider _laravelApiClient;
 
-  EProviderRepository() {
+  WOHEProviderRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 

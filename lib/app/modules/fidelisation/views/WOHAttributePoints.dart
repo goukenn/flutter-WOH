@@ -9,7 +9,7 @@ import '../../home/controllers/WOHHomeController.dart';
 import '../controller/WOHValidationController.dart';
 import 'WOHNumPad.dart';
 
-class AttributionView extends GetView<ValidationController> {
+class WOHAttributePoints extends GetView<ValidationController> {
 
   List bookings = [];
   String barcode = "";
@@ -47,7 +47,7 @@ class AttributionView extends GetView<ValidationController> {
                 controller.found.value ?
                   ListTile(
                     title: Text(controller.client['name'], style: Get.textTheme.headline4.merge(TextStyle(fontSize: 30))),
-                    subtitle: Text("Points: ${controller.client['client_points']}, Bonus: ${controller.client['client_bonus']}", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20))),
+                    subtitle: Text("Points: ${controller.client['client_points']}, Bonus: ${controller.client['client_bonus']}", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20))),
                   ) : ListTile(
                   leading: Icon(Icons.info_outline, size: 30,),
                   title: Text("Scanner le code Qr pour attribuer des points...", style: Get.textTheme.headline4.merge(TextStyle(fontSize: 20))),
@@ -65,7 +65,7 @@ class AttributionView extends GetView<ValidationController> {
                         showCursor: false,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: controller.noValue.value ? specialColor.withOpacity(0.2) : Palette.background
+                            fillColor: controller.noValue.value ? specialColor.withOpacity(0.2) : WOHPalette.background
                         ),
                         style: const TextStyle(fontSize: 40),
                         keyboardType: TextInputType.none,
@@ -129,9 +129,9 @@ class AttributionView extends GetView<ValidationController> {
                         ) : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.add,size: 20,color: Palette.background,),
+                            Icon(Icons.add,size: 20,color: WOHPalette.background,),
                             SizedBox(width: 10),
-                            Text("ATTRIBUER", style: TextStyle(color: Palette.background, fontSize: 20))
+                            Text("ATTRIBUER", style: TextStyle(color: WOHPalette.background, fontSize: 20))
                           ]
                         )
                     )

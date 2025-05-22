@@ -8,8 +8,8 @@ import 'WOHServicesEmptyListWidget.dart';
 import 'WOHServicesListItemWidget.dart';
 import 'WOHServicesListLoaderWidget.dart';
 
-class ServicesListWidget extends GetView<EServicesController> {
-  ServicesListWidget({Key key}) : super(key: key);
+class WOHServicesListWidget extends GetView<EServicesController> {
+  WOHServicesListWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

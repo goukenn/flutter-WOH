@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../services/WOHAuthService.dart';
 import '../../../services/WOHMyAuthService.dart';
@@ -13,7 +13,7 @@ import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHRatingController.dart';
 
-class RatingView extends GetView<RatingController> {
+class WOHRatingView extends GetView<RatingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,8 +67,8 @@ class RatingView extends GetView<RatingController> {
                       width: 130,
                       height: 130,
                       fit: BoxFit.cover,
-                      image: NetworkImage('${Domain.serverPort}/image/res.partner/${controller.travellerId}/image_1920?unique=true&file_response=true',
-                          headers: Domain.getTokenHeaders()),
+                      image: NetworkImage('${WOHConstants.serverPort}/image/res.partner/${controller.travellerId}/image_1920?unique=true&file_response=true',
+                          headers: WOHConstants.getTokenHeaders()),
                       placeholder: AssetImage(
                           "assets/img/loading.gif"),
                       imageErrorBuilder:

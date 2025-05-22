@@ -1,15 +1,15 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
 import 'parents/WOHModel.dart';
 
-class Coupon extends WOHModel {
+class WOHCouponModel extends WOHModel {
   String? id;
   String? code;
   double? discount;
   String? discountType;
 
-  Coupon({this.id, this.code, this.discount, this.discountType});
+  WOHCouponModel({this.id, this.code, this.discount, this.discountType});
 
-  Coupon.fromJson(Map<String, dynamic> json) {
+  WOHCouponModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     code = stringFromJson(json, 'code');
     discount = doubleFromJson(json, 'discount');

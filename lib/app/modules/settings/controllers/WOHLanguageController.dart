@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../services/settings_service.dart';
+import '../../../services/WOHSettingsService.dart';
 import '../../../services/translation_service.dart';
 import 'WOHThemeModeController.dart';
 
-class LanguageController extends GetxController {
+class WOHLanguageController extends GetxController {
   GetStorage _box;
 
-  LanguageController() {
+  WOHLanguageController() {
     _box = new GetStorage();
   }
 

@@ -7,7 +7,7 @@ import 'dart:core';
 
 import 'parents/WOHModel.dart';
 
-class AvailabilityHour extends WOHModel {
+class WOHAvailabilityHourModel extends WOHModel {
   @override
   String? id;
   String? day;
@@ -15,9 +15,9 @@ class AvailabilityHour extends WOHModel {
   String? endAt;
   String? data;
 
-  AvailabilityHour(this.id, this.day, this.startAt, this.endAt, this.data);
+  WOHAvailabilityHourModel(this.id, this.day, this.startAt, this.endAt, this.data);
 
-  AvailabilityHour.fromJson(Map<String, dynamic> json) {
+  WOHAvailabilityHourModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     day = stringFromJson(json, 'day');
     startAt = stringFromJson(json, 'start_at');

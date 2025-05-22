@@ -4,27 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 import '../../../main.dart';
 import 'WOHBlockButtonWidget.dart';
 
-class TravelCardWidget extends StatelessWidget {
-  const TravelCardWidget({Key key,
+class WOHTravelCardWidget extends StatelessWidget {
+  const WOHTravelCardWidget({Key key,
     this.user,
     this.isUser,
     this.travelState,
     this.action,
     this.qty,
     this.rating,
-    @required this.depTown,
-    @required this.homePage,
-    @required this.color,
-    @required this.arrTown,
-    @required this.imageUrl,
-    @required this.depDate,
-    @required this.travelBy,
-    @required this.price,
-    @required this.text}) : super(key: key);
+    required this.depTown,
+    required this.homePage,
+    required this.color,
+    required this.arrTown,
+    required this.imageUrl,
+    required this.depDate,
+    required this.travelBy,
+    required this.price,
+    required this.text}) : super(key: key);
 
   final Color color;
   final String user;
@@ -94,7 +94,7 @@ class TravelCardWidget extends StatelessWidget {
                                 child: RichText(
                                     text: TextSpan(
                                         children: [
-                                          TextSpan(text: departureCity, style: Get.textTheme.headline2.merge(TextStyle(fontSize: 12, color: interfaceColor))),
+                                          TextSpan(text: departureCity, style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 12, color: interfaceColor))),
                                           TextSpan(text: "\n$departureCountry".toUpperCase(), style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: appColor)))
                                         ]
                                     ))
@@ -108,7 +108,7 @@ class TravelCardWidget extends StatelessWidget {
                                 child: RichText(
                                     text: TextSpan(
                                         children: [
-                                          TextSpan(text: arrivalCity, style: Get.textTheme.headline2.merge(TextStyle(fontSize: 12, color: interfaceColor))),
+                                          TextSpan(text: arrivalCity, style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 12, color: interfaceColor))),
                                           TextSpan(text: "\n$arrivalCountry".toUpperCase(), style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: appColor)))
                                         ]
                                     ))
@@ -200,7 +200,7 @@ class TravelCardWidget extends StatelessWidget {
                                         width: Get.width,
                                         height: Get.height/2,
                                         fit: BoxFit.cover,
-                                        image: NetworkImage(this.imageUrl, headers: Domain.getTokenHeaders()),
+                                        image: NetworkImage(this.imageUrl, headers: WOHConstants.getTokenHeaders()),
                                         placeholder: AssetImage(
                                             "assets/img/loading.gif"),
                                         imageErrorBuilder:
@@ -226,7 +226,7 @@ class TravelCardWidget extends StatelessWidget {
                                     width: 40,
                                     height: 40,
                                     fit: BoxFit.cover,
-                                    image: NetworkImage(this.imageUrl, headers: Domain.getTokenHeaders()),
+                                    image: NetworkImage(this.imageUrl, headers: WOHConstants.getTokenHeaders()),
                                     placeholder: AssetImage(
                                         "assets/img/loading.gif"),
                                     imageErrorBuilder:

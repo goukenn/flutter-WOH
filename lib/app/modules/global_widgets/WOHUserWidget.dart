@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 import '../../../main.dart';
 import '../account/widgets/WOHAccountLinkWidget.dart';
 
-class UserWidget extends StatelessWidget {
-  const UserWidget({Key key,
-    @required this.user,
+class WOHUserWidget extends StatelessWidget {
+  const WOHUserWidget({Key key,
+    required this.user,
     this.selected,
-    @required this.imageUrl}) : super(key: key);
+    required this.imageUrl}) : super(key: key);
 
   final String user;
   final bool selected;
@@ -35,7 +35,7 @@ class UserWidget extends StatelessWidget {
                     width: 40,
                     height: 40,
                     fit: BoxFit.cover,
-                    image: NetworkImage(this.imageUrl, headers: Domain.getTokenHeaders()),
+                    image: NetworkImage(this.imageUrl, headers: WOHConstants.getTokenHeaders()),
                     placeholder: AssetImage(
                         "assets/img/loading.gif"),
                     imageErrorBuilder:

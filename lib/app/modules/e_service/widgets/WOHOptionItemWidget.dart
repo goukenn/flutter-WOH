@@ -7,17 +7,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/ui.dart';
+import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEServiceModel.dart';
 import '../../../models/WOHOptionGroupModel.dart';
 import '../../../models/WOHOptionModel.dart';
 import '../controllers/WOHEServiceController.dart';
 
-class OptionItemWidget extends GetWidget<EServiceController> {
-  OptionItemWidget({
-    @required Option option,
-    @required OptionGroup optionGroup,
-    @required EService eService,
+class WOHOptionItemWidget extends GetWidget<EServiceController> {
+  WOHOptionItemWidget({
+    required Option option,
+    required OptionGroup optionGroup,
+    required EService eService,
   })  : _option = option,
         _optionGroup = optionGroup,
         _eService = eService;

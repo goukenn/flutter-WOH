@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../color_constants.dart';
-import '../../../../common/ui.dart';
+import '../../../../WOHColorConstants.dart';
+import '../../../../common/WOHUi.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../widgets/WOHBookingsListLoaderWidget.dart';
 
-class EmployeeReceipt extends GetView<BookingsController> {
+class WOHFacturation extends GetView<BookingsController> {
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class EmployeeReceipt extends GetView<BookingsController> {
                   heroTag: null,
                   onPressed: ()=> {},
                   label: Text(controller.totalInvoice.value.toString()),
-                  icon: Icon(Icons.attach_money, color: Palette.background)
+                  icon: Icon(Icons.attach_money, color: WOHPalette.background)
               )
           )
         ),
@@ -85,7 +85,7 @@ class EmployeeReceipt extends GetView<BookingsController> {
                                       ),
                                       contentPadding: EdgeInsets.all(10),
                                       filled: true,
-                                      fillColor: Palette.background,
+                                      fillColor: WOHPalette.background,
                                       suffixIcon: IconButton(
                                           icon: Icon(Icons.calendar_today),
                                           onPressed: () {
@@ -138,19 +138,19 @@ class EmployeeReceipt extends GetView<BookingsController> {
               showCheckboxColumn: false,
               columns: [
                 DataColumn(
-                  label: Text("Reference", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Reference", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Client", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Client", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Facturation", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Facturation", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Total", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Total", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("état du paiement", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("état du paiement", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
               ],
               rows: List.generate(
@@ -198,7 +198,7 @@ class EmployeeReceipt extends GetView<BookingsController> {
                                                 text: TextSpan(
                                                     children: [
                                                       TextSpan(text: "Facture Client\n", style: Get.textTheme.headline4),
-                                                      TextSpan(text: controller.receipts[index]["display_name"], style: Get.textTheme.headline2.merge(TextStyle(fontSize: 30)))
+                                                      TextSpan(text: controller.receipts[index]["display_name"], style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 30)))
                                                     ]
                                                 )
                                             ),
@@ -209,7 +209,7 @@ class EmployeeReceipt extends GetView<BookingsController> {
                                                     text: TextSpan(
                                                         children: [
                                                           TextSpan(text: "Client    ", style: Get.textTheme.headline4),
-                                                          TextSpan(text: controller.receipts[index]["invoice_partner_display_name"], style: Get.textTheme.headline2.merge(TextStyle(color: employeeInterfaceColor)))
+                                                          TextSpan(text: controller.receipts[index]["invoice_partner_display_name"], style: Get.textTheme.displayMedium.merge(TextStyle(color: employeeInterfaceColor)))
                                                         ]
                                                     )
                                                 ),
@@ -218,7 +218,7 @@ class EmployeeReceipt extends GetView<BookingsController> {
                                                     text: TextSpan(
                                                         children: [
                                                           TextSpan(text: "Date de WOHFacturation   ", style: Get.textTheme.headline4),
-                                                          TextSpan(text: controller.receipts[index]["invoice_date"], style: Get.textTheme.headline2)
+                                                          TextSpan(text: controller.receipts[index]["invoice_date"], style: Get.textTheme.displayMedium)
                                                         ]
                                                     )
                                                 ),
@@ -229,7 +229,7 @@ class EmployeeReceipt extends GetView<BookingsController> {
                                                 text: TextSpan(
                                                     children: [
                                                       TextSpan(text: "Référence du paiement   ", style: Get.textTheme.headline4),
-                                                      TextSpan(text: controller.receipts[index]["payment_reference"], style: Get.textTheme.headline2)
+                                                      TextSpan(text: controller.receipts[index]["payment_reference"], style: Get.textTheme.displayMedium)
                                                     ]
                                                 )
                                             ),
@@ -244,19 +244,19 @@ class EmployeeReceipt extends GetView<BookingsController> {
                                                   showCheckboxColumn: false,
                                                   columns: [
                                                     DataColumn(
-                                                      label: Text("Article", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("Article", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                     DataColumn(
-                                                      label: Text("Quantité", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("Quantité", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                     DataColumn(
-                                                      label: Text("Prix", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("Prix", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                     DataColumn(
-                                                      label: Text("DISCOUNT(FIXED)", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("DISCOUNT(FIXED)", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                     DataColumn(
-                                                      label: Text("SOUS-TOTAL", style: Get.textTheme.headline2.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("SOUS-TOTAL", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                   ],
                                                   rows: List.generate(controller.invoiceArticles.length,
@@ -317,7 +317,7 @@ class EmployeeReceipt extends GetView<BookingsController> {
                           DataCell(Text(controller.receipts[index]['invoice_date'], style: Get.textTheme.headline4)),
                           DataCell(Text(controller.receipts[index]['amount_total_signed'].toString(), style: Get.textTheme.headline4)),
                           DataCell(
-                              Text(controller.receipts[index]['payment_state'].toUpperCase(), style: Get.textTheme.headline2.merge(
+                              Text(controller.receipts[index]['payment_state'].toUpperCase(), style: Get.textTheme.displayMedium.merge(
                                   TextStyle(color: bookingState == 'paid' ? validateColor : specialColor)))
                           )
                         ]

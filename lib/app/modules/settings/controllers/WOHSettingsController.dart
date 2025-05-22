@@ -12,7 +12,7 @@ import '../views/WOHAddressesView.dart';
 import '../views/WOHLanguageView.dart';
 import '../views/WOHThemeModeView.dart';
 
-class SettingsController extends GetxController {
+class WOHSettingsController extends GetxController {
   var currentIndex = 0.obs;
   final pages = <String>[WOHRoutes.SETTINGS_LANGUAGE, WOHRoutes.PROFILE, WOHRoutes.SETTINGS_THEME_MODE];
 

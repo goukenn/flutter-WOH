@@ -2,7 +2,7 @@
 import 'package:get/get.dart';
 import '../controllers/WOHNotificationsController.dart';
 
-class NotificationsBinding extends Bindings {
+class WOHNotificationsBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<NotificationsController>(

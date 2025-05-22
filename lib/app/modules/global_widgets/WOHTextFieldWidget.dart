@@ -6,11 +6,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../color_constants.dart';
+import '../../../WOHColorConstants.dart';
 import '../../../common/ui.dart';
 
-class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({
+class WOHTextFieldWidget extends StatelessWidget {
+  const WOHTextFieldWidget({
     Key key,
     this.initialValue,
     this.onSaved,

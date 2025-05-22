@@ -8,7 +8,7 @@ import '../../../models/WOHEServiceModel.dart';
 import '../../../repositories/WOHCategoryRepository.dart';
 import '../../../repositories/WOHEServiceRepository.dart';
 
-class SearchController extends GetxController {
+class WOHSearchController extends GetxController {
   final heroTag = "".obs;
   final categories = <WOHCategoryModel>[].obs;
   final selectedCategories = <String>[].obs;
@@ -33,7 +33,7 @@ class SearchController extends GetxController {
   late EServiceRepository _eServiceRepository;
   late CategoryRepository _categoryRepository;
 
-  SearchController() {
+  WOHSearchController() {
     _eServiceRepository = new EServiceRepository();
     _categoryRepository = new CategoryRepository();
     textEditingController = new TextEditingController();

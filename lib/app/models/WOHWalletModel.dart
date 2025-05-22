@@ -4,15 +4,15 @@ import 'dart:math';
 import '../../common/WOHUuid.dart';
 import 'parents/WOHModel.dart';
 
-class Wallet extends WOHModel {
+class WOHWalletModel extends WOHModel {
    @override
   String? id;
   String? name;
   double? balance;
 
-  Wallet({this.id, this.name, this.balance});
+  WOHWalletModel({this.id, this.name, this.balance});
 
-  Wallet.fromJson(Map<String, dynamic> json) {
+  WOHWalletModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
     name = stringFromJson(json, 'name');
     balance = doubleFromJson(json, 'balance');

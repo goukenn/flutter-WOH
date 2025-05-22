@@ -6,7 +6,7 @@ import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHTabBarWidget.dart';
 import '../controllers/WOHSettingsController.dart';
 
-class SettingsView extends GetView<SettingsController> {
+class WOHSettingsView extends GetView<SettingsController> {
   final _navigatorKey = Get.nestedKey(1);
 
   @override

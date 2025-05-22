@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/WOHAuthController.dart';
 
-class Politique extends GetView<AuthController> {
+class WOHPolitique extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,8 @@ class Politique extends GetView<AuthController> {
         ),
         centerTitle: true,
         title: Text(
-          'Politique de Confidentialité',
-          style: Get.textTheme.headline2.merge(TextStyle(color: Colors.white)),
+          'WOHPolitique de Confidentialité',
+          style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.white)),
         ),
       ),
       body: SingleChildScrollView(
@@ -93,7 +93,7 @@ class Politique extends GetView<AuthController> {
             ),
             const SizedBox(height: 16),
             const Text(
-              '6. Modifications de la Politique de Confidentialité',
+              '6. Modifications de la WOHPolitique de Confidentialité',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
