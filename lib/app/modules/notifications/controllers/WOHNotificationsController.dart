@@ -4,11 +4,10 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 
+import '../../../../WOHConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
 import '../../../models/WOHNotificationModel.dart';
 import '../../../repositories/WOHNotificationRepository.dart';
-import '../../../services/WOHMyAuthService.dart';
 import '../../root/controllers/WOHRootController.dart';
 import 'package:http/http.dart' as http;
 
@@ -50,7 +49,7 @@ class WOHNotificationsController extends GetxController {
     var list = [];
 
     for (var i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
-      NotificationModel model = WOHNotificationModel(
+      WOHNotificationModel model = WOHNotificationModel(
        id: WOHConstants.myBoxStorage.value.getAt(i)['id'] ,
         disable: WOHConstants.myBoxStorage.value.getAt(i)['disable'],
         isSeen: WOHConstants.myBoxStorage.value.getAt(i)['isSeen'],
@@ -82,7 +81,7 @@ class WOHNotificationsController extends GetxController {
 
 
 
-  Future removeNotification(NotificationModel notification) async {
+  Future removeNotification(WOHNotificationModel notification) async {
     for (var i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
       if(WOHConstants.myBoxStorage.value.getAt(i)['id'] == notification.id)
       {
@@ -96,7 +95,7 @@ class WOHNotificationsController extends GetxController {
 
   }
 
-  Future markAsReadNotification(NotificationModel notification) async {
+  Future markAsReadNotification(WOHNotificationModel notification) async {
     for (var i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
       if(WOHConstants.myBoxStorage.value.getAt(i)['id'] == notification.id)
       {

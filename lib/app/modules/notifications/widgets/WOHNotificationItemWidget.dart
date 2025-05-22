@@ -9,9 +9,9 @@ import '../../../models/WOHNotificationModel.dart' as model;
 
 class WOHNotificationItemWidget extends StatelessWidget {
   WOHNotificationItemWidget({Key key, this.notification, this.onDismissed, this.onTap, this.icon}) : super(key: key);
-  final model.NotificationModel notification;
-  final ValueChanged<model.NotificationModel> onDismissed;
-  final ValueChanged<model.NotificationModel> onTap;
+  final model.WOHNotificationModel notification;
+  final ValueChanged<model.WOHNotificationModel> onDismissed;
+  final ValueChanged<model.WOHNotificationModel> onTap;
   final Widget icon;
 
   @override

@@ -12,15 +12,15 @@ class WOHNotificationRepository {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 
-  Future<List<NotificationModel>> getAll() {
+  Future<List<WOHNotificationModel>> getAll() {
     return _laravelApiClient.getNotifications();
   }
 
-  Future<NotificationModel> remove(NotificationModel notification) {
+  Future<WOHNotificationModel> remove(WOHNotificationModel notification) {
     return _laravelApiClient.removeNotification(notification);
   }
 
-  Future<NotificationModel> markAsRead(NotificationModel notification) {
+  Future<WOHNotificationModel> markAsRead(WOHNotificationModel notification) {
     return _laravelApiClient.markAsReadNotification(notification);
   }
 

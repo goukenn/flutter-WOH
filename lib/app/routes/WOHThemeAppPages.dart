@@ -3,7 +3,7 @@ import 'package:get/get.dart' show GetPage, Transition;
 import '../modules/auth/views/WOHPolitique.dart';
 import '../modules/fidelisation/binding/WOHValidationBiding.dart';
 import '../modules/fidelisation/views/WOHAttributePoints.dart';
-import '../modules/home/views/WOHEmployeeHome.dart';
+import '../modules/home/views/WOHEmployeeHomeView.dart';
 import '../modules/home/widgets/WOHContactView.dart';
 import '../modules/home/widgets/WOHFidelityCardView.dart';
 import '../modules/identity_files/Views/WOHAttachmentList.dart';
@@ -47,34 +47,34 @@ class WOHThemeAppPages {
   static final routes = [
     GetPage(
       name: WOHRoutes.SPLASH_VIEW,
-      page: () => SplashView(),
-      binding: AuthBinding(),
+      page: () => WOHSplashView(),
+      binding: WOHAuthBinding(),
     ),
-    GetPage(name: WOHRoutes.ROOT, page: () => RootView(), binding: RootBinding()),
+    GetPage(name: WOHRoutes.ROOT, page: () => WOHRootView(), binding: WOHRootBinding()),
     GetPage(
       name: WOHRoutes.RATING,
-      page: () => RatingView(),
-      binding: RatingBinding(),
+      page: () => WOHRatingView(),
+      binding: WOHRatingBinding(),
     ),
     GetPage(
       name: WOHRoutes.SETTINGS,
-      page: () => SettingsView(),
-      binding: SettingsBinding(),
+      page: () => WOHSettingsView(),
+      binding: WOHSettingsBinding(),
     ),
     GetPage(
       name: WOHRoutes.SETTINGS_ADDRESSES,
-      page: () => AddressesView(),
-      binding: SettingsBinding(),
+      page: () => WOHAddressesView(),
+      binding: WOHSettingsBinding(),
     ),
     GetPage(
       name: WOHRoutes.SETTINGS_THEME_MODE,
-      page: () => ThemeModeView(),
-      binding: SettingsBinding(),
+      page: () => WOHThemeModeView(),
+      binding: WOHSettingsBinding(),
     ),
     GetPage(
       name: WOHRoutes.IDENTITY_FILES,
-      page: () => AttachmentView(),
-      binding: ImportIdentityFilesBinding(),
+      page: () => WOHAttachmentView(),
+      binding: WOHImportIdentityFilesBinding(),
     ),
     GetPage(
       name: WOHRoutes.ADD_IDENTITY_FILES,
@@ -88,107 +88,107 @@ class WOHThemeAppPages {
     ),
     GetPage(
       name: WOHRoutes.SETTINGS_ADDRESS_PICKER,
-      page: () => AddressPickerView(),
+      page: () => WOHAddressPickerView(),
     ),
     GetPage(
       name: WOHRoutes.TRAVEL_INSPECT,
-      page: () => InspectView(),
-      binding: InspectBinding(),
+      page: () => WOHInspectView(),
+      binding: WOHInspectBinding(),
     ),
 
     GetPage(
       name: WOHRoutes.CONTACT,
-      page: () => ContactWidget(),
+      page: () => WOHContactWidget(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.INTERFACE_POS,
-      page: () => InterfacePOSView(),
+      page: () => WOHInterfacePOSView(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.EMPLOYEE_HOME,
-      page: () => EmployeeHomeView(),
+      page: () => WOHEmployeeHomeView(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.APPOINTMENT_BOOK,
-      page: () => BookingsView(),
+      page: () => WOHBookingsView(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.FIDELITY_CARD,
-      page: () => FidelityCardWidget(),
+      page: () => WOHFidelityCardWidget(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.FACTURATION,
-      page: () => EmployeeReceipt(),
+      page: () => WOHEmployeeReceipt(),
       transition: Transition.fadeIn,
     ),
 
     GetPage(
       name: WOHRoutes.PROFILE,
-      page: () => ProfileView(),
-      binding: ProfileBinding(),
+      page: () => WOHProfileView(),
+      binding: WOHProfileBinding(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.CATEGORIES,
-      page: () => CategoriesView(),
-      binding: CategoryBinding(),
+      page: () => WOHCategoriesView(),
+      binding: WOHCategoryBinding(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.VALIDATE_TRANSACTION,
-      page: () => AttributionView(),
-      binding: ValidationBinding(),
+      page: () => WOHAttributionView(),
+      binding: WOHValidationBinding(),
     ),
     GetPage(
       name: WOHRoutes.LOGIN,
-      page: () => LoginView(),
-      binding: AuthBinding(),
+      page: () => WOHLoginView(),
+      binding: WOHAuthBinding(),
       transition: Transition.zoom,
     ),
     GetPage(
       name: WOHRoutes.REGISTER,
-      page: () => RegisterView(),
-      binding: AuthBinding(),
+      page: () => WOHRegisterView(),
+      binding: WOHAuthBinding(),
       transition: Transition.zoom,
     ),
     GetPage(
       name: WOHRoutes.FORGOT_PASSWORD,
-      page: () => ForgotPasswordView(),
-      binding: AuthBinding(),
+      page: () => WOHForgotPasswordView(),
+      binding: WOHAuthBinding(),
     ),
     GetPage(
       name: WOHRoutes.VERIFICATION,
-      page: () => VerificationView(),
-      binding: AuthBinding(),
+      page: () => WOHVerificationView(),
+      binding: WOHAuthBinding(),
     ),
     GetPage(
       name: WOHRoutes.E_SERVICE,
-      page: () => EServiceView(),
-      binding: EServiceBinding(),
+      page: () => WOHEServiceView(),
+      binding: WOHEServiceBinding(),
       transition: Transition.downToUp,
     ),
     GetPage(
       name: WOHRoutes.POLITIQUE,
-      page: () => Politique(),
-      binding: AuthBinding(),
+      page: () => WOHPolitique(),
+      binding: WOHAuthBinding(),
     ),
 
     //GetPage(name: WOHRoutes.GALLERY, page: () => GalleryView(), binding: GalleryBinding(), transition: Transition.fadeIn),
     GetPage(
       name: WOHRoutes.NOTIFICATIONS,
-      page: () => NotificationsView(),
-      binding: NotificationsBinding(),
+      page: () => WOHNotificationsView(),
+      binding: WOHNotificationsBinding(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.NOTIFICATION_DETAIL,
-      page: () => NotificationDetailsView(),
-      binding: NotificationsBinding(),
+      page: () => WOHNotificationDetails(),
+      binding: WOHNotificationsBinding(),
       transition: Transition.fadeIn,
     ),
     //GetPage(name: WOHRoutes.WALLETS, page: () => WalletsView(), binding: WalletsBinding(), middlewares: [WOHAuthMiddleware()]),

@@ -11,7 +11,7 @@ import 'WOHNotificationItemWidget.dart';
 
 class WOHTravelNotificationItemWidget extends GetView<WOHNotificationsController> {
   WOHTravelNotificationItemWidget({Key key, this.notification}) : super(key: key);
-  final model.NotificationModel notification;
+  final model.WOHNotificationModel notification;
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ class WOHRoutes {
 
   static const ROOT = '/root';
   static const RATING = '/rating';
-  static const EMPLOYEE_HOME = '/WOHEmployeeHome';
+  static const EMPLOYEE_HOME = '/WOHEmployeeHomeView';
   static const CHAT = '/chat';
   static const MY_TRAVELS = '/my_travels';
   static const SPLASH_VIEW = '/WOHSplashView';

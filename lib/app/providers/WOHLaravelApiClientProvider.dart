@@ -1130,7 +1130,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     return _uri.toString();
   }
 
-  Future<List<NotificationModel>> getNotifications() async {
+  Future<List<WOHNotificationModel>> getNotifications() async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getNotifications() ]");
     }
@@ -1148,13 +1148,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return response.data['data'].map<NotificationModel>((obj) => NotificationModel.fromJson(obj)).toList();
+      return response.data['data'].map<WOHNotificationModel>((obj) => WOHNotificationModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<NotificationModel> markAsReadNotification(NotificationModel notification) async {
+  Future<WOHNotificationModel> markAsReadNotification(WOHNotificationModel notification) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ markAsReadNotification() ]");
     }
@@ -1196,7 +1196,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<NotificationModel> removeNotification(NotificationModel notification) async {
+  Future<WOHNotificationModel> removeNotification(WOHNotificationModel notification) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ removeNotification() ]");
     }
@@ -1207,7 +1207,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.deleteUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return NotificationModel.fromJson(response.data['data']);
+      return WOHNotificationModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }

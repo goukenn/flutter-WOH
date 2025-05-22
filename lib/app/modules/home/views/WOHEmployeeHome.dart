@@ -20,17 +20,17 @@ import '../../userBookings/views/WOHFacturation.dart';
 import '../../userBookings/views/WOHInterfacePOS.dart';
 import '../controllers/WOHHomeController.dart';
 
-class WOHEmployeeHome extends GetView<HomeController> {
+class WOHEmployeeHome extends GetView<WOHHomeController> {
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut<AuthController>(
-          () => AuthController(),
+    Get.lazyPut<WOHAuthController>(
+          () => WOHAuthController(),
     );
-    Get.lazyPut(()=>HomeController());
+    Get.lazyPut(()=>WOHHomeController());
     Get.lazyPut(()=>WOHRootController());
-    Get.lazyPut(()=>BookingsController());
-    Get.lazyPut(()=>ValidationController());
+    Get.lazyPut(()=>WOHBookingsController());
+    Get.lazyPut(()=>WOHValidationController());
 
     return Scaffold(
         floatingActionButton: Obx(() => controller.currentPage.value == 0 ? InkWell(
@@ -113,7 +113,7 @@ class WOHEmployeeHome extends GetView<HomeController> {
   Widget build_dashboardView(BuildContext context){
 
     int hour = int.parse(DateFormat("HH").format(DateTime.now()).toString());
-    var currentUser = Get.find<AuthController>().currentUser;
+    var currentUser = Get.find<WOHAuthController>().currentUser;
 
     return SingleChildScrollView(
       child: Column(
