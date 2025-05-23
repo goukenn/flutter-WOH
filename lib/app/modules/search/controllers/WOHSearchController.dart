@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,12 +30,12 @@ class WOHSearchController extends GetxController {
   ].obs;
 
   final eServices = <WOHEServiceModel>[].obs;
-  late EServiceRepository _eServiceRepository;
-  late CategoryRepository _categoryRepository;
+  late WOHEServiceRepository _eServiceRepository;
+  late WOHCategoryRepository _categoryRepository;
 
   WOHSearchController() {
-    _eServiceRepository = new EServiceRepository();
-    _categoryRepository = new CategoryRepository();
+    _eServiceRepository = new WOHEServiceRepository();
+    _categoryRepository = new WOHCategoryRepository();
     textEditingController = new TextEditingController();
   }
 
@@ -59,7 +59,7 @@ class WOHSearchController extends GetxController {
       List dummyListData = [];
       dummyListData = dummySearchList.where((element) => element['name']
           .toString().toLowerCase().contains(query.toLowerCase())).toList();
-      items.value = dummyListData;
+      items.value = dummyListData[0];
       return;
     } else {
       items.value = allPlayers;
@@ -77,7 +77,7 @@ class WOHSearchController extends GetxController {
   Future searchEServices({String keywords=''}) async {
     try {
       if (selectedCategories.isEmpty) {
-        eServices.assignAll(await _eServiceRepository.search(keywords, categories.map((element) => element.id).toList()!));
+        eServices.assignAll(await _eServiceRepository.search(keywords, categories.map((element) => element.id!).toList()));
       } else {
         eServices.assignAll(await _eServiceRepository.search(keywords, selectedCategories.toList()));
       }
@@ -100,7 +100,7 @@ class WOHSearchController extends GetxController {
 
   void toggleCategory(bool value, WOHCategoryModel category) {
     if (value) {
-      selectedCategories.add(category.id);
+      selectedCategories.add(category.id!);
     } else {
       selectedCategories.removeWhere((element) => element == category.id);
     }

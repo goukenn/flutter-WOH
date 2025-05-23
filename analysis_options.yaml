@@ -6,3 +6,4 @@ analyzer:
     overridden_fields: ignore
     prefer_typing_uninitialized_variables: ignore
     unnecessary_this: ignore
+    use_key_in_widget_constructors: ignore

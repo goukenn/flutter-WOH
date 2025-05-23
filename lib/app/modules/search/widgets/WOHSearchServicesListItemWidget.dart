@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 /*
  * Copyright (c) 2020 .
  */
@@ -15,8 +15,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
   const WOHSearchServicesListItemWidget({
     super.key,
     required WOHEServiceModel service,
-  })  : _service = service,
-        super(key: key);
+  })  : _service = service;
 
   final WOHEServiceModel _service;
 
@@ -36,14 +35,14 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
             Column(
               children: [
                 Hero(
-                  tag: 'search_list' + _service.id,
+                  tag: 'search_list' + _service.id!,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
                     child: CachedNetworkImage(
                       height: 80,
                       width: 80,
                       fit: BoxFit.cover,
-                      imageUrl: _service.firstImageUrl,
+                      imageUrl: _service.firstImageUrl!,
                       placeholder: (context, url) => Image.asset(
                         'assets/img/loading.gif',
                         fit: BoxFit.cover,
@@ -54,9 +53,14 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (_service.eProvider.available)
+                if (_service.eProvider!.available!)
                   Container(
                     width: 80,
+                    decoration: BoxDecoration(
+                      color: Colors.green.withAlpha((255 * 0.2).toInt()),
+                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
                     child: Text("Available".tr,
                         maxLines: 1,
                         style: Get.textTheme.bodyMedium!.merge(
@@ -65,15 +69,15 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                         softWrap: false,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.fade),
+                  ),
+                if (!_service.eProvider!.available!)
+                  Container(
+                    width: 80,
                     decoration: BoxDecoration(
-                      color: Colors.green.withAlpha((255 * 0.2).toInt()),
+                      color: Colors.grey.withAlpha((255 * 0.2).toInt()),
                       borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                  ),
-                if (!_service.eProvider.available)
-                  Container(
-                    width: 80,
                     child: Text("Offline".tr,
                         maxLines: 1,
                         style: Get.textTheme.bodyMedium!.merge(
@@ -82,11 +86,6 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                         softWrap: false,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.fade),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withAlpha((255 * 0.2).toInt()),
-                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
-                    ),
-                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
                   ),
               ],
             ),
@@ -142,14 +141,14 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          if (_service.getOldPrice > 0)
+                          if (_service.getOldPrice! > 0)
                             WOHUi.getPrice(
-                              _service.getOldPrice,
+                              _service.getOldPrice!,
                               style: Get.textTheme.bodyLarge!.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
                               unit: _service.getUnit,
                             ),
                           WOHUi.getPrice(
-                            _service.getPrice,
+                            _service.getPrice!,
                             style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
                             unit: _service.getUnit,
                           ),
@@ -167,7 +166,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                       SizedBox(width: 5),
                       Flexible(
                         child: Text(
-                          _service.eProvider.name,
+                          _service.eProvider!.name!,
                           maxLines: 1,
                           overflow: TextOverflow.fade,
                           softWrap: false,
@@ -186,7 +185,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                       SizedBox(width: 5),
                       Flexible(
                         child: Text(
-                          _service.eProvider.firstAddress,
+                          _service.eProvider!.firstAddress,
                           maxLines: 1,
                           overflow: TextOverflow.fade,
                           softWrap: false,
@@ -198,19 +197,19 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                   Divider(height: 8, thickness: 1),
                   Wrap(
                     spacing: 5,
-                    children: List.generate(_service.subCategories.length, (index) {
+                    runSpacing: 5,
+                    children: List.generate(_service.subCategories!.length!, (index) {
                       return Container(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                        child: Text(_service.subCategories.elementAt(index).name, style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 10))),
                         decoration: BoxDecoration(
                             color: Get.theme.primaryColor,
                             border: Border.all(
                               color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(20))),
+                        child: Text(_service.subCategories!.elementAt(index).name!, style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 10))),
                       );
                     }),
-                    runSpacing: 5,
                   ),
                 ],
               ),

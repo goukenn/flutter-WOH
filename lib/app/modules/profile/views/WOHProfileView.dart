@@ -1,18 +1,12 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../WOHColorConstants.dart';
-import '../../../../WOHConstants.dart';
-import '../../../services/WOHMyAuthService.dart';
-import '../../global_widgets/WOHImageFieldWidget.dart';
-import '../../global_widgets/WOHPhoneFieldWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHProfileController.dart';
-import '../widgets/WOHDeleteAccountWidget.dart';
-import '../widgets/WOHUpdatePasswordWidget.dart';
 
 
 class WOHProfileView extends GetView<WOHProfileController> {
@@ -55,7 +49,7 @@ class WOHProfileView extends GetView<WOHProfileController> {
           child: Obx(() => MaterialButton(
             onPressed: () {
               if(!controller.birthDateSet.value){
-                controller.user.value?.birthday = DateFormat('yyyy-MM-dd').format(DateTime.parse(controller.user.value.birthday)).toString();
+                controller.user.value.birthday = DateFormat('yyyy-MM-dd').format(DateTime.parse(controller.user.value.birthday)).toString();
                 //controller.birthDateSet.value = true;
               }
               if(controller.birthDate.value.toString().contains('-')){
@@ -152,9 +146,9 @@ class WOHProfileView extends GetView<WOHProfileController> {
                           hintText: "223 665 7896".tr,
                           //initialValue: controller.currentUser.value.phone,
                           onSaved: (phone) {
-                            return controller.user.value?.phone = phone.completeNumber;
+                            return controller.user.value.phone = phone.completeNumber;
                           },
-                          onChanged: (input) => controller.user.value?.phone = input.toString(),
+                          onChanged: (input) => controller.user.value.phone = input.toString(),
                         ),
                         TextButton(
                           onPressed: ((){
@@ -392,7 +386,7 @@ class WOHProfileView extends GetView<WOHProfileController> {
                                 hintText: ''
 
                             ),
-                            onSaved: (input) => controller.selectedGender.value == "Male"?controller.user?.value?.sex = "M":controller.user?.value?.sex = "F",
+                            onSaved: (input) => controller.selectedGender.value == "Male"?controller.user.value.sex = "M":controller.user.value.sex = "F",
                             isExpanded: true,
                             alignment: Alignment.bottomCenter,
 
@@ -413,10 +407,10 @@ class WOHProfileView extends GetView<WOHProfileController> {
                             onChanged: (String newValue) {
                               controller.selectedGender.value = newValue;
                               if(controller.selectedGender.value == "Male"){
-                                controller.user?.value?.sex = "M";
+                                controller.user.value.sex = "M";
                               }
                               else{
-                                controller.user?.value?.sex = "F";
+                                controller.user.value.sex = "F";
                               }
 
 

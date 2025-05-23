@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:get/get.dart';
@@ -6,13 +6,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../common/WOHUi.dart';
-import '../../../../WOHConstants.dart';
 import '../../../models/WOHMyUserModel.dart';
 import '../../../repositories/WOHUserRepository.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
-import '../../../services/WOHSettingsService.dart';
-import '../../global_widgets/WOHPhoneVerificationBottomSheetWidget.dart';
 
 class WOHProfileController extends GetxController {
   final user = new WOHMyUserModel().obs;
@@ -35,14 +32,10 @@ class WOHProfileController extends GetxController {
   final editProfile = false.obs;
   final editPassword = false.obs;
   var birthDateSet = false.obs;
-  var genderList = [
-    "MALE".tr,
-    "FEMALE".tr
-  ].obs;
+  var genderList = ["MALE".tr, "FEMALE".tr].obs;
 
   var departureId = 0.obs;
   var arrivalId = 0.obs;
-
 
   var predict1 = false.obs;
   var predict2 = false.obs;
@@ -54,8 +47,6 @@ class WOHProfileController extends GetxController {
   final formStep = 0.obs;
   TextEditingController depTown = TextEditingController();
   TextEditingController arrTown = TextEditingController();
-
-
 
   GlobalKey<FormState> profileForm;
   WOHUserRepository _userRepository;
@@ -70,24 +61,27 @@ class WOHProfileController extends GetxController {
     list = box.read("allCountries");
     countries.value = list;
 
-    print('List is sssssss:   '+countries.value.toString());
+    print('List is sssssss:   ' + countries.value.toString());
     profileForm = new GlobalKey<FormState>();
-
-
 
     user.value = Get.find<WOHMyAuthService>().myUser.value;
     selectedGender.value = genderList.elementAt(0);
-    user.value?.birthday = user.value.birthday;
+    user.value.birthday = user.value.birthday;
     //user.value.phone = user.value.phone;
-    birthDate.value = user.value.birthday;
+    birthDate.value = user.value.birthday!;
     super.onInit();
   }
 
-  Future refreshProfile({bool showMessage}) async {
+  Future refreshProfile({required bool showMessage}) async {
     await getUser();
     if (showMessage == true) {
-      Get.showSnackbar(WOHUi.SuccessSnackBar(message: "List of faqs refreshed successfully".tr));
+      Get.showSnackbar(
+        WOHUi.SuccessSnackBar(
+          message: "List of faqs refreshed successfully".tr,
+        ),
+      );
     }
+    return 1;
   }
 
   void saveProfileForm() async {
@@ -96,30 +90,42 @@ class WOHProfileController extends GetxController {
       //try {
       profileForm.currentState.save();
 
-       await _userRepository.update(user.value);
-      user.value = await _userRepository.get(user.value.id);
+      await _userRepository.update(user.value);
+      user.value = (await _userRepository.get(user.value.id!))!;
       Get.find<WOHMyAuthService>().myUser.value = user.value;
       buttonPressed.value = false;
-      Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Profile updated successfully".tr));
+      Get.showSnackbar(
+        WOHUi.SuccessSnackBar(message: "Profile updated successfully".tr),
+      );
       await Get.toNamed(WOHRoutes.ROOT);
       //}
       // } catch (e) {
       //   Get.showSnackbar(WOHUi.ErrorSnackBar(message: e.toString()));
       // } finally {}
     } else {
-      Get.showSnackbar(WOHUi.ErrorSnackBar(message: "There are errors in some fields please correct them!".tr));
+      Get.showSnackbar(
+        WOHUi.ErrorSnackBar(
+          message: "There are errors in some fields please correct them!".tr,
+        ),
+      );
     }
   }
 
   void filterSearchResults(String query) {
     List dummySearchList = [];
     dummySearchList = list;
-    if(query.isNotEmpty) {
+    if (query.isNotEmpty) {
       List dummyListData = [];
-      dummyListData = dummySearchList.where((element) => element['display_name']
-          .toString().toLowerCase().contains(query.toLowerCase()) ).toList();
+      dummyListData = dummySearchList
+          .where(
+            (element) => element['display_name']
+                .toString()
+                .toLowerCase()
+                .contains(query.toLowerCase()),
+          )
+          .toList();
       countries.value = dummyListData;
-      for(var i in countries){
+      for (var i in countries) {
         print(i['display_name']);
       }
       return;
@@ -128,24 +134,19 @@ class WOHProfileController extends GetxController {
     }
   }
 
-
   chooseBirthDate() async {
-    DateTime pickedDate = await showRoundedDatePicker(
+    DateTime? pickedDate = await showRoundedDatePicker(
+      context: Get.context!,
 
-        context: Get.context!,
-
-        imageHeader: AssetImage("assets/img/istockphoto-1421193265-612x612.jpg"),
-        initialDate: DateTime.now().subtract(Duration(days: 1)),
-        firstDate: DateTime(1900),
-        lastDate: DateTime.now(),
-        styleDatePicker: MaterialRoundedDatePickerStyle(
-            textStyleYearButton: TextStyle(
-              fontSize: 52,
-              color: Colors.white,
-            )
-        ),
-        borderRadius: 16,
-        selectableDayPredicate: disableDate
+      imageHeader: AssetImage("assets/img/istockphoto-1421193265-612x612.jpg"),
+      initialDate: DateTime.now().subtract(Duration(days: 1)),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      styleDatePicker: MaterialRoundedDatePickerStyle(
+        textStyleYearButton: TextStyle(fontSize: 52, color: Colors.white),
+      ),
+      borderRadius: 16,
+      selectableDayPredicate: disableDate,
     );
     if (pickedDate != null && pickedDate != birthDate.value) {
       birthDate.value = DateFormat('dd/MM/yy').format(pickedDate);
@@ -162,15 +163,16 @@ class WOHProfileController extends GetxController {
 
   void resetProfileForm() {
     //avatar.value = new WOHMediaModel(thumb: user.value.avatar.thumb);
-    profileForm.currentState.reset();
+    profileForm.currentState!.reset();
   }
 
   Future getUser() async {
     try {
-      user.value = await _userRepository.get(user.value.userId);
+      user.value = (await _userRepository.get(user.value.userId!))!;
     } catch (e) {
       Get.showSnackbar(WOHUi.ErrorSnackBar(message: e.toString()));
     }
+    return 1;
   }
 
   Future<void> deleteUser() async {

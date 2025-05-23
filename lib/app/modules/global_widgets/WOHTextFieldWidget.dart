@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 /*
  * Copyright (c) 2020 .
  */
@@ -7,43 +7,43 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../WOHColorConstants.dart';
-import '../../../common/ui.dart';
-
+import '../../../common/WOHUi.dart'; 
 class WOHTextFieldWidget extends StatelessWidget {
-  const WOHTextFieldWidget({
+  const WOHTextFieldWidget(// Map<dynamic, Object> map, 
+  {  
     super.key,
-    this.initialValue,
+    this.initialValue = "",
     this.onSaved,
     this.onChanged,
     this.validator,
     this.keyboardType,
-    this.hintText,
-    this.errorText,
-    this.iconData,
-    this.labelText,
-    this.obscureText,
+    this.hintText= "",
+    this.errorText='',
+    required this.iconData,
+    this.labelText = "",
+    this.obscureText = false,
     this.suffixIcon,
-    this.isFirst,
-    this.editable,
-    this.isLast,
+    this.isFirst = false,
+    this.editable = false,
+    this.isLast = false,
     this.style,
     this.textAlign,
     this.suffix,
     this.onTap,
-    this.readOnly,
-    this.maxLines
+    this.readOnly = false,
+    this.maxLines = 0
   });
 
-  final FormFieldSetter<String> onSaved;
-  final ValueChanged<String> onChanged;
-  final Function() onTap;
-  final FormFieldValidator<String> validator;
-  final TextInputType keyboardType;
+  final FormFieldSetter<String>? onSaved;
+  final ValueChanged<String>? onChanged;
+  final Function? onTap;
+  final FormFieldValidator<String>? validator;
+  final TextInputType? keyboardType;
   final String hintText;
   final String errorText;
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
   final String labelText;
-  final TextStyle style;
+  final TextStyle? style;
   final bool editable;
   final bool readOnly;
   final IconData iconData;
@@ -51,8 +51,8 @@ class WOHTextFieldWidget extends StatelessWidget {
   final bool obscureText;
   final bool isFirst;
   final bool isLast;
-  final Widget suffixIcon;
-  final Widget suffix;
+  final Widget? suffixIcon;
+  final Widget? suffix;
   final int maxLines;
 
   @override
@@ -88,10 +88,10 @@ class WOHTextFieldWidget extends StatelessWidget {
             validator: validator,
             enabled: editable,
             style: style ?? Get.textTheme.bodyMedium!.merge(TextStyle(color: labelColor)),
-            obscureText: obscureText ?? false,
+            obscureText: obscureText,
             textAlign: textAlign ?? TextAlign.start,
             decoration: WOHUi.getInputDecoration(
-              hintText: hintText ?? '',
+              hintText: hintText,
               iconData: iconData,
               suffixIcon: suffixIcon,
               suffix: suffix,
@@ -104,35 +104,29 @@ class WOHTextFieldWidget extends StatelessWidget {
   }
 
   BorderRadius get buildBorderRadius {
-    if (isFirst != null && isFirst) {
+    if (isFirst) {
       return BorderRadius.vertical(top: Radius.circular(10));
     }
-    if (isLast != null && isLast) {
+    if (isLast) {
       return BorderRadius.vertical(bottom: Radius.circular(10));
     }
-    if (isFirst != null && !isFirst && isLast != null && !isLast) {
+    if (!isFirst && !isLast) {
       return BorderRadius.all(Radius.circular(0));
     }
     return BorderRadius.all(Radius.circular(10));
   }
 
   double get topMargin {
-    if ((isFirst != null && isFirst)) {
+    if ((isFirst)) {
       return 20;
-    } else if (isFirst == null) {
-      return 20;
-    } else {
-      return 0;
-    }
+    } else    return 0;
+  
   }
 
   double get bottomMargin {
-    if ((isLast != null && isLast)) {
+    if ((isLast)) {
       return 10;
-    } else if (isLast == null) {
-      return 10;
-    } else {
-      return 0;
-    }
+    } else    return 0;
+  
   }
 }

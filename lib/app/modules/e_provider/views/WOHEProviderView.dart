@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -231,6 +231,11 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
       actions: [
         if (_eProvider.available)
           Container(
+            decoration: BoxDecoration(
+              color: Colors.green.withAlpha((255 * 0.2).toInt()),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             child: Text("Available".tr,
                 maxLines: 1,
                 style: Get.textTheme.bodyMedium!.merge(
@@ -239,14 +244,14 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                 softWrap: false,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.fade),
-            decoration: BoxDecoration(
-              color: Colors.green.withAlpha((255 * 0.2).toInt()),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           ),
         if (!_eProvider.available)
           Container(
+            decoration: BoxDecoration(
+              color: Colors.grey.withAlpha((255 * 0.2).toInt()),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             child: Text("Offline".tr,
                 maxLines: 1,
                 style: Get.textTheme.bodyMedium!.merge(
@@ -255,11 +260,6 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                 softWrap: false,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.fade),
-            decoration: BoxDecoration(
-              color: Colors.grey.withAlpha((255 * 0.2).toInt()),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           ),
       ],
     );
@@ -283,6 +283,7 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
           itemBuilder: (context, index) {
             var _award = controller.awards.elementAt(index);
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(_award.title ?? '').paddingSymmetric(vertical: 5),
                 WOHUi.applyHtml(
@@ -290,7 +291,6 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                   style: Get.textTheme.labelSmall,
                 ),
               ],
-              crossAxisAlignment: CrossAxisAlignment.start,
             );
           },
         ),
@@ -316,6 +316,7 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
           itemBuilder: (context, index) {
             var _experience = controller.experiences.elementAt(index);
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(_experience.title ?? '').paddingSymmetric(vertical: 5),
                 Text(
@@ -323,7 +324,6 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                   style: Get.textTheme.labelSmall,
                 ),
               ],
-              crossAxisAlignment: CrossAxisAlignment.start,
             );
           },
         ),
@@ -359,11 +359,11 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                 padding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
+                elevation: 0,
                 child: Icon(
                   Icons.phone_android_outlined,
                   color: Get.theme.colorScheme.secondary,
                 ),
-                elevation: 0,
               ),
               MaterialButton(
                 onPressed: () {
@@ -374,11 +374,11 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                 padding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
+                elevation: 0,
                 child: Icon(
                   Icons.call_outlined,
                   color: Get.theme.colorScheme.secondary,
                 ),
-                elevation: 0,
               ),
               MaterialButton(
                 onPressed: () {
@@ -389,11 +389,11 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                 padding: EdgeInsets.zero,
                 height: 44,
                 minWidth: 44,
+                elevation: 0,
                 child: Icon(
                   Icons.chat_outlined,
                   color: Get.theme.colorScheme.secondary,
                 ),
-                elevation: 0,
               ),
             ],
           )
@@ -456,11 +456,11 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                             color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
+                            elevation: 0,
                             child: Icon(
                               Icons.directions_outlined,
                               color: Get.theme.colorScheme.secondary,
                             ),
-                            elevation: 0,
                           ),
                         ],
                       ).marginOnly(bottom: 10);
@@ -546,6 +546,11 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                 ),
               ),
               Container(
+                decoration: BoxDecoration(
+                  color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: Text(_eProvider.type?.name?.tr ?? ' . . . ',
                     maxLines: 1,
                     style: Get.textTheme.bodyMedium!.merge(
@@ -554,11 +559,6 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                     softWrap: false,
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.fade),
-                decoration: BoxDecoration(
-                  color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               ),
             ],
           ),

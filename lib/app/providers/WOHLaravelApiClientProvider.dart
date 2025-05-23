@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, unnecessary_brace_in_string_interps
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'dart:convert';
 
 import 'package:dio/dio.dart' as dio;
@@ -780,7 +780,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'with': 'bookingStatus;payment;payment.paymentStatus',
       'api_token': authService.apiToken,
       // 'search': 'user_id:${authService.user.value.id}',
-      'search': 'booking_status_id:${statusId}',
+      'search': 'booking_status_id:$statusId',
       'orderBy': 'created_at',
       'sortedBy': 'desc',
       'limit': '4',
@@ -818,7 +818,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'with': 'bookingStatus;user;payment;payment.paymentMethod;payment.paymentStatus',
       'api_token': authService.apiToken,
     };
-    Uri _uri = getApiBaseUri("userBookings/${bookingId}").replace(queryParameters: _queryParameters);
+    Uri _uri = getApiBaseUri("userBookings/$bookingId").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
@@ -1248,7 +1248,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
 
   Future<List<WOHFaqModel>> getFaqs(String categoryId) async {
     var _queryParameters = {
-      'search': 'faq_category_id:${categoryId}',
+      'search': 'faq_category_id:$categoryId',
       'searchFields': 'faq_category_id:=',
       'searchJoin': 'and',
       'orderBy': 'updated_at',

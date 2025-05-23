@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -70,13 +70,13 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                               blurRadius: 20,
                             ),
                           ]),
-                          child: (_eService?.isFavorite ?? false) ? Icon(Icons.favorite, color: Colors.redAccent) : Icon(Icons.favorite_outline, color: Get.theme.hintColor),
+                          child: (_eService.isFavorite ?? false) ? Icon(Icons.favorite, color: Colors.redAccent) : Icon(Icons.favorite_outline, color: Get.theme.hintColor),
                         ),
                         onPressed: () {
                           if (!Get.find<WOHAuthService>().isAuth) {
                             Get.toNamed(WOHRoutes.LOGIN);
                           } else {
-                            if (_eService?.isFavorite ?? false) {
+                            if (_eService.isFavorite ?? false) {
                               //controller.removeFromFavorite();
                             } else {
                               //controller.addToFavorite();
@@ -144,7 +144,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                                           alignment: AlignmentDirectional.topStart,
                                           children: [
                                             Hero(
-                                              tag: 'e_services_galleries' + (_media?.id ?? ''),
+                                              tag: 'e_services_galleries' + (_media.id ?? ''),
                                               child: ClipRRect(
                                                 borderRadius: BorderRadius.all(Radius.circular(10)),
                                                 child: CachedNetworkImage(
@@ -262,11 +262,11 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
         children: [
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Duration".tr, style: Get.textTheme.bodySmall),
                 Text("This service can take up to ".tr, style: Get.textTheme.bodyLarge),
               ],
-              crossAxisAlignment: CrossAxisAlignment.start,
             ),
           ),
           Text(_eService.duration, style: Get.textTheme.titleLarge),
@@ -350,6 +350,12 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
               ),
               if (_eService.eProvider == null)
                 Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withAlpha((255 * 0.2).toInt()),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  margin: EdgeInsets.symmetric(vertical: 3),
                   child: Text("  .  .  .  ".tr,
                       maxLines: 1,
                       style: Get.textTheme.bodyMedium!.merge(
@@ -358,15 +364,15 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                       softWrap: false,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.fade),
+                ),
+              if (_eService.eProvider != null && _eService.eProvider.available)
+                Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey.withAlpha((255 * 0.2).toInt()),
+                    color: Colors.green.withAlpha((255 * 0.2).toInt()),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   margin: EdgeInsets.symmetric(vertical: 3),
-                ),
-              if (_eService.eProvider != null && _eService.eProvider.available)
-                Container(
                   child: Text("Available".tr,
                       maxLines: 1,
                       style: Get.textTheme.bodyMedium!.merge(
@@ -375,15 +381,15 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                       softWrap: false,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.fade),
+                ),
+              if (_eService.eProvider != null && !_eService.eProvider.available)
+                Container(
                   decoration: BoxDecoration(
-                    color: Colors.green.withAlpha((255 * 0.2).toInt()),
+                    color: Colors.grey.withAlpha((255 * 0.2).toInt()),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   margin: EdgeInsets.symmetric(vertical: 3),
-                ),
-              if (_eService.eProvider != null && !_eService.eProvider.available)
-                Container(
                   child: Text("Offline".tr,
                       maxLines: 1,
                       style: Get.textTheme.bodyMedium!.merge(
@@ -392,12 +398,6 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                       softWrap: false,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.fade),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withAlpha((255 * 0.2).toInt()),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  margin: EdgeInsets.symmetric(vertical: 3),
                 ),
             ],
           ),
@@ -450,25 +450,25 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
               var _category = _eService.categories.elementAt(index);
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                child: Text(_category.name, style: Get.textTheme.bodyLarge!.merge(TextStyle(color: _category.color))),
                 decoration: BoxDecoration(
                     color: _category.color.withAlpha((255 * 0.2).toInt()),
                     border: Border.all(
                       color: _category.color.withAlpha((255 * 0.1).toInt()),
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Text(_category.name, style: Get.textTheme.bodyLarge!.merge(TextStyle(color: _category.color))),
               );
             }) +
             List.generate(_eService.subCategories.length, (index) {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                child: Text(_eService.subCategories.elementAt(index).name, style: Get.textTheme.labelSmall),
                 decoration: BoxDecoration(
                     color: Get.theme.primaryColor,
                     border: Border.all(
                       color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Text(_eService.subCategories.elementAt(index).name, style: Get.textTheme.labelSmall),
               );
             }),
       ),
@@ -476,7 +476,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
   }
 
   Widget buildServiceProvider(WOHEServiceModel _eService) {
-    if (_eService?.eProvider?.hasData ?? false) {
+    if (_eService.eProvider?.hasData ?? false) {
       return GestureDetector(
         onTap: () {
           Get.toNamed(WOHRoutes.E_PROVIDER, arguments: {'eProvider': _eService.eProvider, 'heroTag': 'e_service_details'});
@@ -527,8 +527,8 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                       color: Get.theme.colorScheme.secondary,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(left: Radius.circular(10))),
-                      child: Icon(Icons.remove, color: Get.theme.primaryColor, size: 28),
                       elevation: 0,
+                      child: Icon(Icons.remove, color: Get.theme.primaryColor, size: 28),
                     ),
                     SizedBox(
                       width: 38,
@@ -549,8 +549,8 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                       color: Get.theme.colorScheme.secondary,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(right: Radius.circular(10))),
-                      child: Icon(Icons.add, color: Get.theme.primaryColor, size: 28),
                       elevation: 0,
+                      child: Icon(Icons.add, color: Get.theme.primaryColor, size: 28),
                     ),
                   ],
                 ),

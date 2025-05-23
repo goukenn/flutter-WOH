@@ -1,24 +1,23 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../common/ui.dart';
-import '../../models/WOHMediaModel.dart';
+ 
+import '../../../common/WOHUi.dart';
+import '../../providers/WOHOdooApiClientProvider.dart';
 import '../../repositories/WOHUploadRepository.dart';
 
 class WOHImageFieldController extends GetxController {
-  Rx<File> image = Rx<File>(null);
-  String uuid;
+  late Rx<File?> image = Rx<File?>(null);
+  late String? uuid;
   final uploading = false.obs;
   var url = ''.obs;
-  WOHUploadRepository _uploadRepository;
+  late WOHUploadRepository _uploadRepository;
 
   WOHImageFieldController() {
-    _uploadRepository = new WOHUploadRepository();
+    _uploadRepository = new WOHUploadRepository(WOHOdooApiClientProvider());
   }
 
   @override
@@ -33,37 +32,30 @@ class WOHImageFieldController extends GetxController {
 
   Future pickImage(ImageSource source, String field, ValueChanged<String> uploadCompleted) async {
     ImagePicker imagePicker = ImagePicker();
-    XFile pickedFile = await imagePicker.pickImage(source: source, imageQuality: 80);
-    File imageFile = File(pickedFile.path);
+    XFile? pickedFile = await imagePicker.pickImage(source: source, imageQuality: 80);
+    File? imageFile = File(pickedFile!.path);
     print(imageFile);
-    if (imageFile != null) {
-      try {
-        uploading.value = true;
-        //await deleteUploaded();
-        //uuid = await _uploadRepository.image(imageFile);
-        //await _uploadRepository.image(imageFile);
-        image.value = imageFile;
-        //uploadCompleted(uuid);
-        uploading.value = false;
-      } catch (e) {
-        uploading.value = false;
-        Get.showSnackbar(WOHUi.ErrorSnackBar(message: e.toString()));
-      }
-    } else {
+    try {
+      uploading.value = true;
+      //await deleteUploaded();
+      //uuid = await _uploadRepository.image(imageFile);
+      //await _uploadRepository.image(imageFile);
+      image.value = imageFile;
+      //uploadCompleted(uuid);
       uploading.value = false;
-      Get.showSnackbar(WOHUi.ErrorSnackBar(message: "Please select an image file".tr));
+    } catch (e) {
+      uploading.value = false;
+      Get.showSnackbar(WOHUi.ErrorSnackBar(message: e.toString()));
     }
-  }
+    }
 
   Future<void> deleteUploaded() async {
-    if (uuid != null) {
-      final done = await _uploadRepository.delete(uuid);
-      if (done) {
-        uuid = null;
-        image = Rx<File>(null);
-      }
+    final done = await _uploadRepository.delete(uuid!);
+    if (done) {
+      uuid = null;
+      image = Rx<File?>(null);
     }
-  }
+    }
 }
 
 class WOHImageFieldWidget extends StatelessWidget {
@@ -124,7 +116,7 @@ class WOHImageFieldWidget extends StatelessWidget {
                   reset(controller.uuid);
                 },
                 shape: StadiumBorder(),
-                color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
+                color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), 
                 child: Text(buttonText ?? "Reset".tr, style: Get.textTheme.bodyLarge),
                 elevation: 0,
                 hoverElevation: 0,
@@ -165,37 +157,20 @@ class WOHImageFieldWidget extends StatelessWidget {
         spacing: 5,
         runSpacing: 8,
         children: [
-          if (initialImage != null && image == null)
-            ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              child: CachedNetworkImage(
-                height: 100,
-                width: 100,
-                fit: BoxFit.cover,
-                imageUrl: initialImage,
-                placeholder: (context, url) => Image.asset(
-                  'assets/img/loading.gif',
-                  fit: BoxFit.cover,
-                  width: 60,
-                  height: 100,
-                ),
-                errorWidget: (context, url, error) => Icon(Icons.error_outline),
-              ),
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            child: Image.file(
+              image,
+              fit: BoxFit.cover,
+              width: 100,
+              height: 100,
             ),
-          if (image != null)
-            ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              child: Image.file(
-                image,
-                fit: BoxFit.cover,
-                width: 100,
-                height: 100,
-              ),
-            ),
+          ),
           Obx(() {
-            if (controller.uploading.isTrue)
+            if (controller.uploading.isTrue) {
               return buildLoader();
-            else
+            }
+            else {
               return GestureDetector(
                 onTap: () async {
                   await controller.pickImage(ImageSource.gallery, field, uploadCompleted);
@@ -208,6 +183,7 @@ class WOHImageFieldWidget extends StatelessWidget {
                   child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withAlpha((255 * 0.4).toInt())),
                 ),
               );
+            }
           }),
         ],
       ),

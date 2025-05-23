@@ -1,7 +1,6 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart' show DateFormat;
 
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHUi.dart';
@@ -9,10 +8,10 @@ import '../../../models/WOHNotificationModel.dart' as model;
 
 class WOHNotificationItemWidget extends StatelessWidget {
   WOHNotificationItemWidget({super.key, this.notification, this.onDismissed, this.onTap, this.icon});
-  final model.WOHNotificationModel notification;
-  final ValueChanged<model.WOHNotificationModel> onDismissed;
-  final ValueChanged<model.WOHNotificationModel> onTap;
-  final Widget icon;
+  final model.WOHNotificationModel? notification;
+  final ValueChanged<model.WOHNotificationModel>? onDismissed;
+  final ValueChanged<model.WOHNotificationModel>? onTap;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +33,17 @@ class WOHNotificationItemWidget extends StatelessWidget {
         ),
       ),
       onDismissed: (direction) {
-        onDismissed(this.notification);
+        onDismissed!(this.notification!);
         // Then show a snackbar
       },
       child: GestureDetector(
         onTap: () {
-          onTap(notification);
+          onTap!(notification!);
         },
         child: Container(
           padding: EdgeInsets.all(12),
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-          decoration: WOHUi.getBoxDecoration(color: this.notification.isSeen ? Get.theme.primaryColor : Get.theme.focusColor.withAlpha((255 * 0.15).toInt())),
+          decoration: WOHUi.getBoxDecoration(color: this.notification!.isSeen! ? Get.theme.primaryColor : Get.theme.focusColor.withAlpha((255 * 0.15).toInt())),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -56,8 +55,8 @@ class WOHNotificationItemWidget extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         gradient: LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
-                          notification.isSeen ? Get.theme.focusColor.withAlpha((255 * 0.6).toInt()) : Get.theme.focusColor.withAlpha((255 * 1).toInt()),
-                          notification.isSeen ? Get.theme.focusColor.withAlpha((255 * 0.1).toInt()) : Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
+                          notification!.isSeen! ? Get.theme.focusColor.withAlpha((255 * 0.6).toInt()) : Get.theme.focusColor.withAlpha((255 * 1).toInt()),
+                          notification!.isSeen! ? Get.theme.focusColor.withAlpha((255 * 0.1).toInt()) : Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                           // Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                         ])),
                     child: icon ??
@@ -101,20 +100,20 @@ class WOHNotificationItemWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
                     Text(
-                      this.notification.title,
+                      this.notification!.title!,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
-                      style: TextStyle(fontWeight: notification.isSeen ? FontWeight.normal : FontWeight.bold, fontSize: 14, color: buttonColor),
+                      style: TextStyle(fontWeight: notification!.isSeen! ? FontWeight.normal : FontWeight.bold, fontSize: 14, color: buttonColor),
                     ),
                     Text(
-                      this.notification.message,
+                      this.notification!.message!,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
-                      style: Get.textTheme.bodyLarge!.merge(TextStyle(fontWeight: notification.isSeen ? FontWeight.normal : FontWeight.w600,fontSize: 12, color: Colors.black87)),
+                      style: Get.textTheme.bodyLarge!.merge(TextStyle(fontWeight: notification!.isSeen! ? FontWeight.normal : FontWeight.w600,fontSize: 12, color: Colors.black87)),
                     ),
                     Text(
                       // DateFormat('d, MMMM y | HH:mm', Get.locale.toString()).format(this.notification.timestamp),
-                      notification.timestamp.toString(),
+                      notification!.timestamp.toString(),
                       style: Get.textTheme.labelSmall,
                     )
                   ],

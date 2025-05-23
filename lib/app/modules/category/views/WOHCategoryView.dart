@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, sort_child_properties_last
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -85,13 +85,13 @@ class WOHCategoryView extends GetView<WOHCategoryController> {
                 padding: EdgeInsets.all(5),
                 alignment: Alignment.center,
                 width: 120,
-                child: Text(controller.travelType.value.toUpperCase(), style: Get.textTheme.displayMedium!.merge(TextStyle(color: Colors.white))),
                 decoration: BoxDecoration(
                     color: controller.travelType.value != "air" ? Colors.white.withAlpha((255 * 0.4).toInt()) : interfaceColor.withAlpha((255 * 0.4).toInt()),
                     border: Border.all(
                       color: controller.travelType.value != "air" ? Colors.white.withAlpha((255 * 0.2).toInt()) : interfaceColor.withAlpha((255 * 0.2).toInt()),
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Text(controller.travelType.value.toUpperCase(), style: Get.textTheme.displayMedium!.merge(TextStyle(color: Colors.white))),
               ),
               centerTitle: true,
               automaticallyImplyLeading: false,
@@ -113,6 +113,7 @@ class WOHCategoryView extends GetView<WOHCategoryController> {
                 )
               ],
               bottom: PreferredSize(
+                  preferredSize: Size.fromHeight(50.0),
                   child: Padding(
                       padding: EdgeInsets.only(bottom: 10, left: 10),
                     child: Row(
@@ -149,8 +150,7 @@ class WOHCategoryView extends GetView<WOHCategoryController> {
                         SizedBox(width: 10)
                       ],
                     )
-                  ),
-                  preferredSize: Size.fromHeight(50.0)),
+                  )),
               flexibleSpace: Row(
                 children: [
                   Container(
