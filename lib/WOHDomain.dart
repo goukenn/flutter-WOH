@@ -5,7 +5,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart'; // to add obs
 
-class WOHDomain{
+class WOHConstants{
   static var serverPort = "https://willonhair.shintheo.com/api/v1";
   static var serverPort2 = "https://preprod.hubkilo.com/api";
   static var apiKey = "NMMAG3K4IVS0L6VYEPXLJ1Z0RR77AR67";

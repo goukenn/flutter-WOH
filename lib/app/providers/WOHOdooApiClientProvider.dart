@@ -12,9 +12,11 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:get/get.dart';
 
+import '../../WOHConstants.dart';
 import '../../common/WOHUi.dart';
 import '../../main.dart';
 import '../models/WOHMyUserModel.dart';
+import '../services/WOHAuthService.dart';
 import '../services/WOHMyAuthService.dart';
 import 'WOHApiClient.dart';
 import 'WOHDioClient.dart';
@@ -59,10 +61,10 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
   updateUser(WOHMyUserModel myUser) async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': WOHDomain.authorization
+      'Authorization': WOHConstants.authorization
     };
 
-    var request = http.Request('PUT', Uri.parse('${WOHDomain.serverPort}/write/res.users?ids=${myUser.userId}&values={'
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.users?ids=${myUser.userId}&values={'
         '"name": "${myUser.name}",'
         '"login": "${myUser.email}",'
         '"email": "${myUser.email}"}'
@@ -85,9 +87,9 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
   updatePartner(WOHMyUserModel myUser) async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': WOHDomain.authorization
+      'Authorization': WOHConstants.authorization
     };
-    var request = http.Request('PUT', Uri.parse('${WOHDomain.serverPort}/write/res.partner?ids=${myUser.id}&values={'
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.partner?ids=${myUser.id}&values={'
         '"phone": "${myUser.phone}",'
         '"birth_city_id": "${myUser.birthplace}",'
         '"residence_city_id": "${myUser.street}",'
@@ -113,11 +115,11 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
   // updatePartnerEmail(int? id, String? email) async {
   //   var headers = {
   //     'Accept': 'application/json',
-  //     'Authorization': WOHDomain.authorization,
+  //     'Authorization': WOHConstants.authorization,
   //     'Cookie': 'session_id=dc69145b99f377c902d29e0b11e6ea9bb1a6a1ba'
   //   };
   //
-  //   var request = http.Request('PUT', Uri.parse('${WOHDomain.serverPort}/write/res.partner?ids=$id&values={'
+  //   var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.partner?ids=$id&values={'
   //       '"email": "$email"}'
   //   ));
   //
@@ -140,11 +142,11 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
   updateToTraveler(bool value, WOHMyUserModel myser) async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': WOHDomain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Cookie': 'session_id=dc69145b99f377c902d29e0b11e6ea9bb1a6a1ba'
     };
 
-    var request = http.Request('PUT', Uri.parse('${WOHDomain.serverPort}/write/res.users?ids=${myser.userId}&values={'
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.users?ids=${myser.userId}&values={'
         '"is_traveler": "$value"}'
     ));
 
@@ -164,11 +166,11 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
   updateToShipper(bool value, WOHMyUserModel myUser) async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': WOHDomain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Cookie': 'session_id=dc69145b99f377c902d29e0b11e6ea9bb1a6a1ba'
     };
 
-    var request = http.Request('PUT', Uri.parse('${WOHDomain.serverPort}/write/res.users?ids=${myUser.userId}&values={'
+    var request = http.Request('PUT', Uri.parse('${WOHConstants.serverPort}/write/res.users?ids=${myUser.userId}&values={'
         '"is_shipper": "$value"}'
     ));
 
@@ -192,11 +194,11 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
 
     var headers = {
       'Accept': 'application/json',
-      'Authorization': WOHDomain.authorization,
+      'Authorization': WOHConstants.authorization,
       'Content-Type': 'multipart/form-data',
       'Cookie': 'session_id=a5b5f221b0eca50ae954ad4923fead1063097951'
     };
-    var request = http.MultipartRequest('POST', Uri.parse('${WOHDomain.serverPort}/upload/res.partner/${myUser.id}/image_1920'));
+    var request = http.MultipartRequest('POST', Uri.parse('${WOHConstants.serverPort}/upload/res.partner/${myUser.id}/image_1920'));
     request.files.add(await http.MultipartFile.fromPath('ufile', file.path));
     request.headers.addAll(headers);
 
@@ -228,7 +230,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
       'Cookie': sessionId.toString()
     };
 
-    var request = http.MultipartRequest('PUT', Uri.parse(WOHDomain.serverPort+'/road/booking/luggage_image/'+bookingId.toString()));
+    var request = http.MultipartRequest('PUT', Uri.parse(WOHConstants.serverPort+'/road/booking/luggage_image/'+bookingId.toString()));
     request.files.add(await http.MultipartFile.fromPath('luggage_image1', imageFiles[0].path));
     request.files.add(await http.MultipartFile.fromPath('luggage_image2', imageFiles[1].path));
     request.files.add(await http.MultipartFile.fromPath('luggage_image3', imageFiles[2].path));
@@ -260,7 +262,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
       'Cookie': sessionId.toString()
     };
 
-    var request = http.MultipartRequest('PUT', Uri.parse(WOHDomain.serverPort+'/air/booking/luggage_image/'+bookingId.toString()));
+    var request = http.MultipartRequest('PUT', Uri.parse(WOHConstants.serverPort+'/air/booking/luggage_image/'+bookingId.toString()));
     request.files.add(await http.MultipartFile.fromPath('luggage_image1', imageFiles[0].path));
     request.files.add(await http.MultipartFile.fromPath('luggage_image2', imageFiles[1].path));
     request.files.add(await http.MultipartFile.fromPath('luggage_image3', imageFiles[2].path));
@@ -279,7 +281,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
   }
 
 
-  Future<bool> deleteUploaded(String? uuid) async {
+  Future<bool> deleteUploaded(String uuid) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ deleteUploaded() ]");
     }

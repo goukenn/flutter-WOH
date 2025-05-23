@@ -44,7 +44,7 @@ class WOHAuthService extends GetxService {
     await _box.remove('current_user');
   }
 
-  bool? get isAuth => user.value.auth ?? false;
+  bool get isAuth => user.value.auth ?? false;
 
-  String? get apiToken => (user.value.auth ?? false) ? user.value.apiToken : '';
+  String get apiToken => (user.value.auth ?? false) ? user.value.apiToken! : '';
 }

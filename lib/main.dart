@@ -25,7 +25,7 @@ import 'package:http/http.dart' as http;
 
 import 'WOHConstants.dart';
 import 'WOHDefaultFirebaseOptions.dart';
-import 'WOHDomain.dart';
+import 'WOHConstants.dart';
 import 'WOHMyHttpOverrides.dart';
 import 'app/models/WOHModelNotificationModel.dart';
 // import 'app/providers/WOHLaravelApiClientProvider.dart';
@@ -161,7 +161,7 @@ void mainMM() async {
   ]).then(
     (_) => runApp(
       GetMaterialApp(
-        title: WOHDomain.AppName,
+        title: WOHConstants.AppName,
         initialRoute: WOHThemeAppPages.INITIAL,
         onReady: () async {
           await Get.putAsync(() => WOHFireBaseMessagingService().init());

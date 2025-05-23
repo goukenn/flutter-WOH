@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 // import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../caches/WOHBuildCacheOptions.dart';
@@ -311,11 +310,11 @@ class WOHDioClient {
   }
 
   Future<dynamic> delete(
-    String? uri, {
+    String uri, {
     data,
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken. cancelToken,
   }) async {
     try {
       var response = await _dio.delete(
@@ -336,8 +335,8 @@ class WOHDioClient {
   Future<dynamic> deleteUri(
     Uri uri, {
     data,
-    Options options,
-    CancelToken cancelToken,
+    Options? options,
+    CancelToken? cancelToken,
   }) async {
     WOHCustomTrace programInfo = WOHCustomTrace(StackTrace.current);
     try {
@@ -359,12 +358,12 @@ class WOHDioClient {
     }
   }
 
-  bool? isLoading({String? task, List<String> tasks}) {
+  bool isLoading({String? task, List<String>? tasks}) {
     return _progress.any((_task) => _progress.contains(_task));
-    return _progress.contains(task);
+   // return _progress.contains(task);
   }
 
-  String? _getTaskName(programInfo) {
+  String _getTaskName(programInfo) {
     return programInfo.callerFunctionName.split('.')[1];
   }
 }

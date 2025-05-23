@@ -1249,7 +1249,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<List<Faq>> getFaqs(String categoryId) async {
+  Future<List<WOHFaqModel>> getFaqs(String categoryId) async {
     var _queryParameters = {
       'search': 'faq_category_id:${categoryId}',
       'searchFields': 'faq_category_id:=',
@@ -1261,7 +1261,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
 
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<Faq>((obj) => Faq.fromJson(obj)).toList();
+      return response.data['data'].map<WOHFaqModel>((obj) => WOHFaqModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }

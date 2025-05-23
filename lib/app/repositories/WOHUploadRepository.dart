@@ -27,7 +27,7 @@ class WOHUploadRepository {
 
   }
 
-  Future<bool> delete(String? uuid) {
+  Future<bool> delete(String uuid) {
     return _odooApiClient.deleteUploaded(uuid);
   }
 

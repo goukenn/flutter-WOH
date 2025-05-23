@@ -15,8 +15,7 @@ import '../models/WOHNotificationModel.dart';
 import '../models/WOHReviewModel.dart';
 import '../models/WOHSettingModel.dart';
 import '../models/WOHSlideModel.dart';
-import '../models/WOHUserModel.dart';
-import '../models/slide_model.dart';
+import '../models/WOHUserModel.dart'; 
 import '../services/WOHGlobalService.dart';
 
 class WOHMockApiClientProvider {
@@ -28,7 +27,8 @@ class WOHMockApiClientProvider {
   final Options _options = buildCacheOptions() ;//Duration(days: 3), forceRefresh: true);
 
   WOHMockApiClientProvider({required this.httpClient}) {
-    httpClient.interceptors.add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
+    // + | remove cache 
+    // httpClient.interceptors.add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
   }
 
   Future<List<WOHUserModel>> getAllUsers() async {
@@ -155,7 +155,7 @@ class WOHMockApiClientProvider {
     if (response.statusCode == 200) {
       List<WOHEServiceModel> _services = response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
       _services = _services.where((_service) {
-        return _service.eProvider.available;
+        return _service.eProvider!.available!;
       }).toList();
       return _services;
     } else {
@@ -230,7 +230,7 @@ class WOHMockApiClientProvider {
     if (response.statusCode == 200) {
       List<WOHEServiceModel> _services = response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
       _services = _services.where((_service) {
-        return _service.eProvider.available!;
+        return _service.eProvider!.available!;
       }).toList();
       return _services;
     } else {

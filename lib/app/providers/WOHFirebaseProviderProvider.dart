@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, prefer_final_fields, prefer_function_declarations_over_variables
 import 'package:firebase_auth/firebase_auth.dart' as fba;
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class WOHFirebaseProviderProvider extends GetxService {
     return this;
   }
 
-  Future<bool> signInWithEmailAndPassword(String? email, String? password) async {
+  Future<bool> signInWithEmailAndPassword(String email, String password) async {
     try {
       fba.UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
       if (result.user != null) {
@@ -24,7 +24,7 @@ class WOHFirebaseProviderProvider extends GetxService {
     }
   }
 
-  Future<bool> signUpWithEmailAndPassword(String? email, String? password) async {
+  Future<bool> signUpWithEmailAndPassword(String email, String password) async {
     fba.UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     if (result.user != null) {
       return true;
@@ -33,9 +33,9 @@ class WOHFirebaseProviderProvider extends GetxService {
     }
   }
 
-  Future<void> verifyPhone(String? smsCode) async {
+  Future<void> verifyPhone(String smsCode) async {
     try {
-      final fba.AuthCredential credential = fba.PhoneAuthProvider.credential(verificationId: Get.find<WOHAuthService>().user.value.verificationId, smsCode: smsCode);
+      final fba.AuthCredential credential = fba.PhoneAuthProvider.credential(verificationId: Get.find<WOHAuthService>().user.value.verificationId!, smsCode: smsCode);
       await fba.FirebaseAuth.instance.signInWithCredential(credential);
       Get.find<WOHAuthService>().user.value.verifiedPhone = true;
     } catch (e) {

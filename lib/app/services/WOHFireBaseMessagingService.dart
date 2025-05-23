@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import '../../WOHColorConstants.dart';
-import '../../WOHDomain.dart';
+import '../../WOHConstants.dart';
 import '../../common/WOHUi.dart'; 
 import '../models/WOHMessageModel.dart';
 import '../models/WOHNotificationModel.dart';
@@ -93,14 +93,14 @@ class WOHFireBaseMessagingService extends GetxService {
         disable: false,
       );
 
-      WOHDomain.myBoxStorage.value.add(remoteModel.toJson());
+      WOHConstants.myBoxStorage.value.add(remoteModel.toJson());
       print('hey');
-      print(WOHDomain.myBoxStorage.value.getAt(0));
+      print(WOHConstants.myBoxStorage.value.getAt(0));
       print('hey');
 
-      for (int i = 0; i < WOHDomain.myBoxStorage.value.length; i++) {
-        //print(WOHDomain.myBoxStorage.getAt(i));
-        if (WOHDomain.myBoxStorage.value.getAt(i)['isSeen'] == false) {
+      for (int i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
+        //print(WOHConstants.myBoxStorage.getAt(i));
+        if (WOHConstants.myBoxStorage.value.getAt(i)['isSeen'] == false) {
           count = count + 1;
         }
       }
@@ -131,9 +131,9 @@ class WOHFireBaseMessagingService extends GetxService {
           count = count + 1;
         }
       }
-      for (int i = 0; i < WOHDomain.myBoxStorage.value.length; i++) {
-        //print(WOHDomain.myBoxStorage.getAt(i));
-        if (WOHDomain.myBoxStorage.value.getAt(i)['isSeen'] == false) {
+      for (int i = 0; i < WOHConstants.myBoxStorage.value.length; i++) {
+        //print(WOHConstants.myBoxStorage.getAt(i));
+        if (WOHConstants.myBoxStorage.value.getAt(i)['isSeen'] == false) {
           count = count + 1;
         }
       }
@@ -177,7 +177,7 @@ class WOHFireBaseMessagingService extends GetxService {
       if (kDebugMode) {
         print("my token is $mtoken");
       }
-      WOHDomain.deviceToken = token;
+      WOHConstants.deviceToken = token;
     });
   }
 
