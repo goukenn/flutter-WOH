@@ -44,7 +44,7 @@ class WOHAvailabilityHourItemWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               decoration: BoxDecoration(
-                color: Get.theme.focusColor.withOpacity(0.15),
+                color: Get.theme.focusColor.withAlpha((255 * 0.15).toInt()),
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),

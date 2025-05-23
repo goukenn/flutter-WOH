@@ -76,7 +76,7 @@ class WOHAddressPickerView extends StatelessWidget {
                       },
                       text: Text(
                         "Pick Here".tr,
-                        style: Get.textTheme.titleLarge.merge(TextStyle(color: Get.theme.primaryColor)),
+                        style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),
                       ),
                     ).paddingSymmetric(horizontal: 20),
                     SizedBox(height: 10),

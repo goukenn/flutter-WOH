@@ -201,7 +201,7 @@ class WOHImportIdentityFilesController extends GetxController{
 
                       },
                       leading: Icon(FontAwesomeIcons.camera),
-                      title: Text('Take a picture', style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 15))),
+                      title: Text('Take a picture', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
                     ),
                     ListTile(
                       onTap: ()async{
@@ -210,7 +210,7 @@ class WOHImportIdentityFilesController extends GetxController{
                         loadIdentityFile.value = !loadIdentityFile.value;
                       },
                       leading: Icon(FontAwesomeIcons.image),
-                      title: Text('Upload an image', style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 15))),
+                      title: Text('Upload an image', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
                     )
                   ],
                 )
@@ -301,7 +301,7 @@ class WOHImportIdentityFilesController extends GetxController{
       var data = await response.stream.bytesToString();
       ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
           content: Text(json.decode(data)['message']),
-          backgroundColor: specialColor.withOpacity(0.4),
+          backgroundColor: specialColor.withAlpha((255 * 0.4).toInt()),
           duration: Duration(seconds: 2)));
     }
   }

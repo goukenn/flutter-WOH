@@ -40,7 +40,7 @@ class WOHEProviderEServicesView extends GetView<EServicesController> {
               iconTheme: IconThemeData(color: Get.theme.primaryColor),
               title: Text(
                 controller.eProvider.value.name,
-                style: Get.textTheme.titleLarge.merge(TextStyle(color: Get.theme.primaryColor)),
+                style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),
               ),
               centerTitle: true,
               automaticallyImplyLeading: false,
@@ -56,7 +56,7 @@ class WOHEProviderEServicesView extends GetView<EServicesController> {
                     padding: EdgeInsets.symmetric(vertical: 75),
                     decoration: new BoxDecoration(
                       gradient: new LinearGradient(
-                          colors: [Get.theme.colorScheme.secondary.withOpacity(1), Get.theme.colorScheme.secondary.withOpacity(0.2)],
+                          colors: [Get.theme.colorScheme.secondary.withAlpha((255 * 1).toInt()), Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt())],
                           begin: AlignmentDirectional.topStart,
                           //const FractionalOffset(1, 0),
                           end: AlignmentDirectional.bottomEnd,
@@ -83,9 +83,9 @@ class WOHEProviderEServicesView extends GetView<EServicesController> {
                               child: RawChip(
                                 elevation: 0,
                                 label: Text(_filter.toString().tr),
-                                labelStyle: controller.isSelected(_filter) ? Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.primaryColor)) : Get.textTheme.bodyMedium,
+                                labelStyle: controller.isSelected(_filter) ? Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.primaryColor)) : Get.textTheme.bodyMedium,
                                 padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
-                                backgroundColor: Theme.of(context).focusColor.withOpacity(0.1),
+                                backgroundColor: Theme.of(context).focusColor.withAlpha((255 * 0.1).toInt()),
                                 selectedColor: Get.theme.colorScheme.secondary,
                                 selected: controller.isSelected(_filter),
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

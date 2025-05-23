@@ -20,8 +20,8 @@ class WOHBlockButtonWidget extends StatelessWidget {
       /*decoration: this.onPressed != null
           ? BoxDecoration(
               boxShadow: [
-                BoxShadow(color: this.color.withOpacity(0.3), blurRadius: 40, offset: Offset(0, 15)),
-                BoxShadow(color: this.color.withOpacity(0.2), blurRadius: 13, offset: Offset(0, 3))
+                BoxShadow(color: this.color.withAlpha((255 * 0.3).toInt()), blurRadius: 40, offset: Offset(0, 15)),
+                BoxShadow(color: this.color.withAlpha((255 * 0.2).toInt()), blurRadius: 13, offset: Offset(0, 3))
               ],
               // borderRadius: BorderRadius.all(Radius.circular(20)),
             )

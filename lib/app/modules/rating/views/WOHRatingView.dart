@@ -20,7 +20,7 @@ class WOHRatingView extends GetView<RatingController> {
       appBar: AppBar(
         title: Text(
           "Leave a Review".tr,
-          style: Get.textTheme.headline5,
+          style: Get.textTheme.headlineSmall,
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -39,15 +39,15 @@ class WOHRatingView extends GetView<RatingController> {
           Column(
             children: [
               Wrap(children: [
-                Text("Hi,".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.black))),
+                Text("Hi,".tr, style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Colors.black))),
                 Text(controller.shippingDto['partner_id'][1],
-                  style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.black)),
+                  style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Colors.black)),
                 )
               ]),
               SizedBox(height: 10),
               Text(
                 "How do you feel this services?".tr,
-                style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.black)),
+                style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Colors.black)),
               ),
             ],
           ),
@@ -83,7 +83,7 @@ class WOHRatingView extends GetView<RatingController> {
                   )
                   ),
                   Text(controller.shippingDto['travel_partner_name'],
-                    style: Get.textTheme.titleLarge.merge(TextStyle(color: buttonColor)),
+                    style: Get.textTheme.titleLarge!.merge(TextStyle(color: buttonColor)),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 20),
@@ -127,7 +127,7 @@ class WOHRatingView extends GetView<RatingController> {
           BlockButtonWidget(
               text: Obx(() => !controller.clicked.value ? Text(
                 "Submit Review".tr,
-                style: Get.textTheme.titleLarge.merge(TextStyle(color: Get.theme.primaryColor)),
+                style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),
               ) : SizedBox(height: 30,
                   child: SpinKitThreeBounce(color: Colors.white, size: 20))
               ),

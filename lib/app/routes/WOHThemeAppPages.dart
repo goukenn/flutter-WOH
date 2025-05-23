@@ -1,12 +1,12 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
 import 'package:get/get.dart' show GetPage, Transition;
 import '../modules/auth/views/WOHPolitique.dart';
-import '../modules/fidelisation/binding/WOHValidationBiding.dart';
-import '../modules/fidelisation/views/WOHAttributePoints.dart';
-import '../modules/home/views/WOHEmployeeHomeView.dart';
+import '../modules/fidelisation/binding/WOHValidationBinding.dart';
+import '../modules/fidelisation/views/WOHAttributePointsView.dart';
+import '../modules/home/views/WOHEmployeeHomeView.dart'; 
 import '../modules/home/widgets/WOHContactView.dart';
 import '../modules/home/widgets/WOHFidelityCardView.dart';
-import '../modules/identity_files/Views/WOHAttachmentList.dart';
+import '../modules/identity_files/Views/WOHIdentityAttachmentListView.dart';
 import '../modules/auth/bindings/WOHAuthBinding.dart';
 import '../modules/auth/views/WOHForgotPasswordView.dart';
 import '../modules/auth/views/WOHLoginView.dart';
@@ -17,7 +17,7 @@ import '../modules/category/bindings/WOHCategoryBinding.dart';
 import '../modules/category/views/WOHCategoriesView.dart';
 import '../modules/e_service/bindings/WOHEServiceBinding.dart';
 import '../modules/e_service/views/WOHEServiceView.dart';
-import '../modules/identity_files/Views/WOHImportIdentityFilesForm.dart';
+import '../modules/identity_files/Views/WOHImportIdentityFilesFormView.dart';
 import '../modules/identity_files/binding/WOHImportIdentityFilesBinding.dart';
 import '../modules/notifications/bindings/WOHNotificationsBinding.dart';
 import '../modules/notifications/views/WOHNotificationDetails.dart';
@@ -37,8 +37,8 @@ import '../modules/settings/views/WOHThemeModeView.dart';
 import '../modules/inspect/bindings/WOHInspectBinding.dart';
 import '../modules/inspect/views/WOHInspectView.dart';
 import '../modules/userBookings/views/WOHBookingsView.dart';
-import '../modules/userBookings/views/WOHFacturation.dart';
-import '../modules/userBookings/views/WOHInterfacePOS.dart';
+import '../modules/userBookings/views/WOHFacturationView.dart';
+import '../modules/userBookings/views/WOHInterfacePOSView.dart';
 import 'WOHRoutes.dart';
 
 class WOHThemeAppPages {
@@ -50,7 +50,11 @@ class WOHThemeAppPages {
       page: () => WOHSplashView(),
       binding: WOHAuthBinding(),
     ),
-    GetPage(name: WOHRoutes.ROOT, page: () => WOHRootView(), binding: WOHRootBinding()),
+    GetPage(
+      name: WOHRoutes.ROOT,
+      page: () => WOHRootView(),
+      binding: WOHRootBinding(),
+    ),
     GetPage(
       name: WOHRoutes.RATING,
       page: () => WOHRatingView(),
@@ -73,18 +77,18 @@ class WOHThemeAppPages {
     ),
     GetPage(
       name: WOHRoutes.IDENTITY_FILES,
-      page: () => WOHAttachmentView(),
+      page: () => WOHIdentityAttachmentListView(),
       binding: WOHImportIdentityFilesBinding(),
     ),
     GetPage(
       name: WOHRoutes.ADD_IDENTITY_FILES,
-      page: () => ImportIdentityFilesView(),
-      binding: ImportIdentityFilesBinding(),
+      page: () => WOHImportIdentityFilesFormView(),
+      binding: WOHImportIdentityFilesBinding(),
     ),
     GetPage(
       name: WOHRoutes.SETTINGS_LANGUAGE,
-      page: () => LanguageView(),
-      binding: SettingsBinding(),
+      page: () => WOHLanguageView(),
+      binding: WOHSettingsBinding(),
     ),
     GetPage(
       name: WOHRoutes.SETTINGS_ADDRESS_PICKER,
@@ -98,7 +102,7 @@ class WOHThemeAppPages {
 
     GetPage(
       name: WOHRoutes.CONTACT,
-      page: () => WOHContactWidget(),
+      page: () => WOHContactView(),
       transition: Transition.fadeIn,
     ),
     GetPage(
@@ -118,12 +122,12 @@ class WOHThemeAppPages {
     ),
     GetPage(
       name: WOHRoutes.FIDELITY_CARD,
-      page: () => WOHFidelityCardWidget(),
+      page: () => WOHFidelityCardView(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: WOHRoutes.FACTURATION,
-      page: () => WOHEmployeeReceipt(),
+      page: () => WOHFacturationView(),
       transition: Transition.fadeIn,
     ),
 
@@ -141,8 +145,8 @@ class WOHThemeAppPages {
     ),
     GetPage(
       name: WOHRoutes.VALIDATE_TRANSACTION,
-      page: () => WOHAttributionView(),
-      binding: WOHValidationBinding(),
+      page: () => WOHAttributePointsView(),
+      binding: WOHValidationBinding(), //WOHValidationBinding(),
     ),
     GetPage(
       name: WOHRoutes.LOGIN,

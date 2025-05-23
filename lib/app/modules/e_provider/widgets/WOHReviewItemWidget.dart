@@ -49,7 +49,7 @@ class WOHReviewItemWidget extends StatelessWidget {
                       overflow: TextOverflow.fade,
                       softWrap: false,
                       maxLines: 2,
-                      style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.hintColor)),
+                      style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.hintColor)),
                     ),
                     Text(
                       review.user.bio,
@@ -66,7 +66,7 @@ class WOHReviewItemWidget extends StatelessWidget {
                   label: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(review.rate.toString(), style: Get.textTheme.bodyLarge.merge(TextStyle(color: Get.theme.primaryColor))),
+                      Text(review.rate.toString(), style: Get.textTheme.bodyLarge!.merge(TextStyle(color: Get.theme.primaryColor))),
                       Icon(
                         Icons.star_border,
                         color: Get.theme.primaryColor,
@@ -74,7 +74,7 @@ class WOHReviewItemWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  backgroundColor: Get.theme.colorScheme.secondary.withOpacity(0.9),
+                  backgroundColor: Get.theme.colorScheme.secondary.withAlpha((255 * 0.9).toInt()),
                   shape: StadiumBorder(),
                 ),
               ),

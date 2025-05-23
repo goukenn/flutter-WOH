@@ -35,7 +35,7 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
                   margin: EdgeInsetsDirectional.only(end: 20, start: index == 0 ? 20 : 0, top: 20, bottom: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(color: Get.theme.focusColor.withOpacity(0.1)),
+                    border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt())),
                   ),
                   child: Column(
                     children: [
@@ -73,7 +73,7 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
                             Text(
                               _service.name ?? '',
                               maxLines: 2,
-                              style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.hintColor)),
+                              style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.hintColor)),
                             ),
                             Wrap(
                               children: WOHUi.getStarsList(_service.rate),
@@ -95,12 +95,12 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
                                     if (_service.getOldPrice > 0)
                                       WOHUi.getPrice(
                                         _service.getOldPrice,
-                                        style: Get.textTheme.bodyLarge.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
+                                        style: Get.textTheme.bodyLarge!.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
                                         unit: _service.getUnit,
                                       ),
                                     WOHUi.getPrice(
                                       _service.getPrice,
-                                      style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
+                                      style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
                                       unit: _service.getUnit,
                                     ),
                                   ],

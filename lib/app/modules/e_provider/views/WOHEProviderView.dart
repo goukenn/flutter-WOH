@@ -90,7 +90,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                               onTap: () {
                                 Get.toNamed(WOHRoutes.E_PROVIDER_E_SERVICES, arguments: _eProvider);
                               },
-                              child: Text("View All".tr, style: Get.textTheme.subtitle1),
+                              child: Text("View All".tr, style: Get.textTheme.titleMedium),
                             ).paddingSymmetric(horizontal: 20),
                           ],
                         ),
@@ -193,7 +193,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                           child: Text(
                             _media.name ?? '',
                             maxLines: 2,
-                            style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.primaryColor)),
+                            style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.primaryColor)),
                           ),
                         ),
                       ],
@@ -233,14 +233,14 @@ class WOHEProviderView extends GetView<EProviderController> {
           Container(
             child: Text("Available".tr,
                 maxLines: 1,
-                style: Get.textTheme.bodyMedium.merge(
+                style: Get.textTheme.bodyMedium!.merge(
                   TextStyle(color: Colors.green, height: 1.4, fontSize: 10),
                 ),
                 softWrap: false,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.fade),
             decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.2),
+              color: Colors.green.withAlpha((255 * 0.2).toInt()),
               borderRadius: BorderRadius.circular(8),
             ),
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -249,14 +249,14 @@ class WOHEProviderView extends GetView<EProviderController> {
           Container(
             child: Text("Offline".tr,
                 maxLines: 1,
-                style: Get.textTheme.bodyMedium.merge(
+                style: Get.textTheme.bodyMedium!.merge(
                   TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
                 ),
                 softWrap: false,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.fade),
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.2),
+              color: Colors.grey.withAlpha((255 * 0.2).toInt()),
               borderRadius: BorderRadius.circular(8),
             ),
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -358,7 +358,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                 minWidth: 44,
                 padding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                color: Get.theme.colorScheme.secondary.withOpacity(0.2),
+                color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
                 child: Icon(
                   Icons.phone_android_outlined,
                   color: Get.theme.colorScheme.secondary,
@@ -373,7 +373,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                 minWidth: 44,
                 padding: EdgeInsets.zero,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                color: Get.theme.colorScheme.secondary.withOpacity(0.2),
+                color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
                 child: Icon(
                   Icons.call_outlined,
                   color: Get.theme.colorScheme.secondary,
@@ -385,7 +385,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                   controller.startChat();
                 },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                color: Get.theme.colorScheme.secondary.withOpacity(0.2),
+                color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
                 padding: EdgeInsets.zero,
                 height: 44,
                 minWidth: 44,
@@ -409,8 +409,8 @@ class WOHEProviderView extends GetView<EProviderController> {
       decoration: WOHUi.getBoxDecoration(),
       child: (_addresses.isEmpty)
           ? Shimmer.fromColors(
-              baseColor: Colors.grey.withOpacity(0.15),
-              highlightColor: Colors.grey[200].withOpacity(0.1),
+              baseColor: Colors.grey.withAlpha((255 * 0.15).toInt()),
+              highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
               child: Container(
                 width: double.infinity,
                 height: 220,
@@ -455,7 +455,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                             minWidth: 44,
                             padding: EdgeInsets.zero,
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            color: Get.theme.colorScheme.secondary.withOpacity(0.2),
+                            color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
                             child: Icon(
                               Icons.directions_outlined,
                               color: Get.theme.colorScheme.secondary,
@@ -521,7 +521,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
                 ),
-                color: controller.currentSlide.value == _eProvider.images.indexOf(media) ? Get.theme.hintColor : Get.theme.primaryColor.withOpacity(0.4)),
+                color: controller.currentSlide.value == _eProvider.images.indexOf(media) ? Get.theme.hintColor : Get.theme.primaryColor.withAlpha((255 * 0.4).toInt())),
           );
         }).toList(),
       ),
@@ -539,7 +539,7 @@ class WOHEProviderView extends GetView<EProviderController> {
               Expanded(
                 child: Text(
                   _eProvider.name ?? '',
-                  style: Get.textTheme.headline5.merge(TextStyle(height: 1.1)),
+                  style: Get.textTheme.headlineSmall!.merge(TextStyle(height: 1.1)),
                   maxLines: 2,
                   softWrap: true,
                   overflow: TextOverflow.fade,
@@ -548,14 +548,14 @@ class WOHEProviderView extends GetView<EProviderController> {
               Container(
                 child: Text(_eProvider.type?.name?.tr ?? ' . . . ',
                     maxLines: 1,
-                    style: Get.textTheme.bodyMedium.merge(
+                    style: Get.textTheme.bodyMedium!.merge(
                       TextStyle(color: Get.theme.colorScheme.secondary, height: 1.4, fontSize: 10),
                     ),
                     softWrap: false,
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.fade),
                 decoration: BoxDecoration(
-                  color: Get.theme.colorScheme.secondary.withOpacity(0.2),
+                  color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),

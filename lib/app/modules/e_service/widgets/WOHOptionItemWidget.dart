@@ -64,12 +64,12 @@ class WOHOptionItemWidget extends GetWidget<EServiceController> {
                     width: 54,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Get.theme.colorScheme.secondary.withOpacity(_option.checked.value ? 0.8 : 0),
+                      color: Get.theme.colorScheme.secondary.withAlpha((255 * _option.checked.value ? 0.8 : 0).toInt()),
                     ),
                     child: Icon(
                       Icons.check,
                       size: 36,
-                      color: Theme.of(context).primaryColor.withOpacity(_option.checked.value ? 1 : 0),
+                      color: Theme.of(context).primaryColor.withAlpha((255 * _option.checked.value ? 1 : 0).toInt()),
                     ),
                   ),
                 ],
@@ -91,7 +91,7 @@ class WOHOptionItemWidget extends GetWidget<EServiceController> {
                     SizedBox(width: 8),
                     WOHUi.getPrice(
                       _option.price,
-                      style: Get.textTheme.titleLarge.merge(TextStyle(color: _option.checked.value ? Get.theme.colorScheme.secondary : Get.theme.hintColor)),
+                      style: Get.textTheme.titleLarge!.merge(TextStyle(color: _option.checked.value ? Get.theme.colorScheme.secondary : Get.theme.hintColor)),
                     ),
                   ],
                 ),

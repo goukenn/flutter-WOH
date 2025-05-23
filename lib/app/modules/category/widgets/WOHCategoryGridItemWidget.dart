@@ -18,7 +18,7 @@ class WOHCategoryGridItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       highlightColor: Colors.transparent,
-      splashColor: Get.theme.colorScheme.secondary.withOpacity(0.08),
+      splashColor: Get.theme.colorScheme.secondary.withAlpha((255 * 0.08).toInt()),
       onTap: () {
         Get.toNamed(WOHRoutes.CATEGORY, arguments: category);
       },
@@ -31,7 +31,7 @@ class WOHCategoryGridItemWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10),
               decoration: new BoxDecoration(
                 gradient: new LinearGradient(
-                    colors: [category.color.withOpacity(1), category.color.withOpacity(0.1)],
+                    colors: [category.color.withAlpha((255 * 1).toInt()), category.color.withAlpha((255 * 0.1).toInt())],
                     begin: AlignmentDirectional.topStart,
                     //const FractionalOffset(1, 0),
                     end: AlignmentDirectional.bottomEnd,
@@ -79,11 +79,11 @@ class WOHCategoryGridItemWidget extends StatelessWidget {
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                          child: Text(_category.name, style: Get.textTheme.labelSmall.merge(TextStyle(fontSize: 10))),
+                          child: Text(_category.name, style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 10))),
                           decoration: BoxDecoration(
                               color: Get.theme.primaryColor,
                               border: Border.all(
-                                color: Get.theme.focusColor.withOpacity(0.2),
+                                color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                               ),
                               borderRadius: BorderRadius.all(Radius.circular(20))),
                         ),

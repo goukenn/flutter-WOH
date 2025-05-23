@@ -23,7 +23,7 @@ class WOHCategoryListItemWidget extends StatelessWidget {
       decoration: WOHUi.getBoxDecoration(
           border: Border.fromBorderSide(BorderSide.none),
           gradient: new LinearGradient(
-              colors: [category.color.withOpacity(0.6), category.color.withOpacity(0.1)],
+              colors: [category.color.withAlpha((255 * 0.6).toInt()), category.color.withAlpha((255 * 0.1).toInt())],
               begin: AlignmentDirectional.topStart,
               //const FractionalOffset(1, 0),
               end: AlignmentDirectional.topEnd,
@@ -36,7 +36,7 @@ class WOHCategoryListItemWidget extends StatelessWidget {
           expandedCrossAxisAlignment: CrossAxisAlignment.stretch,
           title: InkWell(
               highlightColor: Colors.transparent,
-              splashColor: Get.theme.colorScheme.secondary.withOpacity(0.08),
+              splashColor: Get.theme.colorScheme.secondary.withAlpha((255 * 0.08).toInt()),
               onTap: () {
                 Get.toNamed(WOHRoutes.CATEGORY, arguments: category);
                 //Navigator.of(context).pushNamed('/Details', arguments: RouteArgument(id: '0', param: market.id, heroTag: heroTag));
@@ -91,9 +91,9 @@ class WOHCategoryListItemWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 16),
                 child: Text(_category.name, style: Get.textTheme.bodyLarge),
                 decoration: BoxDecoration(
-                  color: Get.theme.scaffoldBackgroundColor.withOpacity(0.2),
-                  border: Border(top: BorderSide(color: Get.theme.scaffoldBackgroundColor.withOpacity(0.3))
-                      //color: Get.theme.focusColor.withOpacity(0.2),
+                  color: Get.theme.scaffoldBackgroundColor.withAlpha((255 * 0.2).toInt()),
+                  border: Border(top: BorderSide(color: Get.theme.scaffoldBackgroundColor.withAlpha((255 * 0.3).toInt()))
+                      //color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                       ),
                 ),
               ),

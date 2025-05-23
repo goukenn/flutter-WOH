@@ -33,7 +33,7 @@ class WOHPopUpPhotoWidget extends StatelessWidget {
           height: MediaQuery.of(context).size.height/4,
           child: Column(
               children: [
-                Text(title, style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 15))),
+                Text(title, style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
                 Spacer(),
                 Divider(color: Colors.black),
                 ClipRRect(

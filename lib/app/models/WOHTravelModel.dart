@@ -5,18 +5,18 @@
 
 import 'dart:convert';
 
-Travels travelsFromJson(String? str) => Travels.fromJson(json.decode(str));
+WOHTravelModel travelsFromJson(String? str) => WOHTravelModel.fromJson(json.decode(str));
 
-String? travelsToJson(Travels data) => json.encode(data.toJson());
+String? travelsToJson(WOHTravelModel data) => json.encode(data.toJson());
 
-class Travels {
+class WOHTravelModel {
   Response response;
 
-  Travels({
+  WOHTravelModel({
     this.response,
   });
 
-  factory Travels.fromJson(Map<String, dynamic> json) => Travels(
+  factory WOHTravelModel.fromJson(Map<String, dynamic> json) => WOHTravelModel(
     response: Response.fromJson(json["response"]),
   );
 

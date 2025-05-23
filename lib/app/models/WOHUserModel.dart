@@ -13,7 +13,7 @@ class WOHUserModel extends WOHModel {
   String? name;
   String? email;
   String? password;
-  WOHMediaModel avatar;
+  WOHMediaModel? avatar;
   String? apiToken;
   String? deviceToken;
   String? phoneNumber;
@@ -24,7 +24,19 @@ class WOHUserModel extends WOHModel {
 
   bool? auth;
 
-  WOHUserModel({this.name, this.email, this.password, this.apiToken, this.deviceToken, this.phoneNumber, this.verifiedPhone, this.verificationId, this.address, this.bio, this.avatar});
+  WOHUserModel({
+    this.name,
+    this.email,
+    this.password,
+    this.apiToken,
+    this.deviceToken,
+    this.phoneNumber,
+    this.verifiedPhone,
+    this.verificationId,
+    this.address,
+    this.bio,
+    this.avatar,
+  });
 
   WOHUserModel.fromJson(Map<String, dynamic> json) {
     name = stringFromJson(json, 'name');
@@ -48,6 +60,7 @@ class WOHUserModel extends WOHModel {
     super.fromJson(json);
   }
 
+@override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
@@ -58,17 +71,17 @@ class WOHUserModel extends WOHModel {
     }
     data['api_token'] = this.apiToken;
     data["device_token"] = deviceToken;
-      data["phone_number"] = phoneNumber;
-    if (verifiedPhone) {
+    data["phone_number"] = phoneNumber;
+    if (verifiedPhone!) {
       data["phone_verified_at"] = DateTime.now().toLocal().toString();
     }
     data["address"] = address;
     data["bio"] = bio;
-    if (WOHUuid.isUuid(avatar.id)) {
-      data['avatar'] = this.avatar.id;
+    if (WOHUuid.isUuid(avatar!.id!)) {
+      data['avatar'] = this.avatar!.id;
     }
-    data["media"] = [avatar.toJson()];
-      data['auth'] = this.auth;
+    data["media"] = [avatar!.toJson()];
+    data['auth'] = this.auth;
     return data;
   }
 
@@ -77,45 +90,62 @@ class WOHUserModel extends WOHModel {
     map["id"] = id;
     map["email"] = email;
     map["name"] = name;
-    map["thumb"] = avatar.thumb;
+    map["thumb"] = avatar!.thumb;
     map["device_token"] = deviceToken;
     return map;
   }
 
   PhoneNumber getPhoneNumber() {
-    this.phoneNumber = this.phoneNumber.replaceAll(' ', '');
-    String? dialCode1 = this.phoneNumber.substring(1, 2);
-    String? dialCode2 = this.phoneNumber.substring(1, 3);
-    String? dialCode3 = this.phoneNumber.substring(1, 4);
-    for (int  i = 0; i < countries.length; i++) {
+    var c = this.phoneNumber!.replaceAll(' ', '');
+    String? dialCode1 = c.substring(1, 2);
+    String? dialCode2 = c.substring(1, 3);
+    String? dialCode3 = c.substring(1, 4);
+    for (int i = 0; i < countries.length; i++) {
       if (countries[i].dialCode == dialCode1) {
-        return new PhoneNumber(countryISOCode: countries[i].code, countryCode: dialCode1, number: this.phoneNumber.substring(2));
+        return new PhoneNumber(
+          countryISOCode: countries[i].code,
+          countryCode: dialCode1,
+          number: c.substring(2),
+        );
       } else if (countries[i].dialCode == dialCode2) {
-        return new PhoneNumber(countryISOCode: countries[i].code, countryCode: dialCode2, number: this.phoneNumber.substring(3));
+        return new PhoneNumber(
+          countryISOCode: countries[i].code,
+          countryCode: dialCode2,
+          number: c.substring(3),
+        );
       } else if (countries[i].dialCode == dialCode3) {
-        return new PhoneNumber(countryISOCode: countries[i].code, countryCode: dialCode3, number: this.phoneNumber.substring(4));
+        return new PhoneNumber(
+          countryISOCode: countries[i].code,
+          countryCode: dialCode3,
+          number: c.substring(4),
+        );
       }
     }
-      return new PhoneNumber(countryISOCode: Get.find<WOHSettingsService>().setting.value.defaultCountryCode, countryCode: '1', number: '');
+    return new PhoneNumber(
+      countryISOCode:
+          Get.find<WOHSettingsService>().setting.value.defaultCountryCode!,
+      countryCode: '1',
+      number: '',
+    );
   }
 
   @override
   bool operator ==(Object other) =>
       super == other &&
-      other is WOHUserModel? &&
+      other is WOHUserModel &&
       runtimeType == other.runtimeType &&
       name == other.name &&
       email == other.email &&
       password == other.password &&
       avatar == other.avatar &&
       apiToken == other.apiToken &&
-          deviceToken == other.deviceToken &&
-          phoneNumber == other.phoneNumber &&
-          verifiedPhone == other.verifiedPhone &&
-          verificationId == other.verificationId &&
-          address == other.address &&
-          bio == other.bio &&
-          auth == other.auth;
+      deviceToken == other.deviceToken &&
+      phoneNumber == other.phoneNumber &&
+      verifiedPhone == other.verifiedPhone &&
+      verificationId == other.verificationId &&
+      address == other.address &&
+      bio == other.bio &&
+      auth == other.auth;
 
   @override
   int get hashCode =>

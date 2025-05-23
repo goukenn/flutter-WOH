@@ -19,7 +19,7 @@ class WOHPhoneVerificationBottomSheetWidget extends GetView<ProfileController> {
         color: Get.theme.primaryColor,
         borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         boxShadow: [
-          BoxShadow(color: Get.theme.focusColor.withOpacity(0.4), blurRadius: 30, offset: Offset(0, -30)),
+          BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.4).toInt()), blurRadius: 30, offset: Offset(0, -30)),
         ],
       ),
       child: Column(
@@ -31,12 +31,12 @@ class WOHPhoneVerificationBottomSheetWidget extends GetView<ProfileController> {
             width: double.infinity,
             padding: EdgeInsets.symmetric(vertical: 13, horizontal: (Get.width / 2) - 30),
             decoration: BoxDecoration(
-              color: Get.theme.focusColor.withOpacity(0.1),
+              color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
               borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
             ),
             child: Container(
               decoration: BoxDecoration(
-                color: Get.theme.focusColor.withOpacity(0.5),
+                color: Get.theme.focusColor.withAlpha((255 * 0.5).toInt()),
                 borderRadius: BorderRadius.circular(3),
               ),
               //child: SizedBox(height: 1,),
@@ -50,7 +50,7 @@ class WOHPhoneVerificationBottomSheetWidget extends GetView<ProfileController> {
           TextFieldWidget(
             labelText: "OTP Code".tr,
             hintText: "- - - - - -".tr,
-            style: Get.textTheme.headline4.merge(TextStyle(letterSpacing: 8)),
+            style: Get.textTheme.headline4!.merge(TextStyle(letterSpacing: 8)),
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
             onChanged: (input) => controller.smsSent.value = input,
@@ -61,7 +61,7 @@ class WOHPhoneVerificationBottomSheetWidget extends GetView<ProfileController> {
             },
             text: Text(
               "Verify".tr,
-              style: Get.textTheme.titleLarge.merge(TextStyle(color: Get.theme.primaryColor)),
+              style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),
             ),
           ).paddingSymmetric(vertical: 30, horizontal: 20),
         ],

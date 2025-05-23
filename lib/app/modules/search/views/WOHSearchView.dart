@@ -76,7 +76,7 @@ class WOHSearchView extends GetView<SearchController> {
         decoration: BoxDecoration(
             color: Get.theme.primaryColor,
             border: Border.all(
-              color: Get.theme.focusColor.withOpacity(0.2),
+              color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
             ),
             borderRadius: BorderRadius.circular(10)),
         child: Row(
@@ -112,7 +112,7 @@ class WOHSearchView extends GetView<SearchController> {
                 padding: const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8)),
-                  color: Get.theme.focusColor.withOpacity(0.1),
+                  color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
                 ),
                 child: Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,

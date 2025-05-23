@@ -18,7 +18,7 @@ import '../../global_widgets/WOHPhoneFieldWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
-class WOHRegisterView extends GetView<AuthController> {
+class WOHRegisterView extends GetView<WOHAuthController> {
   final Setting _settings = Get.find<SettingsService>().setting.value;
   String dropdownvalueGender = 'Select your gender'.tr;
   String dropdownvaluePiece = 'Select an identity piece'.tr;
@@ -67,7 +67,7 @@ class WOHRegisterView extends GetView<AuthController> {
                           image: AssetImage("assets/img/240_F_142999858_7EZ3JksoU3f4zly0MuY3uqoxhKdUwN5u.jpeg")),
                       borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
                       boxShadow: [
-                        BoxShadow(color: Get.theme.focusColor.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 5)),
+                        BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                       ],
                     ),
                     margin: EdgeInsets.only(bottom: 50),
@@ -75,7 +75,7 @@ class WOHRegisterView extends GetView<AuthController> {
                       padding: const EdgeInsets.all(20),
                       child: Text(
                         "\nCréer un compte".tr,
-                        style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
+                        style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -120,9 +120,9 @@ class WOHRegisterView extends GetView<AuthController> {
                               color: Get.theme.primaryColor,
                               borderRadius: BorderRadius.all(Radius.circular(10)),
                               boxShadow: [
-                                BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                                BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                               ],
-                              border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                              border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                           child: IntlPhoneField(
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.all(5),
@@ -247,7 +247,7 @@ class WOHRegisterView extends GetView<AuthController> {
                   width: Get.width,
                   child: BlockButtonWidget(
                     disabled: !controller.accepted.value,
-                    color: controller.accepted.value ? interfaceColor : interfaceColor.withOpacity(0.3),
+                    color: controller.accepted.value ? interfaceColor : interfaceColor.withAlpha((255 * 0.3).toInt()),
                     onPressed: controller.accepted.value ? () async{
 
                       if(WOHConstants.riKey1.currentState.validate()){
@@ -260,7 +260,7 @@ class WOHRegisterView extends GetView<AuthController> {
                     } : null,
                     text: !controller.loading.value?Text(
                       "SOUMETRE".tr,
-                      style: Get.textTheme.headline4.merge(TextStyle(color: Get.theme.primaryColor)),
+                      style: Get.textTheme.headline4!.merge(TextStyle(color: Get.theme.primaryColor)),
                     ): SizedBox(height: 20,
                         child: SpinKitFadingCircle(color: Colors.white, size: 30)), loginPage: false,
                   ).paddingOnly(top: 15, bottom: 5, right: 20, left: 20),

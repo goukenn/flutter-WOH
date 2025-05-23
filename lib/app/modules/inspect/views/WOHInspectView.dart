@@ -7,7 +7,7 @@ import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../controllers/WOHInspectController.dart';
 
-class WOHInspectView extends GetView<InspectController> {
+class WOHInspectView extends GetView<OWHInspectController> {
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class WOHInspectView extends GetView<InspectController> {
                       icon: Container(
                         decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
                           BoxShadow(
-                            color: Get.theme.primaryColor.withOpacity(0.5),
+                            color: Get.theme.primaryColor.withAlpha((255 * 0.5).toInt()),
                             blurRadius: 20,
                           ),
                         ]),

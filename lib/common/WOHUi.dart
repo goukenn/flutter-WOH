@@ -165,7 +165,7 @@ class WOHUi {
       backgroundColor: Get.theme.primaryColor,
       // borderColor: Get.theme.focusColor
       //.withValues(alpha=0.1)
-      // .withOpacity(0.1)
+      // .withAlpha((255 * 0.1).toInt())
       // ,
       icon: Icon(
         Icons.warning_amber_rounded,
@@ -202,7 +202,7 @@ class WOHUi {
       snackPosition: SnackPosition.TOP,
       margin: EdgeInsets.symmetric(horizontal: 10),
       backgroundColor: Get.theme.primaryColor,
-      borderColor: null,// Get.theme.focusColor.withOpacity(0.1),
+      borderColor: null,// Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
       icon: Icon(
         Icons.notifications_none,
         size: 32,
@@ -220,11 +220,11 @@ class WOHUi {
       return Color(
         int.parse(hexCode.replaceAll("#", "0xFF")),
       ).withAlpha(s);
-      // .withOpacity(opacity ?? 1);
+      // .withAlpha((255 * opacity ?? 1).toInt());
     } catch (e) {
       return Color(0xFFCCCCCC)
       .withAlpha(s)
-      // .withOpacity(opacity ?? 1)
+      // .withAlpha((255 * opacity ?? 1).toInt())
       ;
     }
   }
@@ -253,7 +253,7 @@ class WOHUi {
   }) {
     var _setting = Get.find<WOHSettingsService>();
     if (style != null) {
-      style = style.merge(TextStyle(fontSize: style.fontSize! + 2));
+      style = style!.merge(TextStyle(fontSize: style.fontSize! + 2));
     }
     try {
       if (myPrice == 0) {
@@ -309,7 +309,7 @@ class WOHUi {
         ),
       );
     } else {
-      return style.merge(
+      return style!.merge(
         TextStyle(fontWeight: FontWeight.w300, fontSize: style.fontSize! - 4),
       );
     }
@@ -328,7 +328,7 @@ class WOHUi {
         BoxShadow(
           color: Get.theme.focusColor
             .withAlpha((0.1 * 255).toInt())
-          // .withOpacity(0.1)
+          // .withAlpha((255 * 0.1).toInt())
           ,
           blurRadius: 10,
           offset: Offset(0, 5),
@@ -337,7 +337,7 @@ class WOHUi {
       border:
           border ?? Border.all(color: Get.theme.focusColor
           .withAlpha((0.05 * 255).toInt())
-          //.withOpacity(0.05)
+          //.withAlpha((255 * 0.05).toInt())
           ),
       gradient: gradient,
     );
@@ -469,7 +469,7 @@ class WOHUi {
               textAlign: textAlign,
               style: style == null
                   ? Get.textTheme.bodyLarge!.merge(TextStyle(fontSize: 11))
-                  : style.merge(TextStyle(fontSize: 11)),
+                  : style!.merge(TextStyle(fontSize: 11)),
             );
           },
         ),

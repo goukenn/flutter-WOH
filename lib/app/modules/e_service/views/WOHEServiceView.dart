@@ -53,7 +53,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                       icon: Container(
                         decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
                           BoxShadow(
-                            color: Get.theme.primaryColor.withOpacity(0.5),
+                            color: Get.theme.primaryColor.withAlpha((255 * 0.5).toInt()),
                             blurRadius: 20,
                           ),
                         ]),
@@ -66,7 +66,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                         icon: Container(
                           decoration: BoxDecoration(shape: BoxShape.circle, boxShadow: [
                             BoxShadow(
-                              color: Get.theme.primaryColor.withOpacity(0.5),
+                              color: Get.theme.primaryColor.withAlpha((255 * 0.5).toInt()),
                               blurRadius: 20,
                             ),
                           ]),
@@ -167,13 +167,13 @@ class WOHEServiceView extends GetView<EServiceController> {
                                               child: Text(
                                                 _media.name ?? '',
                                                 maxLines: 2,
-                                                style: Get.textTheme.bodyMedium.merge(TextStyle(
+                                                style: Get.textTheme.bodyMedium!.merge(TextStyle(
                                                   color: Get.theme.primaryColor,
                                                   shadows: <Shadow>[
                                                     Shadow(
                                                       offset: Offset(0, 1),
                                                       blurRadius: 6.0,
-                                                      color: Get.theme.hintColor.withOpacity(0.6),
+                                                      color: Get.theme.hintColor.withAlpha((255 * 0.6).toInt()),
                                                     ),
                                                   ],
                                                 )),
@@ -324,7 +324,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
                 ),
-                color: controller.currentSlide.value == _eService.images.indexOf(media) ? Get.theme.hintColor : Get.theme.primaryColor.withOpacity(0.4)),
+                color: controller.currentSlide.value == _eService.images.indexOf(media) ? Get.theme.hintColor : Get.theme.primaryColor.withAlpha((255 * 0.4).toInt())),
           );
         }).toList(),
       ),
@@ -342,7 +342,7 @@ class WOHEServiceView extends GetView<EServiceController> {
               Expanded(
                 child: Text(
                   _eService.name ?? '',
-                  style: Get.textTheme.headline5.merge(TextStyle(height: 1.1)),
+                  style: Get.textTheme.headlineSmall!.merge(TextStyle(height: 1.1)),
                   maxLines: 2,
                   softWrap: true,
                   overflow: TextOverflow.fade,
@@ -352,14 +352,14 @@ class WOHEServiceView extends GetView<EServiceController> {
                 Container(
                   child: Text("  .  .  .  ".tr,
                       maxLines: 1,
-                      style: Get.textTheme.bodyMedium.merge(
+                      style: Get.textTheme.bodyMedium!.merge(
                         TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
                       ),
                       softWrap: false,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.fade),
                   decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.2),
+                    color: Colors.grey.withAlpha((255 * 0.2).toInt()),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -369,14 +369,14 @@ class WOHEServiceView extends GetView<EServiceController> {
                 Container(
                   child: Text("Available".tr,
                       maxLines: 1,
-                      style: Get.textTheme.bodyMedium.merge(
+                      style: Get.textTheme.bodyMedium!.merge(
                         TextStyle(color: Colors.green, height: 1.4, fontSize: 10),
                       ),
                       softWrap: false,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.fade),
                   decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(0.2),
+                    color: Colors.green.withAlpha((255 * 0.2).toInt()),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -386,14 +386,14 @@ class WOHEServiceView extends GetView<EServiceController> {
                 Container(
                   child: Text("Offline".tr,
                       maxLines: 1,
-                      style: Get.textTheme.bodyMedium.merge(
+                      style: Get.textTheme.bodyMedium!.merge(
                         TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
                       ),
                       softWrap: false,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.fade),
                   decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.2),
+                    color: Colors.grey.withAlpha((255 * 0.2).toInt()),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -422,12 +422,12 @@ class WOHEServiceView extends GetView<EServiceController> {
                   if (_eService.getOldPrice > 0)
                     WOHUi.getPrice(
                       _eService.getOldPrice,
-                      style: Get.textTheme.titleLarge.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
+                      style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
                       unit: _eService.getUnit,
                     ),
                   WOHUi.getPrice(
                     _eService.getPrice,
-                    style: Get.textTheme.headline3.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
+                    style: Get.textTheme.headline3!.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
                     unit: _eService.getUnit,
                   ),
                 ],
@@ -450,11 +450,11 @@ class WOHEServiceView extends GetView<EServiceController> {
               var _category = _eService.categories.elementAt(index);
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                child: Text(_category.name, style: Get.textTheme.bodyLarge.merge(TextStyle(color: _category.color))),
+                child: Text(_category.name, style: Get.textTheme.bodyLarge!.merge(TextStyle(color: _category.color))),
                 decoration: BoxDecoration(
-                    color: _category.color.withOpacity(0.2),
+                    color: _category.color.withAlpha((255 * 0.2).toInt()),
                     border: Border.all(
-                      color: _category.color.withOpacity(0.1),
+                      color: _category.color.withAlpha((255 * 0.1).toInt()),
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
               );
@@ -466,7 +466,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                 decoration: BoxDecoration(
                     color: Get.theme.primaryColor,
                     border: Border.all(
-                      color: Get.theme.focusColor.withOpacity(0.2),
+                      color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
               );
@@ -506,7 +506,7 @@ class WOHEServiceView extends GetView<EServiceController> {
           color: Get.theme.primaryColor,
           borderRadius: BorderRadius.all(Radius.circular(20)),
           boxShadow: [
-            BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, -5)),
+            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, -5)),
           ],
         ),
         child: Row(
@@ -514,7 +514,7 @@ class WOHEServiceView extends GetView<EServiceController> {
             if (_eService.priceUnit == 'fixed')
               Container(
                 decoration: BoxDecoration(
-                  color: Get.theme.colorScheme.secondary.withOpacity(0.2),
+                  color: Get.theme.colorScheme.secondary.withAlpha((255 * 0.2).toInt()),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -536,7 +536,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                         return Text(
                           controller.quantity.toString(),
                           textAlign: TextAlign.center,
-                          style: Get.textTheme.bodySmall.merge(
+                          style: Get.textTheme.bodySmall!.merge(
                             TextStyle(color: Get.theme.colorScheme.secondary),
                           ),
                         );
@@ -564,7 +564,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                     child: Text(
                       "Book This Service".tr,
                       textAlign: TextAlign.center,
-                      style: Get.textTheme.titleLarge.merge(
+                      style: Get.textTheme.titleLarge!.merge(
                         TextStyle(color: Get.theme.primaryColor),
                       ),
                     ),

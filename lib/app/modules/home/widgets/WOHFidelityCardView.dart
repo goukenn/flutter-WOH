@@ -7,11 +7,12 @@ import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../../WOHColorConstants.dart';
+import '../../../../WOHColorConstants.dart' as WOHPalette;
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
 import 'dart:io' as plateform;
 import '../controllers/WOHHomeController.dart';
 
-class WOHFidelityCardView extends GetWidget<HomeController> {
+class WOHFidelityCardView extends GetWidget<WOHHomeController> {
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class WOHFidelityCardView extends GetWidget<HomeController> {
                 topRight: Radius.circular(32.0)),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                  color: inactive.withOpacity(0.2),
+                  color: inactive.withAlpha((255 * 0.2).toInt()),
                   offset: const Offset(1.1, 1.1),
                   blurRadius: 10.0),
             ]
@@ -67,7 +68,9 @@ class WOHFidelityCardView extends GetWidget<HomeController> {
                                         style: TextStyle(fontSize: 18,
                                             letterSpacing: 1,
                                             color: Colors.grey
-                                                .withOpacity(0.8))),
+                                            .withAlpha(204)
+                                                // .withAlpha((255 * 0.8).toInt()))
+                                                ),
                                     TextSpan(text: "\n ${controller.clientPoint.value}",style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 40,

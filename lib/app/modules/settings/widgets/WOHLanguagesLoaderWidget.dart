@@ -24,8 +24,8 @@ class WOHLanguagesLoaderWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       decoration: WOHUi.getBoxDecoration(),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey.withOpacity(0.1),
-        highlightColor: Colors.grey[200].withOpacity(0.1),
+        baseColor: Colors.grey.withAlpha((255 * 0.1).toInt()),
+        highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(

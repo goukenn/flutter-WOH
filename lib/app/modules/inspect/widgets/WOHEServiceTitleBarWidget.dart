@@ -21,7 +21,7 @@ class WOHEServiceTitleBarWidget extends StatelessWidget implements PreferredSize
         color: Get.theme.scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
-          BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+          BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
         ],
       ),
       child: title,

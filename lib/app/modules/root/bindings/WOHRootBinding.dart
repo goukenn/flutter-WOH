@@ -14,7 +14,7 @@ class WOHRootBinding extends Bindings {
     Get.lazyPut<WOHRootController>(
       () => WOHRootController(),
     );
-    Get.put(HomeController(), permanent: true);
+    Get.put(WOHHomeController(), permanent: true);
     Get.put(WOHBookingsController(), permanent: true);
     Get.lazyPut<WOHBookingsController>(
       () => WOHBookingsController(),

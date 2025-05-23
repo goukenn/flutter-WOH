@@ -22,8 +22,8 @@ class WOHServicesEmptyListWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   gradient: LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
-                    Colors.grey.withOpacity(0.6),
-                    Colors.grey.withOpacity(0.2),
+                    Colors.grey.withAlpha((255 * 0.6).toInt()),
+                    Colors.grey.withAlpha((255 * 0.2).toInt()),
                   ])),
               child: Icon(
                 Icons.folder_special_outlined,
@@ -38,7 +38,7 @@ class WOHServicesEmptyListWidget extends StatelessWidget {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.15),
+                  color: Theme.of(context).scaffoldBackgroundColor.withAlpha((255 * 0.15).toInt()),
                   borderRadius: BorderRadius.circular(150),
                 ),
               ),
@@ -50,7 +50,7 @@ class WOHServicesEmptyListWidget extends StatelessWidget {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.15),
+                  color: Theme.of(context).scaffoldBackgroundColor.withAlpha((255 * 0.15).toInt()),
                   borderRadius: BorderRadius.circular(150),
                 ),
               ),

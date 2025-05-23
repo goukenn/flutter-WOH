@@ -48,7 +48,7 @@ class WOHAccountView extends GetView<AccountController> {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Get.theme.focusColor.withOpacity(0.2),
+                          color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                           blurRadius: 10,
                           offset: Offset(0, 5),
                         ),
@@ -59,7 +59,7 @@ class WOHAccountView extends GetView<AccountController> {
                       padding: const EdgeInsets.all(20),
                       child: Text(
                         "\nMon Profile".tr,
-                        style: Get.textTheme.displayMedium.merge(
+                        style: Get.textTheme.displayMedium!.merge(
                           TextStyle(
                             fontSize: 20,
                             color: Get.theme.primaryColor,
@@ -201,7 +201,7 @@ class WOHAccountView extends GetView<AccountController> {
                     : WOHEServiceTilWidget(
                         title: Text(
                           "Mes Information",
-                          style: Get.textTheme.bodySmall.merge(
+                          style: Get.textTheme.bodySmall!.merge(
                             TextStyle(fontSize: 16, color: Colors.black),
                           ),
                         ),
@@ -307,7 +307,7 @@ class WOHAccountView extends GetView<AccountController> {
                                   }, //luggageSelected
                                   title: Text(
                                     "Enable Notifications on this device",
-                                    style: Get.textTheme.displayMedium.merge(
+                                    style: Get.textTheme.displayMedium!.merge(
                                       TextStyle(fontSize: 12),
                                     ),
                                   ),

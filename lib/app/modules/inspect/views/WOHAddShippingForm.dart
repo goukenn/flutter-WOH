@@ -17,14 +17,14 @@ import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../userBookings/widgets/WOHBookingsListLoaderWidget.dart';
 import '../controllers/WOHInspectController.dart';
 
-class WOHAddShippingForm extends GetView<InspectController> {
+class WOHAddShippingForm extends GetView<OWHInspectController> {
 
   List bookings = [];
 
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut(() => AuthController());
+    Get.lazyPut(() => WOHAuthController());
 
     return Scaffold(
       //Get.theme.colorScheme.secondary,
@@ -57,7 +57,7 @@ class WOHAddShippingForm extends GetView<InspectController> {
                     controller.showButton.value = false,
                     controller.formStep.value--
                   },
-                  icon: Icon(Icons.arrow_circle_left, color: Get.find<AuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor, size: 35),
+                  icon: Icon(Icons.arrow_circle_left, color: Get.find<WOHAuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor, size: 35),
                 ),
                 Spacer(),
                 BlockButtonWidget(
@@ -82,7 +82,7 @@ class WOHAddShippingForm extends GetView<InspectController> {
                       child: Text(
                         controller.editAppointment.value ? "TRANSFERER" : "SOUMETRE",
                         textAlign: TextAlign.center,
-                        style: Get.textTheme.headline5.merge(TextStyle(color: Get.theme.primaryColor)),
+                        style: Get.textTheme.headlineSmall.merge(TextStyle(color: Get.theme.primaryColor)),
                       )
                   ) : SizedBox(height: 20,
                       child: SpinKitFadingCircle(color: Colors.white, size: 20)), loginPage: false,
@@ -141,14 +141,14 @@ class WOHAddShippingForm extends GetView<InspectController> {
                 children: [
                   if(controller.formStep.value != 0)
                     ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: Get.find<AuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor),
+                      style: ElevatedButton.styleFrom(backgroundColor: Get.find<WOHAuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor),
                       onPressed: controls.onStepCancel,
                       child: Text('Retour'),
                     ),
                   Spacer(),
                   if(!controller.showButton.value)
                     ElevatedButton(
-                      style: ElevatedButton.styleFrom(backgroundColor: Get.find<AuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor),
+                      style: ElevatedButton.styleFrom(backgroundColor: Get.find<WOHAuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor),
                       onPressed: controls.onStepContinue,
                       child:  Text('Continuer'),
                     ),
@@ -305,7 +305,7 @@ class WOHAddShippingForm extends GetView<InspectController> {
           "Choix de WOHCategoryModel",
           style: TextStyle(
               fontSize: 14.0,
-              color: Get.find<AuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor,
+              color: Get.find<WOHAuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor,
               fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 20),
@@ -647,7 +647,7 @@ class WOHAddShippingForm extends GetView<InspectController> {
                     }
                     if (!controller.workingDays.contains(day.weekday)) {
                       return Container(
-                        color: Colors.grey.withOpacity(0.2),
+                        color: Colors.grey.withAlpha((255 * 0.2).toInt()),
                       );
                     } else {
                       return Center(
@@ -683,7 +683,7 @@ class WOHAddShippingForm extends GetView<InspectController> {
         Text(
           "Choix de l'heure",
           style: TextStyle(
-            color: Get.find<AuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor,
+            color: Get.find<WOHAuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor,
               fontSize: 14.0, fontWeight: FontWeight.bold),
         ),
         SizedBox(height: 20),
@@ -733,7 +733,7 @@ class WOHAddShippingForm extends GetView<InspectController> {
                                 height: 30,
                                 decoration: BoxDecoration(
                                     color: !condition ? controller.selectedTime.contains(controller.getTimeStringFromDouble(controller.appointTime[index]))
-                                        ? Get.find<AuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor : appBarColor : inactive,
+                                        ? Get.find<WOHAuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor : appBarColor : inactive,
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10.0)
                                     )
@@ -841,7 +841,7 @@ class WOHAddShippingForm extends GetView<InspectController> {
                   style: TextStyle(
                       fontSize: priceSize,
                       fontWeight: FontWeight.bold,
-                      color: Get.find<AuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor
+                      color: Get.find<WOHAuthController>().isEmployee.value ? employeeInterfaceColor : interfaceColor
                   ),
                 ),
               ],

@@ -45,10 +45,10 @@ class WOHDrawerLinkWidget extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 12),
               width: 1,
               height: 24,
-              color: Get.theme.focusColor.withOpacity(0.2),
+              color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
             ),
             Expanded(
-              child: Text(text.tr, style: Get.textTheme.bodyMedium.merge(TextStyle(fontSize: 14, color: !special ? buttonColor : specialColor))),
+              child: Text(text.tr, style: Get.textTheme.bodyMedium!.merge(TextStyle(fontSize: 14, color: !special ? buttonColor : specialColor))),
             ),
           ],
         ),

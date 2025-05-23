@@ -14,8 +14,8 @@ class WOHBookingsListLoaderWidget extends StatelessWidget {
         itemCount: 10,
         itemBuilder: (_, index) {
           return Shimmer.fromColors(
-            baseColor: Colors.grey.withOpacity(0.1),
-            highlightColor: Colors.grey[200].withOpacity(0.1),
+            baseColor: Colors.grey.withAlpha((255 * 0.1).toInt()),
+            highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
             child: Container(
               width: double.maxFinite,
               height: 180,

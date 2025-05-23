@@ -45,7 +45,7 @@ class WOHCardWidget extends StatelessWidget {
         child: Card(
             color: Colors.white,
             shape: RoundedRectangleBorder(
-              //side: BorderSide(color: interfaceColor.withOpacity(0.4), width: 2),
+              //side: BorderSide(color: interfaceColor.withAlpha((255 * 0.4).toInt()), width: 2),
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
             child: Container(
@@ -60,11 +60,11 @@ class WOHCardWidget extends StatelessWidget {
                       SizedBox(width: 10),
                       Expanded(
                           child: Text(code, overflow: TextOverflow.ellipsis,style: Get.textTheme.displayLarge.
-                          merge(TextStyle(color: appColor, fontSize: 12))
+                         !.merge(TextStyle(color: appColor, fontSize: 12))
                           )
                       ),
                       Text("${DateFormat("dd MMM yyyy, HH:mm").format(DateTime.parse(shippingDateStart))} - ${DateFormat(" HH:mm").format(DateTime.parse(shippingDateEnd))}",
-                          style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: Colors.black))),
+                          style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 12, color: Colors.black))),
                       SizedBox(width: 20)
                     ]
                   ),
@@ -136,7 +136,7 @@ class WOHCardWidget extends StatelessWidget {
                             ),
                             TextButton(
                                 onPressed: onTap,
-                                child: Text("Voir plus", style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.blueAccent)))
+                                child: Text("Voir plus", style: Get.textTheme.displayMedium!.merge(TextStyle(color: Colors.blueAccent)))
                             ),
                             SizedBox(width: 10)
                           ]

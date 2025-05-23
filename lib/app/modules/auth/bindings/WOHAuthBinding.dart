@@ -8,8 +8,8 @@ import '../controllers/WOHAuthController.dart';
 class WOHAuthBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<AuthController>(
-      () => AuthController(),
+    Get.lazyPut<WOHAuthController>(
+      () => WOHAuthController(),
     );
     Get.lazyPut<MyAuthService>(
           () => MyAuthService(),

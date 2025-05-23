@@ -10,17 +10,17 @@ import '../../../../WOHColorConstants.dart';
 import '../../../../main.dart';
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../fidelisation/controller/WOHValidationController.dart';
-import '../../fidelisation/views/WOHAttributePoints.dart';
+import '../../fidelisation/views/WOHAttributePointsView.dart';
 import '../../global_widgets/main_drawer_widget.dart';
 import '../../global_widgets/WOHNotificationsButtonWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../../userBookings/views/WOHBookingsView.dart';
-import '../../userBookings/views/WOHFacturation.dart';
-import '../../userBookings/views/WOHInterfacePOS.dart';
+import '../../userBookings/views/WOHFacturationView.dart';
+import '../../userBookings/views/WOHInterfacePOSView.dart';
 import '../controllers/WOHHomeController.dart';
 
-class WOHEmployeeHome extends GetView<WOHHomeController> {
+class WOHEmployeeHomeView extends GetView<WOHHomeController> {
   @override
   Widget build(BuildContext context) {
 
@@ -97,9 +97,9 @@ class WOHEmployeeHome extends GetView<WOHHomeController> {
                     height: Get.height,
                     width: Get.width,
                     child: Obx(() => controller.currentPage.value == 0 ? build_dashboardView(context)
-                        : controller.currentPage.value == 1 ? BookingsView()
-                        : controller.currentPage.value == 2 ? EmployeeReceipt()
-                        : controller.currentPage.value == 3 ? InterfacePOSView()
+                        : controller.currentPage.value == 1 ? WOHBookingsView()
+                        : controller.currentPage.value == 2 ? WOHEmployeeReceipt()
+                        : controller.currentPage.value == 3 ? WOHInterfacePOSView()
                         : AttributionView()
                     ),
                   );

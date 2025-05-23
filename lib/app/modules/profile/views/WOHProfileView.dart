@@ -49,7 +49,7 @@ class WOHProfileView extends GetView<ProfileController> {
             color: Get.theme.primaryColor,
             borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             boxShadow: [
-              BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, -5)),
+              BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, -5)),
             ],
           ),
           child: Obx(() => MaterialButton(
@@ -67,7 +67,7 @@ class WOHProfileView extends GetView<ProfileController> {
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             color: Get.theme.colorScheme.secondary,
-            child: !controller.buttonPressed.value ? Text("Update".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.primaryColor)))
+            child: !controller.buttonPressed.value ? Text("Update".tr, style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.primaryColor)))
                 : SizedBox(height: 10,
                 child: SpinKitThreeBounce(color: Colors.white, size: 20)),
             elevation: 0,
@@ -116,9 +116,9 @@ class WOHProfileView extends GetView<ProfileController> {
                               color: Get.theme.primaryColor,
                               borderRadius: BorderRadius.all(Radius.circular(10)),
                               boxShadow: [
-                                BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                                BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                               ],
-                              border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                              border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -178,9 +178,9 @@ class WOHProfileView extends GetView<ProfileController> {
                               color: Get.theme.primaryColor,
                               borderRadius: BorderRadius.all(Radius.circular(10)),
                               boxShadow: [
-                                BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                                BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                               ],
-                              border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                              border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -231,9 +231,9 @@ class WOHProfileView extends GetView<ProfileController> {
                           color: Get.theme.primaryColor,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           boxShadow: [
-                            BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                           ],
-                          border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                          border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
@@ -260,7 +260,7 @@ class WOHProfileView extends GetView<ProfileController> {
                                         EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
                                       ),
                                       //initialValue: controller.travelCard.isEmpty || controller.townEdit.value ? controller.departureTown.value : controller.travelCard['departure_town'],
-                                      style: Get.textTheme.displayLarge.merge(TextStyle(color: Colors.black, fontSize: 16)),
+                                      style: Get.textTheme.displayLarge!.merge(TextStyle(color: Colors.black, fontSize: 16)),
                                       onChanged: (value)=>{
                                         if(value.length > 2){
                                           controller.predict1.value = true,
@@ -307,9 +307,9 @@ class WOHProfileView extends GetView<ProfileController> {
                           color: Get.theme.primaryColor,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           boxShadow: [
-                            BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                           ],
-                          border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                          border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
@@ -336,7 +336,7 @@ class WOHProfileView extends GetView<ProfileController> {
                                         EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
                                       ),
                                       //initialValue: controller.travelCard.isEmpty || controller.townEdit.value ? controller.departureTown.value : controller.travelCard['departure_town'],
-                                      style: Get.textTheme.displayLarge.merge(TextStyle(color: Colors.black, fontSize: 16)),
+                                      style: Get.textTheme.displayLarge!.merge(TextStyle(color: Colors.black, fontSize: 16)),
                                       onChanged: (value)=>{
                                         if(value.length > 2){
                                           controller.predict2.value = true,
@@ -382,9 +382,9 @@ class WOHProfileView extends GetView<ProfileController> {
                             color: Get.theme.primaryColor,
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             boxShadow: [
-                              BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                              BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                             ],
-                            border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                            border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                         child: DropdownButtonHideUnderline(
 
                           child: DropdownButtonFormField(
@@ -431,7 +431,7 @@ class WOHProfileView extends GetView<ProfileController> {
 
 
               //
-              // Text("Change password".tr, style: Get.textTheme.headline5).paddingOnly(top: 25, bottom: 0, right: 22, left: 22),
+              // Text("Change password".tr, style: Get.textTheme.headlineSmall).paddingOnly(top: 25, bottom: 0, right: 22, left: 22),
               // Text("Fill your old password and type new password and confirm it".tr, style: Get.textTheme.labelSmall).paddingSymmetric(horizontal: 22, vertical: 5),
               // Obx(() {
               //   return TextFieldWidget(

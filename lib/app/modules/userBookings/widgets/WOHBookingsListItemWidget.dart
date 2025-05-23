@@ -144,7 +144,7 @@ class WOHBookingsListItemWidget extends GetView<WOHBookingsController> {
                                               height: 50,
                                               decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                                                color: employeeInterfaceColor.withOpacity(0.3),
+                                                color: employeeInterfaceColor.withAlpha((255 * 0.3).toInt()),
                                               ),
                                               padding: EdgeInsets.all(5),
                                               child: Center(

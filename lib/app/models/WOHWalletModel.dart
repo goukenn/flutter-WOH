@@ -33,7 +33,7 @@ class WOHWalletModel extends WOHModel {
   }
 
   String getId() {
-    if (WOHUuid.isUuid(id)) {
+    if (WOHUuid.isUuid(id!)) {
       var x = ''+id!;
       return x.substring(0, 3) + ' . . . ' + x.substring(x.length - 5, x.length);
     } else {

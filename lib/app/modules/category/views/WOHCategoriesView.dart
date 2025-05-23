@@ -44,7 +44,7 @@ class WOHCategoriesView extends GetView<CategoriesController> {
                       "Categories of services".tr,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ),
                   Row(

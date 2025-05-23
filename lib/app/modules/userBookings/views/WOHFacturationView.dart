@@ -9,7 +9,7 @@ import '../../../../common/WOHUi.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../widgets/WOHBookingsListLoaderWidget.dart';
 
-class WOHFacturation extends GetView<WOHBookingsController> {
+class WOHFacturationView extends GetView<WOHBookingsController> {
 
   @override
   Widget build(BuildContext context) {
@@ -112,8 +112,8 @@ class WOHFacturation extends GetView<WOHBookingsController> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     SizedBox(height: MediaQuery.of(context).size.height/4),
-                                    FaIcon(FontAwesomeIcons.folderOpen, color: inactive.withOpacity(0.3),size: 80),
-                                    Text('Aucun rendez-vous trouvé', style: Get.textTheme.headline5.merge(TextStyle(color: inactive.withOpacity(0.3)))),
+                                    FaIcon(FontAwesomeIcons.folderOpen, color: inactive.withAlpha((255 * 0.3).toInt()),size: 80),
+                                    Text('Aucun rendez-vous trouvé', style: Get.textTheme.headlineSmall.merge(TextStyle(color: inactive.withAlpha((255 * 0.3).toInt())))),
                                   ]
                               )
                           )

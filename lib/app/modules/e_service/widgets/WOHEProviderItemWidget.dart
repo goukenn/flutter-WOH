@@ -49,7 +49,7 @@ class WOHEProviderItemWidget extends StatelessWidget {
                     overflow: TextOverflow.fade,
                     softWrap: false,
                     maxLines: 2,
-                    style: Theme.of(context).textTheme.bodyMedium.merge(TextStyle(color: Theme.of(context).hintColor)),
+                    style: Theme.of(context).textTheme.bodyMedium!.merge(TextStyle(color: Theme.of(context).hintColor)),
                   ),
                   SizedBox(height: 5),
                   WOHUi.removeHtml(
@@ -66,7 +66,7 @@ class WOHEProviderItemWidget extends StatelessWidget {
                 label: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(provider.rate.toString(), style: Theme.of(context).textTheme.bodyLarge.merge(TextStyle(color: Theme.of(context).primaryColor))),
+                    Text(provider.rate.toString(), style: Theme.of(context).textTheme.bodyLarge!.merge(TextStyle(color: Theme.of(context).primaryColor))),
                     Icon(
                       Icons.star_border,
                       color: Theme.of(context).primaryColor,
@@ -74,7 +74,7 @@ class WOHEProviderItemWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                backgroundColor: Get.theme.colorScheme.secondary.withOpacity(0.9),
+                backgroundColor: Get.theme.colorScheme.secondary.withAlpha((255 * 0.9).toInt()),
                 shape: StadiumBorder(),
               ),
             ),

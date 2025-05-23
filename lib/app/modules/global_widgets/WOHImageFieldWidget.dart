@@ -98,9 +98,9 @@ class ImageFieldWidget extends StatelessWidget {
           color: Get.theme.primaryColor,
           borderRadius: BorderRadius.all(Radius.circular(10)),
           boxShadow: [
-            BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
           ],
-          border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+          border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -124,7 +124,7 @@ class ImageFieldWidget extends StatelessWidget {
                   reset(controller.uuid);
                 },
                 shape: StadiumBorder(),
-                color: Get.theme.focusColor.withOpacity(0.1),
+                color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
                 child: Text(buttonText ?? "Reset".tr, style: Get.textTheme.bodyLarge),
                 elevation: 0,
                 hoverElevation: 0,
@@ -204,8 +204,8 @@ class ImageFieldWidget extends StatelessWidget {
                   width: 100,
                   height: 100,
                   alignment: Alignment.center,
-                  decoration: BoxDecoration(color: Get.theme.focusColor.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
-                  child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withOpacity(0.4)),
+                  decoration: BoxDecoration(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), borderRadius: BorderRadius.circular(10)),
+                  child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withAlpha((255 * 0.4).toInt())),
                 ),
               );
           }),

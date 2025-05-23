@@ -9,7 +9,7 @@ import '../../home/controllers/WOHHomeController.dart';
 import '../controller/WOHValidationController.dart';
 import 'WOHNumPad.dart';
 
-class WOHAttributePoints extends GetView<ValidationController> {
+class WOHAttributePointsView extends GetView<WOHValidationController> {
 
   List bookings = [];
   String barcode = "";
@@ -17,7 +17,7 @@ class WOHAttributePoints extends GetView<ValidationController> {
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut(()=>HomeController());
+    Get.lazyPut(()=>WOHHomeController());
 
     return Scaffold(
         backgroundColor: Get.theme.colorScheme.secondary,
@@ -65,7 +65,7 @@ class WOHAttributePoints extends GetView<ValidationController> {
                         showCursor: false,
                         decoration: InputDecoration(
                             filled: true,
-                            fillColor: controller.noValue.value ? specialColor.withOpacity(0.2) : WOHPalette.background
+                            fillColor: controller.noValue.value ? specialColor.withAlpha((255 * 0.2).toInt()) : WOHPalette.background
                         ),
                         style: const TextStyle(fontSize: 40),
                         keyboardType: TextInputType.none,

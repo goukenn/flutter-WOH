@@ -209,8 +209,8 @@ class WOHBookingsController extends GetxController {
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),
     );
-    Get.lazyPut<InspectController>(
-          () => InspectController(),
+    Get.lazyPut<OWHInspectController>(
+          () => OWHInspectController(),
     );
   }
 
@@ -232,8 +232,8 @@ class WOHBookingsController extends GetxController {
   initValues()async{
     isLoading.value = true;
     loadingAppointments.value = true;
-    Get.lazyPut<AuthController>(
-          () => AuthController(),
+    Get.lazyPut<WOHAuthController>(
+          () => WOHAuthController(),
     );
     var data = await getCategories();
     allCategories.value = data;
@@ -242,7 +242,7 @@ class WOHBookingsController extends GetxController {
     userDto.value = userdata;
     print(userDto);
 
-    if(Get.find<AuthController>().isEmployee.value){
+    if(Get.find<WOHAuthController>().isEmployee.value){
       getAppointments(userDto['appointment_ids']);
     }else{
       await getCurrentUser(userDto['partner_id']);
@@ -254,10 +254,10 @@ class WOHBookingsController extends GetxController {
   }
 
   refreshEmployeeBookings()async{
-    Get.lazyPut(() => HomeController());
+    Get.lazyPut(() => WOHHomeController());
     final box = GetStorage();
     final userdata = box.read('userData');
-    var value = await Get.find<HomeController>().getEmployeeData(userdata['id']);
+    var value = await Get.find<WOHHomeController>().getEmployeeData(userdata['id']);
 
     await getAppointments(value['appointment_ids']);
   }
@@ -529,7 +529,7 @@ class WOHBookingsController extends GetxController {
                                                     )
                                                 ),
                                                 SizedBox(height: 10),
-                                                Text(resources[item]["display_name"], style: Get.textTheme.headline4.merge(TextStyle(color: selectedResource.contains(resources[item]) ?
+                                                Text(resources[item]["display_name"], style: Get.textTheme.headline4!.merge(TextStyle(color: selectedResource.contains(resources[item]) ?
                                                 employeeInterfaceColor : Colors.black))
                                                 ),
                                                 SizedBox(height: 10)
@@ -583,9 +583,9 @@ class WOHBookingsController extends GetxController {
                               data.remove(a);
                             }
                           }
-                          Get.lazyPut(() => InspectController());
-                          Get.find<InspectController>().updateAppointment(selectedAppointment, data);
-                          Get.find<InspectController>().editAppointment.value = true;
+                          Get.lazyPut(() => OWHInspectController());
+                          Get.find<OWHInspectController>().updateAppointment(selectedAppointment, data);
+                          Get.find<OWHInspectController>().editAppointment.value = true;
                           Get.toNamed(WOHRoutes.ADD_SHIPPING_FORM);
                         },
                         child: Container(
@@ -704,7 +704,7 @@ class WOHBookingsController extends GetxController {
     if(link.toString() != "false"){
       ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
         content: Text(link.toString()),
-        backgroundColor: validateColor.withOpacity(0.4),
+        backgroundColor: validateColor.withAlpha((255 * 0.4).toInt()),
         margin: EdgeInsets.only(
             bottom: Get.height - 160,
             left: 10,
@@ -725,7 +725,7 @@ class WOHBookingsController extends GetxController {
             left: 10,
             right: 10),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: specialColor.withOpacity(0.4),
+        backgroundColor: specialColor.withAlpha((255 * 0.4).toInt()),
         duration: Duration(seconds: 2),
       ));
     }
@@ -755,8 +755,8 @@ class WOHBookingsController extends GetxController {
       List sample = [];
       double total = 0.0;
       for(var i=0; i < list.length; i++){
-        print("${list[i]['invoice_user_id'][1]} and ${Get.find<AuthController>().currentUser['user_id'][1]}");
-        if(list[i]['invoice_user_id'][0] == Get.find<AuthController>().currentUser['user_id'][0] && list[i]['payment_state'] == "paid"){
+        print("${list[i]['invoice_user_id'][1]} and ${Get.find<WOHAuthController>().currentUser['user_id'][1]}");
+        if(list[i]['invoice_user_id'][0] == Get.find<WOHAuthController>().currentUser['user_id'][0] && list[i]['payment_state'] == "paid"){
 
           sample.add(list[i]);
           total += list[i]['amount_total'];
@@ -901,14 +901,14 @@ class WOHBookingsController extends GetxController {
                       child: Text("Traiter le rendez-vous"),
                       onPressed: ()=>{
 
-                        Get.lazyPut(() => HomeController()),
+                        Get.lazyPut(() => WOHHomeController()),
 
                         Navigator.pop(Get.context),
 
                         selectedAppointment.value = appointment,
                         getAppointmentOrder(appointment["order_id"][0]),
                         refreshBookings(),
-                        Get.find<HomeController>().currentPage.value = 3
+                        Get.find<WOHHomeController>().currentPage.value = 3
 
                       },
                     )
@@ -1340,7 +1340,7 @@ class WOHBookingsController extends GetxController {
                                         children: [
                                           Text(bonus[index]['discount_management'].toString().toUpperCase(), style: Get.textTheme.displayMedium),
                                           Text(bonus[index]['list_price'].abs().toInt().toString(), style: Get.textTheme.displayMedium.
-                                          merge(TextStyle(fontSize: 100, color: bonusList.contains(bonus[index]) ? interfaceColor : Colors.black))
+                                         !.merge(TextStyle(fontSize: 100, color: bonusList.contains(bonus[index]) ? interfaceColor : Colors.black))
                                           )
                                         ]
                                     )
@@ -1611,7 +1611,7 @@ class WOHBookingsController extends GetxController {
                                     ),
                                     child: Center(
                                         child: Text(remise[index]['list_price'].toInt().toString()+ " €", style: Get.textTheme.headline4.
-                                        merge(TextStyle(fontSize: 30, color: remiseList.contains(remise[index]) ? interfaceColor : Colors.black))
+                                       !.merge(TextStyle(fontSize: 30, color: remiseList.contains(remise[index]) ? interfaceColor : Colors.black))
                                         )
                                     )
                                 )

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../home/controllers/WOHHomeController.dart';
 
 class WOHSearchBarWidget extends StatelessWidget {
-  final controller = Get.find<HomeController>();
+  final controller = Get.find<WOHHomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class WOHSearchBarWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: Get.theme.primaryColor,
           border: Border.all(
-            color: Get.theme.focusColor.withOpacity(0.2),
+            color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
           ),
           borderRadius: BorderRadius.circular(10)),
       child: Row(
@@ -41,7 +41,7 @@ class WOHSearchBarWidget extends StatelessWidget {
               padding: const EdgeInsets.only(right: 10, left: 10, top: 6, bottom: 6),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(6)),
-                color: Get.theme.focusColor.withOpacity(0.1),
+                color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
               ),
               child: Wrap(
                 crossAxisAlignment: WrapCrossAlignment.center,

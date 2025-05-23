@@ -14,13 +14,13 @@ import '../../global_widgets/WOHNotificationsButtonWidget.dart';
 import '../../global_widgets/WOHPopUpWidget.dart';
 import '../controllers/WOHHomeController.dart';
 
-class WOHHome2View extends GetView<HomeController> {
+class WOHHome2View extends GetView<WOHHomeController> {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<MyAuthService>(
           () => MyAuthService(),
     );
-    Get.lazyPut(() => ValidationController());
+    Get.lazyPut(() => WOHValidationController());
 
     return Scaffold(
         backgroundColor: background,
@@ -31,7 +31,7 @@ class WOHHome2View extends GetView<HomeController> {
         ),
         title: Text(
                WOHConstants.AppName,
-               style: Get.textTheme.titleLarge.merge(TextStyle(color: Colors.white)),
+               style: Get.textTheme.titleLarge!.merge(TextStyle(color: Colors.white)),
              ),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -70,7 +70,7 @@ class WOHHome2View extends GetView<HomeController> {
       ),
         /*floatingActionButton: InkWell(
             onTap: ()=>{
-              Get.find<ValidationController>().scan()
+              Get.find<WOHValidationController>().scan()
             },
             child: Container(
                 width: 100,
@@ -132,7 +132,7 @@ class WOHHome2View extends GetView<HomeController> {
                                                     boxShadow: <BoxShadow>[
                                                       BoxShadow(
                                                         color: Colors.grey
-                                                            .withOpacity(0.6),
+                                                            .withAlpha((255 * 0.6).toInt()),
                                                         offset:
                                                         const Offset(4, 4),
                                                         blurRadius: 16,
@@ -182,7 +182,7 @@ class WOHHome2View extends GetView<HomeController> {
                                               color: Colors.transparent,
                                               child: InkWell(
                                                 splashColor: Colors.grey
-                                                    .withOpacity(0.2),
+                                                    .withAlpha((255 * 0.2).toInt()),
                                                 borderRadius:
                                                 const BorderRadius.all(
                                                     Radius.circular(4.0)),

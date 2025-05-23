@@ -17,7 +17,7 @@ class WOHButtonAllTravelsWidget extends StatelessWidget implements PreferredSize
           decoration: BoxDecoration(
               color: interfaceColor,
               border: Border.all(
-                color: Get.theme.focusColor.withOpacity(0.2),
+                color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
               ),
               boxShadow: [
                 BoxShadow(
@@ -39,7 +39,7 @@ class WOHButtonAllTravelsWidget extends StatelessWidget implements PreferredSize
                 maxLines: 1,
                 softWrap: false,
                 overflow: TextOverflow.fade,
-                style: Get.textTheme.headline4.merge(TextStyle(color: Colors.white)),
+                style: Get.textTheme.headline4!.merge(TextStyle(color: Colors.white)),
               ),
             ],
           )

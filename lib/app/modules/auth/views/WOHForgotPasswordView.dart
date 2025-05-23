@@ -10,7 +10,7 @@ import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
-class WOHForgotPasswordView extends GetView<AuthController> {
+class WOHForgotPasswordView extends GetView<WOHAuthController> {
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class WOHForgotPasswordView extends GetView<AuthController> {
                           image: AssetImage("assets/img/240_F_142999858_7EZ3JksoU3f4zly0MuY3uqoxhKdUwN5u.jpeg")),
                       borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
                       boxShadow: [
-                        BoxShadow(color: Get.theme.focusColor.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 5)),
+                        BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                       ]
                   ),
                   margin: EdgeInsets.only(bottom: 50),
@@ -39,7 +39,7 @@ class WOHForgotPasswordView extends GetView<AuthController> {
                     padding: const EdgeInsets.all(20),
                     child: Text(
                       "\nMot de pass oublié".tr,
-                      style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
+                      style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -88,12 +88,12 @@ class WOHForgotPasswordView extends GetView<AuthController> {
                         },
                         text: !controller.onClick.value? Text(
                           "Envoyer",
-                          style: Get.textTheme.titleLarge.merge(TextStyle(color: Get.theme.primaryColor)),
+                          style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),
                         ): SizedBox(height: 30,
                             child: SpinKitFadingCircle(color: Colors.white, size: 20)),
                         loginPage: true,
                         color: controller.email.value.isNotEmpty ?
-                        Responsive.isTablet(context) ? employeeInterfaceColor : interfaceColor : Responsive.isTablet(context) ? employeeInterfaceColor.withOpacity(0.3) : interfaceColor.withOpacity(0.3),
+                        Responsive.isTablet(context) ? employeeInterfaceColor : interfaceColor : Responsive.isTablet(context) ? employeeInterfaceColor.withAlpha((255 * 0.3).toInt()) : interfaceColor.withAlpha((255 * 0.3).toInt()),
                       ).paddingSymmetric(vertical: 35, horizontal: 20)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

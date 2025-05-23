@@ -277,7 +277,7 @@ class WOHAccountController extends GetxController {
 
                       },
                       leading: Icon(FontAwesomeIcons.camera),
-                      title: Text('Take a picture', style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 15))),
+                      title: Text('Take a picture', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
                     ),
                     ListTile(
                       onTap: ()async{
@@ -285,7 +285,7 @@ class WOHAccountController extends GetxController {
                         Navigator.pop(Get.context);
                       },
                       leading: Icon(FontAwesomeIcons.image),
-                      title: Text('Upload an image', style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 15))),
+                      title: Text('Upload an image', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
                     )
                   ],
                 )

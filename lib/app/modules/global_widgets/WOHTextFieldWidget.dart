@@ -64,15 +64,15 @@ class WOHTextFieldWidget extends StatelessWidget {
           color: Get.theme.primaryColor,
           borderRadius: buildBorderRadius,
           boxShadow: [
-            BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
           ],
-          border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+          border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             labelText ?? "",
-            style: Get.textTheme.bodyMedium.merge(TextStyle(color: labelColor)),
+            style: Get.textTheme.bodyMedium!.merge(TextStyle(color: labelColor)),
             textAlign: textAlign ?? TextAlign.start,
           ),
           TextFormField(
@@ -87,7 +87,7 @@ class WOHTextFieldWidget extends StatelessWidget {
             minLines: maxLines,
             validator: validator,
             enabled: editable,
-            style: style ?? Get.textTheme.bodyMedium.merge(TextStyle(color: labelColor)),
+            style: style ?? Get.textTheme.bodyMedium!.merge(TextStyle(color: labelColor)),
             obscureText: obscureText ?? false,
             textAlign: textAlign ?? TextAlign.start,
             decoration: WOHUi.getInputDecoration(

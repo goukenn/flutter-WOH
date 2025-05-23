@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import '../controller/WOHValidationController.dart';
 
 
-class WOHValidationBiding extends Bindings {
+class WOHValidationBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ValidationController>(
-          () => ValidationController(),
+    Get.lazyPut<WOHValidationController>(
+          () => WOHValidationController(),
     );
   }
 }

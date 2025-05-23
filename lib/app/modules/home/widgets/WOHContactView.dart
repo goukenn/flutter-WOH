@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../controllers/WOHHomeController.dart';
 
-class WOHContactView extends GetWidget<HomeController> {
+class WOHContactView extends GetWidget<WOHHomeController> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -16,7 +16,7 @@ class WOHContactView extends GetWidget<HomeController> {
             children: [
               TextButton(
                   onPressed: ()=> Navigator.pop(context),
-                  child: Text('Annuler', style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.grey)))
+                  child: Text('Annuler', style: Get.textTheme.displayMedium!.merge(TextStyle(color: Colors.grey)))
               ),
               TextButton(
                   onPressed: () async{

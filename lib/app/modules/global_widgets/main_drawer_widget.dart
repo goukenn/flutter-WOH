@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../WOHColorConstants.dart';
+import '../../../WOHConstants.dart';
 import '../../../main.dart';
 import '../../../responsive.dart';
 import '../../routes/WOHRoutes.dart';
@@ -21,16 +22,16 @@ class main_drawer_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut<AuthController>(
-          () => AuthController(),
+    Get.lazyPut<WOHAuthController>(
+          () => WOHAuthController(),
     );
-    Get.lazyPut<HomeController>(
-          () => HomeController(),
+    Get.lazyPut<WOHHomeController>(
+          () => WOHHomeController(),
     );
-    Get.lazyPut(() => ValidationController());
+    Get.lazyPut(() => WOHValidationController());
     Get.lazyPut(() => WOHBookingsController());
 
-    var currentUser = Get.find<AuthController>().currentUser;
+    var currentUser = Get.find<WOHAuthController>().currentUser;
     return Container(
       padding: EdgeInsets.only(left: 0, right: MediaQuery.of(context).size.width / 1.8),
       child: Drawer(
@@ -47,7 +48,7 @@ class main_drawer_widget extends StatelessWidget {
                         },
                         child: UserAccountsDrawerHeader(
                           decoration: BoxDecoration(
-                            color: Theme.of(context).hintColor.withOpacity(0.1),
+                            color: Theme.of(context).hintColor.withAlpha((255 * 0.1).toInt()),
                           ),
                           accountName: Text(
                             currentUser['name'],
@@ -57,7 +58,7 @@ class main_drawer_widget extends StatelessWidget {
                           ),
                           currentAccountPicture: Stack(
                             children: [
-                              if(Get.find<AuthController>().isEmployee.value)
+                              if(Get.find<WOHAuthController>().isEmployee.value)
                                 ClipOval(
                                     child: FadeInImage(
                                       width: Responsive.isMobile(context) ? 100 : 150,
@@ -101,8 +102,8 @@ class main_drawer_widget extends StatelessWidget {
                 text: "Tableau de bord",
                 onTap: (e) async{
                   Navigator.pop(context);
-                  await Get.find<HomeController>().refreshPage();
-                  Get.find<HomeController>().currentPage.value = 0;
+                  await Get.find<WOHHomeController>().refreshPage();
+                  Get.find<WOHHomeController>().currentPage.value = 0;
                 }
             ),
             DrawerLinkWidget(
@@ -114,7 +115,7 @@ class main_drawer_widget extends StatelessWidget {
                   Navigator.pop(context);
                   Get.find<WOHBookingsController>().refreshEmployeeBookings();
                   //Get.find<WOHBookingsController>().filterAppointmentDates();
-                  Get.find<HomeController>().currentPage.value = 1;
+                  Get.find<WOHHomeController>().currentPage.value = 1;
                 }
             ),
             DrawerLinkWidget(
@@ -126,7 +127,7 @@ class main_drawer_widget extends StatelessWidget {
                   Navigator.pop(context);
                   Get.find<WOHBookingsController>().getReceipts();
                   //Get.find<WOHBookingsController>().filterDates();
-                  Get.find<HomeController>().currentPage.value = 2;
+                  Get.find<WOHHomeController>().currentPage.value = 2;
                 }
             ),
             DrawerLinkWidget(
@@ -137,7 +138,7 @@ class main_drawer_widget extends StatelessWidget {
                 onTap: (e) {
                   Navigator.pop(context);
                   Get.find<WOHBookingsController>().refreshEmployeeBookings();
-                  Get.find<HomeController>().currentPage.value = 3;
+                  Get.find<WOHHomeController>().currentPage.value = 3;
                 }
             ),
             DrawerLinkWidget(
@@ -147,8 +148,8 @@ class main_drawer_widget extends StatelessWidget {
               text: "Scanner le code",
               onTap: (e) async {
                 Navigator.pop(context);
-                Get.find<ValidationController>().refreshPage();
-                Get.find<HomeController>().currentPage.value = 4;
+                Get.find<WOHValidationController>().refreshPage();
+                Get.find<WOHHomeController>().currentPage.value = 4;
               },
             ),
             ListTile(
@@ -159,7 +160,7 @@ class main_drawer_widget extends StatelessWidget {
               ),
               trailing: Icon(
                 Icons.remove,
-                color: Get.theme.focusColor.withOpacity(0.3),
+                color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
               ),
             ),
             CustomPageDrawerLinkWidget(),
@@ -177,7 +178,7 @@ class main_drawer_widget extends StatelessWidget {
                       confirm: 'Déconnexion',
                       onTap: ()async{
                         var box = GetStorage();
-                        Get.find<HomeController>().currentPage.value = 0;
+                        Get.find<WOHHomeController>().currentPage.value = 0;
                         WOHConstants.googleUser = false;
                         box.remove("userData");
                         Navigator.pop(context);

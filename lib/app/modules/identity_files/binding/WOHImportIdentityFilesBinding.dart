@@ -8,14 +8,14 @@ import '../controller/WOHImportIdentityFilesController.dart';
 class WOHImportIdentityFilesBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ImportIdentityFilesController>(
-          () => ImportIdentityFilesController(),
+    Get.lazyPut<WOHImportIdentityFilesController>(
+          () => WOHImportIdentityFilesController(),
     );
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),
     );
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHMyAuthService>(
+          () => WOHMyAuthService(),
     );
   }
 }

@@ -57,9 +57,9 @@ class WOHTravelCardWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           side:  !isUser ? BorderSide(
               color: inactive, width: 0
-            //travelState != 'accepted' && isUser ? inactive : interfaceColor.withOpacity(0.4), width: 2
+            //travelState != 'accepted' && isUser ? inactive : interfaceColor.withAlpha((255 * 0.4).toInt()), width: 2
           ) : BorderSide(
-              color: travelState != 'accepted' && isUser ? inactive : interfaceColor.withOpacity(0.4), width: 0
+              color: travelState != 'accepted' && isUser ? inactive : interfaceColor.withAlpha((255 * 0.4).toInt()), width: 0
           ),
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
@@ -129,7 +129,7 @@ class WOHTravelCardWidget extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(FontAwesomeIcons.shoppingBag, size: 25, color: appColor),
-                                    Text(' /kg:   $qty', style: Get.textTheme.headline5.merge(TextStyle(color: appColor))),
+                                    Text(' /kg:   $qty', style: Get.textTheme.headlineSmall.merge(TextStyle(color: appColor))),
                                   ]
                                 ),
                                 SizedBox(height: 5),

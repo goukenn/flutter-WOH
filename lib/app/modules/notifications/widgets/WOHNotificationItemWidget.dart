@@ -44,7 +44,7 @@ class WOHNotificationItemWidget extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(12),
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-          decoration: WOHUi.getBoxDecoration(color: this.notification.isSeen ? Get.theme.primaryColor : Get.theme.focusColor.withOpacity(0.15)),
+          decoration: WOHUi.getBoxDecoration(color: this.notification.isSeen ? Get.theme.primaryColor : Get.theme.focusColor.withAlpha((255 * 0.15).toInt())),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -56,9 +56,9 @@ class WOHNotificationItemWidget extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         gradient: LinearGradient(begin: Alignment.bottomLeft, end: Alignment.topRight, colors: [
-                          notification.isSeen ? Get.theme.focusColor.withOpacity(0.6) : Get.theme.focusColor.withOpacity(1),
-                          notification.isSeen ? Get.theme.focusColor.withOpacity(0.1) : Get.theme.focusColor.withOpacity(0.2),
-                          // Get.theme.focusColor.withOpacity(0.2),
+                          notification.isSeen ? Get.theme.focusColor.withAlpha((255 * 0.6).toInt()) : Get.theme.focusColor.withAlpha((255 * 1).toInt()),
+                          notification.isSeen ? Get.theme.focusColor.withAlpha((255 * 0.1).toInt()) : Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
+                          // Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                         ])),
                     child: icon ??
                         Icon(
@@ -74,7 +74,7 @@ class WOHNotificationItemWidget extends StatelessWidget {
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.15),
+                        color: Theme.of(context).scaffoldBackgroundColor.withAlpha((255 * 0.15).toInt()),
                         borderRadius: BorderRadius.circular(150),
                       ),
                     ),
@@ -86,7 +86,7 @@ class WOHNotificationItemWidget extends StatelessWidget {
                       width: 90,
                       height: 90,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.15),
+                        color: Theme.of(context).scaffoldBackgroundColor.withAlpha((255 * 0.15).toInt()),
                         borderRadius: BorderRadius.circular(150),
                       ),
                     ),
@@ -110,7 +110,7 @@ class WOHNotificationItemWidget extends StatelessWidget {
                       this.notification.message,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
-                      style: Get.textTheme.bodyLarge.merge(TextStyle(fontWeight: notification.isSeen ? FontWeight.normal : FontWeight.w600,fontSize: 12, color: Colors.black87)),
+                      style: Get.textTheme.bodyLarge!.merge(TextStyle(fontWeight: notification.isSeen ? FontWeight.normal : FontWeight.w600,fontSize: 12, color: Colors.black87)),
                     ),
                     Text(
                       // DateFormat('d, MMMM y | HH:mm', Get.locale.toString()).format(this.notification.timestamp),

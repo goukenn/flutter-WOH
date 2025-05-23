@@ -25,8 +25,8 @@ class WOHCustomPageLoadingWidget extends StatelessWidget {
         itemCount: 5,
         itemBuilder: (_, index) {
           return Shimmer.fromColors(
-            baseColor: Colors.grey.withOpacity(0.1),
-            highlightColor: Colors.grey[200].withOpacity(0.1),
+            baseColor: Colors.grey.withAlpha((255 * 0.1).toInt()),
+            highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

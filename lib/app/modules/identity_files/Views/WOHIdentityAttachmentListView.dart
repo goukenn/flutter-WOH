@@ -1,16 +1,17 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import '../../../../WOHColorConstants.dart';
+import '../../../../WOHConstants.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
 import '../../../routes/WOHRoutes.dart';
-import '../../global_widgets/WOHLoadingCards.dart';
+import '../../global_widgets/WOHLoadingCardsWidget.dart';
 import '../controller/WOHImportIdentityFilesController.dart';
 
-class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
+class WOHIdentityAttachmentListView extends GetView<WOHImportIdentityFilesController> {
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
           backgroundColor: background,
           title:  Text(
             "Identity files".tr,
-            style: Get.textTheme.titleLarge.merge(TextStyle(color: appColor)),
+            style: Get.textTheme.titleLarge!.merge(TextStyle(color: appColor)),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -62,7 +63,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
               )
           ),
           controller.loadAttachments.value ?
-          Expanded(child: LoadingCardWidget()) :
+          Expanded(child: WOHLoadingCardWidget()) :
           controller.attachmentFiles.isNotEmpty ?
           Expanded(
               child: ListView.builder(
@@ -165,13 +166,13 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Text("Type", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor))),
+                                                      child: Text("Type", style: Get.textTheme.bodyMedium!.merge(TextStyle(color: appColor))),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 12),
                                                       width: 1,
                                                       height: 24,
-                                                      color: Get.theme.focusColor.withOpacity(0.3),
+                                                      color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
                                                     ),
                                                     SizedBox(
                                                       width: 100,
@@ -192,7 +193,7 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                       margin: EdgeInsets.symmetric(horizontal: 12),
                                                       width: 1,
                                                       height: 24,
-                                                      color: Get.theme.focusColor.withOpacity(0.3),
+                                                      color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
                                                     ),
                                                     SizedBox(
                                                       width: 100,
@@ -206,13 +207,13 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Text("Validity", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor))),
+                                                      child: Text("Validity", style: Get.textTheme.bodyMedium!.merge(TextStyle(color: appColor))),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 12),
                                                       width: 1,
                                                       height: 24,
-                                                      color: Get.theme.focusColor.withOpacity(0.3),
+                                                      color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
                                                     ),
                                                     SizedBox(
                                                         width: 100,
@@ -229,13 +230,13 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Text("Conformity", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor))),
+                                                      child: Text("Conformity", style: Get.textTheme.bodyMedium!.merge(TextStyle(color: appColor))),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 12),
                                                       width: 1,
                                                       height: 24,
-                                                      color: Get.theme.focusColor.withOpacity(0.3),
+                                                      color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
                                                     ),
                                                     SizedBox(
                                                         width: 100,
@@ -271,8 +272,8 @@ class WOHAttachmentList extends GetView<ImportIdentityFilesController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: Get.height/3),
-                FaIcon(FontAwesomeIcons.folderOpen, color: inactive.withOpacity(0.3),size: 80),
-                Text('No Attachment found', style: Get.textTheme.headline5.merge(TextStyle(color: inactive.withOpacity(0.3)))),
+                FaIcon(FontAwesomeIcons.folderOpen, color: inactive.withAlpha((255 * 0.3).toInt()),size: 80),
+                Text('No Attachment found', style: Get.textTheme.headlineSmall!.merge(TextStyle(color: inactive.withAlpha((255 * 0.3).toInt())))),
               ],
             ),
           ),

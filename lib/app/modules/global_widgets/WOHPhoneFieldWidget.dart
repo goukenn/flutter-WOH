@@ -56,15 +56,15 @@ class WOHPhoneFieldWidget extends StatelessWidget {
           color: Get.theme.primaryColor,
           borderRadius: buildBorderRadius,
           boxShadow: [
-            BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
           ],
-          border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+          border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             labelText ?? "",
-            style: Get.textTheme.bodyLarge.merge(TextStyle(color: labelColor)),
+            style: Get.textTheme.bodyLarge!.merge(TextStyle(color: labelColor)),
             textAlign: textAlign ?? TextAlign.start,
           ),
           IntlPhoneField(
@@ -75,7 +75,7 @@ class WOHPhoneFieldWidget extends StatelessWidget {
               initialCountryCode: initialCountryCode ?? 'DE',
               showDropdownIcon: false,
               pickerDialogStyle: PickerDialogStyle(countryNameStyle: Get.textTheme.bodyMedium),
-              style: style ?? Get.textTheme.bodyMedium.merge(TextStyle(color: labelColor)),
+              style: style ?? Get.textTheme.bodyMedium!.merge(TextStyle(color: labelColor)),
               textAlign: textAlign ?? TextAlign.start,
               disableLengthCheck: true,
               autovalidateMode: AutovalidateMode.disabled,

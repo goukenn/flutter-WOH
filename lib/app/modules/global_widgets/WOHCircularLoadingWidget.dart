@@ -56,7 +56,7 @@ class _CircularLoadingWidgetState extends State<CircularLoadingWidget> with Sing
         ? SizedBox(
             height: widget.height,
             child: Center(
-              child: Text(widget.onCompleteText ?? "", style: Get.textTheme.labelSmall.merge(TextStyle(fontSize: 14))),
+              child: Text(widget.onCompleteText ?? "", style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 14))),
             ),
           )
         : Opacity(

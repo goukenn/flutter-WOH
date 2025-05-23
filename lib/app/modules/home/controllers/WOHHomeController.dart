@@ -62,7 +62,7 @@ class WOHHomeController extends GetxController {
     final userdata = box.read('userData');
     userId.value = userdata['partner_id'];
 
-    if(Get.find<AuthController>().isEmployee.value){
+    if(Get.find<WOHAuthController>().isEmployee.value){
       initValues();
     }else{
       var data = await getUserInfo(userId.value);

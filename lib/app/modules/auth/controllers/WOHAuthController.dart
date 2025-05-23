@@ -341,7 +341,7 @@ class WOHAuthController extends GetxController {
 
           ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
             content: Text("Verification des information..."),
-            backgroundColor: validateColor.withOpacity(0.4),
+            backgroundColor: validateColor.withAlpha((255 * 0.4).toInt()),
             duration: Duration(seconds: 3),
           ));
 

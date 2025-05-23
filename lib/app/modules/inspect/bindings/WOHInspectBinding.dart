@@ -8,8 +8,8 @@ import '../controllers/WOHInspectController.dart';
 class WOHInspectBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<InspectController>(
-          () => InspectController(),
+    Get.lazyPut<OWHInspectController>(
+          () => OWHInspectController(),
     );
     Get.lazyPut<MyAuthService>(
           () => MyAuthService(),

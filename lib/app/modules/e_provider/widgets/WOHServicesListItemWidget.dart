@@ -59,14 +59,14 @@ class WOHServicesListItemWidget extends StatelessWidget {
                     width: 80,
                     child: Text("Available".tr,
                         maxLines: 1,
-                        style: Get.textTheme.bodyMedium.merge(
+                        style: Get.textTheme.bodyMedium!.merge(
                           TextStyle(color: Colors.green, height: 1.4, fontSize: 10),
                         ),
                         softWrap: false,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.fade),
                     decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(0.2),
+                      color: Colors.green.withAlpha((255 * 0.2).toInt()),
                       borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
@@ -76,14 +76,14 @@ class WOHServicesListItemWidget extends StatelessWidget {
                     width: 80,
                     child: Text("Offline".tr,
                         maxLines: 1,
-                        style: Get.textTheme.bodyMedium.merge(
+                        style: Get.textTheme.bodyMedium!.merge(
                           TextStyle(color: Colors.grey, height: 1.4, fontSize: 10),
                         ),
                         softWrap: false,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.fade),
                     decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2),
+                      color: Colors.grey.withAlpha((255 * 0.2).toInt()),
                       borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
@@ -126,10 +126,10 @@ class WOHServicesListItemWidget extends StatelessWidget {
                                     color: Get.theme.colorScheme.secondary,
                                     size: 18,
                                   ),
-                                  Text(_service.rate.toString(), style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.colorScheme.secondary, height: 1.4))),
+                                  Text(_service.rate.toString(), style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.colorScheme.secondary, height: 1.4))),
                                 ],
                               ),
-                              backgroundColor: Get.theme.colorScheme.secondary.withOpacity(0.15),
+                              backgroundColor: Get.theme.colorScheme.secondary.withAlpha((255 * 0.15).toInt()),
                               shape: StadiumBorder(),
                             ),
                           ),
@@ -145,7 +145,7 @@ class WOHServicesListItemWidget extends StatelessWidget {
                           if (_service.getOldPrice > 0)
                             WOHUi.getPrice(
                               _service.getOldPrice,
-                              style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
+                              style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
                               unit: _service.getUnit,
                             ),
                           WOHUi.getPrice(
@@ -202,11 +202,11 @@ class WOHServicesListItemWidget extends StatelessWidget {
                     children: List.generate(_service.categories.length, (index) {
                       return Container(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                        child: Text(_service.categories.elementAt(index).name, style: Get.textTheme.labelSmall.merge(TextStyle(fontSize: 10))),
+                        child: Text(_service.categories.elementAt(index).name, style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 10))),
                         decoration: BoxDecoration(
                             color: Get.theme.primaryColor,
                             border: Border.all(
-                              color: Get.theme.focusColor.withOpacity(0.2),
+                              color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(20))),
                       );

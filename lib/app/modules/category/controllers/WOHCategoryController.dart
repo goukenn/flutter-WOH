@@ -37,8 +37,8 @@ class WOHCategoryController extends GetxController {
   }
 
   void filterSearchResults(String query) {
-    Get.lazyPut<HomeController>(
-          () => HomeController(),
+    Get.lazyPut<WOHHomeController>(
+          () => WOHHomeController(),
     );
 
     List dummySearchList = [];

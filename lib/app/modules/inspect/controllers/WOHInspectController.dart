@@ -204,7 +204,7 @@ class WOHInspectController extends GetxController {
   Color getColor(WOHOptionModel option) {
     if (option.checked.value) {
       return Get.theme.colorScheme.secondary.withAlpha(20)
-      // .withOpacity(0.1)
+      // .withAlpha((255 * 0.1).toInt())
       ;
     }
     return Color.from(alpha: 0, red: 0, green: 0, blue: 0);

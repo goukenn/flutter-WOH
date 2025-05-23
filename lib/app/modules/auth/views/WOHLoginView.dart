@@ -16,7 +16,7 @@ import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHAuthController.dart';
 
-class WOHLoginView extends GetView<AuthController> {
+class WOHLoginView extends GetView<WOHAuthController> {
 
   final box = Hive.box("myBox");
 
@@ -43,7 +43,7 @@ class WOHLoginView extends GetView<AuthController> {
                           image: AssetImage("assets/img/240_F_142999858_7EZ3JksoU3f4zly0MuY3uqoxhKdUwN5u.jpeg")),
                       borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
                       boxShadow: [
-                        BoxShadow(color: Get.theme.focusColor.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 5)),
+                        BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                       ]
                   ),
                   margin: EdgeInsets.only(bottom: 50),
@@ -51,7 +51,7 @@ class WOHLoginView extends GetView<AuthController> {
                     padding: const EdgeInsets.all(20),
                     child: Text(
                       "\nConnexion".tr,
-                      style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
+                      style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Get.theme.primaryColor)),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -183,13 +183,13 @@ class WOHLoginView extends GetView<AuthController> {
                         },
                         text: !controller.loading.value? Text(
                           "Connexion",
-                          style: Get.textTheme.headline4.merge(TextStyle(color: Get.theme.primaryColor)),
+                          style: Get.textTheme.headline4!.merge(TextStyle(color: Get.theme.primaryColor)),
                         ): SizedBox(height: 30,
                             child: SpinKitFadingCircle(color: Colors.white, size: 30)),
                         loginPage: true,
                         color: controller.email.value.isNotEmpty && controller.password.value.isNotEmpty ?
                         Responsive.isTablet(context) ? employeeInterfaceColor : interfaceColor : Responsive.isTablet(context)
-                            ? employeeInterfaceColor.withOpacity(0.3) : interfaceColor.withOpacity(0.3),
+                            ? employeeInterfaceColor.withAlpha((255 * 0.3).toInt()) : interfaceColor.withAlpha((255 * 0.3).toInt()),
                       ).paddingSymmetric(vertical: 10, horizontal: 20),),
 
                       SizedBox(height: Responsive.isMobile(context) ? 5 : 20),

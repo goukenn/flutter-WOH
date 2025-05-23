@@ -53,7 +53,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               padding: EdgeInsets.only(left: 10, right: 10),
               margin: EdgeInsets.only(top: 10, bottom: 10),
               alignment: Alignment.center,
-              decoration: BoxDecoration(color: widget.currentIndex == index ? color.withOpacity(0.2) : Colors.transparent, borderRadius: BorderRadius.circular(10)),
+              decoration: BoxDecoration(color: widget.currentIndex == index ? color.withAlpha((255 * 0.2).toInt()) : Colors.transparent, borderRadius: BorderRadius.circular(10)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -69,7 +69,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                             label ?? '',
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: widget.currentIndex == index ? color : color.withOpacity(0.5)),
+                            style: TextStyle(color: widget.currentIndex == index ? color : color.withAlpha((255 * 0.5).toInt())),
                           ),
                         )
                       : Container()

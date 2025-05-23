@@ -131,21 +131,21 @@ class WOHEServiceController extends GetxController {
 
   TextStyle getTitleTheme(Option option) {
     if (option.checked.value) {
-      return Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.colorScheme.secondary));
+      return Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
     return Get.textTheme.bodyMedium;
   }
 
   TextStyle getSubTitleTheme(Option option) {
     if (option.checked.value) {
-      return Get.textTheme.labelSmall.merge(TextStyle(color: Get.theme.colorScheme.secondary));
+      return Get.textTheme.labelSmall!.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
     return Get.textTheme.labelSmall;
   }
 
   Color getColor(Option option) {
     if (option.checked.value) {
-      return Get.theme.colorScheme.secondary.withOpacity(0.1);
+      return Get.theme.colorScheme.secondary.withAlpha((255 * 0.1).toInt());
     }
     return null;
   }

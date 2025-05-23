@@ -40,7 +40,7 @@ class AccountLinkWidget extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 10),
               width: 1,
               height: 24,
-              color: Get.theme.focusColor.withOpacity(0.3),
+              color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
             ),
             SizedBox(
               width: Get.width/1.5,
@@ -48,9 +48,9 @@ class AccountLinkWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   text: TextSpan(
                     children: [
-                      TextSpan(text: text, style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: appColor))),
+                      TextSpan(text: text, style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 12, color: appColor))),
                       TextSpan(text: "\n$label",
-                          style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.black, fontSize: 14))
+                          style: Get.textTheme.displayMedium!.merge(TextStyle(color: Colors.black, fontSize: 14))
                       )
                     ]
                   )
@@ -106,7 +106,7 @@ class AccountWidget extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 5),
             width: 1,
             height: 24,
-            color: Get.theme.focusColor.withOpacity(0.3),
+            color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
           ),
           Expanded(
             child: Text(text, style: TextStyle(color: textColor))

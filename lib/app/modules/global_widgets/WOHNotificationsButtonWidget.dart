@@ -46,7 +46,7 @@ class WOHNotificationsButtonWidget extends GetView<WOHRootController> {
                 child: Text(
                   controller.notificationsCount.value.toString(),
                   textAlign: TextAlign.center,
-                  style: Get.textTheme.labelSmall.merge(
+                  style: Get.textTheme.labelSmall!.merge(
                     TextStyle(color: Get.theme.primaryColor, fontSize: 11, height: 1.4),
                   ),
                 ),

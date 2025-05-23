@@ -86,9 +86,9 @@ class PacketImageFieldWidget extends StatelessWidget {
           color: Get.theme.primaryColor,
           borderRadius: BorderRadius.all(Radius.circular(10)),
           boxShadow: [
-            BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
           ],
-          border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+          border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -188,7 +188,7 @@ class PacketImageFieldWidget extends StatelessWidget {
                                         Navigator.pop(Get.context);
                                       },
                                       leading: Icon(FontAwesomeIcons.camera),
-                                      title: Text('Take a picture', style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 15))),
+                                      title: Text('Take a picture', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
                                     ),
                                     ListTile(
                                       onTap: ()async{
@@ -196,7 +196,7 @@ class PacketImageFieldWidget extends StatelessWidget {
                                         Navigator.pop(Get.context);
                                       },
                                       leading: Icon(FontAwesomeIcons.image),
-                                      title: Text('Upload an image', style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 15))),
+                                      title: Text('Upload an image', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
                                     )
                                   ],
                                 )
@@ -209,8 +209,8 @@ class PacketImageFieldWidget extends StatelessWidget {
                     height: 100,
                     padding: EdgeInsets.all(20),
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(color: Get.theme.focusColor.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
-                    child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withOpacity(0.4)),
+                    decoration: BoxDecoration(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), borderRadius: BorderRadius.circular(10)),
+                    child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withAlpha((255 * 0.4).toInt())),
                   )
               );
           }),

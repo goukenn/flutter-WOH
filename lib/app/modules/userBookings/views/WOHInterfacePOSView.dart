@@ -15,7 +15,7 @@ import 'package:flutter/services.dart';
 
 import '../widgets/WOHBookingsListItemWidget.dart';
 
-class WOHInterfacePOS extends GetView<WOHBookingsController> {
+class WOHInterfacePOSView extends GetView<WOHBookingsController> {
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class WOHInterfacePOS extends GetView<WOHBookingsController> {
     Get.lazyPut<WOHRootController>(
           () => WOHRootController(),
     );
-    Get.lazyPut(() => AuthController());
+    Get.lazyPut(() => WOHAuthController());
 
     return Scaffold(
         backgroundColor: background,
@@ -253,7 +253,7 @@ class WOHInterfacePOS extends GetView<WOHBookingsController> {
                                                     controller.selectedAppointment.value = {},
                                                     controller.orderDto.value = {}
                                                   },
-                                                  child: Text("Annuler", style: Get.textTheme.displayMedium.merge(TextStyle(color: specialColor))
+                                                  child: Text("Annuler", style: Get.textTheme.displayMedium!.merge(TextStyle(color: specialColor))
                                                   )
                                               ),
                                               SizedBox(width: 10)
@@ -671,7 +671,7 @@ class WOHInterfacePOS extends GetView<WOHBookingsController> {
             Icon(Icons.warning_amber_outlined,
                 size: 60, color: inactive),
             SizedBox(height: 10),
-            Text("Confirmer l'Action", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 18, letterSpacing: 2))),
+            Text("Confirmer l'Action", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 18, letterSpacing: 2))),
           ],
         ),
         backgroundColor: backgroundColor,

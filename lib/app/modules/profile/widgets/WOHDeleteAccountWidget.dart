@@ -22,8 +22,8 @@ class WOHDeleteAccountWidget extends GetView<ProfileController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Delete your account!", style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.redAccent))),
-                Text("Once you delete this account, there is no going back. Please be certain.", style: Get.textTheme.labelSmall.merge(TextStyle(color: Colors.redAccent))),
+                Text("Delete your account!", style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Colors.redAccent))),
+                Text("Once you delete this account, there is no going back. Please be certain.", style: Get.textTheme.labelSmall!.merge(TextStyle(color: Colors.redAccent))),
               ],
             ),
           ),
@@ -48,7 +48,7 @@ class WOHDeleteAccountWidget extends GetView<ProfileController> {
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               color: Colors.redAccent,
-              child: Text("Delete".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Get.theme.primaryColor))),
+              child: Text("Delete".tr, style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.primaryColor))),
               elevation: 0,
               highlightElevation: 0,
               hoverElevation: 0,

@@ -25,7 +25,10 @@ class WOHFilterBottomSheetWidget extends GetView<SearchController> {
         color: Get.theme.primaryColor,
         borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         boxShadow: [
-          BoxShadow(color: Get.theme.focusColor.withOpacity(0.4), blurRadius: 30, offset: Offset(0, -30)),
+          BoxShadow(color: Get.theme.focusColor
+          .withAlpha(40)
+          //.withAlpha((255 * 0.4).toInt())
+          , blurRadius: 30, offset: Offset(0, -30)),
         ],
       ),
       child: Stack(
@@ -70,16 +73,16 @@ class WOHFilterBottomSheetWidget extends GetView<SearchController> {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 45),
             child: Row(
               children: [
-                Expanded(child: Text("Filter".tr, style: Get.textTheme.headline5)),
+                Expanded(child: Text("Filter".tr, style: Get.textTheme.headlineSmall)),
                 MaterialButton(
                   onPressed: () {
                     controller.searchEServices(keywords: controller.textEditingController.text);
                     Get.back();
                   },
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  color: Get.theme.colorScheme.secondary.withOpacity(0.15),
-                  child: Text("Apply".tr, style: Get.textTheme.subtitle1),
+                  color: Get.theme.colorScheme.secondary.withAlpha(40),//.withAlpha((255 * 0.15).toInt()),
                   elevation: 0,
+                  child: Text("Apply".tr, style: Get.textTheme.titleMedium!),
                 ),
               ],
             ),
@@ -89,12 +92,12 @@ class WOHFilterBottomSheetWidget extends GetView<SearchController> {
             width: double.infinity,
             padding: EdgeInsets.symmetric(vertical: 13, horizontal: (Get.width / 2) - 30),
             decoration: BoxDecoration(
-              color: Get.theme.focusColor.withOpacity(0.1),
+              color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
               borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
             ),
             child: Container(
               decoration: BoxDecoration(
-                color: Get.theme.focusColor.withOpacity(0.5),
+                color: Get.theme.focusColor.withAlpha((255 * 0.5).toInt()),
                 borderRadius: BorderRadius.circular(3),
               ),
               //child: SizedBox(height: 1,),

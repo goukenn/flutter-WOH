@@ -7,7 +7,7 @@ import '../../../../WOHColorConstants.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controller/WOHImportIdentityFilesController.dart';
 
-class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> {
+class WOHImportIdentityFilesFormView extends GetView<WOHImportIdentityFilesController> {
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
           backgroundColor: background,
           title:  Text(
             "Add Identity file".tr,
-            style: Get.textTheme.titleLarge.merge(TextStyle(color: appColor)),
+            style: Get.textTheme.titleLarge!.merge(TextStyle(color: appColor)),
           ),
           centerTitle: true,
           leading: IconButton(
@@ -46,7 +46,7 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                 child: Center(
                   child: Obx(() =>  !controller.buttonPressed.value ?
-                  Text("Submit form".tr, style: Get.textTheme.bodyMedium.merge(TextStyle(color: Colors.white)))
+                  Text("Submit form".tr, style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Colors.white)))
                       : SizedBox(height: 20,
                       child: SpinKitThreeBounce(color: Colors.white, size: 20))
                   )
@@ -62,7 +62,7 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
             //canvasColor: Colors.yellow,
               colorScheme: Theme.of(context).colorScheme.copyWith(
                 primary: Get.theme.colorScheme.secondary,
-                background: Colors.red,
+                // background: Colors.red,
                 secondary: validateColor,
               )
           ),
@@ -73,9 +73,9 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                       color: Get.theme.primaryColor,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       boxShadow: [
-                        BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                        BoxShadow(color: Get.theme.focusColor.withAlpha((0.1 * 255).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                       ],
-                      border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                      border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                   child: DropdownButtonHideUnderline(
 
                     child: DropdownButtonFormField(
@@ -102,27 +102,27 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                       }).toList(),
                       // After selecting the desired option,it will
                       // change button value to selected value
-                      onChanged: (String newValue) {
-                        controller.selectedPiece.value = newValue;
-                        if(controller.selectedPiece.value == "cni"){
-                          controller.identityPieceSelected.value= "cni";
-                        }
-                        else{
-                          controller.identityPieceSelected.value= "passport";
-                        }
-
-
-                      },).marginOnly(left: 20, right: 20, top: 10, bottom: 10).paddingOnly( top: 20, bottom: 14),
+                      // MARK : changed
+                      // onChanged: (String newValue) {
+                      //   controller.selectedPiece.value! = newValue;
+                      //   if(controller.selectedPiece.value == "cni"){
+                      //     controller?.identityPieceSelected.value= "cni";
+                      //   }
+                      //   else{
+                      //     controller.identityPieceSelected.value= "passport";
+                      //   }
+                      // },)
+                      // .marginOnly(left: 20, right: 20, top: 10, bottom: 10).paddingOnly( top: 20, bottom: 14),
                   )
               ).paddingOnly(left: 5, right: 5, top: 20, bottom: 14,
               ),
 
-              TextFieldWidget(
+              WOHTextFieldWidget(
                 isLast: false,
                 readOnly: false,
                 onChanged: (input) => controller.number.value = input,
-                onSaved: (input) => controller.number.value = input,
-                validator: (input) => input.length < 3 ? "Should be more than 3 letters".tr : null,
+                onSaved: (input) => controller.number.value = input!,
+                validator: (input) => input!.length < 3 ? "Should be more than 3 letters".tr : null,
                 hintText: "xxxxxxxxx".tr,
                 labelText: "CNI / Passport number".tr,
                 iconData: Icons.numbers,
@@ -137,9 +137,9 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                         color: Get.theme.primaryColor,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
-                          BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                          BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                         ],
-                        border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                        border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -149,7 +149,7 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                             ListTile(
                                 leading: Icon(Icons.calendar_today),
                                 title: Text(DateFormat('dd/MM/yyyy').format(DateTime.parse(controller.dateOfDelivery.value)).toString(),
-                                  style: Get.textTheme.displayLarge.merge(TextStyle(color: Colors.black, fontSize: 16)),
+                                  style: Get.textTheme.displayLarge!.merge(TextStyle(color: Colors.black, fontSize: 16)),
                                 )
                             )
                         )
@@ -166,9 +166,9 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                         color: Get.theme.primaryColor,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         boxShadow: [
-                          BoxShadow(color: Get.theme.focusColor.withOpacity(0.1), blurRadius: 10, offset: Offset(0, 5)),
+                          BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                         ],
-                        border: Border.all(color: Get.theme.focusColor.withOpacity(0.05))),
+                        border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -178,7 +178,7 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                             ListTile(
                                 leading: Icon(Icons.calendar_today),
                                 title: Text(DateFormat('dd/MM/yyyy').format(DateTime.parse(controller.dateOfExpiration.value)).toString(),
-                                  style: Get.textTheme.displayLarge.merge(TextStyle(color: Colors.black, fontSize: 16)),
+                                  style: Get.textTheme.displayLarge!.merge(TextStyle(color: Colors.black, fontSize: 16)),
                                 )
                             ))
                       ],
@@ -222,8 +222,8 @@ class WOHImportIdentityFilesForm extends GetView<ImportIdentityFilesController> 
                             width: 100,
                             height: 100,
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(color: Get.theme.focusColor.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
-                            child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withOpacity(0.4)),
+                            decoration: BoxDecoration(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), borderRadius: BorderRadius.circular(10)),
+                            child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withAlpha((255 * 0.4).toInt())),
                           ),
                         )
                       ],

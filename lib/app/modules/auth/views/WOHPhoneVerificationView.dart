@@ -18,7 +18,7 @@ import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
-class WOHPhoneVerificationView extends GetView<AuthController> {
+class WOHPhoneVerificationView extends GetView<WOHAuthController> {
   final Setting _settings = Get.find<SettingsService>().setting.value;
 
   @override
@@ -35,7 +35,7 @@ class WOHPhoneVerificationView extends GetView<AuthController> {
           appBar: AppBar(
             title: Text(
               "Double Verification".tr,
-              style: Get.textTheme.titleLarge.merge(TextStyle(color: context.theme.primaryColor)),
+              style: Get.textTheme.titleLarge!.merge(TextStyle(color: context.theme.primaryColor)),
             ),
             centerTitle: true,
             backgroundColor: Get.theme.colorScheme.secondary,
@@ -63,7 +63,7 @@ class WOHPhoneVerificationView extends GetView<AuthController> {
                       color: Get.theme.colorScheme.secondary,
                       borderRadius: BorderRadius.vertical(bottom: Radius.circular(10)),
                       boxShadow: [
-                        BoxShadow(color: Get.theme.focusColor.withOpacity(0.2), blurRadius: 10, offset: Offset(0, 5)),
+                        BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()), blurRadius: 10, offset: Offset(0, 5)),
                       ],
                     ),
                     margin: EdgeInsets.only(bottom: 50),
@@ -72,15 +72,15 @@ class WOHPhoneVerificationView extends GetView<AuthController> {
                       child: Column(
                         children: [
                           Text("",
-                            style: Get.textTheme.titleLarge.merge(TextStyle(color: Get.theme.primaryColor, fontSize: 24)),
+                            style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor, fontSize: 24)),
                           ),
                           SizedBox(height: 5),
                           Text(
                             "Welcome to the best service provider system!".tr,
-                            style: Get.textTheme.labelSmall.merge(TextStyle(color: Get.theme.primaryColor)),
+                            style: Get.textTheme.labelSmall!.merge(TextStyle(color: Get.theme.primaryColor)),
                             textAlign: TextAlign.center,
                           ),
-                          // Text("Fill the following credentials to login your account", style: Get.textTheme.labelSmall.merge(TextStyle(color: Get.theme.primaryColor))),
+                          // Text("Fill the following credentials to login your account", style: Get.textTheme.labelSmall!.merge(TextStyle(color: Get.theme.primaryColor))),
                         ],
                       ),
                     ),
@@ -135,7 +135,7 @@ class WOHPhoneVerificationView extends GetView<AuthController> {
                         child: TextFieldWidget(
                           labelText: "Verification Code".tr,
                           hintText: "- - - - - -".tr,
-                          style: Get.textTheme.headline4.merge(TextStyle(letterSpacing: 8)),
+                          style: Get.textTheme.headline4!.merge(TextStyle(letterSpacing: 8)),
                           textAlign: TextAlign.center,
                           readOnly: false,
                           keyboardType: TextInputType.number,
@@ -185,7 +185,7 @@ class WOHPhoneVerificationView extends GetView<AuthController> {
                         },
                         text: !controller.verifyClicked.value ? Text(
                           "Verify".tr,
-                          style: Get.textTheme.titleLarge.merge(TextStyle(color: Get.theme.primaryColor)),
+                          style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),
                         ): SizedBox(height: 30,
                             child: SpinKitThreeBounce(color: Colors.white, size: 20)), loginPage: false,
                       ).paddingSymmetric(vertical: 30, horizontal: 20),

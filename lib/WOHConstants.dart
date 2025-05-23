@@ -5,6 +5,17 @@ class WOHConstants {
   static const serverPort = "https://willonhair.shintheo.com/api/v1";
   static const apiKey = "NMMAG3K4IVS0L6VYEPXLJ1Z0RR77AR67";
   //   static var serverPort2 = "https://preprod.hubkilo.com/api";
+ 
 
-  static const authorization = "";
+  static const authorization = "Basic dGhlb3BoYW5lQHNoaW50aGVvLmNvbTpPbml6dWtAMjI=";
+  static const AppName = "Will On Hair";
+  static var deviceToken;
+  static var googleUser = false;
+  static var googleImage = '';
+    static Map<String, String> getTokenHeaders() {
+    Map<String, String> headers = new Map();
+    headers['Authorization'] = authorization;
+    headers['accept'] = 'application/json';
+    return headers;
+  }
 }

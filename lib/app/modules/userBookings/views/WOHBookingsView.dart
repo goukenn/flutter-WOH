@@ -23,7 +23,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
     Get.lazyPut<WOHRootController>(
           () => WOHRootController(),
     );
-    Get.lazyPut(() => AuthController());
+    Get.lazyPut(() => WOHAuthController());
 
     var firstDate = DateFormat("dd, MMMM", "fr_CA").format(DateTime.now()).toString().obs;
     var lastDate = DateFormat("dd, MMMM", "fr_CA").format(DateTime.now().add(Duration(days: 5))).toString().obs;
@@ -36,7 +36,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            !Get.find<AuthController>().isEmployee.value ?
+            !Get.find<WOHAuthController>().isEmployee.value ?
             FloatingActionButton.extended(
                 backgroundColor: interfaceColor,
                 heroTag: null,
@@ -57,11 +57,11 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
           ],
         )),
 
-        appBar: !Get.find<AuthController>().isEmployee.value ? AppBar(
+        appBar: !Get.find<WOHAuthController>().isEmployee.value ? AppBar(
           backgroundColor: appBarColor,
           title: Obx(() => Text(
             "Mes rendez-vous, ${controller.items.length}",
-            style: Get.textTheme.titleLarge.merge(TextStyle(color: Colors.white)),
+            style: Get.textTheme.titleLarge!.merge(TextStyle(color: Colors.white)),
           )),
           centerTitle: true,
           leading: Obx(() =>
@@ -82,7 +82,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if(Get.find<AuthController>().isEmployee.value)
+                  if(Get.find<WOHAuthController>().isEmployee.value)
                     Row(
                       children: [
                         Padding(
@@ -146,15 +146,15 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
                       decoration: WOHUi.getBoxDecoration(color: backgroundColor),
                       child:  controller.isLoading.value ? BookingsListLoaderWidget() :
                       controller.items.isNotEmpty ?
-                      Get.find<AuthController>().isEmployee.value ? MyAppointments(context) : MyBookings(context)
+                      Get.find<WOHAuthController>().isEmployee.value ? MyAppointments(context) : MyBookings(context)
                           : SizedBox(
                         width: double.infinity,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(height: MediaQuery.of(context).size.height/4),
-                            FaIcon(FontAwesomeIcons.folderOpen, color: inactive.withOpacity(0.3),size: 80),
-                            Text('Aucun rendez-vous trouvé', style: Get.textTheme.headline5.merge(TextStyle(color: inactive.withOpacity(0.3)))),
+                            FaIcon(FontAwesomeIcons.folderOpen, color: inactive.withAlpha((255 * 0.3).toInt()),size: 80),
+                            Text('Aucun rendez-vous trouvé', style: Get.textTheme.headlineSmall!.merge(TextStyle(color: inactive.withAlpha((255 * 0.3).toInt())))),
                           ]
                         )
                       )
@@ -179,22 +179,22 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
               showCheckboxColumn: false,
               columns: [
                 DataColumn(
-                  label: Text("Reference", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Reference", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Service", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Service", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Client", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Client", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Date/heure", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Date/heure", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
                   label: Text(""),
                 ),
                 DataColumn(
-                  label: Text("Stage", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Stage", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
               ],
               rows: List.generate(
@@ -221,7 +221,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
                           DataCell(Text(controller.items[index]['partner_id'][1], style: Get.textTheme.headline4)),
                           DataCell(Text("$start - $end", style: Get.textTheme.headline4)),
                           DataCell(SizedBox()),
-                          DataCell(Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.displayMedium.merge(
+                          DataCell(Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.displayMedium!.merge(
                               TextStyle(color: bookingState == 'reserved' ? newStatus : bookingState == 'done' ? doneStatus : bookingState == 'cancel' ? specialColor : inactive)))
                           )
                         ]
@@ -236,7 +236,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
 
   Widget MyBookings(BuildContext context){
 
-    Get.lazyPut(() => AuthController());
+    Get.lazyPut(() => WOHAuthController());
 
     return Obx(() => Column(
       children: [
@@ -248,7 +248,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
                 primary: false,
                 itemBuilder: (context, index) {
                   var employeeId = 0;
-                  var data = Get.find<AuthController>().resources;
+                  var data = Get.find<WOHAuthController>().resources;
                   if (index == controller.items.length) {
                     return SizedBox(height: Get.height/2);
                   } else {

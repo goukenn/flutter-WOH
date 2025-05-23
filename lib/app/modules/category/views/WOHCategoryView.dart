@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../WOHColorConstants.dart';
+import '../../../../WOHConstants.dart';
 import '../../../../main.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHTravelCardWidget.dart';
-import '../../global_widgets/WOHLoadingCards.dart';
+import '../../global_widgets/WOHLoadingCardsWidget.dart';
 import '../../home/controllers/WOHHomeController.dart';
 import '../controllers/WOHCategoryController.dart';
 
@@ -14,8 +15,8 @@ class WOHCategoryView extends GetView<CategoryController> {
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut<HomeController>(
-          () => HomeController(),
+    Get.lazyPut<WOHHomeController>(
+          () => WOHHomeController(),
     );
 
     return Scaffold(
@@ -86,9 +87,9 @@ class WOHCategoryView extends GetView<CategoryController> {
                 width: 120,
                 child: Text(controller.travelType.value.toUpperCase(), style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.white))),
                 decoration: BoxDecoration(
-                    color: controller.travelType.value != "air" ? Colors.white.withOpacity(0.4) : interfaceColor.withOpacity(0.4),
+                    color: controller.travelType.value != "air" ? Colors.white.withAlpha((255 * 0.4).toInt()) : interfaceColor.withAlpha((255 * 0.4).toInt()),
                     border: Border.all(
-                      color: controller.travelType.value != "air" ? Colors.white.withOpacity(0.2) : interfaceColor.withOpacity(0.2),
+                      color: controller.travelType.value != "air" ? Colors.white.withAlpha((255 * 0.2).toInt()) : interfaceColor.withAlpha((255 * 0.2).toInt()),
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
               ),
@@ -106,7 +107,7 @@ class WOHCategoryView extends GetView<CategoryController> {
                     radius: 20,
                     child: Obx(() => Center(
                       child: Text(controller.travelList.length.toString(),
-                          style: Get.textTheme.headline5.merge(TextStyle(color: interfaceColor))),
+                          style: Get.textTheme.headlineSmall.merge(TextStyle(color: interfaceColor))),
                     )),
                   )
                 )
