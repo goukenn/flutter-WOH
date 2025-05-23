@@ -16,9 +16,9 @@ import '../../../routes/WOHRoutes.dart';
 class WOHEProviderController extends GetxController {
   final eProvider = WOHEProviderModel().obs;
   final reviews = <WOHReviewModel>[].obs;
-  final awards = <Award>[].obs;
+  final awards = <WOHAwardModel>[].obs;
   final galleries = <WOHMediaModel>[].obs;
-  final experiences = <Experience>[].obs;
+  final experiences = <WOHExperienceModel>[].obs;
   final featuredEServices = <WOHEServiceModel>[].obs;
   final currentSlide = 0.obs;
   String heroTag = "";

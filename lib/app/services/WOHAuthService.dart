@@ -6,7 +6,6 @@ import 'package:get_storage/get_storage.dart';
 
 import '../models/WOHUserModel.dart';
 import '../repositories/WOHUserRepository.dart';
-import '../repositories/WOHUserRepository.dart';
 import 'WOHSettingsService.dart';
 
 class WOHAuthService extends GetxService {

@@ -6,12 +6,11 @@ import 'package:get/get.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHHelper.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
 import '../../../models/WOHMyUserModel.dart';
 import '../../../models/WOHSettingModel.dart';
 import '../../../repositories/WOHUserRepository.dart';
 import '../../../routes/WOHRoutes.dart';
-import '../../../services/WOHMyAuthService.dart';
+import '../../../services/WOHAuthService.dart';
 import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
@@ -19,11 +18,11 @@ import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
 class WOHPhoneVerificationView extends GetView<WOHAuthController> {
-  final Setting _settings = Get.find<SettingsService>().setting.value;
+  final WOHSettingModel _settings = Get.find<WOHSettingsService>().setting.value;
 
   @override
   Widget build(BuildContext context) {
-    final Rx<WOHMyUserModel> currentUser = Get.find<MyAuthService>().myUser;
+    final Rx<WOHMyUserModel> currentUser = Get.find<WOHAuthService>().myUser;
     WOHUserRepository _userRepository;
 
     _userRepository = WOHUserRepository();
@@ -44,7 +43,7 @@ class WOHPhoneVerificationView extends GetView<WOHAuthController> {
             leading: new IconButton(
               icon: new Icon(Icons.arrow_back_ios, color: Get.theme.primaryColor),
               onPressed: () async{
-              await Get.find<MyAuthService>().removeCurrentUser();
+              await Get.find<WOHAuthService>().removeCurrentUser();
 
               Get.toNamed(WOHRoutes.LOGIN);
               },
@@ -132,7 +131,7 @@ class WOHPhoneVerificationView extends GetView<WOHAuthController> {
 
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: TextFieldWidget(
+                        child: WOHTextFieldWidget(
                           labelText: "Verification Code".tr,
                           hintText: "- - - - - -".tr,
                           style: Get.textTheme.headline4!.merge(TextStyle(letterSpacing: 8)),
@@ -144,32 +143,32 @@ class WOHPhoneVerificationView extends GetView<WOHAuthController> {
                         ),
                       ),
 
-                      BlockButtonWidget(
+                      WOHBlockButtonWidget(
                         onPressed: () async {
                           //await controller.verifyPhone();
                           /*
                           if(controller.smsSent.value.isNotEmpty){
                             controller.verifyClicked.value = true;
 
-                            Get.find<MyAuthService>().myUser.value = await _userRepository.get(controller.authUserId.value);
-                            if(Get.find<MyAuthService>().myUser.value.id != null){
+                            Get.find<WOHAuthService>().myUser.value = await _userRepository.get(controller.authUserId.value);
+                            if(Get.find<WOHAuthService>().myUser.value.id != null){
                               var foundDeviceToken= false;
 
-                              if(Get.find<MyAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
+                              if(Get.find<WOHAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
                               {
-                                for(int i = 0; i<Get.find<MyAuthService>().myUser.value.deviceTokenIds.length;i++){
-                                  if(WOHConstants.deviceToken==Get.find<MyAuthService>().myUser.value.deviceTokenIds[i]){
+                                for(int i = 0; i<Get.find<WOHAuthService>().myUser.value.deviceTokenIds.length;i++){
+                                  if(WOHConstants.deviceToken==Get.find<WOHAuthService>().myUser.value.deviceTokenIds[i]){
                                     foundDeviceToken = true;
                                   }
                                 }
 
                               }
                               else{
-                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
                               }
 
                               if(!foundDeviceToken){
-                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
                               }
                               controller.loading.value = false;
                               Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You logged in successfully " ));

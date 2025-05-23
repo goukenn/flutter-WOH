@@ -113,7 +113,7 @@ class WOHRatingView extends GetView<RatingController> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
-            child: TextFieldWidget(
+            child: WOHTextFieldWidget(
               readOnly: false,
               labelText: "Write your review".tr,
               hintText: "Tell us somethings about this service".tr,
@@ -124,7 +124,7 @@ class WOHRatingView extends GetView<RatingController> {
             )
           ),
           SizedBox(height: 20),
-          BlockButtonWidget(
+          WOHBlockButtonWidget(
               text: Obx(() => !controller.clicked.value ? Text(
                 "Submit WOHReviewModel".tr,
                 style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),

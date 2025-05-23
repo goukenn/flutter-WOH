@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../responsive.dart';
+import '../../../../WOHResponsive.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
@@ -67,7 +67,7 @@ class WOHForgotPasswordView extends GetView<WOHAuthController> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TextFieldWidget(
+                      WOHTextFieldWidget(
                         labelText: "WOHAddressModel mail".tr,
                         readOnly: false,
                         hintText: "johndoe@gmail.com".tr,
@@ -77,7 +77,7 @@ class WOHForgotPasswordView extends GetView<WOHAuthController> {
                         validator: (input) => !GetUtils.isEmail(input) ? "Should be a valid email".tr : null,
                         iconData: Icons.alternate_email,
                       ),
-                      Obx(() => BlockButtonWidget(
+                      Obx(() => WOHBlockButtonWidget(
                         disabled: false,
                         onPressed: ()async=> {
                           if(controller.email.value.isNotEmpty){

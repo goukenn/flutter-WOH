@@ -6,7 +6,7 @@ import '../../../models/WOHCustomPageModel.dart';
 import '../../../repositories/WOHCustomPageRepository.dart';
 
 class WOHCustomPagesController extends GetxController {
-  final customPage = CustomPage().obs;
+  final customPage = WOHCustomPageModel().obs;
   CustomPageRepository _customPageRepository;
 
   WOHCustomPagesController() {
@@ -15,7 +15,7 @@ class WOHCustomPagesController extends GetxController {
 
   @override
   void onInit() {
-    customPage.value = Get.arguments as CustomPage;
+    customPage.value = Get.arguments as WOHCustomPageModel;
     super.onInit();
   }
 

@@ -16,7 +16,7 @@ import '../controllers/WOHEServiceController.dart';
 class WOHOptionItemWidget extends GetWidget<EServiceController> {
   WOHOptionItemWidget({
     required WOHOptionModel option,
-    required OptionGroup optionGroup,
+    required WOHOptionGroupModel optionGroup,
     required WOHEServiceModel eService,
   })  : _option = option,
         _optionGroup = optionGroup,
@@ -24,7 +24,7 @@ class WOHOptionItemWidget extends GetWidget<EServiceController> {
 
   final WOHOptionModel _option;
   final WOHEServiceModel _eService;
-  final OptionGroup _optionGroup;
+  final WOHOptionGroupModel _optionGroup;
 
   @override
   Widget build(BuildContext context) {

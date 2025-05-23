@@ -85,7 +85,7 @@ class WOHProfileView extends GetView<ProfileController> {
                 return Column(
                   children: [
                     Text("Change the following details and save them".tr, style: Get.textTheme.labelSmall).paddingSymmetric(horizontal: 22, vertical: 5),
-                    TextFieldWidget(
+                    WOHTextFieldWidget(
                       onChanged: (input) => controller.user.value.name = input,
                       onSaved: (input) => controller.user.value.name = input,
                       validator: (input) => input.length < 3 ? "Should be more than 3 letters".tr : null,
@@ -94,7 +94,7 @@ class WOHProfileView extends GetView<ProfileController> {
                       iconData: Icons.person_outline,
                       initialValue: controller.user.value.name,
                     ),
-                    TextFieldWidget(
+                    WOHTextFieldWidget(
                         validator: (input) => !input.contains('@') ? "Should be a valid email" : null,
                         hintText: "johndoe@gmail.com",
                         onChanged: (input) => controller.user.value.email = input,
@@ -203,7 +203,7 @@ class WOHProfileView extends GetView<ProfileController> {
                     // }
                     //
                     // ),
-                    // TextFieldWidget(
+                    // WOHTextFieldWidget(
                     //   onChanged: (input) => controller.user.value.birthplace = input,
                     //   onSaved: (input) => controller.user.value.birthplace = input,
                     //   validator: (input) => input.length < 3 ? "Should be more than 3 letters".tr : null,
@@ -213,7 +213,7 @@ class WOHProfileView extends GetView<ProfileController> {
                     //   initialValue: controller.user.value.birthplace,
                     // ),
                     //
-                    // TextFieldWidget(
+                    // WOHTextFieldWidget(
                     //   onChanged: (input) => controller.user.value.street = input,
                     //   onSaved: (input) => controller.user.value.street = input,
                     //   validator: (input) => input.length < 3 ? "Should be more than 3 letters".tr : null,
@@ -434,7 +434,7 @@ class WOHProfileView extends GetView<ProfileController> {
               // Text("Change password".tr, style: Get.textTheme.headlineSmall).paddingOnly(top: 25, bottom: 0, right: 22, left: 22),
               // Text("Fill your old password and type new password and confirm it".tr, style: Get.textTheme.labelSmall).paddingSymmetric(horizontal: 22, vertical: 5),
               // Obx(() {
-              //   return TextFieldWidget(
+              //   return WOHTextFieldWidget(
               //     labelText: "Old Password".tr,
               //     hintText: "••••••••••••".tr,
               //     onSaved: (input) => controller.oldPassword.value = input,
@@ -456,7 +456,7 @@ class WOHProfileView extends GetView<ProfileController> {
               //   );
               // }),
               // Obx(() {
-              //   return TextFieldWidget(
+              //   return WOHTextFieldWidget(
               //     labelText: "New Password".tr,
               //     hintText: "••••••••••••".tr,
               //     onSaved: (input) => controller.user.value.password = input,
@@ -479,7 +479,7 @@ class WOHProfileView extends GetView<ProfileController> {
               //   );
               // }),
               // Obx(() {
-              //   return TextFieldWidget(
+              //   return WOHTextFieldWidget(
               //     labelText: "Confirm New Password".tr,
               //     hintText: "••••••••••••".tr,
               //     //editable: controller.editPassword.value,

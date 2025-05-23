@@ -13,7 +13,7 @@ import '../../../repositories/WOHEServiceRepository.dart';
 class WOHEServiceController extends GetxController {
   final eService = WOHEServiceModel().obs;
   final reviews = <WOHReviewModel>[].obs;
-  final optionGroups = <OptionGroup>[].obs;
+  final optionGroups = <WOHOptionGroupModel>[].obs;
   final currentSlide = 0.obs;
   final quantity = 1.obs;
   final heroTag = ''.obs;
@@ -76,7 +76,7 @@ class WOHEServiceController extends GetxController {
 
   Future addToFavorite() async {
     try {
-      Favorite _favorite = new Favorite(
+      WOHFavoriteModel _favorite = new WOHFavoriteModel(
         eService: this.eService.value,
         userId: Get.find<WOHAuthService>().user.value.id,
         options: getCheckedOptions(),
@@ -96,7 +96,7 @@ class WOHEServiceController extends GetxController {
 
   Future removeFromFavorite() async {
     try {
-      Favorite _favorite = new Favorite(
+      WOHFavoriteModel _favorite = new WOHFavoriteModel(
         eService: this.eService.value,
         userId: Get.find<WOHAuthService>().user.value.id,
       );
@@ -113,7 +113,7 @@ class WOHEServiceController extends GetxController {
     }
   }*/
 
-  void selectOption(OptionGroup optionGroup, WOHOptionModel option) {
+  void selectOption(WOHOptionGroupModel optionGroup, WOHOptionModel option) {
     optionGroup.options.forEach((e) {
       if (!optionGroup.allowMultiple && option != e) {
         e.checked.value = false;

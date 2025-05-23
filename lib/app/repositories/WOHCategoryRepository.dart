@@ -5,7 +5,7 @@ import '../models/WOHCategoryModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
 class WOHCategoryRepository {
-  WOHLaravelApiClientProvider _laravelApiClient;
+  late WOHLaravelApiClientProvider _laravelApiClient;
 
   WOHCategoryRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
@@ -23,7 +23,7 @@ class WOHCategoryRepository {
     return _laravelApiClient.getAllWithSubCategories();
   }
 
-  Future<List<WOHCategoryModel>> getSubCategories(String? categoryId) {
+  Future<List<WOHCategoryModel>> getSubCategories(String categoryId) {
     return _laravelApiClient.getSubCategories(categoryId);
   }
 

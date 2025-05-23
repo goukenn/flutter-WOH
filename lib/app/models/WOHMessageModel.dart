@@ -69,7 +69,7 @@ class WOHMessageModel extends WOHModel {
     return map;
   }
 
-  Map toUpdatedMap() {
+  Map<String, dynamic> toUpdatedMap() {
     var map = new Map<String, dynamic>();
     map["message"] = lastMessage;
     map["time"] = lastMessageTime;

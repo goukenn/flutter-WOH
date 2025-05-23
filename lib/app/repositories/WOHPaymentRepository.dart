@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../models/WOHBookingModel.dart';
 import '../models/WOHPaymentMethodModel.dart';
 import '../models/WOHPaymentModel.dart';
-import '../models/WOHWalletModel.dart';
+import '../models/WOHWalletModel.dart'; 
 import '../models/WOHWalletTransactionModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
@@ -23,7 +23,7 @@ class WOHPaymentRepository {
     return _laravelApiClient.getWallets();
   }
 
-  Future<List<WalletTransaction>> getWalletTransactions(WOHWalletModel? wallet) {
+  Future<List<WOHWalletTransactionModel>> getWalletTransactions(WOHWalletModel? wallet) {
     return _laravelApiClient.getWalletTransactions(wallet);
   }
 

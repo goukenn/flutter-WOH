@@ -186,7 +186,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
 
   Future<String> uploadImage(File file, WOHMyUserModel myUser) async {
 
-    if (Get.find<MyAuthService>().myUser.value.email==null) {
+    if (Get.find<WOHAuthService>().myUser.value.email==null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");
     }
 
@@ -218,7 +218,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
 
 
   Future<String> uploadRoadPacketImage(imageFiles, bookingId) async {
-    if (Get.find<MyAuthService>().myUser.value.email==null) {
+    if (Get.find<WOHAuthService>().myUser.value.email==null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");
     }
     final box = GetStorage();
@@ -250,7 +250,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
 
   Future<String> uploadAirPacketImage(imageFiles, bookingId) async {
 
-    if (Get.find<MyAuthService>().myUser.value.email==null) {
+    if (Get.find<WOHAuthService>().myUser.value.email==null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");
     }
     final box = GetStorage();

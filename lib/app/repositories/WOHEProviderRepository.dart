@@ -11,53 +11,53 @@ import '../models/WOHUserModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
 class WOHEProviderRepository {
-  WOHLaravelApiClientProvider _laravelApiClient;
+  late WOHLaravelApiClientProvider _laravelApiClient;
 
   WOHEProviderRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 
-  Future<WOHEProviderModel> get(String? eProviderId) {
+  Future<WOHEProviderModel> get(String eProviderId) {
     return _laravelApiClient.getEProvider(eProviderId);
   }
 
-  Future<List<WOHReviewModel>> getReviews(String? eProviderId) {
+  Future<List<WOHReviewModel>> getReviews(String eProviderId) {
     return _laravelApiClient.getEProviderReviews(eProviderId);
   }
 
-  Future<List<Gallery>> getGalleries(String? eProviderId) {
+  Future<List<WOHGalleryModel>> getGalleries(String eProviderId) {
     return _laravelApiClient.getEProviderGalleries(eProviderId);
   }
 
-  Future<List<Award>> getAwards(String? eProviderId) {
+  Future<List<WOHAwardModel>> getAwards(String eProviderId) {
     return _laravelApiClient.getEProviderAwards(eProviderId);
   }
 
-  Future<List<Experience>> getExperiences(String? eProviderId) {
+  Future<List<WOHExperienceModel>> getExperiences(String eProviderId) {
     return _laravelApiClient.getEProviderExperiences(eProviderId);
   }
 
-  Future<List<WOHEServiceModel>> getEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getEServices(String eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderEServices(eProviderId, page);
   }
 
-  Future<List<WOHUserModel>> getEmployees(String? eProviderId) {
+  Future<List<WOHUserModel>> getEmployees(String eProviderId) {
     return _laravelApiClient.getEProviderEmployees(eProviderId);
   }
 
-  Future<List<WOHEServiceModel>> getPopularEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getPopularEServices(String eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderPopularEServices(eProviderId, page);
   }
 
-  Future<List<WOHEServiceModel>> getMostRatedEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getMostRatedEServices(String eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderMostRatedEServices(eProviderId, page);
   }
 
-  Future<List<WOHEServiceModel>> getAvailableEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getAvailableEServices(String eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderAvailableEServices(eProviderId, page);
   }
 
-  Future<List<WOHEServiceModel>> getFeaturedEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getFeaturedEServices(String eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderFeaturedEServices(eProviderId, page);
   }
 }

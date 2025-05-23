@@ -39,12 +39,12 @@ class WOHThemeModeController extends GetxController {
     Get.changeThemeMode(themeMode);
     selectedThemeMode.value = themeMode;
     if (themeMode == ThemeMode.dark) {
-      //Get.rootController.setTheme(Get.find<SettingsService>().getDarkTheme());
+      //Get.rootController.setTheme(Get.find<WOHSettingsService>().getDarkTheme());
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.dark.copyWith(systemNavigationBarColor: Colors.black87),
       );
     } else {
-      //Get.rootController.setTheme(Get.find<SettingsService>().getLightTheme());
+      //Get.rootController.setTheme(Get.find<WOHSettingsService>().getLightTheme());
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Colors.white),
       );

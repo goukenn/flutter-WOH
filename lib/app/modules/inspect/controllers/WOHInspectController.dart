@@ -36,7 +36,7 @@ class WOHInspectController extends GetxController {
   var daySelected = 0.obs;
   TextEditingController birthPlaceTown = TextEditingController();
   TextEditingController residentialTown = TextEditingController();
-  //final Rx<WOHMyUserModel> currentUser = Get.find<MyAuthService>().myUser;
+  //final Rx<WOHMyUserModel> currentUser = Get.find<WOHAuthService>().myUser;
 
   var genderList = [
     "MALE",

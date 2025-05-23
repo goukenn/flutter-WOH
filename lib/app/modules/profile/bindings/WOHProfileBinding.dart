@@ -14,8 +14,8 @@ class WOHProfileBinding extends Bindings {
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),
     );
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHAuthService>(
+          () => WOHAuthService(),
     );
 
   }

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../WOHColorConstants.dart';
-import '../../../responsive.dart';
+import '../../../WOHResponsive.dart'; 
 
 class WOHBlockButtonWidget extends StatelessWidget {
-  const WOHBlockButtonWidget({Key key,required this.text, required this.loginPage, this.color, required this.onPressed,required this.disabled}) : super(key: key);
+  const WOHBlockButtonWidget({Key? key,required this.text, required this.loginPage, required this.color, required this.onPressed,required this.disabled}) : super(key: key);
 
   final Widget text;
   final bool loginPage;
@@ -35,8 +35,8 @@ class WOHBlockButtonWidget extends StatelessWidget {
         disabledElevation: 0,
         disabledColor: Get.theme.focusColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: this.text,
         elevation: 0,
+        child: this.text
       ),
     );
   }

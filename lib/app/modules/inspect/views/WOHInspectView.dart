@@ -11,8 +11,8 @@ class WOHInspectView extends GetView<OWHInspectController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHAuthService>(
+          () => WOHAuthService(),
     );
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),

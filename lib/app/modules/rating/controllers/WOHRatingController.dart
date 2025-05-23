@@ -39,14 +39,14 @@ class WOHRatingController extends GetxController {
 
   rateTraveller(int shipping_id)async{
 
-    print("$comment, ${Get.find<MyAuthService>().myUser.value.id}");
+    print("$comment, ${Get.find<WOHAuthService>().myUser.value.id}");
 
     var headers = {
       'Accept': 'application/json',
       'Authorization': WOHConstants.authorization
     };
     var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/create/res.partner.rating?values=%7B%0A%20%20%22'
-        'rater_id%22%3A%20${Get.find<MyAuthService>().myUser.value.id}%2C%0A%20%20%22'
+        'rater_id%22%3A%20${Get.find<WOHAuthService>().myUser.value.id}%2C%0A%20%20%22'
         'rated_id%22%3A%20${travellerId.value}%2C%0A%20%20%22'
         'shipping_id%22%3A%20$shipping_id%2C%0A%20%20%22'
         'rating%22%3A%20%22${rate.value}%22%2C%0A%20%20%22'

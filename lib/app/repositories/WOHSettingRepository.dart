@@ -12,7 +12,7 @@ class WOHSettingRepository {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 
-  Future<Setting> get() {
+  Future<WOHSettingModel> get() {
     return _laravelApiClient.getSettings();
   }
 

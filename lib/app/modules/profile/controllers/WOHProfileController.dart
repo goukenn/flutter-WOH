@@ -17,7 +17,7 @@ import '../../global_widgets/WOHPhoneVerificationBottomSheetWidget.dart';
 class WOHProfileController extends GetxController {
   final user = new WOHMyUserModel().obs;
   var url = ''.obs;
-  //final Rx<WOHMyUserModel> currentUser = Get.find<MyAuthService>().myUser;
+  //final Rx<WOHMyUserModel> currentUser = Get.find<WOHAuthService>().myUser;
   final hidePassword = true.obs;
   final oldPassword = "".obs;
   final newPassword = "".obs;
@@ -75,7 +75,7 @@ class WOHProfileController extends GetxController {
 
 
 
-    user.value = Get.find<MyAuthService>().myUser.value;
+    user.value = Get.find<WOHAuthService>().myUser.value;
     selectedGender.value = genderList.elementAt(0);
     user.value?.birthday = user.value.birthday;
     //user.value.phone = user.value.phone;
@@ -98,7 +98,7 @@ class WOHProfileController extends GetxController {
 
        await _userRepository.update(user.value);
       user.value = await _userRepository.get(user.value.id);
-      Get.find<MyAuthService>().myUser.value = user.value;
+      Get.find<WOHAuthService>().myUser.value = user.value;
       buttonPressed.value = false;
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Profile updated successfully".tr));
       await Get.toNamed(WOHRoutes.ROOT);

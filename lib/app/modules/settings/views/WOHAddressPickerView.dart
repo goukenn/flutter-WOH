@@ -16,8 +16,8 @@ class WOHAddressPickerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlacePicker(
-      apiKey: Get.find<SettingsService>().setting.value.googleMapsKey,
-      initialPosition: Get.find<SettingsService>().address.value.getLatLng(),
+      apiKey: Get.find<WOHSettingsService>().setting.value.googleMapsKey,
+      initialPosition: Get.find<WOHSettingsService>().address.value.getLatLng(),
       useCurrentLocation: true,
       selectInitialPosition: true,
       usePlaceDetailSearch: true,
@@ -39,7 +39,7 @@ class WOHAddressPickerView extends StatelessWidget {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TextFieldWidget(
+                    WOHTextFieldWidget(
                       labelText: "Description".tr,
                       hintText: "My Home".tr,
                       //initialValue: _address.description,
@@ -48,7 +48,7 @@ class WOHAddressPickerView extends StatelessWidget {
                       isFirst: true,
                       isLast: false,
                     ),
-                    TextFieldWidget(
+                    WOHTextFieldWidget(
                       labelText: "Full WOHAddressModel".tr,
                       hintText: "123 Street, City 136, State, Country".tr,
                       //initialValue: _address.address,
@@ -57,9 +57,9 @@ class WOHAddressPickerView extends StatelessWidget {
                       isFirst: false,
                       isLast: true,
                     ),
-                    BlockButtonWidget(
+                    WOHBlockButtonWidget(
                       onPressed: () async {
-                        Get.find<SettingsService>().address.update((val) {
+                        Get.find<WOHSettingsService>().address.update((val) {
                           val.description = _address.description;
                           val.address = _address.address;
                           val.latitude = selectedPlace.geometry.location.lat;

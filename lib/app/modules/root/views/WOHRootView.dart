@@ -13,7 +13,7 @@ class WOHRootView extends GetView<WOHRootController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      Get.lazyPut(()=>MyAuthService());
+      Get.lazyPut(()=>WOHAuthService());
       Get.lazyPut<WOHOdooApiClientProvider>(
             () => WOHOdooApiClientProvider(),
       );

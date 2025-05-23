@@ -34,7 +34,7 @@ class WOHCustomPageDrawerLinkWidget extends GetView<WOHRootController> {
     });
   }
 
-  IconData getDrawerLinkIcon(CustomPage _page) {
+  IconData getDrawerLinkIcon(WOHCustomPageModel _page) {
     switch (_page.id) {
       case '1':
         return Icons.privacy_tip_outlined;

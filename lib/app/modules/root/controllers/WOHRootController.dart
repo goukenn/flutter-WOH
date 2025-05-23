@@ -19,7 +19,7 @@ import '../../userBookings/views/WOHBookingsView.dart';
 class WOHRootController extends GetxController {
   final currentIndex = 0.obs;
   final notificationsCount = 0.obs;
-  final customPages = <CustomPage>[].obs;
+  final customPages = <WOHCustomPageModel>[].obs;
   WOHNotificationsController _notificationController;
   //WOHNotificationRepository _notificationRepository;
   CustomPageRepository _customPageRepository;
@@ -50,21 +50,21 @@ class WOHRootController extends GetxController {
 
   Future<void> changePageInRoot(int _index) async {
     Get.lazyPut<AccountController>(()=>AccountController());
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHAuthService>(
+          () => WOHAuthService(),
     );
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),
     );
     Get.lazyPut(()=> WOHHomeController());
-    //print(Get.find<MyAuthService>().myUser.value.name);
+    //print(Get.find<WOHAuthService>().myUser.value.name);
     currentIndex.value = _index;
     await refreshPage(_index);
   }
 
   Future<void> changePageOutRoot(int _index) async {
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHAuthService>(
+          () => WOHAuthService(),
     );
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),

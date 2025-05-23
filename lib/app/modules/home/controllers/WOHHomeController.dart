@@ -324,7 +324,7 @@ class WOHHomeController extends GetxController {
 
 
   WOHAddressModel get currentAddress {
-    return Get.find<SettingsService>().address.value;
+    return Get.find<WOHSettingsService>().address.value;
   }
 
   getServiceDto(var item, var appointment) async{

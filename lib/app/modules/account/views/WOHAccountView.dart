@@ -19,7 +19,7 @@ import '../widgets/WOHAccountLinkWidget.dart';
 class WOHAccountView extends GetView<AccountController> {
   @override
   Widget build(BuildContext context) {
-    //var _currentUser = Get.find<MyAuthService>().myUser;
+    //var _currentUser = Get.find<WOHAuthService>().myUser;
     Get.lazyPut(() => WOHRootController());
     return Scaffold(
       body: RefreshIndicator(

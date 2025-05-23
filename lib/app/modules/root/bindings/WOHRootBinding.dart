@@ -22,8 +22,8 @@ class WOHRootBinding extends Bindings {
     Get.lazyPut<AccountController>(
       () => AccountController(),
     );
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHAuthService>(
+          () => WOHAuthService(),
     );
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),

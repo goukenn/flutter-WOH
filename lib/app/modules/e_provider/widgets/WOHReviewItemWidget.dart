@@ -7,9 +7,9 @@ import '../../../../common/WOHUi.dart';
 import '../../../models/WOHReviewModel.dart';
 
 class WOHReviewItemWidget extends StatelessWidget {
-  final WOHReviewModel review;
+  final WOHReviewModel? review;
 
-  WOHReviewItemWidget({Key key, this.review}) : super(key: key);
+  WOHReviewItemWidget({Key? key, this.review}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +45,14 @@ class WOHReviewItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      review.user.name,
+                      review!.user.name,
                       overflow: TextOverflow.fade,
                       softWrap: false,
                       maxLines: 2,
                       style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.hintColor)),
                     ),
                     Text(
-                      review.user.bio,
+                      review?.user.bio,
                       overflow: TextOverflow.ellipsis,
                       style: Get.textTheme.labelSmall,
                     ),

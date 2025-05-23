@@ -32,7 +32,7 @@ class WOHImportIdentityFilesController extends GetxController{
   final identityPieceSelected = ''.obs;
   var currentState = 0.obs;
   var loadImage = false.obs;
-  var currentUser = Get.find<MyAuthService>().myUser;
+  var currentUser = Get.find<WOHAuthService>().myUser;
   var buttonPressed = false.obs;
   var number = "".obs;
   var residentialAddressId = 0.obs;
@@ -58,9 +58,9 @@ class WOHImportIdentityFilesController extends GetxController{
   void onInit() async {
 
     isConform.value = false;
-    user.value = Get.find<MyAuthService>().myUser.value;
+    user.value = Get.find<WOHAuthService>().myUser.value;
 
-    await getUserInfo(Get.find<MyAuthService>().myUser.value.id);
+    await getUserInfo(Get.find<WOHAuthService>().myUser.value.id);
     final box = GetStorage();
 
     super.onInit();
@@ -68,7 +68,7 @@ class WOHImportIdentityFilesController extends GetxController{
 
   onRefresh() async{
     loadAttachments.value = true;
-    await getUserInfo(Get.find<MyAuthService>().myUser.value.id);
+    await getUserInfo(Get.find<WOHAuthService>().myUser.value.id);
   }
 
   getUserInfo(int id) async{

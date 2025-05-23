@@ -100,7 +100,7 @@ class WOHUpdatePasswordWidget extends GetView<ProfileController> {
           ),
 
           Obx(() {
-            return TextFieldWidget(
+            return WOHTextFieldWidget(
               labelText: "Old Password".tr,
               hintText: "••••••••••••".tr,
               onSaved: (input) => controller.oldPassword.value = input,
@@ -122,7 +122,7 @@ class WOHUpdatePasswordWidget extends GetView<ProfileController> {
             );
           }).marginOnly(bottom: 10),
           Obx(() {
-            return TextFieldWidget(
+            return WOHTextFieldWidget(
               labelText: "New Password".tr,
               hintText: "••••••••••••".tr,
               onSaved: (input) => controller.user.value.password = input,
@@ -145,7 +145,7 @@ class WOHUpdatePasswordWidget extends GetView<ProfileController> {
             );
           }).marginOnly(bottom: 10),
           Obx(() {
-            return TextFieldWidget(
+            return WOHTextFieldWidget(
               labelText: "Confirm New Password".tr,
               hintText: "••••••••••••".tr,
               //editable: controller.editPassword.value,

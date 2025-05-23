@@ -8,13 +8,13 @@
 
 import 'package:get/get.dart';
 
-import '../../common/WOHCustomTrace.dart';
+import '../../common/WOHCustomTrace.dart';  
 import '../services/WOHAuthService.dart';
 import '../services/WOHGlobalService.dart';
 
 mixin WOHApiClient {
   final globalService = Get.find<WOHGlobalService>();
-  final WOHAuthService = Get.find<WOHAuthService>();
+  final authService = Get.find<WOHAuthService>();
   late String baseUrl;
 
   String getBaseUrl(String path) {

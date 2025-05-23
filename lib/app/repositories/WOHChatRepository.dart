@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, avoid_function_literals_in_foreach_calls, invalid_return_type_for_catch_error, body_might_complete_normally_catch_error
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,13 +14,13 @@ class WOHChatRepository {
     });
   }
 
-  getUserInfo(String? token) async {
+  getUserInfo(String token) async {
     return FirebaseFirestore.instance.collection("users").where("token", isEqualTo: token).get().catchError((e) {
       print(e.toString());
     });
   }
 
-  searchByName(String? searchField) {
+  searchByName(String searchField) {
     return FirebaseFirestore.instance.collection("users").where('userName', isEqualTo: searchField).get();
   }
 
@@ -38,7 +38,7 @@ class WOHChatRepository {
     });
   }
 
-  Stream<QuerySnapshot> getUserMessages(String? userId, {perPage = 10}) {
+  Stream<QuerySnapshot> getUserMessages(String userId, {perPage = 10}) {
     return FirebaseFirestore.instance.collection("messages").where('visible_to_users', arrayContains: userId).orderBy('time', descending: true).limit(perPage).snapshots();
   }
 
@@ -48,7 +48,7 @@ class WOHChatRepository {
     });
   }
 
-  Stream<QuerySnapshot> getUserMessagesStartAt(String? userId, DocumentSnapshot lastDocument, {perPage = 10}) {
+  Stream<QuerySnapshot> getUserMessagesStartAt(String userId, DocumentSnapshot lastDocument, {perPage = 10}) {
     return FirebaseFirestore.instance
         .collection("messages")
         .where('visible_to_users', arrayContains: userId)
@@ -58,33 +58,33 @@ class WOHChatRepository {
         .snapshots();
   }
 
-  Stream<List<Chat>> getChats(WOHMessageModel message) {
-    updateMessage(message.id, {'read_by_users': message.readByUsers});
+  Stream<List<WOHChatModel>> getChats(WOHMessageModel message) {
+    updateMessage(message.id!, {'read_by_users': message.readByUsers});
     return FirebaseFirestore.instance.collection("messages").doc(message.id).collection("chats").orderBy('time', descending: true).snapshots().map((QuerySnapshot query) {
-      List<Chat> retVal = [];
+      List<WOHChatModel> retVal = [];
       query.docs.forEach((element) {
-        retVal.add(Chat.fromDocumentSnapshot(element));
+        retVal.add(WOHChatModel.fromDocumentSnapshot(element));
       });
       return retVal;
     });
   }
 
-  Future<void> addMessage(WOHMessageModel message, Chat chat) {
+  Future<void> addMessage(WOHMessageModel message, WOHChatModel chat) {
     return FirebaseFirestore.instance.collection("messages").doc(message.id).collection("chats").add(chat.toJson()).whenComplete(() {
-      updateMessage(message.id, message.toUpdatedMap());
-    }).catchError((e) {
+      updateMessage(message.id!, message.toUpdatedMap());
+    }).catchError((e){
       print(e.toString());
     });
   }
 
-  Future<void> updateMessage(String? messageId, Map<String, dynamic> message) {
+  Future<void> updateMessage(String messageId, Map<String, dynamic> message) {
     return FirebaseFirestore.instance.collection("messages").doc(messageId).update(message).catchError((e) {
       print(e.toString());
     });
   }
 
   Future<String> uploadFile(File _imageFile) async {
-    String? fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
     Reference reference = FirebaseStorage.instance.ref().child(fileName);
     UploadTask uploadTask = reference.putFile(_imageFile);
     return uploadTask.then((TaskSnapshot storageTaskSnapshot) {

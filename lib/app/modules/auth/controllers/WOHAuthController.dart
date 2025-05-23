@@ -10,7 +10,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
-import '../../../../responsive.dart';
+import '../../../../WOHResponsive.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
 
@@ -103,15 +103,15 @@ class WOHAuthController extends GetxController {
 
         var found = await getUserByEmail(emailAddress, "");
         if (found){
-          //Get.find<MyAuthService>().myUser.value = await _userRepository.get(users[index]['partner_id'][0]['id']);
-          //Get.find<MyAuthService>().myUser.value.image = photo;
+          //Get.find<WOHAuthService>().myUser.value = await _userRepository.get(users[index]['partner_id'][0]['id']);
+          //Get.find<WOHAuthService>().myUser.value.image = photo;
           WOHConstants.googleUser = true;
           WOHConstants.googleImage = photo;
 
           var foundDeviceToken= false;
-          if(Get.find<MyAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
+          if(Get.find<WOHAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
           {
-            var tokensList = await getUserDeviceTokens(Get.find<MyAuthService>().myUser.value.deviceTokenIds);
+            var tokensList = await getUserDeviceTokens(Get.find<WOHAuthService>().myUser.value.deviceTokenIds);
             for(int i = 0; i<tokensList.length;i++){
               if(WOHConstants.deviceToken==tokensList[i]['token']){
                 foundDeviceToken = true;
@@ -121,7 +121,7 @@ class WOHAuthController extends GetxController {
 
           loading.value = false;
           *//*if(!foundDeviceToken){
-            await saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+            await saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
           }*//*
           Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You signed in successfully " ));
           await Get.toNamed(WOHRoutes.ROOT);
@@ -129,11 +129,11 @@ class WOHAuthController extends GetxController {
         }
         else{
           await createGoogleUser(name, emailAddress, phone);
-          //Get.find<MyAuthService>().myUser.value.image = photo;
+          //Get.find<WOHAuthService>().myUser.value.image = photo;
           WOHConstants.googleUser = true;
           WOHConstants.googleImage = photo;
 
-          //await saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+          //await saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
           Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You signed in successfully " ));
           await Get.toNamed(WOHRoutes.ROOT);
 
@@ -249,9 +249,9 @@ class WOHAuthController extends GetxController {
         var foundDeviceToken= false;
         loading.value = false;
 
-        if(Get.find<MyAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
+        if(Get.find<WOHAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
         {
-          var tokensList = await getUserDeviceTokens(Get.find<MyAuthService>().myUser.value.deviceTokenIds);
+          var tokensList = await getUserDeviceTokens(Get.find<WOHAuthService>().myUser.value.deviceTokenIds);
           for(int i = 0; i<tokensList.length;i++){
             if(WOHConstants.deviceToken==tokensList[i]['token']){
               foundDeviceToken = true;
@@ -261,7 +261,7 @@ class WOHAuthController extends GetxController {
         }
 /*
         if(!foundDeviceToken){
-          await saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+          await saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
         }
 */
         Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You logged in successfully " ));

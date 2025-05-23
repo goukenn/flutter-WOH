@@ -54,10 +54,10 @@ class WOHAddressesView extends GetView<AddressController> {
                         return Obx(() {
                           return RadioListTile(
                             value: _address,
-                            groupValue: Get.find<SettingsService>().address.value,
+                            groupValue: Get.find<WOHSettingsService>().address.value,
                             activeColor: Get.theme.colorScheme.secondary,
                             onChanged: (value) {
-                              Get.find<SettingsService>().address.value = value;
+                              Get.find<WOHSettingsService>().address.value = value;
                             },
                             title: Text(_address.description, style: Get.textTheme.bodyMedium),
                             subtitle: Text(_address.address, style: Get.textTheme.labelSmall),

@@ -24,8 +24,8 @@ class WOHNotificationsButtonWidget extends GetView<WOHRootController> {
       highlightElevation: 0,
       elevation: 0,
       onPressed: () async {
-        print(Get.find<MyAuthService>().myUser.value.email.toString());
-        //if (Get.find<MyAuthService>().myUser.value.email != null ) {
+        print(Get.find<WOHAuthService>().myUser.value.email.toString());
+        //if (Get.find<WOHAuthService>().myUser.value.email != null ) {
           await Get.toNamed(WOHRoutes.NOTIFICATIONS);
         //}
         // else {

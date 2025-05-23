@@ -557,7 +557,7 @@ class WOHEServiceView extends GetView<EServiceController> {
               ),
             if (_eService.priceUnit == 'fixed') SizedBox(width: 10),
             Expanded(
-              child: BlockButtonWidget(
+              child: WOHBlockButtonWidget(
                   text: Container(
                     height: 24,
                     alignment: Alignment.center,

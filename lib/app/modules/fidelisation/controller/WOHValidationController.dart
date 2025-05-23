@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
-import '../../../../responsive.dart';
+import '../../../../WOHResponsive.dart';
 
 class WOHValidationController extends GetxController {
 

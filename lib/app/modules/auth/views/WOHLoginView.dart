@@ -9,7 +9,7 @@ import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHHelper.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../../main.dart';
-import '../../../../responsive.dart';
+import '../../../../WOHResponsive.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
@@ -80,7 +80,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TextFieldWidget(
+                      WOHTextFieldWidget(
                         readOnly: false,
                         labelText: "Adresse mail",
                         hintText: "johndoe@gmail.com",
@@ -94,7 +94,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                         iconData: Icons.alternate_email,
                       ),
                       Obx(() {
-                        return TextFieldWidget(
+                        return WOHTextFieldWidget(
                           labelText: "Mot de pass",
                           hintText: "••••••••••••",
                           readOnly: false,
@@ -154,7 +154,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                       ).paddingSymmetric(horizontal: 30),
 
                       SizedBox(height: WOHResponsive.isMobile(context) ? 20 : 50),
-                      Obx(() => BlockButtonWidget(
+                      Obx(() => WOHBlockButtonWidget(
                         disabled: false,
                         onPressed: ()async{
                           if(controller.email.value.isNotEmpty && controller.password.value.isNotEmpty){

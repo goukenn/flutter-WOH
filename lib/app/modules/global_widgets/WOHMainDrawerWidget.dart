@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../../WOHColorConstants.dart';
 import '../../../WOHConstants.dart';
 import '../../../main.dart';
-import '../../../responsive.dart';
+import '../../../WOHResponsive.dart';
 import '../../routes/WOHRoutes.dart';
 import '../../services/WOHAuthService.dart';
 import '../auth/controllers/WOHAuthController.dart';

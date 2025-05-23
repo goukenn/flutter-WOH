@@ -19,7 +19,7 @@ import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
 class WOHRegisterView extends GetView<WOHAuthController> {
-  final Setting _settings = Get.find<SettingsService>().setting.value;
+  final WOHSettingModel _settings = Get.find<WOHSettingsService>().setting.value;
   String dropdownvalueGender = 'Select your gender'.tr;
   String dropdownvaluePiece = 'Select an identity piece'.tr;
 
@@ -103,7 +103,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        TextFieldWidget(
+                        WOHTextFieldWidget(
                           labelText: "Nom".tr,
                           hintText: "John Doe".tr,
                           readOnly: false,
@@ -141,7 +141,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                             },
                           ),
                         ),
-                        TextFieldWidget(
+                        WOHTextFieldWidget(
                           labelText: "Adresse mail".tr,
                           hintText: "johndoe@gmail.com".tr,
                           readOnly: false,
@@ -153,7 +153,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                         ),
 
                         Obx(() {
-                          return TextFieldWidget(
+                          return WOHTextFieldWidget(
                             onChanged: (newValue){
                               controller.password.value = newValue;
                             },
@@ -177,7 +177,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                         }),
 
                         Obx(() {
-                          return TextFieldWidget(
+                          return WOHTextFieldWidget(
                             onChanged: (newValue){
                               if(newValue!=controller.password.value){
 
@@ -245,7 +245,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
               children: [
                 SizedBox(
                   width: Get.width,
-                  child: BlockButtonWidget(
+                  child: WOHBlockButtonWidget(
                     disabled: !controller.accepted.value,
                     color: controller.accepted.value ? interfaceColor : interfaceColor.withAlpha((255 * 0.3).toInt()),
                     onPressed: controller.accepted.value ? () async{

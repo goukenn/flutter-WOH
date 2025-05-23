@@ -8,29 +8,29 @@ import '../models/WOHReviewModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
 class WOHEServiceRepository {
-  WOHLaravelApiClientProvider _laravelApiClient;
+  late WOHLaravelApiClientProvider _laravelApiClient;
 
   WOHEServiceRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 
-  Future<List<WOHEServiceModel>> getAllWithPagination(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getAllWithPagination(String categoryId, {int? page}) {
     return _laravelApiClient.getAllEServicesWithPagination(categoryId, page);
   }
 
-  Future<List<WOHEServiceModel>> search(String? keywords, List<String> categories, {int? page = 1}) {
+  Future<List<WOHEServiceModel>> search(String keywords, List<String> categories, {int? page = 1}) {
     return _laravelApiClient.searchEServices(keywords, categories, page);
   }
 
-  Future<List<Favorite>> getFavorites() {
+  Future<List<WOHFavoriteModel>> getFavorites() {
     return _laravelApiClient.getFavoritesEServices();
   }
 
-  Future<Favorite> addFavorite(Favorite favorite) {
+  Future<WOHFavoriteModel> addFavorite(WOHFavoriteModel favorite) {
     return _laravelApiClient.addFavoriteEService(favorite);
   }
 
-  Future<bool> removeFavorite(Favorite favorite) {
+  Future<bool> removeFavorite(WOHFavoriteModel favorite) {
     return _laravelApiClient.removeFavoriteEService(favorite);
   }
 
@@ -38,31 +38,31 @@ class WOHEServiceRepository {
     return _laravelApiClient.getRecommendedEServices();
   }
 
-  Future<List<WOHEServiceModel>> getFeatured(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getFeatured(String categoryId, {int? page}) {
     return _laravelApiClient.getFeaturedEServices(categoryId, page);
   }
 
-  Future<List<WOHEServiceModel>> getPopular(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getPopular(String categoryId, {int? page}) {
     return _laravelApiClient.getPopularEServices(categoryId, page);
   }
 
-  Future<List<WOHEServiceModel>> getMostRated(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getMostRated(String categoryId, {int? page}) {
     return _laravelApiClient.getMostRatedEServices(categoryId, page);
   }
 
-  Future<List<WOHEServiceModel>> getAvailable(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getAvailable(String categoryId, {int? page}) {
     return _laravelApiClient.getAvailableEServices(categoryId, page);
   }
 
-  Future<WOHEServiceModel> get(String? id) {
+  Future<WOHEServiceModel> get(String id) {
     return _laravelApiClient.getEService(id);
   }
 
-  Future<List<WOHReviewModel>> getReviews(String? eServiceId) {
+  Future<List<WOHReviewModel>> getReviews(String eServiceId) {
     return _laravelApiClient.getEServiceReviews(eServiceId);
   }
 
-  Future<List<OptionGroup>> getOptionGroups(String? eServiceId) {
+  Future<List<WOHOptionGroupModel>> getOptionGroups(String eServiceId) {
     return _laravelApiClient.getEServiceOptionGroups(eServiceId);
   }
 }

@@ -5,17 +5,17 @@ import '../models/WOHCustomPageModel.dart';
 import '../providers/WOHLaravelApiClientProvider.dart';
 
 class WOHCustomPageRepository {
-  WOHLaravelApiClientProvider _laravelApiClient;
+  late WOHLaravelApiClientProvider _laravelApiClient;
 
   WOHCustomPageRepository() {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 
-  Future<List<CustomPage>> all() {
+  Future<List<WOHCustomPageModel>> all() {
     return _laravelApiClient.getCustomPages();
   }
 
-  Future<CustomPage> get(String? id) {
+  Future<WOHCustomPageModel> get(String id) {
     return _laravelApiClient.getCustomPageById(id);
   }
 }

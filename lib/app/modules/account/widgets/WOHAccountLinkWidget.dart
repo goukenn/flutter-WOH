@@ -58,7 +58,7 @@ class WOHAccountLinkWidget extends StatelessWidget {
             )
           ]
         ) :
-        TextFieldWidget(
+        WOHTextFieldWidget(
           labelText: text,
           isFirst: false,
           isLast: false,

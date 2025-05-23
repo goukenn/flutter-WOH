@@ -19,11 +19,11 @@ import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHAuthController.dart';
 
 class WOHVerificationView extends GetView<WOHAuthController> {
-  final Setting _settings = Get.find<SettingsService>().setting.value;
+  final WOHSettingModel _settings = Get.find<WOHSettingsService>().setting.value;
 
   @override
   Widget build(BuildContext context) {
-    final Rx<WOHMyUserModel> currentUser = Get.find<MyAuthService>().myUser;
+    final Rx<WOHMyUserModel> currentUser = Get.find<WOHAuthService>().myUser;
     WOHUserRepository _userRepository;
 
     _userRepository = WOHUserRepository();
@@ -129,7 +129,7 @@ class WOHVerificationView extends GetView<WOHAuthController> {
 
                       Padding(
                           padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: TextFieldWidget(
+                        child: WOHTextFieldWidget(
                           labelText: "Verification Code".tr,
                           hintText: "- - - - - -".tr,
                           style: Get.textTheme.headline4!.merge(TextStyle(letterSpacing: 8)),
@@ -141,7 +141,7 @@ class WOHVerificationView extends GetView<WOHAuthController> {
                         ),
                       ),
 
-                      BlockButtonWidget(
+                      WOHBlockButtonWidget(
                         onPressed: () async {
                           //await controller.verifyPhone();
                           controller.verifyClicked.value = true;
@@ -149,17 +149,17 @@ class WOHVerificationView extends GetView<WOHAuthController> {
 
                             var foundDeviceToken= false;
 
-                            if(Get.find<MyAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
+                            if(Get.find<WOHAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
                             {
-                              for(int i = 0; i<Get.find<MyAuthService>().myUser.value.deviceTokenIds.length;i++){
-                                if(WOHConstants.deviceToken == Get.find<MyAuthService>().myUser.value.deviceTokenIds[i]){
+                              for(int i = 0; i<Get.find<WOHAuthService>().myUser.value.deviceTokenIds.length;i++){
+                                if(WOHConstants.deviceToken == Get.find<WOHAuthService>().myUser.value.deviceTokenIds[i]){
                                   foundDeviceToken = true;
                                 }
                               }
                             }
                             /*
                             if(!foundDeviceToken){
-                              await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<MyAuthService>().myUser.value.id);
+                              await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
                             }*/
                             controller.verifyClicked.value = false;
 

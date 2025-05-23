@@ -31,7 +31,7 @@ class WOHHomeView {
     ),
     WOHHomeView(
         imagePath: 'assets/img/gallery2.jpeg',
-        title: "Gallery"
+        title: "WOHGalleryModel"
     ),
     WOHHomeView(
         imagePath: 'assets/img/240_F_480329143_udbywRAkIk8LObNgwFnLhWqbOyjenXca.jpeg',

@@ -11,8 +11,8 @@ class WOHInspectBinding extends Bindings {
     Get.lazyPut<OWHInspectController>(
           () => OWHInspectController(),
     );
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHAuthService>(
+          () => WOHAuthService(),
     );
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),

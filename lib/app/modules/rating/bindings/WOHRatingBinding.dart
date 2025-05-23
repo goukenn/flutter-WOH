@@ -10,8 +10,8 @@ class WOHRatingBinding extends Bindings {
     Get.lazyPut<RatingController>(
       () => RatingController(),
     );
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHAuthService>(
+          () => WOHAuthService(),
     );
   }
 }

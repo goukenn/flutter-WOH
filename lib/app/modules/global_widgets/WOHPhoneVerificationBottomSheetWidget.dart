@@ -47,7 +47,7 @@ class WOHPhoneVerificationBottomSheetWidget extends GetView<ProfileController> {
             style: Get.textTheme.bodyLarge,
             textAlign: TextAlign.center,
           ).paddingSymmetric(horizontal: 20, vertical: 10),
-          TextFieldWidget(
+          WOHTextFieldWidget(
             labelText: "OTP Code".tr,
             hintText: "- - - - - -".tr,
             style: Get.textTheme.headline4!.merge(TextStyle(letterSpacing: 8)),
@@ -55,7 +55,7 @@ class WOHPhoneVerificationBottomSheetWidget extends GetView<ProfileController> {
             keyboardType: TextInputType.number,
             onChanged: (input) => controller.smsSent.value = input,
           ),
-          BlockButtonWidget(
+          WOHBlockButtonWidget(
             onPressed: () async {
               //await controller.verifyPhone();
             },

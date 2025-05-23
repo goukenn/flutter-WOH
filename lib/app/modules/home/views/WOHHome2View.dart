@@ -17,8 +17,8 @@ import '../controllers/WOHHomeController.dart';
 class WOHHome2View extends GetView<WOHHomeController> {
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut<MyAuthService>(
-          () => MyAuthService(),
+    Get.lazyPut<WOHAuthService>(
+          () => WOHAuthService(),
     );
     Get.lazyPut(() => WOHValidationController());
 

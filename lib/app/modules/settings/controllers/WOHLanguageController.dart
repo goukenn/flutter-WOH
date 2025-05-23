@@ -27,6 +27,6 @@ class WOHLanguageController extends GetxController {
     if (Get.isDarkMode) {
       Get.find<ThemeModeController>().changeThemeMode(ThemeMode.light);
     }
-    Get.rootController.setTheme(Get.find<SettingsService>().getLightTheme());
+    Get.rootController.setTheme(Get.find<WOHSettingsService>().getLightTheme());
   }*/
 }

@@ -293,19 +293,19 @@ class WOHMockApiClientProvider {
     }
   }
 
-  Future<List<FaqCategory>> getCategoriesWithFaqs() async {
+  Future<List<WOHFaqCategoryModel>> getCategoriesWithFaqs() async {
     var response = await httpClient.get(baseUrl + "help/faqs.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<FaqCategory>((obj) => FaqCategory.fromJson(obj)).toList();
+      return response.data['data'].map<WOHFaqCategoryModel>((obj) => WOHFaqCategoryModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<Setting> getSettings() async {
+  Future<WOHSettingModel> getSettings() async {
     var response = await httpClient.get(baseUrl + "settings/all.json", options: _options);
     if (response.statusCode == 200) {
-      return Setting.fromJson(response.data['data']);
+      return WOHSettingModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.statusMessage);
     }
