@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/WOHRoutes.dart';
+import '../../global_widgets/WOHChipWidget.dart';
 import '../../global_widgets/WOHTabBarWidget.dart';
 import '../controllers/WOHSettingsController.dart';
 
@@ -66,13 +67,13 @@ class WOHSettingsView extends GetView<WOHSettingsController> {
             ],
           )),
       body: /*WillPopScope*/ PopScope(
-        onWillPop: () async {
-          if (_navigatorKey!.currentState!.canPop()) {
-            _navigatorKey.currentState!.pop();
-            return false;
-          }
-          return true;
-        },
+        // onWillPop: () async {
+        //   if (_navigatorKey!.currentState!.canPop()) {
+        //     _navigatorKey.currentState!.pop();
+        //     return false;
+        //   }
+        //   return true;
+        // },
         child: Navigator(
           key: _navigatorKey,
           initialRoute: WOHRoutes.SETTINGS_LANGUAGE,

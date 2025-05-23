@@ -53,7 +53,7 @@ class WOHPhoneVerificationBottomSheetWidget extends GetView<WOHProfileController
             style: Get.textTheme.headlineMedium!.merge(TextStyle(letterSpacing: 8)),
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
-            onChanged: (input) => controller.smsSent.value = input,
+            onChanged: (input) => controller.smsSent.value = input, iconData: Icons.import_contacts,
           ),
           WOHBlockButtonWidget(
             onPressed: () async {

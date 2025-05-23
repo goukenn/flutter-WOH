@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../routes/WOHRoutes.dart';
+import '../search/controllers/WOHSearchController.dart';
+import 'WOHFilterBottomSheetWidget.dart';
 
 class WOHHomeSearchBarWidget extends StatelessWidget implements PreferredSize {
 
-  final controller = Get.find<SearchController>();
+  final controller = Get.find<WOHSearchController>();
 
   Widget buildSearchBar() {
     controller.heroTag.value = UniqueKey().toString();
@@ -44,7 +46,7 @@ class WOHHomeSearchBarWidget extends StatelessWidget implements PreferredSize {
               GestureDetector(
                 onTap: () {
                   Get.bottomSheet(
-                    FilterBottomSheetWidget(),
+                    WOHFilterBottomSheetWidget(),
                     isScrollControlled: true,
                   );
                 },

@@ -13,21 +13,21 @@ class WOHDrawerLinkWidget extends StatelessWidget {
   final String text;
   final bool special;
   final bool drawer;
-  final ValueChanged<void> onTap;
+  final ValueChanged<void>? onTap;
   const WOHDrawerLinkWidget({
     super.key,
-    this.icon,
-    this.text,
+    required this.icon,
+    this.text = '',
     this.onTap,
-    this.drawer,
-    this.special,
+    this.drawer = false,
+    this.special = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        onTap('');
+        onTap!('');
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),

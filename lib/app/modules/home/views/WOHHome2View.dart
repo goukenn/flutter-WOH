@@ -56,10 +56,10 @@ class WOHHome2View extends GetView<WOHHomeController> {
 
                                 Get.toNamed(WOHRoutes.LOGIN);
 
-                              }, icon: Icon(FontAwesomeIcons.warning, size: 40,color: inactive),
+                              }, icon: Icon(FontAwesomeIcons.triangleExclamation, size: 40,color: inactive),
                             ));
                       },
-                      icon: Icon(FontAwesomeIcons.signOut,
+                      icon: Icon(FontAwesomeIcons.arrowRightFromBracket,
                           color: Colors.white
                       )
                   )

@@ -113,13 +113,13 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                             if (controller.eService.value.description == '') {
                               return SizedBox();
                             }
-                            return WOHUi.applyHtml(_eService.description, style: Get.textTheme.bodyLarge);
+                            return WOHUi.applyHtml(_eService.description!, style: Get.textTheme.bodyLarge);
                           }),
                         ),
                         buildDuration(_eService),
                         buildOptions(_eService),
                         buildServiceProvider(_eService),
-                        if (_eService.images.isNotEmpty)
+                        if (_eService.images!.isNotEmpty)
                           WOHEServiceTilWidget(
                             horizontalPadding: 0,
                             title: Text("Galleries".tr, style: Get.textTheme.bodySmall).paddingSymmetric(horizontal: 20),
@@ -129,9 +129,9 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                                   primary: false,
                                   shrinkWrap: false,
                                   scrollDirection: Axis.horizontal,
-                                  itemCount: _eService.images.length,
+                                  itemCount: _eService.images!.length,
                                   itemBuilder: (_, index) {
-                                    var _media = _eService.images.elementAt(index);
+                                    var _media = _eService.images!.elementAt(index);
                                     return InkWell(
                                       onTap: () {
                                         //Get.toNamed(WOHRoutes.GALLERY, arguments: {'media': _eService.images, 'current': _media, 'heroTag': 'e_services_galleries'});
@@ -151,7 +151,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                                                   height: 100,
                                                   width: double.infinity,
                                                   fit: BoxFit.cover,
-                                                  imageUrl: _media.thumb,
+                                                  imageUrl: _media.thumb!,
                                                   placeholder: (context, url) => Image.asset(
                                                     'assets/img/loading.gif',
                                                     fit: BoxFit.cover,
@@ -192,7 +192,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                             children: [
                               Text(_eService.rate.toString(), style: Get.textTheme.displayLarge),
                               Wrap(
-                                children: WOHUi.getStarsList(_eService.rate, size: 32),
+                                children: WOHUi.getStarsList(_eService.rate!, size: 32),
                               ),
                               Text(
                                 "Reviews (%s)".trArgs([_eService.totalReviews.toString()]),
@@ -206,7 +206,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                                 return ListView.separated(
                                   padding: EdgeInsets.all(0),
                                   itemBuilder: (context, index) {
-                                    return ReviewItemWidget(review: controller.reviews.elementAt(index));
+                                    return WOHReviewItemWidget(review: controller.reviews.elementAt(index));
                                   },
                                   separatorBuilder: (context, index) {
                                     return Divider(height: 35, thickness: 1.3);
@@ -240,7 +240,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
         content: ListView.separated(
           padding: EdgeInsets.all(0),
           itemBuilder: (context, index) {
-            return OptionGroupItemWidget(optionGroup: controller.optionGroups.elementAt(index), eService: _eService);
+            return WOHOptionGroupItemWidget(optionGroup: controller.optionGroups.elementAt(index), eService: _eService);
           },
           separatorBuilder: (context, index) {
             return SizedBox(height: 6);
@@ -269,7 +269,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
               ],
             ),
           ),
-          Text(_eService.duration, style: Get.textTheme.titleLarge),
+          Text(_eService.duration!, style: Get.textTheme.titleLarge),
         ],
       ),
     );
@@ -286,16 +286,16 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
           controller.currentSlide.value = index;
         },
       ),
-      items: _eService.images.map((WOHMediaModel media) {
+      items: _eService.images!.map((WOHMediaModel media) {
         return Builder(
           builder: (BuildContext context) {
             return Hero(
-              tag: controller.heroTag.value + _eService.id,
+              tag: controller.heroTag.value + _eService.id!,
               child: CachedNetworkImage(
                 width: double.infinity,
                 height: 350,
                 fit: BoxFit.cover,
-                imageUrl: media.url,
+                imageUrl: media.url!,
                 placeholder: (context, url) => Image.asset(
                   'assets/img/loading.gif',
                   fit: BoxFit.cover,
@@ -315,7 +315,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
       margin: EdgeInsets.symmetric(vertical: 100, horizontal: 20),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: _eService.images.map((WOHMediaModel media) {
+        children: _eService.images!.map((WOHMediaModel media) {
           return Container(
             width: 20.0,
             height: 5.0,
@@ -324,15 +324,15 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
                 ),
-                color: controller.currentSlide.value == _eService.images.indexOf(media) ? Get.theme.hintColor : Get.theme.primaryColor.withAlpha((255 * 0.4).toInt())),
+                color: controller.currentSlide.value == _eService.images!.indexOf(media) ? Get.theme.hintColor : Get.theme.primaryColor.withAlpha((255 * 0.4).toInt())),
           );
         }).toList(),
       ),
     );
   }
 
-  EServiceTitleBarWidget buildEServiceTitleBarWidget(WOHEServiceModel _eService) {
-    return EServiceTitleBarWidget(
+  WOHEServiceTitleBarWidget buildEServiceTitleBarWidget(WOHEServiceModel _eService) {
+    return WOHEServiceTitleBarWidget(
       title: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -365,7 +365,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.fade),
                 ),
-              if (_eService.eProvider != null && _eService.eProvider.available)
+              if (_eService.eProvider != null && _eService.eProvider!.available!)
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.green.withAlpha((255 * 0.2).toInt()),
@@ -382,7 +382,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.fade),
                 ),
-              if (_eService.eProvider != null && !_eService.eProvider.available)
+              if (_eService.eProvider != null && !_eService.eProvider!.available!)
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.grey.withAlpha((255 * 0.2).toInt()),
@@ -408,7 +408,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Wrap(crossAxisAlignment: WrapCrossAlignment.end, children: List.from(WOHUi.getStarsList(_eService.rate))),
+                    Wrap(crossAxisAlignment: WrapCrossAlignment.end, children: List.from(WOHUi.getStarsList(_eService.rate!))),
                     Text(
                       "Reviews (%s)".trArgs([_eService.totalReviews.toString()]),
                       style: Get.textTheme.labelSmall,
@@ -419,15 +419,15 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  if (_eService.getOldPrice > 0)
+                  if (_eService.getOldPrice! > 0)
                     WOHUi.getPrice(
-                      _eService.getOldPrice,
+                      _eService.getOldPrice!,
                       style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
                       unit: _eService.getUnit,
                     ),
                   WOHUi.getPrice(
-                    _eService.getPrice,
-                    style: Get.textTheme.headline3!.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
+                    _eService.getPrice!,
+                    style: Get.textTheme.displaySmall!.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
                     unit: _eService.getUnit,
                   ),
                 ],
@@ -446,20 +446,20 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
         alignment: WrapAlignment.start,
         spacing: 5,
         runSpacing: 8,
-        children: List.generate(_eService.categories.length, (index) {
-              var _category = _eService.categories.elementAt(index);
+        children: List.generate(_eService.categories!.length, (index) {
+              var _category = _eService.categories!.elementAt(index);
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                    color: _category.color.withAlpha((255 * 0.2).toInt()),
+                    color: _category.color!.withAlpha((255 * 0.2).toInt()),
                     border: Border.all(
-                      color: _category.color.withAlpha((255 * 0.1).toInt()),
+                      color: _category.color!.withAlpha((255 * 0.1).toInt()),
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Text(_category.name, style: Get.textTheme.bodyLarge!.merge(TextStyle(color: _category.color))),
+                child: Text(_category.name!, style: Get.textTheme.bodyLarge!.merge(TextStyle(color: _category.color))),
               );
             }) +
-            List.generate(_eService.subCategories.length, (index) {
+            List.generate(_eService.subCategories!.length, (index) {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
@@ -468,7 +468,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
                       color: Get.theme.focusColor.withAlpha((255 * 0.2).toInt()),
                     ),
                     borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Text(_eService.subCategories.elementAt(index).name, style: Get.textTheme.labelSmall),
+                child: Text(_eService.subCategories!.elementAt(index).name!, style: Get.textTheme.labelSmall),
               );
             }),
       ),
@@ -483,7 +483,7 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
         },
         child: WOHEServiceTilWidget(
           title: Text("Service Provider".tr, style: Get.textTheme.bodySmall),
-          content: EProviderItemWidget(provider: _eService.eProvider),
+          content: WOHEProviderItemWidget(provider: _eService.eProvider!),
         ),
       );
     } else {
@@ -497,9 +497,9 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
   }
 
   Widget buildBottomWidget(WOHEServiceModel _eService) {
-    if (_eService.enableBooking == null || !_eService.enableBooking)
+    if (_eService.enableBooking == null || !_eService.enableBooking!) {
       return SizedBox();
-    else
+    } else {
       return Container(
         padding: EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(
@@ -576,5 +576,6 @@ class WOHEServiceView extends GetView<WOHEServiceController> {
           ],
         ).paddingOnly(right: 20, left: 20),
       );
+    }
   }
 }

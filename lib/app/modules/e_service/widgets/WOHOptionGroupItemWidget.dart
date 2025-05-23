@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 
 import '../../../models/WOHEServiceModel.dart';
 import '../../../models/WOHOptionGroupModel.dart';
+import '../controllers/WOHEServiceController.dart';
+import 'WOHOptionItemWidget.dart';
 
 class WOHOptionGroupItemWidget extends GetWidget<WOHEServiceController> {
   WOHOptionGroupItemWidget({
@@ -44,13 +46,13 @@ class WOHOptionGroupItemWidget extends GetWidget<WOHEServiceController> {
           shrinkWrap: true,
           primary: false,
           padding: EdgeInsets.zero,
-          itemCount: _optionGroup.options.length,
+          itemCount: _optionGroup.options!.length,
           separatorBuilder: (context, index) {
             return SizedBox(height: 6);
           },
           itemBuilder: (context, index) {
-            var _option = _optionGroup.options.elementAt(index);
-            return OptionItemWidget(option: _option, optionGroup: _optionGroup, eService: _eService);
+            var _option = _optionGroup.options!.elementAt(index);
+            return WOHOptionItemWidget(option: _option, optionGroup: _optionGroup, eService: _eService);
           },
         ),
       ],

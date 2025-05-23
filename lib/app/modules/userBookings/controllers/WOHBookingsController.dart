@@ -1669,8 +1669,9 @@ class WOHBookingsController extends GetxController {
     List ids = [];
     list.addAll(selectedAppointment['extra_product_ids']);
     list.forEach( (e) {
-      if(e == id)
+      if(e! == id) {
         data.add(e);
+      }
     });
 
     list.removeWhere( (e) => data.contains(e));

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher_string.dart';
  
+import '../../../../common/WOHMapsUtil.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEProviderModel.dart';
 import '../../../models/WOHMediaModel.dart';
@@ -114,7 +115,7 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                                 return ListView.separated(
                                   padding: EdgeInsets.all(0),
                                   itemBuilder: (context, index) {
-                                    return ReviewItemWidget(review: controller.reviews.elementAt(index));
+                                    return WOHReviewItemWidget(review: controller.reviews.elementAt(index));
                                   },
                                   separatorBuilder: (context, index) {
                                     return Divider(height: 35, thickness: 1.3);
@@ -169,14 +170,14 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                       alignment: AlignmentDirectional.topStart,
                       children: [
                         Hero(
-                          tag: 'e_provide_galleries' + _media.id,
+                          tag: 'e_provide_galleries' + _media.id!,
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             child: CachedNetworkImage(
                               height: 100,
                               width: double.infinity,
                               fit: BoxFit.cover,
-                              imageUrl: _media.thumb,
+                              imageUrl: _media.thumb!,
                               placeholder: (context, url) => Image.asset(
                                 'assets/img/loading.gif',
                                 fit: BoxFit.cover,
@@ -211,7 +212,7 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
   WOHEProviderTilWidget buildAvailabilityHours(WOHEProviderModel _eProvider) {
     return WOHEProviderTilWidget(
       title: Text("Availability".tr, style: Get.textTheme.bodySmall),
-      content: _eProvider.availabilityHours.isEmpty
+      content: _eProvider.availabilityHours!.isEmpty
           ? WOHCircularLoadingWidget(height: 150)
           : ListView.separated(
               padding: EdgeInsets.zero,
@@ -224,11 +225,11 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
               itemBuilder: (context, index) {
                 var _availabilityHour = _eProvider.groupedAvailabilityHours().entries.elementAt(index);
                 var _data = _eProvider.getAvailabilityHoursData(_availabilityHour.key);
-                return AvailabilityHourItemWidget(availabilityHour: _availabilityHour, data: _data);
+                return WOHAvailabilityHourItemWidget(availabilityHour: _availabilityHour, data: _data);
               },
             ),
       actions: [
-        if (_eProvider.available)
+        if (_eProvider.available!)
           Container(
             decoration: BoxDecoration(
               color: Colors.green.withAlpha((255 * 0.2).toInt()),
@@ -244,7 +245,7 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.fade),
           ),
-        if (!_eProvider.available)
+        if (!_eProvider.available!)
           Container(
             decoration: BoxDecoration(
               color: Colors.grey.withAlpha((255 * 0.2).toInt()),
@@ -406,7 +407,7 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: WOHUi.getBoxDecoration(),
-      child: (_addresses.isEmpty)
+      child: (_addresses!.isEmpty)
           ? Shimmer.fromColors(
               baseColor: Colors.grey.withAlpha((255 * 0.15).toInt()),
               highlightColor: Colors.grey[200]!.withAlpha((255 * 0.1).toInt()),
@@ -440,9 +441,9 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(_address.description, style: Get.textTheme.bodySmall),
+                                Text(_address.description!, style: Get.textTheme.bodySmall),
                                 SizedBox(height: 5),
-                                Text(_address.address, style: Get.textTheme.labelSmall),
+                                Text(_address.address!, style: Get.textTheme.labelSmall),
                               ],
                             ),
                           ),
@@ -482,16 +483,16 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
           controller.currentSlide.value = index;
         },
       ),
-      items: _eProvider.images.map((WOHMediaModel media) {
+      items: _eProvider.images!.map((WOHMediaModel media) {
         return Builder(
           builder: (BuildContext context) {
             return Hero(
-              tag: controller.heroTag + _eProvider.id,
+              tag: controller.heroTag + _eProvider.id!,
               child: CachedNetworkImage(
                 width: double.infinity,
                 height: 360,
                 fit: BoxFit.cover,
-                imageUrl: media.url,
+                imageUrl: media.url!,
                 placeholder: (context, url) => Image.asset(
                   'assets/img/loading.gif',
                   fit: BoxFit.cover,

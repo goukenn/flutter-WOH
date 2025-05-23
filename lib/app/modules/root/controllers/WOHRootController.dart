@@ -7,6 +7,7 @@ import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../repositories/WOHCustomPageRepository.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHAuthService.dart';
+import '../../account/controllers/WOHAccountController.dart';
 import '../../account/views/WOHAccountView.dart';
 import '../../home/controllers/WOHHomeController.dart';
 import '../../home/views/WOHHome2View.dart';

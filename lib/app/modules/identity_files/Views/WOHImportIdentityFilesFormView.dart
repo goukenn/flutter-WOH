@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../WOHColorConstants.dart';
-import '../../global_widgets/WOHTextFieldWidget.dart';
+import '../../../../WOHColorConstants.dart'; 
 import '../controller/WOHImportIdentityFilesController.dart';
 
 class WOHImportIdentityFilesFormView
@@ -119,7 +118,7 @@ class WOHImportIdentityFilesFormView
                             style: TextStyle(color: labelColor),
                           ),
                         );
-                      }).toList(),
+                      }).toList(), onChanged: (String? value) {  },
                       // After selecting the desired option,it will
                       // change button value to selected value
                       // MARK : changed
@@ -285,9 +284,9 @@ class WOHImportIdentityFilesFormView
                       Row(
                         children: [
                           Obx(() {
-                            if (!controller.loadIdentityFile.value)
+                            if (!controller.loadIdentityFile.value) {
                               return buildLoader();
-                            else
+                            } else {
                               return ClipRRect(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
@@ -299,6 +298,7 @@ class WOHImportIdentityFilesFormView
                                   height: 100,
                                 ),
                               );
+                            }
                           }),
                           SizedBox(width: 10),
                           GestureDetector(

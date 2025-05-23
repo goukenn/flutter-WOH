@@ -187,9 +187,9 @@ class WOHImagesFieldWidget extends StatelessWidget {
 
     thumbs.add(
       Obx(() {
-        if (controller.uploading.isTrue)
+        if (controller.uploading.isTrue) {
           return buildLoader();
-        else
+        } else {
           return GestureDetector(
             onTap: () async {
               await controller.pickImage(ImageSource.gallery, field, uploadCompleted);
@@ -202,6 +202,7 @@ class WOHImagesFieldWidget extends StatelessWidget {
               child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withAlpha((255 * 0.4).toInt())),
             ),
           );
+        }
       }),
     );
     return Padding(

@@ -80,7 +80,7 @@ class WOHCategoryGridItemWidget extends StatelessWidget {
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                          child: Text(_category!.name!, style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 10))),
+                          child: Text(_category.name!, style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 10))),
                           decoration: BoxDecoration(
                               color: Get.theme.primaryColor,
                               border: Border.all(

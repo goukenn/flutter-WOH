@@ -185,7 +185,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
 
                         Get.toNamed(WOHRoutes.LOGIN);
 
-                      }, icon: Icon(FontAwesomeIcons.warning, size: 40,color: inactive),
+                      }, icon: Icon(FontAwesomeIcons.triangleExclamation, size: 40,color: inactive),
                     ));
               },
             ),

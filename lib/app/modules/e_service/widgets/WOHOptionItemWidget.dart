@@ -66,12 +66,12 @@ class WOHOptionItemWidget extends GetWidget<WOHEServiceController> {
                     width: 54,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Get.theme.colorScheme.secondary.withAlpha((255 * _option.checked.value ? 0.8 : 0).toInt()),
+                      color: Get.theme.colorScheme.secondary.withAlpha((255 * (_option.checked! ? 0.8 : 0)).toInt()),
                     ),
                     child: Icon(
                       Icons.check,
                       size: 36,
-                      color: Theme.of(context).primaryColor.withAlpha((255 * _option.checked.value ? 1 : 0).toInt()),
+                      color: Theme.of(context).primaryColor.withAlpha((255 * (_option.checked! ? 1 : 0)).toInt()),
                     ),
                   ),
                 ],
@@ -85,15 +85,15 @@ class WOHOptionItemWidget extends GetWidget<WOHEServiceController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(_option.name, style: controller.getTitleTheme(_option)).paddingOnly(bottom: 5),
-                          WOHUi.applyHtml(_option.description, style: controller.getSubTitleTheme(_option)),
+                          Text(_option.name!, style: controller.getTitleTheme(_option)).paddingOnly(bottom: 5),
+                          WOHUi.applyHtml(_option.description!, style: controller.getSubTitleTheme(_option)),
                         ],
                       ),
                     ),
                     SizedBox(width: 8),
                     WOHUi.getPrice(
-                      _option.price,
-                      style: Get.textTheme.titleLarge!.merge(TextStyle(color: _option.checked.value ? Get.theme.colorScheme.secondary : Get.theme.hintColor)),
+                      _option.price!,
+                      style: Get.textTheme.titleLarge!.merge(TextStyle(color: _option.checked! ? Get.theme.colorScheme.secondary : Get.theme.hintColor)),
                     ),
                   ],
                 ),

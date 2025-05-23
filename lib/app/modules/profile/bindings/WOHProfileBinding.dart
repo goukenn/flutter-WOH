@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../services/WOHAuthService.dart';
+import '../controllers/WOHProfileController.dart';
 
 class WOHProfileBinding extends Bindings {
   @override

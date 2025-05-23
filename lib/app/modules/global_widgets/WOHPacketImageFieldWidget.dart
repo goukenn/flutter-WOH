@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:com_igkdev_new_app/WOHConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -9,43 +10,50 @@ import 'package:image_picker/image_picker.dart';
 import '../../repositories/WOHUploadRepository.dart';
 
 class WOHPacketImageFieldController extends GetxController {
-  Rx<File?> image = Rx<File>(null);
+  Rx<File?> image = Rx<File?>(null);
   late String uuid;
   final uploading = false.obs;
   var url = ''.obs;
   late WOHUploadRepository _uploadRepository;
 
   WOHPacketImageFieldController() {
-    _uploadRepository = new WOHUploadRepository();
+    _uploadRepository = new WOHUploadRepository(
+      WOHConstants.getClientProvider('odoo'),
+    );
   }
 
- 
   void reset() {
     image.value = null;
     uploading.value = false;
   }
 
-  Future <File> pickImage(ImageSource source, String field, ValueChanged<String> uploadCompleted) async {
+  Future<File> pickImage(
+    ImageSource source,
+    String field,
+    ValueChanged<String> uploadCompleted,
+  ) async {
     //image.value = null;
     ImagePicker imagePicker = ImagePicker();
     uploading.value = true;
     await deleteUploaded();
-    XFile pickedFile = await imagePicker.pickImage(source: source, imageQuality: 80);
+    XFile pickedFile = (await imagePicker.pickImage(
+      source: source,
+      imageQuality: 80,
+    ))!;
     File imageFile = File(pickedFile.path);
     image.value = imageFile;
     uploading.value = false;
     print(imageFile);
     return imageFile;
-
   }
 
   Future<void> deleteUploaded() async {
     final done = await _uploadRepository.delete(uuid);
     if (done) {
-      uuid = null;
-      image = Rx<File>(null);
+      uuid = '';
+      image = Rx<File?>(null);
     }
-    }
+  }
 }
 
 class WOHPacketImageFieldWidget extends StatelessWidget {
@@ -54,10 +62,10 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
     required this.label,
     required this.tag,
     required this.field,
-    this.placeholder,
-    this.buttonText,
+    this.placeholder = '',
+    this.buttonText = '',
     required this.uploadCompleted,
-    this.initialImage,
+    this.initialImage = '',
     required this.reset,
   });
 
@@ -75,14 +83,21 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
     final controller = Get.put(WOHPacketImageFieldController(), tag: tag);
     return Container(
       padding: EdgeInsets.only(top: 8, bottom: 10, left: 20, right: 20),
-      margin: EdgeInsets.only( top: 20, bottom: 20),
+      margin: EdgeInsets.only(top: 20, bottom: 20),
       decoration: BoxDecoration(
-          color: Get.theme.primaryColor,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          boxShadow: [
-            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
-          ],
-          border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
+        color: Get.theme.primaryColor,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        boxShadow: [
+          BoxShadow(
+            color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+        border: Border.all(
+          color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()),
+        ),
+      ),
       child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -100,12 +115,11 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
                   ),
                 ),
               ),
-
             ],
           ),
           Obx(() {
-            return buildImage(initialImage, controller.image.value);
-          })
+            return buildImage(initialImage, controller.image.value!);
+          }),
         ],
       ),
     );
@@ -113,18 +127,20 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
 
   Widget buildLoader() {
     return Container(
-        width: 100,
-        height: 100,
-        child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          child: Image.asset(
-            'assets/img/loading.gif',
-            fit: BoxFit.cover,
-            width: 60,
-            height: 100,
-          ),
-        ));
+      width: 100,
+      height: 100,
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        child: Image.asset(
+          'assets/img/loading.gif',
+          fit: BoxFit.cover,
+          width: 60,
+          height: 100,
+        ),
+      ),
+    );
   }
+
   Widget buildImage(String initialImage, File image) {
     final controller = Get.put(WOHPacketImageFieldController(), tag: tag);
     return Padding(
@@ -161,51 +177,78 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
             ),
           ),
           Obx(() {
-            if (controller.uploading.isTrue)
+            if (controller.uploading.isTrue) {
               return buildLoader();
-            else
+            } else {
               return GestureDetector(
-                  onTap: () {
-                    showDialog(
-                        context: Get.context!,
-                        builder: (_){
-                          return AlertDialog(
-                            content: Container(
-                                height: 170,
-                                padding: EdgeInsets.all(10),
-                                child: Column(
-                                  children: [
-                                    ListTile(
-                                      onTap: ()async{
-                                        await controller.pickImage(ImageSource.camera, field, uploadCompleted);
-                                        Navigator.pop(Get.context!);
-                                      },
-                                      leading: Icon(FontAwesomeIcons.camera),
-                                      title: Text('Take a picture', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
-                                    ),
-                                    ListTile(
-                                      onTap: ()async{
-                                        await controller.pickImage(ImageSource.gallery, field, uploadCompleted);
-                                        Navigator.pop(Get.context!);
-                                      },
-                                      leading: Icon(FontAwesomeIcons.image),
-                                      title: Text('Upload an image', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
-                                    )
-                                  ],
-                                )
-                            ),
-                          );
-                        });
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 100,
-                    padding: EdgeInsets.all(20),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), borderRadius: BorderRadius.circular(10)),
-                    child: Icon(Icons.add_photo_alternate_outlined, size: 42, color: Get.theme.focusColor.withAlpha((255 * 0.4).toInt())),
-                  )
+                onTap: () {
+                  showDialog(
+                    context: Get.context!,
+                    builder: (_) {
+                      return AlertDialog(
+                        content: Container(
+                          height: 170,
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              ListTile(
+                                onTap: () async {
+                                  await controller.pickImage(
+                                    ImageSource.camera,
+                                    field,
+                                    uploadCompleted,
+                                  );
+                                  Navigator.pop(Get.context!);
+                                },
+                                leading: Icon(FontAwesomeIcons.camera),
+                                title: Text(
+                                  'Take a picture',
+                                  style: Get.textTheme.displayLarge!.merge(
+                                    TextStyle(fontSize: 15),
+                                  ),
+                                ),
+                              ),
+                              ListTile(
+                                onTap: () async {
+                                  await controller.pickImage(
+                                    ImageSource.gallery,
+                                    field,
+                                    uploadCompleted,
+                                  );
+                                  Navigator.pop(Get.context!);
+                                },
+                                leading: Icon(FontAwesomeIcons.image),
+                                title: Text(
+                                  'Upload an image',
+                                  style: Get.textTheme.displayLarge!.merge(
+                                    TextStyle(fontSize: 15),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  padding: EdgeInsets.all(20),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(
+                    Icons.add_photo_alternate_outlined,
+                    size: 42,
+                    color: Get.theme.focusColor.withAlpha((255 * 0.4).toInt()),
+                  ),
+                ),
               );
+            }
           }),
         ],
       ),

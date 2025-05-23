@@ -9,7 +9,7 @@ class WOHAuthMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     final _service = Get.find<WOHAuthService>();
-    if (!_service.isAuth!) {
+    if (!_service.isAuth) {
       return RouteSettings(name: WOHRoutes.LOGIN);
     }
     return null;

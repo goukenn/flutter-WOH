@@ -57,10 +57,10 @@ class WOHAddressesView extends GetView<WOHAddressController> {
                             groupValue: Get.find<WOHSettingsService>().address.value,
                             activeColor: Get.theme.colorScheme.secondary,
                             onChanged: (value) {
-                              Get.find<WOHSettingsService>().address.value = value;
+                              Get.find<WOHSettingsService>().address.value = value!;
                             },
-                            title: Text(_address.description, style: Get.textTheme.bodyMedium),
-                            subtitle: Text(_address.address, style: Get.textTheme.labelSmall),
+                            title: Text(_address.description!, style: Get.textTheme.bodyMedium),
+                            subtitle: Text(_address.address!, style: Get.textTheme.labelSmall),
                           ).paddingSymmetric(vertical: 10);
                         });
                       }).toList(),

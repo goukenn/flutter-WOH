@@ -122,7 +122,7 @@ class WOHPhoneVerificationView extends GetView<WOHAuthController> {
             ),
             Obx(() {
               if (controller.loading.isTrue) {
-                return WOHCircularLoadingWidget(height: 300);
+                return WOHCircularLoadingWidget(height: 300, onComplete: (void value) {  }, onCompleteText: '',);
               } else {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,

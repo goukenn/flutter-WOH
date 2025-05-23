@@ -221,7 +221,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
 
   Future<List<WOHEServiceModel>> getRecommendedEServices() async {
     final _address = Get.find<WOHSettingsService>().address.value;
-    // TODO get Only Recommended
+    // TASK get Only Recommended
     var _queryParameters = {
       'only': 'id;name;price;discount_price;price_unit;has_media;media;total_reviews;rate',
       'with': 'eProvider',

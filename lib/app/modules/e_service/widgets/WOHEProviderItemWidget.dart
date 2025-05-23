@@ -11,7 +11,7 @@ import '../../../models/WOHEProviderModel.dart';
 class WOHEProviderItemWidget extends StatelessWidget {
   final WOHEProviderModel provider;
 
-  WOHEProviderItemWidget({super.key, this.provider});
+  WOHEProviderItemWidget({super.key, required this.provider});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class WOHEProviderItemWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    provider.name,
+                    provider.name!,
                     overflow: TextOverflow.fade,
                     softWrap: false,
                     maxLines: 2,

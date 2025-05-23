@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 
-import '../../../../WOHColorConstants.dart';
-import '../../../../common/WOHHelper.dart';
+import '../../../../WOHColorConstants.dart'; 
 import '../../../../common/WOHUi.dart';
 import '../../../../WOHConstants.dart';
 import '../../../models/WOHMyUserModel.dart';
@@ -99,7 +98,7 @@ class WOHVerificationView extends GetView<WOHAuthController> {
               ),
               Obx(() {
                 if (controller.loading.isTrue) {
-                  return WOHCircularLoadingWidget(height: 300);
+                  return WOHCircularLoadingWidget(height: 300, onComplete: (void value) {  }, onCompleteText: '',);
                 } else {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,

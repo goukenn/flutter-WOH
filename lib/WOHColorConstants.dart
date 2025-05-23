@@ -42,3 +42,5 @@ const textColor = Color(0xFFFFFFFF);
 const Color blue = Color.fromRGBO(70,83,179,1);
 const appBarColor = Color.fromRGBO(40,40,48, 1);
  
+const Color PRIMARY_COLOR = inactive;
+const Color BACKGROUND_COLOR = Color(0xffE2E7F2);

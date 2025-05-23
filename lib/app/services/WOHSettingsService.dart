@@ -153,7 +153,7 @@ class WOHSettingsService extends GetxService {
     try {
       if (_box.hasData('current_address') && !address.value.isUnknown()) {
         address.value = WOHAddressModel.fromJson(await _box.read('current_address'));
-      } else if (Get.find<WOHAuthService>().isAuth!) {
+      } else if (Get.find<WOHAuthService>().isAuth) {
         List<WOHAddressModel> _addresses = await _settingsRepo.getAddresses();
         if (_addresses.isNotEmpty) {
           address.value = _addresses.firstWhere((_address) => _address.isDefault!, orElse: () {

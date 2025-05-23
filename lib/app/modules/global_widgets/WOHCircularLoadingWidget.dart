@@ -6,10 +6,10 @@ import 'WOHCircularLoadingWidgetState.dart';
 
 class WOHCircularLoadingWidget extends StatefulWidget {
   final double height;
-  final ValueChanged<void> onComplete;
+  final ValueChanged<void>? onComplete;
   final String onCompleteText;
 
-  WOHCircularLoadingWidget({super.key, required this.height, required this.onComplete, required this.onCompleteText});
+  WOHCircularLoadingWidget({super.key, required this.height, this.onComplete, this.onCompleteText='complete.'});
 
   @override
   WOHCircularLoadingWidgetState createState() => WOHCircularLoadingWidgetState();

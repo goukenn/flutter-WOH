@@ -5,8 +5,7 @@ import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
 import '../../common/WOHUuid.dart';
-import '../services/WOHSettingsService.dart';
-import 'WOHMediaModel.dart';
+import '../services/WOHSettingsService.dart'; 
 import 'parents/WOHModel.dart';
 
 class WOHUserModel extends WOHModel {

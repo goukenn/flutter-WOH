@@ -7,7 +7,7 @@ import '../../../../common/WOHUi.dart';
 import '../../../models/WOHReviewModel.dart';
 
 class WOHReviewItemWidget extends StatelessWidget {
-  final WOHReviewModel review;
+  final WOHReviewModel? review;
 
   WOHReviewItemWidget({super.key, this.review});
 
@@ -29,7 +29,7 @@ class WOHReviewItemWidget extends StatelessWidget {
                   height: 65,
                   width: 65,
                   fit: BoxFit.cover,
-                  imageUrl: review.user.avatar.thumb,
+                  imageUrl: review!.user!.avatar!.thumb!,
                   placeholder: (context, url) => Image.asset(
                     'assets/img/loading.gif',
                     fit: BoxFit.cover,
@@ -45,14 +45,14 @@ class WOHReviewItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      review.user.name,
+                      review!.user!.name!,
                       overflow: TextOverflow.fade,
                       softWrap: false,
                       maxLines: 2,
                       style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.hintColor)),
                     ),
                     Text(
-                      review.user.bio,
+                      review!.user!.bio!,
                       overflow: TextOverflow.ellipsis,
                       style: Get.textTheme.labelSmall,
                     ),
@@ -66,7 +66,7 @@ class WOHReviewItemWidget extends StatelessWidget {
                   label: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(review.rate.toString(), style: Get.textTheme.bodyLarge!.merge(TextStyle(color: Get.theme.primaryColor))),
+                      Text(review!.rate.toString(), style: Get.textTheme.bodyLarge!.merge(TextStyle(color: Get.theme.primaryColor))),
                       Icon(
                         Icons.star_border,
                         color: Get.theme.primaryColor,
@@ -80,7 +80,7 @@ class WOHReviewItemWidget extends StatelessWidget {
               ),
             ],
           ),
-          WOHUi.removeHtml(review.review, style: Get.textTheme.bodyLarge),
+          WOHUi.removeHtml(review!.review!, style: Get.textTheme.bodyLarge),
         ],
       ),
     );

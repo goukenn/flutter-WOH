@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../WOHColorConstants.dart';
+import 'WOHCustomBottomNavigationBarState.dart';
+import 'WOHCustomBottomNavigationItem.dart';
 
-const Color PRIMARY_COLOR = inactive;
-const Color BACKGROUND_COLOR = Color(0xffE2E7F2);
 
 class WOHCustomBottomNavigationBar extends StatefulWidget {
   final Color backgroundColor;
@@ -13,78 +13,9 @@ class WOHCustomBottomNavigationBar extends StatefulWidget {
   final Function(int) onChange;
   final int currentIndex;
 
-  WOHCustomBottomNavigationBar({this.backgroundColor = BACKGROUND_COLOR, this.itemColor = PRIMARY_COLOR, this.currentIndex = 0, required this.children, this.onChange});
+  WOHCustomBottomNavigationBar({this.backgroundColor = BACKGROUND_COLOR, this.itemColor = PRIMARY_COLOR, this.currentIndex = 0, required this.children, 
+  required this.onChange});
 
   @override
   WOHCustomBottomNavigationBarState createState() => WOHCustomBottomNavigationBarState();
-}
-
-class WOHCustomBottomNavigationBarState extends State<WOHCustomBottomNavigationBar> {
-  void _changeIndex(int index) {
-    widget.onChange(index);
-    }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      color: widget.backgroundColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: widget.children.map((item) {
-          var color = item.color;
-          var icon = item.icon;
-          var label = item.label;
-          int index = widget.children.indexOf(item);
-          return GestureDetector(
-            onTap: () {
-              _changeIndex(index);
-            },
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 200),
-              width: widget.currentIndex == index ? MediaQuery.of(context).size.width / widget.children.length + 20 : 50,
-              padding: EdgeInsets.only(left: 10, right: 10),
-              margin: EdgeInsets.only(top: 10, bottom: 10),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(color: widget.currentIndex == index ? color.withAlpha((255 * 0.2).toInt()) : Colors.transparent, borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Icon(
-                    icon,
-                    size: 20,
-                    color: widget.currentIndex == index ? color : inactive,
-                  ),
-                  widget.currentIndex == index
-                      ? Expanded(
-                          flex: 2,
-                          child: Text(
-                            label,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: widget.currentIndex == index ? color : color.withAlpha((255 * 0.5).toInt())),
-                          ),
-                        )
-                      : Container()
-                ],
-              ),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
-
-class WOHCustomBottomNavigationItem {
-  final IconData icon;
-  final String label;
-  final Color color;
-
-  WOHCustomBottomNavigationItem({required this.icon, required this.label, this.color});
 }

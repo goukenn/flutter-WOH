@@ -198,7 +198,7 @@ class WOHSearchServicesListItemWidget extends StatelessWidget {
                   Wrap(
                     spacing: 5,
                     runSpacing: 5,
-                    children: List.generate(_service.subCategories!.length!, (index) {
+                    children: List.generate(_service.subCategories!.length, (index) {
                       return Container(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(

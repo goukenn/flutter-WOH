@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 class WOHThemeModeController extends GetxController {
   final selectedThemeMode = ThemeMode.light.obs;
-  GetStorage _box;
+  late GetStorage _box;
 
   WOHThemeModeController() {
     _box = new GetStorage();
@@ -19,7 +19,7 @@ class WOHThemeModeController extends GetxController {
   }
 
   void initThemeMode() {
-    String _themeMode = _box.read<String>('theme_mode');
+    String _themeMode = _box.read<String>('theme_mode')!;
     switch (_themeMode) {
       case 'ThemeMode.light':
         selectedThemeMode.value = ThemeMode.light;

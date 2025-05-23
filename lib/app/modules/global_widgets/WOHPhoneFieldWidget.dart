@@ -16,36 +16,36 @@ class WOHPhoneFieldWidget extends StatelessWidget {
       {super.key,
       this.onSaved,
       this.onChanged,
-      this.initialValue,
-      this.hintText,
-      this.errorText,
-      this.labelText,
-      this.obscureText,
+      this.initialValue = '',
+      this.hintText = '',
+      this.errorText='',
+      this.labelText='',
+      this.obscureText=false,
       this.suffixIcon,
-      this.isFirst,
-      this.isLast,
+      this.isFirst = false,
+      this.isLast = false,
       this.style,
       this.textAlign,
       this.suffix,
-      this.initialCountryCode,
-      this.countries})
+      this.initialCountryCode='be',
+      this.countries  })
      ;
 
-  final FormFieldSetter<PhoneNumber> onSaved;
-  final ValueChanged<PhoneNumber> onChanged;
+  final FormFieldSetter<PhoneNumber>? onSaved;
+  final ValueChanged<PhoneNumber>? onChanged;
   final String initialValue;
   final String hintText;
   final String errorText;
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
   final String labelText;
-  final TextStyle style;
+  final TextStyle? style;
   final bool obscureText;
   final String initialCountryCode;
-  final List<String> countries;
+  final List<String>? countries;
   final bool isFirst;
   final bool isLast;
-  final Widget suffixIcon;
-  final Widget suffix;
+  final Widget? suffixIcon;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class WOHPhoneFieldWidget extends StatelessWidget {
               showDropdownIcon: false,
               pickerDialogStyle: PickerDialogStyle(countryNameStyle: Get.textTheme.bodyMedium),
               style: style,
-              textAlign: textAlign,
+              textAlign: textAlign!,
               disableLengthCheck: true,
               autovalidateMode: AutovalidateMode.disabled,
               decoration: InputDecoration(

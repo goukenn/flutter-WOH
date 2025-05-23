@@ -3,10 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/WOHRoutes.dart';
+import '../../profile/bindings/WOHProfileBinding.dart';
+import '../../profile/views/WOHProfileView.dart';
+import '../bindings/WOHSettingsBinding.dart';
+import '../views/WOHLanguageView.dart';
+import '../views/WOHThemeModeView.dart';
 
 class WOHSettingsController extends GetxController {
   var currentIndex = 0.obs;
-  final pages = <String>[WOHRoutes.SETTINGS_LANGUAGE, WOHRoutes.PROFILE, WOHRoutes.SETTINGS_THEME_MODE];
+  final pages = <String>[
+    WOHRoutes.SETTINGS_LANGUAGE,
+    WOHRoutes.PROFILE,
+    WOHRoutes.SETTINGS_THEME_MODE,
+  ];
 
   void changePage(int index) {
     currentIndex.value = index;
@@ -22,8 +31,8 @@ class WOHSettingsController extends GetxController {
       }*/
       return GetPageRoute(
         settings: settings,
-        page: () => ProfileView(hideAppBar: true),
-        binding: ProfileBinding(),
+        page: () => WOHProfileView(hideAppBar: true),
+        binding: WOHProfileBinding(),
       );
     }
     /*if (settings.name == WOHRoutes.SETTINGS_ADDRESSES) {
@@ -39,21 +48,24 @@ class WOHSettingsController extends GetxController {
       );
     }*/
 
-    if (settings.name == WOHRoutes.SETTINGS_LANGUAGE)
+    if (settings.name == WOHRoutes.SETTINGS_LANGUAGE) {
       return GetPageRoute(
         settings: settings,
-        page: () => LanguageView(hideAppBar: true),
-        binding: SettingsBinding(),
+        page: () => WOHLanguageView(hideAppBar: true),
+        binding: WOHSettingsBinding(),
       );
+    }
 
-    if (settings.name == WOHRoutes.SETTINGS_THEME_MODE)
+    if (settings.name == WOHRoutes.SETTINGS_THEME_MODE) {
       return GetPageRoute(
         settings: settings,
-        page: () => ThemeModeView(hideAppBar: true),
-        binding: SettingsBinding(),
+        page: () => WOHThemeModeView(hideAppBar: true),
+        binding: WOHSettingsBinding(),
       );
+    }
 
-    return null;
+    // return null;
+    throw '--end-route--';
   }
 
   @override
