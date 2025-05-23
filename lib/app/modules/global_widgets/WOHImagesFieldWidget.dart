@@ -11,13 +11,13 @@ import '../../../common/WOHUuid.dart';
 import '../../models/WOHMediaModel.dart';
 import '../../repositories/WOHUploadRepository.dart';
 
-class ImagesFieldController extends GetxController {
+class WOHImagesFieldController extends GetxController {
   final images = <File>[].obs;
   List<String> uuids = <String>[];
   final uploading = false.obs;
   WOHUploadRepository _uploadRepository;
 
-  ImagesFieldController() {
+  WOHImagesFieldController() {
     _uploadRepository = new WOHUploadRepository();
   }
 
@@ -65,8 +65,8 @@ class ImagesFieldController extends GetxController {
   }
 }
 
-class ImagesFieldWidget extends StatelessWidget {
-  ImagesFieldWidget({
+class WOHImagesFieldWidget extends StatelessWidget {
+  WOHImagesFieldWidget({
     Key key,
     required this.label,
     required this.tag,
@@ -89,7 +89,7 @@ class ImagesFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ImagesFieldController(), tag: tag);
+    final controller = Get.put(WOHImagesFieldController(), tag: tag);
     return Container(
       padding: EdgeInsets.only(top: 8, bottom: 10, left: 20, right: 20),
       margin: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
@@ -155,7 +155,7 @@ class ImagesFieldWidget extends StatelessWidget {
   }
 
   Widget buildImages(List<WOHMediaModel> initialImages, List<File> images) {
-    final controller = Get.put(ImagesFieldController(), tag: tag);
+    final controller = Get.put(WOHImagesFieldController(), tag: tag);
     List<Widget> thumbs = [];
     thumbs.addAll(
       (initialImages

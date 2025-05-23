@@ -4,26 +4,27 @@ import 'WOHOptionModel.dart';
 import 'parents/WOHModel.dart';
 
 class WOHFavoriteModel extends WOHModel {
+  @override 
   String? id;
-  EService eService;
-  List<Option> options;
+  WOHEServiceModel? eService;
+  List<WOHOptionModel>? options;
   String? userId;
 
   WOHFavoriteModel({this.id, this.eService, this.options, this.userId});
 
   WOHFavoriteModel.fromJson(Map<String, dynamic> json) {
     super.fromJson(json);
-    eService = objectFromJson(json, 'e_service', (v) => EService.fromJson(v));
-    options = listFromJson(json, 'options', (v) => Option.fromJson(v));
+    eService = objectFromJson(json, 'e_service', (v) => WOHEServiceModel.fromJson(v));
+    options = listFromJson(json, 'options', (v) => WOHOptionModel.fromJson(v));
     userId = stringFromJson(json, 'user_id');
   }
-
+@override
   Map<String, dynamic> toJson() {
     var map = new Map<String, dynamic>();
     map["id"] = id;
-    map["e_service_id"] = eService.id;
+    map["e_service_id"] = eService!.id;
     map["user_id"] = userId;
-    map["options"] = options.map((element) => element.id).toList();
+    map["options"] = options!.map((element) => element.id).toList();
       return map;
   }
 }

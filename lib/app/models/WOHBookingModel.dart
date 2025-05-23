@@ -19,16 +19,16 @@ class WOHBookingModel extends WOHModel {
   int? quantity;
   WOHBookingStatusModel? status;
   WOHUserModel? user;
-  EService? eService;
-  EProvider? eProvider;
-  List<Option>? options;
-  List<Tax>? taxes;
+  WOHEServiceModel? eService;
+  WOHEProviderModel? eProvider;
+  List<WOHOptionModel>? options;
+  List<WOHTaxModel>? taxes;
   WOHAddressModel? address;
-  Coupon? coupon;
+  WOHCouponModel? coupon;
   DateTime? bookingAt;
   DateTime? startAt;
   DateTime? endsAt;
-  Payment? payment;
+  WOHPaymentModel? payment;
 
   WOHBookingModel({
     this.id,
@@ -60,24 +60,24 @@ class WOHBookingModel extends WOHModel {
     status = objectFromJson(
       json,
       'booking_status',
-      (v) => BookingStatus.fromJson(v),
+      (v) => WOHBookingStatusModel.fromJson(v),
     );
     user = objectFromJson(json, 'user', (v) => WOHUserModel.fromJson(v));
-    eService = objectFromJson(json, 'e_service', (v) => EService.fromJson(v));
+    eService = objectFromJson(json, 'e_service', (v) => WOHEServiceModel.fromJson(v));
     eProvider = objectFromJson(
       json,
       'e_provider',
-      (v) => EProvider.fromJson(v),
+      (v) => WOHEProviderModel.fromJson(v),
     );
     address = objectFromJson(
       json,
       'address',
       (v) => WOHAddressModel.fromJson(v),
     );
-    coupon = objectFromJson(json, 'coupon', (v) => Coupon.fromJson(v));
-    payment = objectFromJson(json, 'payment', (v) => Payment.fromJson(v));
-    options = listFromJson(json, 'options', (v) => Option.fromJson(v));
-    taxes = listFromJson(json, 'taxes', (v) => Tax.fromJson(v));
+    coupon = objectFromJson(json, 'coupon', (v) => WOHCouponModel.fromJson(v));
+    payment = objectFromJson(json, 'payment', (v) => WOHPaymentModel.fromJson(v));
+    options = listFromJson(json, 'options', (v) => WOHOptionModel.fromJson(v));
+    taxes = listFromJson(json, 'taxes', (v) => WOHTaxModel.fromJson(v));
     bookingAt = dateFromJson(json, 'booking_at', defaultValue: null);
     startAt = dateFromJson(json, 'start_at', defaultValue: null);
     endsAt = dateFromJson(json, 'ends_at', defaultValue: null);
@@ -91,21 +91,21 @@ class WOHBookingModel extends WOHModel {
     data['duration'] = this.duration;
     data['quantity'] = this.quantity;
     data['cancel'] = this.cancel;
-    data['booking_status_id'] = this.status.id;
-    data['coupon'] = this.coupon.toJson();
-    data['coupon_id'] = this.coupon.id;
-    data['taxes'] = this.taxes.map((e) => e.toJson()).toList();
-    if (this.options.isNotEmpty) {
-      data['options'] = this.options.map((e) => e.id).toList();
+    data['booking_status_id'] = this.status!.id;
+    data['coupon'] = this.coupon!.toJson();
+    data['coupon_id'] = this.coupon!.id;
+    data['taxes'] = this.taxes!.map((e) => e.toJson()).toList();
+    if (this.options!.isNotEmpty) {
+      data['options'] = this.options!.map((e) => e.id).toList();
     }
-    data['user_id'] = this.user.id;
-    data['address'] = this.address.toJson();
-    data['e_service'] = this.eService.id;
-    data['e_provider'] = this.eProvider.toJson();
-    data['payment'] = this.payment.toJson();
-    data['booking_at'] = bookingAt.toUtc().toString();
-    data['start_at'] = startAt.toUtc().toString();
-    data['ends_at'] = endsAt.toUtc().toString();
+    data['user_id'] = this.user!.id;
+    data['address'] = this.address!.toJson();
+    data['e_service'] = this.eService!.id;
+    data['e_provider'] = this.eProvider!.toJson();
+    data['payment'] = this.payment!.toJson();
+    data['booking_at'] = bookingAt!.toUtc().toString();
+    data['start_at'] = startAt!.toUtc().toString();
+    data['ends_at'] = endsAt!.toUtc().toString();
     return data;
   }
 
@@ -119,11 +119,12 @@ class WOHBookingModel extends WOHModel {
   double getTaxesValue() {
     double total = getSubtotal();
     double taxValue = 0.0;
-    taxes.forEach((element) {
+    taxes?.forEach((element) {
+      var v = element.value!;
       if (element.type == 'percent') {
-        taxValue += (total * element.value / 100);
+        taxValue += (total * v / 100);
       } else {
-        taxValue += element.value;
+        taxValue += v;
       }
     });
     return taxValue;
@@ -131,28 +132,29 @@ class WOHBookingModel extends WOHModel {
 
   double getCouponValue() {
     double total = getSubtotal();
-    if (!(coupon.hasData ?? false)) {
+    if (!(coupon!.hasData ?? false)) {
       return 0;
     } else {
-      if (coupon.discountType == 'percent') {
-        return -(total * coupon.discount / 100);
+      if (coupon!.discountType == 'percent') {
+        return -(total * coupon!.discount! / 100);
       } else {
-        return -coupon.discount;
+        return -coupon!.discount!;
       }
     }
   }
 
   double getSubtotal() {
     double total = 0.0;
-    if (eService.priceUnit == 'fixed') {
-      total = eService.getPrice * (quantity >= 1 ? quantity : 1);
-      options.forEach((element) {
-        total += element.price * (quantity >= 1 ? quantity : 1);
+    double v_duration = this.duration!; 
+    if (eService!.priceUnit == 'fixed') {
+      total = eService!.getPrice! * (quantity! >= 1 ? quantity! : 1);
+      options?.forEach((element) {
+        total += element.price! * (quantity! >= 1 ? quantity! : 1);
       });
     } else {
-      total = eService.getPrice * duration;
-      options.forEach((element) {
-        total += element.price;
+      total = eService!.getPrice! * v_duration;
+      options?.forEach((element) {
+        total += element.price!;
       });
     }
     return total;

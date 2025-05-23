@@ -7,12 +7,13 @@ import 'parents/WOHModel.dart';
 import 'WOHUserModel.dart';
 
 class WOHReviewModel extends WOHModel {
+  @override
   String? id;
   double? rate;
   String? review;
   DateTime? createdAt;
   WOHUserModel? user;
-  EService eService;
+  WOHEServiceModel? eService;
 
   WOHReviewModel({this.id, this.rate, this.review, this.createdAt, this.user, this.eService});
 
@@ -22,7 +23,7 @@ class WOHReviewModel extends WOHModel {
     review = stringFromJson(json, 'review');
     createdAt = dateFromJson(json, 'created_at', defaultValue: DateTime.now().toLocal());
     user = objectFromJson(json, 'user', (v) => WOHUserModel.fromJson(v));
-    eService = objectFromJson(json, 'e_service', (v) => EService.fromJson(v));
+    eService = objectFromJson(json, 'e_service', (v) => WOHEServiceModel.fromJson(v));
   }
 
   Map<String, dynamic> toJson() {
@@ -31,8 +32,8 @@ class WOHReviewModel extends WOHModel {
     data['rate'] = this.rate;
     data['review'] = this.review;
     data['created_at'] = this.createdAt;
-    data['user_id'] = this.user.id;
-      data['e_service_id'] = this.eService.id;
+    data['user_id'] = this.user!.id;
+      data['e_service_id'] = this.eService!.id;
       return data;
   }
 

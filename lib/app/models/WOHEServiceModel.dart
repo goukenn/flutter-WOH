@@ -7,10 +7,11 @@ import 'WOHMediaModel.dart';
 import 'parents/WOHModel.dart';
 
 class WOHEServiceModel extends WOHModel {
+  @override
   String? id;
   String? name;
   String? description;
-  List<WOHMediaModel> images;
+  List<WOHMediaModel>? images;
   double? price;
   double? discountPrice;
   String? priceUnit;
@@ -21,9 +22,9 @@ class WOHEServiceModel extends WOHModel {
   bool? featured;
   bool? enableBooking;
   bool? isFavorite;
-  List<WOHCategoryModel> categories;
-  List<WOHCategoryModel> subCategories;
-  EProvider eProvider;
+  List<WOHCategoryModel>? categories;
+  List<WOHCategoryModel>? subCategories;
+  WOHEProviderModel? eProvider;
 
   WOHEServiceModel(
       {this.id,
@@ -60,10 +61,11 @@ class WOHEServiceModel extends WOHModel {
     isFavorite = boolFromJson(json, 'is_favorite');
     categories = listFromJson<WOHCategoryModel>(json, 'categories', (value) => WOHCategoryModel.fromJson(value));
     subCategories = listFromJson<WOHCategoryModel>(json, 'sub_categories', (value) => WOHCategoryModel.fromJson(value));
-    eProvider = objectFromJson(json, 'e_provider', (value) => EProvider.fromJson(value));
+    eProvider = objectFromJson(json, 'e_provider', (value) => WOHEProviderModel.fromJson(value));
     super.fromJson(json);
   }
 
+@override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
@@ -79,23 +81,23 @@ class WOHEServiceModel extends WOHModel {
     data['featured'] = this.featured;
     data['enable_booking'] = this.enableBooking;
     data['is_favorite'] = this.isFavorite;
-    data['categories'] = this.categories.map((v) => v?.id).toList();
-      data['image'] = this.images.map((v) => v.toJson()).toList();
-      data['sub_categories'] = this.subCategories.map((v) => v.toJson()).toList();
-      if (this.eProvider.hasData) {
-      data['e_provider_id'] = this.eProvider.id;
+    data['categories'] = this.categories!.map((v) => v.id).toList();
+      data['image'] = this.images!.map((v) => v.toJson()).toList();
+      data['sub_categories'] = this.subCategories!.map((v) => v.toJson()).toList();
+      if (this.eProvider!.hasData) {
+      data['e_provider_id'] = this.eProvider!.id;
     }
     return data;
   }
 
-  String? get firstImageUrl => this.images.first.url ?? '';
+  String? get firstImageUrl => this.images!.first.url ?? '';
 
-  String? get firstImageThumb => this.images.first.thumb ?? '';
+  String? get firstImageThumb => this.images!.first.thumb ?? '';
 
-  String? get firstImageIcon => this.images.first.icon ?? '';
+  String? get firstImageIcon => this.images!.first.icon ?? '';
 
   @override
-  bool? get hasData {
+  bool get hasData {
     return name != null;
   }
 
@@ -117,8 +119,8 @@ class WOHEServiceModel extends WOHModel {
 
   String? get getUnit {
     if (priceUnit == 'fixed') {
-      if (quantityUnit.isNotEmpty) {
-        return "/" + quantityUnit.tr;
+      if (quantityUnit!.isNotEmpty) {
+        return "/" + quantityUnit!.tr;
       } else {
         return "";
       }

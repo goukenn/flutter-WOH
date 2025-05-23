@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../../global_widgets/WOHCustomBottomNavBar.dart';
-import '../../global_widgets/main_drawer_widget.dart';
+import '../../global_widgets/WOHMainDrawerWidget.dart';
 import '../controllers/WOHRootController.dart';
 
 class WOHRootView extends GetView<WOHRootController> {
@@ -20,7 +20,7 @@ class WOHRootView extends GetView<WOHRootController> {
       return Scaffold(
         drawer: MainDrawerWidget(),
         body: controller.currentPage,
-        bottomNavigationBar: CustomBottomNavigationBar(
+        bottomNavigationBar: WOHCustomBottomNavigationBar(
           backgroundColor: context.theme.scaffoldBackgroundColor,
           itemColor: context.theme.colorScheme.secondary,
           currentIndex: controller.currentIndex.value,
@@ -28,19 +28,19 @@ class WOHRootView extends GetView<WOHRootController> {
             controller.changePage(index);
           },
           children: [
-            CustomBottomNavigationItem(
+            WOHCustomBottomNavigationItem(
               icon: FontAwesomeIcons.home,
               label: "Accueil".tr,
             ),
-            CustomBottomNavigationItem(
+            WOHCustomBottomNavigationItem(
               icon: FontAwesomeIcons.fileLines,
               label: "rendez-vous".tr,
             ),
-            CustomBottomNavigationItem(
+            WOHCustomBottomNavigationItem(
               icon: FontAwesomeIcons.qrcode,
               label: "notification".tr,
             ),
-            CustomBottomNavigationItem(
+            WOHCustomBottomNavigationItem(
               icon: FontAwesomeIcons.userEdit,
               label: "Compte".tr,
             ),

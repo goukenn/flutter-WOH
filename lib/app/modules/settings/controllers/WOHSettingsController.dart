@@ -25,7 +25,7 @@ class WOHSettingsController extends GetxController {
     if (settings.name == WOHRoutes.PROFILE) {
       /*if (!Get.find<WOHAuthService>().isAuth) {
         currentIndex.value = 0;
-        Get.find<TabBarController>(tag: 'settings').selectedId.value = '0';
+        Get.find<WOHTabBarController>(tag: 'settings').selectedId.value = '0';
         //Get.toNamed(WOHRoutes.LOGIN);
       }*/
       return GetPageRoute(
@@ -37,7 +37,7 @@ class WOHSettingsController extends GetxController {
     /*if (settings.name == WOHRoutes.SETTINGS_ADDRESSES) {
       if (!Get.find<WOHAuthService>().isAuth) {
         currentIndex.value = 0;
-        Get.find<TabBarController>(tag: 'settings').selectedId.value = '0';
+        Get.find<WOHTabBarController>(tag: 'settings').selectedId.value = '0';
         Get.toNamed(WOHRoutes.LOGIN);
       }
       return GetPageRoute(
@@ -66,8 +66,8 @@ class WOHSettingsController extends GetxController {
 
   @override
   void onInit() {
-    /*if (Get.isRegistered<TabBarController>(tag: 'settings')) {
-      Get.find<TabBarController>(tag: 'settings').selectedId.value = '0';
+    /*if (Get.isRegistered<WOHTabBarController>(tag: 'settings')) {
+      Get.find<WOHTabBarController>(tag: 'settings').selectedId.value = '0';
     }*/
     currentIndex.value = 0;
     super.onInit();

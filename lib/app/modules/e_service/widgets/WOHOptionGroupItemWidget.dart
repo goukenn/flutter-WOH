@@ -14,12 +14,12 @@ import 'WOHOptionItemWidget.dart';
 class WOHOptionGroupItemWidget extends GetWidget<EServiceController> {
   WOHOptionGroupItemWidget({
     required OptionGroup optionGroup,
-    required EService eService,
+    required WOHEServiceModel eService,
   })  : _optionGroup = optionGroup,
         _eService = eService;
 
   final OptionGroup _optionGroup;
-  final EService _eService;
+  final WOHEServiceModel _eService;
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,6 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
 import 'dart:convert';
 
-import 'package:get/get.dart';
-
-import 'parents/WOHModel.dart';
-
 class WOHNotificationModel {
   String? myId;
   String? id;
@@ -17,7 +13,7 @@ class WOHNotificationModel {
   WOHNotificationModel(
       {this.id, this.title, this.message, this.isSeen, this.timestamp, this.myId, this.disable});
 
-  factory WOHNotificationModel.fromRawJson(String? str) =>
+  factory WOHNotificationModel.fromRawJson(String str) =>
       WOHNotificationModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
   String? toRawJson() => json.encode(toJson());
@@ -30,19 +26,19 @@ class WOHNotificationModel {
         json['message'] == null ? "No data" : json['message'] as String,
         isSeen: json['isSeen'] == null ? false : json['isSeen'] as bool,
         disable: json['disable'] == null ? false : json['disable'] as bool,
-        timestamp: json['timestamp'] == null
+        timestamp: (json['timestamp'] == null
             ? DateTime.now().toString()
-            : DateTime.parse(json['timestamp'].toString()),
+            : DateTime.parse(json['timestamp'].toString()).toString()),
       );
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id == null ? null : id,
-      'title': title == null ? null : title,
-      'message': message == null ? null : message,
-      'isSeen': isSeen == null ? null : isSeen,
-      'disable': disable == null ? null : disable,
-      'timestamp': timestamp == null ? null : timestamp.toString(),
+      'id': id,
+      'title': title,
+      'message': message,
+      'isSeen': isSeen,
+      'disable': disable,
+      'timestamp': timestamp?.toString(),
     };
   }
 }

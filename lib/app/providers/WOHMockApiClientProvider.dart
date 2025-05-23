@@ -67,93 +67,93 @@ class WOHMockApiClientProvider {
     }
   }
 
-  Future<List<EService>> getRecommendedEServices() async {
+  Future<List<WOHEServiceModel>> getRecommendedEServices() async {
     var response = await httpClient.get(baseUrl + "services/recommended.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<EService>> getAllEServices() async {
+  Future<List<WOHEServiceModel>> getAllEServices() async {
     var response = await httpClient.get(baseUrl + "services/all.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<EService>> getAllEServicesWithPagination(int? page) async {
+  Future<List<WOHEServiceModel>> getAllEServicesWithPagination(int? page) async {
     var response = await httpClient.get(baseUrl + "services/all_page_$page.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<EService>> getFavoritesEServices() async {
+  Future<List<WOHEServiceModel>> getFavoritesEServices() async {
     var response = await httpClient.get(baseUrl + "services/favorites.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<EService> getEService(String? id) async {
+  Future<WOHEServiceModel> getEService(String? id) async {
     var response = await httpClient.get(baseUrl + "services/all.json", options: _options);
     if (response.statusCode == 200) {
-      List<EService> _list = response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
-      return _list.firstWhere((element) => element.id == id, orElse: () => new EService());
+      List<WOHEServiceModel> _list = response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
+      return _list.firstWhere((element) => element.id == id, orElse: () => new WOHEServiceModel());
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<EProvider> getEProvider(String? eProviderId) async {
+  Future<WOHEProviderModel> getEProvider(String? eProviderId) async {
     var response = await httpClient.get(baseUrl + "providers/eprovider.json", options: _options);
     if (response.statusCode == 200) {
-      return EProvider.fromJson(response.data['data']);
+      return WOHEProviderModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<Review>> getEProviderReviews(String? eProviderId) async {
+  Future<List<WOHReviewModel>> getEProviderReviews(String? eProviderId) async {
     var response = await httpClient.get(baseUrl + "providers/reviews.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<Review>((obj) => Review.fromJson(obj)).toList();
+      return response.data['data'].map<WOHReviewModel>((obj) => WOHReviewModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<EService>> getEProviderFeaturedEServices(String? eProviderId) async {
+  Future<List<WOHEServiceModel>> getEProviderFeaturedEServices(String? eProviderId) async {
     var response = await httpClient.get(baseUrl + "services/featured.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
   // getEProviderMostRatedEServices
-  Future<List<EService>> getEProviderPopularEServices(String? eProviderId) async {
+  Future<List<WOHEServiceModel>> getEProviderPopularEServices(String? eProviderId) async {
     var response = await httpClient.get(baseUrl + "services/popular.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<EService>> getEProviderAvailableEServices(String? eProviderId) async {
+  Future<List<WOHEServiceModel>> getEProviderAvailableEServices(String? eProviderId) async {
     var response = await httpClient.get(baseUrl + "services/all.json", options: _options);
     if (response.statusCode == 200) {
-      List<EService> _services = response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      List<WOHEServiceModel> _services = response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
       _services = _services.where((_service) {
         return _service.eProvider.available;
       }).toList();
@@ -163,10 +163,10 @@ class WOHMockApiClientProvider {
     }
   }
 
-  Future<List<EService>> getEProviderMostRatedEServices(String eProviderId) async {
+  Future<List<WOHEServiceModel>> getEProviderMostRatedEServices(String eProviderId) async {
     var response = await httpClient.get(baseUrl + "services/all.json", options: _options);
     if (response.statusCode == 200) {
-      List<EService> _services = response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      List<WOHEServiceModel> _services = response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
       _services.sort((s1, s2) {
         return s2.rate!.compareTo(s1.rate!);
       });
@@ -176,46 +176,46 @@ class WOHMockApiClientProvider {
     }
   }
 
-  Future<List<EService>> getEProviderEServicesWithPagination(String? eProviderId, int? page) async {
+  Future<List<WOHEServiceModel>> getEProviderEServicesWithPagination(String? eProviderId, int? page) async {
     var response = await httpClient.get(baseUrl + "services/all_page_$page.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<Review>> getEServiceReviews(String? eServiceId) async {
+  Future<List<WOHReviewModel>> getEServiceReviews(String? eServiceId) async {
     var response = await httpClient.get(baseUrl + "services/reviews.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<Review>((obj) => Review.fromJson(obj)).toList();
+      return response.data['data'].map<WOHReviewModel>((obj) => WOHReviewModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<EService>> getFeaturedEServices() async {
+  Future<List<WOHEServiceModel>> getFeaturedEServices() async {
     var response = await httpClient.get(baseUrl + "services/featured.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<EService>> getPopularEServices() async {
+  Future<List<WOHEServiceModel>> getPopularEServices() async {
     var response = await httpClient.get(baseUrl + "services/popular.json", options: _options);
     if (response.statusCode == 200) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.statusMessage);
     }
   }
 
-  Future<List<EService>> getMostRatedEServices() async {
+  Future<List<WOHEServiceModel>> getMostRatedEServices() async {
     var response = await httpClient.get(baseUrl + "services/all.json", options: _options);
     if (response.statusCode == 200) {
-      List<EService> _services = response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      List<WOHEServiceModel> _services = response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
       _services.sort((s1, s2) {
         return s2.rate!.compareTo(s1.rate!);
       });
@@ -225,10 +225,10 @@ class WOHMockApiClientProvider {
     }
   }
 
-  Future<List<EService>> getAvailableEServices() async {
+  Future<List<WOHEServiceModel>> getAvailableEServices() async {
     var response = await httpClient.get(baseUrl + "services/all.json", options: _options);
     if (response.statusCode == 200) {
-      List<EService> _services = response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      List<WOHEServiceModel> _services = response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
       _services = _services.where((_service) {
         return _service.eProvider.available!;
       }).toList();

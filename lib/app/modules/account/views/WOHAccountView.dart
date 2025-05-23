@@ -224,7 +224,7 @@ class WOHAccountView extends GetView<AccountController> {
                           child: Column(
                             children: [
                               Obx(
-                                () => AccountLinkWidget(
+                                () => WOHAccountLinkWidget(
                                   icon: Icons.person,
                                   text: "Nom complet",
                                   label: controller.currentUser['name'],
@@ -235,7 +235,7 @@ class WOHAccountView extends GetView<AccountController> {
                               ),
                               Divider(color: background),
                               Obx(
-                                () => AccountLinkWidget(
+                                () => WOHAccountLinkWidget(
                                   icon: Icons.alternate_email_outlined,
                                   text: "Email",
                                   label: controller.currentUser['email']
@@ -247,7 +247,7 @@ class WOHAccountView extends GetView<AccountController> {
                               ),
                               Divider(color: background),
                               Obx(
-                                () => AccountLinkWidget(
+                                () => WOHAccountLinkWidget(
                                   icon: Icons.phone_android,
                                   text: "Mobile",
                                   label: controller.currentUser['phone']
@@ -268,7 +268,7 @@ class WOHAccountView extends GetView<AccountController> {
                                       )
                                     : SizedBox(),
                               ),
-                              AccountLinkWidget(
+                              WOHAccountLinkWidget(
                                 icon: Icons.star,
                                 text: "Nombre de points",
                                 label: controller.currentUser['client_points']
@@ -277,7 +277,7 @@ class WOHAccountView extends GetView<AccountController> {
                                 onChange: (value) => {},
                               ),
                               Divider(color: background),
-                              AccountLinkWidget(
+                              WOHAccountLinkWidget(
                                 icon: Icons.wine_bar,
                                 text: "Nombre de bonus",
                                 label: controller.currentUser['client_bonus']
@@ -318,7 +318,7 @@ class WOHAccountView extends GetView<AccountController> {
                                 onTap: () => {
                                   Get.toNamed(WOHRoutes.NOTIFICATIONS),
                                 },
-                                child: AccountWidget(
+                                child: WOHAccountWidget(
                                   icon: Icons.notifications,
                                   text: "Notifications",
                                   label: "",
@@ -348,7 +348,7 @@ class WOHAccountView extends GetView<AccountController> {
                                     ),
                                   );
                                 },
-                                child: AccountWidget(
+                                child: WOHAccountWidget(
                                   icon: Icons.delete,
                                   text: "Suprimer mon compte",
                                   label: "",
@@ -380,7 +380,7 @@ class WOHAccountView extends GetView<AccountController> {
                                     ),
                                   );
                                 },
-                                child: AccountWidget(
+                                child: WOHAccountWidget(
                                   icon: Icons.logout,
                                   text: "Déconnexion",
                                   label: "",

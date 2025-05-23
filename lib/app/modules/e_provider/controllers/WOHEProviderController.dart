@@ -14,12 +14,12 @@ import '../../../repositories/WOHEProviderRepository.dart';
 import '../../../routes/WOHRoutes.dart';
 
 class WOHEProviderController extends GetxController {
-  final eProvider = EProvider().obs;
-  final reviews = <Review>[].obs;
+  final eProvider = WOHEProviderModel().obs;
+  final reviews = <WOHReviewModel>[].obs;
   final awards = <Award>[].obs;
   final galleries = <WOHMediaModel>[].obs;
   final experiences = <Experience>[].obs;
-  final featuredEServices = <EService>[].obs;
+  final featuredEServices = <WOHEServiceModel>[].obs;
   final currentSlide = 0.obs;
   String heroTag = "";
   EProviderRepository _eProviderRepository;
@@ -31,7 +31,7 @@ class WOHEProviderController extends GetxController {
   @override
   void onInit() {
     var arguments = Get.arguments as Map<String, dynamic>;
-    eProvider.value = arguments['eProvider'] as EProvider;
+    eProvider.value = arguments['eProvider'] as WOHEProviderModel;
     heroTag = arguments['heroTag'] as String;
     super.onInit();
   }

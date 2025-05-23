@@ -30,7 +30,7 @@ class WOHBlockButtonWidget extends StatelessWidget {
 
         onPressed: disabled ? null : this.onPressed,
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-        color: !loginPage ? Responsive.isTablet(context) ?
+        color: !loginPage ? WOHResponsive.isTablet(context) ?
         employeeInterfaceColor : interfaceColor : color,
         disabledElevation: 0,
         disabledColor: Get.theme.focusColor,

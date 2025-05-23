@@ -14,7 +14,7 @@ class WOHCategoryModel extends WOHModel {
   WOHMediaModel? image;
   bool? featured;
   List<WOHCategoryModel>? subCategories;
-  List<EService>? eServices;
+  List<WOHEServiceModel>? eServices;
 
   WOHCategoryModel({this.id, this.name, this.description, this.color, this.image, this.featured, this.subCategories, this.eServices});
 
@@ -25,7 +25,7 @@ class WOHCategoryModel extends WOHModel {
     description = transStringFromJson(json, 'description');
     image = mediaFromJson(json, 'image');
     featured = boolFromJson(json, 'featured');
-    eServices = listFromJsonArray(json, ['e_services', 'featured_e_services'], (v) => EService.fromJson(v));
+    eServices = listFromJsonArray(json, ['e_services', 'featured_e_services'], (v) => WOHEServiceModel.fromJson(v));
     subCategories = listFromJson(json, 'sub_categories', (v) => WOHCategoryModel.fromJson(v));
   }
 

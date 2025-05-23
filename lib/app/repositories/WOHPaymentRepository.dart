@@ -15,35 +15,35 @@ class WOHPaymentRepository {
     _laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 
-  Future<List<PaymentMethod>> getMethods() {
+  Future<List<WOHPaymentMethodModel>> getMethods() {
     return _laravelApiClient.getPaymentMethods();
   }
 
-  Future<List<Wallet>> getWallets() {
+  Future<List<WOHWalletModel>> getWallets() {
     return _laravelApiClient.getWallets();
   }
 
-  Future<List<WalletTransaction>> getWalletTransactions(Wallet? wallet) {
+  Future<List<WalletTransaction>> getWalletTransactions(WOHWalletModel? wallet) {
     return _laravelApiClient.getWalletTransactions(wallet);
   }
 
-  Future<Wallet> createWallet(Wallet? wallet) {
+  Future<WOHWalletModel> createWallet(WOHWalletModel? wallet) {
     return _laravelApiClient.createWallet(wallet);
   }
 
-  Future<Wallet> updateWallet(Wallet? wallet) {
+  Future<WOHWalletModel> updateWallet(WOHWalletModel? wallet) {
     return _laravelApiClient.updateWallet(wallet);
   }
 
-  Future<bool> deleteWallet(Wallet? wallet) {
+  Future<bool> deleteWallet(WOHWalletModel? wallet) {
     return _laravelApiClient.deleteWallet(wallet);
   }
 
-  Future<Payment> create(WOHBookingModel booking) {
+  Future<WOHPaymentModel> create(WOHBookingModel booking) {
     return _laravelApiClient.createPayment(booking);
   }
 
-  Future<Payment> createWalletPayment(WOHBookingModel booking, Wallet? wallet) {
+  Future<WOHPaymentModel> createWalletPayment(WOHBookingModel booking, WOHWalletModel? wallet) {
     return _laravelApiClient.createWalletPayment(booking, wallet);
   }
 

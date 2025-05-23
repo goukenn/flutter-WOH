@@ -4,11 +4,12 @@ import 'WOHPaymentMethodModel.dart';
 import 'WOHPaymentStatusModel.dart';
 
 class WOHPaymentModel extends WOHModel {
+  @override
   String? id;
   String? description;
   double? amount;
-  PaymentMethod? paymentMethod;
-  PaymentStatus paymentStatus;
+  WOHPaymentMethodModel? paymentMethod;
+  WOHPaymentStatusModel? paymentStatus;
 
   WOHPaymentModel({this.id, this.description, this.amount, this.paymentMethod, this.paymentStatus});
 
@@ -16,8 +17,8 @@ class WOHPaymentModel extends WOHModel {
     super.fromJson(json);
     description = stringFromJson(json, 'description');
     amount = doubleFromJson(json, 'amount');
-    paymentMethod = objectFromJson(json, 'payment_method', (v) => PaymentMethod.fromJson(v));
-    paymentStatus = objectFromJson(json, 'payment_status', (v) => PaymentStatus.fromJson(v));
+    paymentMethod = objectFromJson(json, 'payment_method', (v) => WOHPaymentMethodModel.fromJson(v));
+    paymentStatus = objectFromJson(json, 'payment_status', (v) => WOHPaymentStatusModel.fromJson(v));
   }
 
   @override
@@ -26,8 +27,8 @@ class WOHPaymentModel extends WOHModel {
     data['id'] = this.id;
     data['description'] = this.description;
     data['amount'] = this.amount;
-    data['payment_method_id'] = this.paymentMethod.id;
-      data['payment_status_id'] = this.paymentStatus.id;
+    data['payment_method_id'] = this.paymentMethod!.id;
+      data['payment_status_id'] = this.paymentStatus!.id;
       return data;
   }
 }

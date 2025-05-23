@@ -80,7 +80,7 @@ class WOHCategoriesView extends GetView<CategoriesController> {
                 return Offstage(
                   offstage: controller.layout.value != CategoriesLayout.GRID,
                   child: controller.categories.isEmpty
-                      ? CircularLoadingWidget(height: 400)
+                      ? WOHCircularLoadingWidget(height: 400)
                       : MasonryGridView.count(
                           primary: false,
                           shrinkWrap: true,
@@ -99,7 +99,7 @@ class WOHCategoriesView extends GetView<CategoriesController> {
                 return Offstage(
                   offstage: controller.layout.value != CategoriesLayout.LIST,
                   child: controller.categories.isEmpty
-                      ? CircularLoadingWidget(height: 400)
+                      ? WOHCircularLoadingWidget(height: 400)
                       : ListView.separated(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,

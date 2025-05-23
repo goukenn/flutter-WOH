@@ -1,4 +1,5 @@
-import 'app/models/WOHTravelModel.dart';
+ 
+import 'app/models/WOHUserModel.dart';
 
 class WOHResponse {
   int? id;
@@ -27,7 +28,7 @@ class WOHResponse {
     this.user,
   });
 
-  factory Response.fromJson(Map<String, dynamic> json) => Response(
+  factory WOHResponse.fromJson(Map<String, dynamic> json) => WOHResponse(
     id: json["id"],
     travelType: json["travel_type"],
     departureTown: json["departure_town"],

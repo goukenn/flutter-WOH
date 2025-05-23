@@ -3,10 +3,11 @@ import 'WOHOptionModel.dart';
 import 'parents/WOHModel.dart';
 
 class WOHOptionGroupModel extends WOHModel {
+  @override
   String? id;
   String? name;
   bool? allowMultiple;
-  List<Option> options;
+  List<WOHOptionModel>? options;
 
   WOHOptionGroupModel({this.id, this.name, this.options});
 
@@ -14,9 +15,10 @@ class WOHOptionGroupModel extends WOHModel {
     super.fromJson(json);
     name = transStringFromJson(json, 'name');
     allowMultiple = boolFromJson(json, 'allow_multiple');
-    options = listFromJson(json, 'options', (v) => Option.fromJson(v));
+    options = listFromJson(json, 'options', (v) => WOHOptionModel.fromJson(v));
   }
 
+  @override
   Map<String, dynamic> toJson() {
     var map = new Map<String, dynamic>();
     map["id"] = id;

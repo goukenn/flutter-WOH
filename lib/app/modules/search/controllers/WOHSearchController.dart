@@ -29,7 +29,7 @@ class WOHSearchController extends GetxController {
     {"name": "Jason Holder", "country": "West Indies"},
   ].obs;
 
-  final eServices = <EService>[].obs;
+  final eServices = <WOHEServiceModel>[].obs;
   late EServiceRepository _eServiceRepository;
   late CategoryRepository _categoryRepository;
 

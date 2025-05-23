@@ -10,9 +10,9 @@ import '../../../repositories/WOHEProviderRepository.dart';
 enum CategoryFilter { ALL, AVAILABILITY, RATING, FEATURED, POPULAR }
 
 class WOHEServicesController extends GetxController {
-  final eProvider = new EProvider().obs;
+  final eProvider = new WOHEProviderModel().obs;
   final selected = Rx<CategoryFilter>(CategoryFilter.ALL);
-  final eServices = <EService>[].obs;
+  final eServices = <WOHEServiceModel>[].obs;
   final page = 0.obs;
   final isLoading = true.obs;
   final isDone = false.obs;
@@ -25,7 +25,7 @@ class WOHEServicesController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    eProvider.value = Get.arguments as EProvider;
+    eProvider.value = Get.arguments as WOHEProviderModel;
     scrollController.addListener(() {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent && !isDone.value) {
         loadEServicesOfCategory(filter: selected.value);
@@ -65,7 +65,7 @@ class WOHEServicesController extends GetxController {
       isLoading.value = true;
       isDone.value = false;
       this.page.value++;
-      List<EService> _eServices = [];
+      List<WOHEServiceModel> _eServices = [];
       switch (filter) {
         case CategoryFilter.ALL:
           _eServices = await _eProviderRepository.getEServices(eProvider.value.id, page: this.page.value);

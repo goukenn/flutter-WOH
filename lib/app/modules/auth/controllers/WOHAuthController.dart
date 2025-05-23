@@ -311,7 +311,7 @@ class WOHAuthController extends GetxController {
       if(data != null){
 
         currentUser.value = data;
-        if(Responsive.isMobile(Get.context)){
+        if(WOHResponsive.isMobile(Get.context)){
 
           box.write("userData", data);
           Get.showSnackbar(WOHUi.SuccessSnackBar(message: "connexion réussi, bon retour M/Mme ${data['name']}"));

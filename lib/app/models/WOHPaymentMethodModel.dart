@@ -7,7 +7,8 @@ import 'WOHMediaModel.dart';
 import 'parents/WOHModel.dart';
 import 'WOHWalletModel.dart';
 
-class WOHPaymentMethodModel? extends WOHModel {
+class WOHPaymentMethodModel extends WOHModel {
+  @override
   String? id;
   String? name;
   String? description;
@@ -15,7 +16,7 @@ class WOHPaymentMethodModel? extends WOHModel {
   String? route;
   int? order;
   bool? isDefault;
-  Wallet? wallet;
+  WOHWalletModel? wallet;
 
   WOHPaymentMethodModel({this.id, this.name, this.description, this.route, this.logo, this.wallet, this.isDefault = false});
 
@@ -38,15 +39,15 @@ class WOHPaymentMethodModel? extends WOHModel {
   }
 
   String? getName() {
-    name = name ?? "Not Paid".tr;
-    return name.substring(name.length - min(name.length, 10), name.length);
+    var v_name = name ?? "Not Paid".tr;
+    return v_name.substring(v_name.length - min(v_name.length, 10), v_name.length);
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       super == other &&
-          other is WOHPaymentMethodModel? &&
+          other is WOHPaymentMethodModel &&
           runtimeType == other.runtimeType &&
           id == other.id &&
           name == other.name &&

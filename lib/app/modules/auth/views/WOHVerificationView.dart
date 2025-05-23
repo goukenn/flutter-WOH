@@ -100,7 +100,7 @@ class WOHVerificationView extends GetView<WOHAuthController> {
               ),
               Obx(() {
                 if (controller.loading.isTrue) {
-                  return CircularLoadingWidget(height: 300);
+                  return WOHCircularLoadingWidget(height: 300);
                 } else {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,

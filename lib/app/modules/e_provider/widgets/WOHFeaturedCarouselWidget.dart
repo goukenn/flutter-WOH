@@ -16,7 +16,7 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
       color: Get.theme.primaryColor,
       child: Obx(() {
         if (controller.featuredEServices.isEmpty) {
-          return CircularLoadingWidget(height: 250);
+          return WOHCircularLoadingWidget(height: 250);
         }
         return ListView.builder(
             padding: EdgeInsets.only(bottom: 10),

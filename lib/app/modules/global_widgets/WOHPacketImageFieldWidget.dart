@@ -8,14 +8,14 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../repositories/WOHUploadRepository.dart';
 
-class PacketImageFieldController extends GetxController {
+class WOHPacketImageFieldController extends GetxController {
   Rx<File> image = Rx<File>(null);
   String uuid;
   final uploading = false.obs;
   var url = ''.obs;
   WOHUploadRepository _uploadRepository;
 
-  PacketImageFieldController() {
+  WOHPacketImageFieldController() {
     _uploadRepository = new WOHUploadRepository();
   }
 
@@ -54,8 +54,8 @@ class PacketImageFieldController extends GetxController {
   }
 }
 
-class PacketImageFieldWidget extends StatelessWidget {
-  PacketImageFieldWidget({
+class WOHPacketImageFieldWidget extends StatelessWidget {
+  WOHPacketImageFieldWidget({
     Key key,
     required this.label,
     required this.tag,
@@ -78,7 +78,7 @@ class PacketImageFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(PacketImageFieldController(), tag: tag);
+    final controller = Get.put(WOHPacketImageFieldController(), tag: tag);
     return Container(
       padding: EdgeInsets.only(top: 8, bottom: 10, left: 20, right: 20),
       margin: EdgeInsets.only( top: 20, bottom: 20),
@@ -132,7 +132,7 @@ class PacketImageFieldWidget extends StatelessWidget {
         ));
   }
   Widget buildImage(String initialImage, File image) {
-    final controller = Get.put(PacketImageFieldController(), tag: tag);
+    final controller = Get.put(WOHPacketImageFieldController(), tag: tag);
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10),
       child: Wrap(

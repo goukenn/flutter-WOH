@@ -27,7 +27,7 @@ class WOHEProviderView extends GetView<EProviderController> {
       var _eProvider = controller.eProvider.value;
       if (!_eProvider.hasData) {
         return Scaffold(
-          body: CircularLoadingWidget(height: Get.height),
+          body: WOHCircularLoadingWidget(height: Get.height),
         );
       } else {
         return Scaffold(
@@ -110,7 +110,7 @@ class WOHEProviderView extends GetView<EProviderController> {
                               Divider(height: 35, thickness: 1.3),
                               Obx(() {
                                 if (controller.reviews.isEmpty) {
-                                  return CircularLoadingWidget(height: 100);
+                                  return WOHCircularLoadingWidget(height: 100);
                                 }
                                 return ListView.separated(
                                   padding: EdgeInsets.all(0),
@@ -209,11 +209,11 @@ class WOHEProviderView extends GetView<EProviderController> {
     });
   }
 
-  EProviderTilWidget buildAvailabilityHours(EProvider _eProvider) {
+  EProviderTilWidget buildAvailabilityHours(WOHEProviderModel _eProvider) {
     return EProviderTilWidget(
       title: Text("Availability".tr, style: Get.textTheme.bodySmall),
       content: _eProvider.availabilityHours.isEmpty
-          ? CircularLoadingWidget(height: 150)
+          ? WOHCircularLoadingWidget(height: 150)
           : ListView.separated(
               padding: EdgeInsets.zero,
               primary: false,
@@ -472,7 +472,7 @@ class WOHEProviderView extends GetView<EProviderController> {
     );
   }
 
-  CarouselSlider buildCarouselSlider(EProvider _eProvider) {
+  CarouselSlider buildCarouselSlider(WOHEProviderModel _eProvider) {
     return CarouselSlider(
       options: CarouselOptions(
         autoPlay: true,
@@ -507,7 +507,7 @@ class WOHEProviderView extends GetView<EProviderController> {
     );
   }
 
-  Container buildCarouselBullets(EProvider _eProvider) {
+  Container buildCarouselBullets(WOHEProviderModel _eProvider) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 100, horizontal: 20),
       child: Row(
@@ -528,7 +528,7 @@ class WOHEProviderView extends GetView<EProviderController> {
     );
   }
 
-  EProviderTitleBarWidget buildEProviderTitleBarWidget(EProvider _eProvider) {
+  EProviderTitleBarWidget buildEProviderTitleBarWidget(WOHEProviderModel _eProvider) {
     return EProviderTitleBarWidget(
       title: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

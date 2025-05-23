@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'WOHMediaModel.dart';
 import 'WOHEProviderModel.dart';
 import 'WOHEServiceModel.dart';
-import 'WOHMediaModel.dart';
 import 'parents/WOHModel.dart';
 
 class WOHSlideModel extends WOHModel {
@@ -18,8 +17,8 @@ class WOHSlideModel extends WOHModel {
   Color? indicatorColor;
   WOHMediaModel? image;
   String? imageFit;
-  EService? eService;
-  EProvider? eProvider;
+  WOHEServiceModel? eService;
+  WOHEProviderModel? eProvider;
   bool? enabled;
 
   WOHSlideModel({
@@ -50,8 +49,8 @@ class WOHSlideModel extends WOHModel {
     indicatorColor = colorFromJson(json, 'indicator_color');
     image = mediaFromJson(json, 'image');
     imageFit = stringFromJson(json, 'image_fit');
-    eService = json['e_service_id'] != null ? EService(id: json['e_service_id'].toString()) : null;
-    eProvider = json['e_provider_id'] != null ? EProvider(id: json['e_provider_id'].toString()) : null;
+    eService = json['e_service_id'] != null ? WOHEServiceModel(id: json['e_service_id'].toString()) : null;
+    eProvider = json['e_provider_id'] != null ? WOHEProviderModel(id: json['e_provider_id'].toString()) : null;
     enabled = boolFromJson(json, 'enabled');
   }
 

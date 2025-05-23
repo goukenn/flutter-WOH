@@ -42,7 +42,7 @@ class WOHAddressesView extends GetView<AddressController> {
             return ListView(
               primary: true,
               children: [
-                if (controller.addresses.isEmpty) CircularLoadingWidget(height: 300),
+                if (controller.addresses.isEmpty) WOHCircularLoadingWidget(height: 300),
                 if (controller.addresses.isNotEmpty)
                   Container(
                     padding: EdgeInsets.symmetric(vertical: 5),

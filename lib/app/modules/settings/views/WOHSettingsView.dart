@@ -25,11 +25,11 @@ class WOHSettingsView extends GetView<SettingsController> {
             onPressed: () => Get.back(),
           ),
           elevation: 0,
-          bottom: TabBarWidget(
+          bottom: WOHTabBarWidget(
             initialSelectedId: 0,
             tag: 'settings',
             tabs: [
-              ChipWidget(
+              WOHChipWidget(
                 tag: 'settings',
                 text: "Languages".tr,
                 id: 0,
@@ -37,7 +37,7 @@ class WOHSettingsView extends GetView<SettingsController> {
                   controller.changePage(id);
                 },
               ),
-              ChipWidget(
+              WOHChipWidget(
                 tag: 'settings',
                 text: "Profile".tr,
                 id: 1,
@@ -45,7 +45,7 @@ class WOHSettingsView extends GetView<SettingsController> {
                   controller.changePage(id);
                 },
               ),
-              /*ChipWidget(
+              /*WOHChipWidget(
                 tag: 'settings',
                 text: "Addresses".tr,
                 id: 2,
@@ -53,7 +53,7 @@ class WOHSettingsView extends GetView<SettingsController> {
                   controller.changePage(id);
                 },
               ),*/
-              ChipWidget(
+              WOHChipWidget(
                 tag: 'settings',
                 text: "Theme Mode".tr,
                 id: 2,

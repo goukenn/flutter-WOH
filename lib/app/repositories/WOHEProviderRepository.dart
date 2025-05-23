@@ -17,11 +17,11 @@ class WOHEProviderRepository {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 
-  Future<EProvider> get(String? eProviderId) {
+  Future<WOHEProviderModel> get(String? eProviderId) {
     return _laravelApiClient.getEProvider(eProviderId);
   }
 
-  Future<List<Review>> getReviews(String? eProviderId) {
+  Future<List<WOHReviewModel>> getReviews(String? eProviderId) {
     return _laravelApiClient.getEProviderReviews(eProviderId);
   }
 
@@ -37,7 +37,7 @@ class WOHEProviderRepository {
     return _laravelApiClient.getEProviderExperiences(eProviderId);
   }
 
-  Future<List<EService>> getEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getEServices(String? eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderEServices(eProviderId, page);
   }
 
@@ -45,19 +45,19 @@ class WOHEProviderRepository {
     return _laravelApiClient.getEProviderEmployees(eProviderId);
   }
 
-  Future<List<EService>> getPopularEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getPopularEServices(String? eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderPopularEServices(eProviderId, page);
   }
 
-  Future<List<EService>> getMostRatedEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getMostRatedEServices(String? eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderMostRatedEServices(eProviderId, page);
   }
 
-  Future<List<EService>> getAvailableEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getAvailableEServices(String? eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderAvailableEServices(eProviderId, page);
   }
 
-  Future<List<EService>> getFeaturedEServices(String? eProviderId, {int? page}) {
+  Future<List<WOHEServiceModel>> getFeaturedEServices(String? eProviderId, {int? page}) {
     return _laravelApiClient.getEProviderFeaturedEServices(eProviderId, page);
   }
 }

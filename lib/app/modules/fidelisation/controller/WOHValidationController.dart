@@ -50,7 +50,7 @@ class WOHValidationController extends GetxController {
       print(qrResult);
       var user = await getUserInfo(qrResult);
       client.value = user;
-      if(Responsive.isMobile(Get.context)){
+      if(WOHResponsive.isMobile(Get.context)){
         showDialog(
             context: Get.context,
             builder: (_){

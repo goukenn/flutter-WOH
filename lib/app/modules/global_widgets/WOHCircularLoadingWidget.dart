@@ -7,18 +7,18 @@ import 'package:get/get.dart';
 
 import '../../../WOHColorConstants.dart';
 
-class CircularLoadingWidget extends StatefulWidget {
+class WOHCircularLoadingWidget extends StatefulWidget {
   final double height;
   final ValueChanged<void> onComplete;
   final String onCompleteText;
 
-  CircularLoadingWidget({Key key, this.height, this.onComplete, this.onCompleteText}) : super(key: key);
+  WOHCircularLoadingWidget({Key key, this.height, this.onComplete, this.onCompleteText}) : super(key: key);
 
   @override
-  _CircularLoadingWidgetState createState() => _CircularLoadingWidgetState();
+  WOHCircularLoadingWidgetState createState() => WOHCircularLoadingWidgetState();
 }
 
-class _CircularLoadingWidgetState extends State<CircularLoadingWidget> with SingleTickerProviderStateMixin {
+class WOHCircularLoadingWidgetState extends State<WOHCircularLoadingWidget> with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController animationController;
 

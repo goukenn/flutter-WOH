@@ -14,11 +14,11 @@ import '../../../routes/WOHRoutes.dart';
 class WOHServicesListItemWidget extends StatelessWidget {
   const WOHServicesListItemWidget({
     Key key,
-    required EService service,
+    required WOHEServiceModel service,
   })  : _service = service,
         super(key: key);
 
-  final EService _service;
+  final WOHEServiceModel _service;
 
   @override
   Widget build(BuildContext context) {

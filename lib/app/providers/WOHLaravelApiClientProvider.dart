@@ -224,7 +224,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<List<EService>> getRecommendedEServices() async {
+  Future<List<WOHEServiceModel>> getRecommendedEServices() async {
     final _address = Get.find<WOHSettingsService>().address.value;
     // TODO get Only Recommended
     var _queryParameters = {
@@ -240,13 +240,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<EService>> getAllEServicesWithPagination(String categoryId, int? page) async {
+  Future<List<WOHEServiceModel>> getAllEServicesWithPagination(String categoryId, int? page) async {
     final _address = Get.find<WOHSettingsService>().address.value;
     var _queryParameters = {
       'with': 'eProvider;eProvider.addresses;categories',
@@ -263,13 +263,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<EService>> searchEServices(String keywords, List<String> categories, int? page) async {
+  Future<List<WOHEServiceModel>> searchEServices(String keywords, List<String> categories, int? page) async {
     final _address = Get.find<WOHSettingsService>().address.value;
     // TODO Pagination
     var _queryParameters = {
@@ -286,7 +286,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
@@ -357,7 +357,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<EService> getEService(String id) async {
+  Future<WOHEServiceModel> getEService(String id) async {
     var _queryParameters = {
       'with': 'eProvider;eProvider.taxes;categories',
     };
@@ -368,13 +368,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return EService.fromJson(response.data['data']);
+      return WOHEServiceModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<EProvider> getEProvider(String eProviderId) async {
+  Future<WOHEProviderModel> getEProvider(String eProviderId) async {
     const _queryParameters = {
       'with': 'eProviderType;availabilityHours;users;addresses',
     };
@@ -382,19 +382,19 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return EProvider.fromJson(response.data['data']);
+      return WOHEProviderModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<Review>> getEProviderReviews(String eProviderId) async {
+  Future<List<WOHReviewModel>> getEProviderReviews(String eProviderId) async {
     var _queryParameters = {'with': 'eProviderReviews;eProviderReviews.user', 'only': 'eProviderReviews.id;eProviderReviews.review;eProviderReviews.rate;eProviderReviews.user;'};
     Uri _uri = getApiBaseUri("e_providers/$eProviderId").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data']['e_provider_reviews'].map<Review>((obj) => Review.fromJson(obj)).toList();
+      return response.data['data']['e_provider_reviews'].map<WOHReviewModel>((obj) => WOHReviewModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
@@ -452,7 +452,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<List<EService>> getEProviderFeaturedEServices(String eProviderId, int? page) async {
+  Future<List<WOHEServiceModel>> getEProviderFeaturedEServices(String eProviderId, int? page) async {
     var _queryParameters = {
       'with': 'eProvider;eProvider.addresses;categories',
       'search': 'e_provider_id:$eProviderId;featured:1',
@@ -465,13 +465,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<EService>> getEProviderPopularEServices(String eProviderId, int? page) async {
+  Future<List<WOHEServiceModel>> getEProviderPopularEServices(String eProviderId, int? page) async {
     // TODO popular eServices
     var _queryParameters = {
       'with': 'eProvider;eProvider.addresses;categories',
@@ -485,13 +485,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<EService>> getEProviderAvailableEServices(String eProviderId, int? page) async {
+  Future<List<WOHEServiceModel>> getEProviderAvailableEServices(String eProviderId, int? page) async {
     var _queryParameters = {
       'with': 'eProvider;eProvider.addresses;categories',
       'search': 'e_provider_id:$eProviderId',
@@ -504,13 +504,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<EService>> getEProviderMostRatedEServices(String eProviderId, int? page) async {
+  Future<List<WOHEServiceModel>> getEProviderMostRatedEServices(String eProviderId, int? page) async {
     var _queryParameters = {
       //'only': 'id;name;price;discount_price;price_unit;duration;has_media;total_reviews;rate',
       'with': 'eProvider;eProvider.addresses;categories',
@@ -524,7 +524,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
@@ -542,7 +542,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<List<EService>> getEProviderEServices(String eProviderId, int? page) async {
+  Future<List<WOHEServiceModel>> getEProviderEServices(String eProviderId, int? page) async {
     var _queryParameters = {
       'with': 'eProvider;eProvider.addresses;categories',
       'search': 'e_provider_id:$eProviderId',
@@ -555,19 +555,19 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<Review>> getEServiceReviews(String eServiceId) async {
+  Future<List<WOHReviewModel>> getEServiceReviews(String eServiceId) async {
     var _queryParameters = {'with': 'user', 'only': 'created_at;review;rate;user', 'search': "e_service_id:$eServiceId", 'orderBy': 'created_at', 'sortBy': 'desc', 'limit': '10'};
     Uri _uri = getApiBaseUri("e_service_reviews").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<Review>((obj) => Review.fromJson(obj)).toList();
+      return response.data['data'].map<WOHReviewModel>((obj) => WOHReviewModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
@@ -592,7 +592,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<List<EService>> getFeaturedEServices(String categoryId, int? page) async {
+  Future<List<WOHEServiceModel>> getFeaturedEServices(String categoryId, int? page) async {
     final _address = Get.find<WOHSettingsService>().address.value;
     var _queryParameters = {
       //'only': 'id;name;price;discount_price;price_unit;duration;has_media;total_reviews;rate',
@@ -611,13 +611,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<EService>> getPopularEServices(String categoryId, int? page) async {
+  Future<List<WOHEServiceModel>> getPopularEServices(String categoryId, int? page) async {
     final _address = Get.find<WOHSettingsService>().address.value;
     var _queryParameters = {
       //'only': 'id;name;price;discount_price;price_unit;duration;has_media;total_reviews;rate',
@@ -636,13 +636,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<EService>> getMostRatedEServices(String categoryId, int? page) async {
+  Future<List<WOHEServiceModel>> getMostRatedEServices(String categoryId, int? page) async {
     final _address = Get.find<WOHSettingsService>().address.value;
     var _queryParameters = {
       //'only': 'id;name;price;discount_price;price_unit;duration;has_media;total_reviews;rate',
@@ -661,13 +661,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<EService>> getAvailableEServices(String categoryId, int? page) async {
+  Future<List<WOHEServiceModel>> getAvailableEServices(String categoryId, int? page) async {
     final _address = Get.find<WOHSettingsService>().address.value;
     var _queryParameters = {
       'with': 'eProvider;eProvider.addresses;categories',
@@ -685,7 +685,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return response.data['data'].map<EService>((obj) => EService.fromJson(obj)).toList();
+      return response.data['data'].map<WOHEServiceModel>((obj) => WOHEServiceModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
@@ -811,7 +811,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<BookingStatus>((obj) => BookingStatus.fromJson(obj)).toList();
+      return response.data['data'].map<WOHBookingStatusModel>((obj) => WOHBookingStatusModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }*/
@@ -833,7 +833,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<Coupon> validateCoupon(WOHBookingModel booking) async {
+  Future<WOHCouponModel> validateCoupon(WOHBookingModel booking) async {
     var _queryParameters = {
       'api_token': WOHAuthService.apiToken,
       'code': booking.coupon.code ?? '',
@@ -845,7 +845,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return Coupon.fromJson(response.data['data']);
+      return WOHCouponModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }
@@ -885,7 +885,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<Review> addReview(Review review) async {
+  Future<WOHReviewModel> addReview(WOHReviewModel review) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ addReview() ]");
     }
@@ -896,13 +896,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.postUri(_uri, data: review.toJson(), options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return Review.fromJson(response.data['data']);
+      return WOHReviewModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<PaymentMethod>> getPaymentMethods() async {
+  Future<List<WOHPaymentMethodModel>> getPaymentMethods() async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getPaymentMethods() ]");
     }
@@ -918,13 +918,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<PaymentMethod>((obj) => PaymentMethod.fromJson(obj)).toList();
+      return response.data['data'].map<WOHPaymentMethodModel>((obj) => WOHPaymentMethodModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<List<Wallet>> getWallets() async {
+  Future<List<WOHWalletModel>> getWallets() async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getWallets() ]");
     }
@@ -935,13 +935,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.getUri(_uri, options: _optionsCache);
     if (response.data['success'] == true) {
-      return response.data['data'].map<Wallet>((obj) => Wallet.fromJson(obj)).toList();
+      return response.data['data'].map<WOHWalletModel>((obj) => WOHWalletModel.fromJson(obj)).toList();
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<Wallet> createWallet(Wallet? _wallet) async {
+  Future<WOHWalletModel> createWallet(WOHWalletModel? _wallet) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ createWallet() ]");
     }
@@ -952,13 +952,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.postUri(_uri, data: _wallet.toJson(), options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return Wallet.fromJson(response.data['data']);
+      return WOHWalletModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<Wallet> updateWallet(Wallet? _wallet) async {
+  Future<WOHWalletModel> updateWallet(WOHWalletModel? _wallet) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ updateWallet() ]");
     }
@@ -969,13 +969,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.putUri(_uri, data: _wallet.toJson(), options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return Wallet.fromJson(response.data['data']);
+      return WOHWalletModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<bool> deleteWallet(Wallet? _wallet) async {
+  Future<bool> deleteWallet(WOHWalletModel? _wallet) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ deleteWallet() ]");
     }
@@ -992,7 +992,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<List<WalletTransaction>> getWalletTransactions(Wallet? wallet) async {
+  Future<List<WalletTransaction>> getWalletTransactions(WOHWalletModel? wallet) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getWalletTransactions() ]");
     }
@@ -1012,7 +1012,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<Payment> createPayment(WOHBookingModel _booking) async {
+  Future<WOHPaymentModel> createPayment(WOHBookingModel _booking) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ createPayment() ]");
     }
@@ -1023,13 +1023,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.postUri(_uri, data: _booking.toJson(), options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return Payment.fromJson(response.data['data']);
+      return WOHPaymentModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }
   }
 
-  Future<Payment> createWalletPayment(WOHBookingModel _booking, Wallet? _wallet) async {
+  Future<WOHPaymentModel> createWalletPayment(WOHBookingModel _booking, WOHWalletModel? _wallet) async {
     if (!WOHAuthService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ createPayment() ]");
     }
@@ -1040,7 +1040,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     Get.log(_uri.toString());
     var response = await _httpClient.postUri(_uri, data: _booking.toJson(), options: _optionsNetwork);
     if (response.data['success'] == true) {
-      return Payment.fromJson(response.data['data']);
+      return WOHPaymentModel.fromJson(response.data['data']);
     } else {
       throw new Exception(response.data['message']);
     }

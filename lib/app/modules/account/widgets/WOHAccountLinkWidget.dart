@@ -10,14 +10,14 @@ import 'package:get/get.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 
-class AccountLinkWidget extends StatelessWidget {
+class WOHAccountLinkWidget extends StatelessWidget {
   final IconData icon;
   final String text;
   final String label;
   final bool edit;
   final Function onChange;
 
-  const AccountLinkWidget({
+  const WOHAccountLinkWidget({
     Key key,
     this.icon,
     this.text,
@@ -76,14 +76,14 @@ class AccountLinkWidget extends StatelessWidget {
   }
 }
 
-class AccountWidget extends StatelessWidget {
+class WOHAccountWidget extends StatelessWidget {
   final IconData icon;
   final String text;
   final String label;
   final Color labelColor;
   final Color textColor;
 
-  const AccountWidget({
+  const WOHAccountWidget({
     Key key,
     this.icon,
     this.text,

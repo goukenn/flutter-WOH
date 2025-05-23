@@ -26,7 +26,7 @@ class WOHEServiceView extends GetView<EServiceController> {
       var _eService = controller.eService.value;
       if (!_eService.hasData) {
         return Scaffold(
-          body: CircularLoadingWidget(height: Get.height),
+          body: WOHCircularLoadingWidget(height: Get.height),
         );
       } else {
         return Scaffold(
@@ -201,7 +201,7 @@ class WOHEServiceView extends GetView<EServiceController> {
                               Divider(height: 35, thickness: 1.3),
                               Obx(() {
                                 if (controller.reviews.isEmpty) {
-                                  return CircularLoadingWidget(height: 100);
+                                  return WOHCircularLoadingWidget(height: 100);
                                 }
                                 return ListView.separated(
                                   padding: EdgeInsets.all(0),
@@ -229,7 +229,7 @@ class WOHEServiceView extends GetView<EServiceController> {
     });
   }
 
-  Widget buildOptions(EService _eService) {
+  Widget buildOptions(WOHEServiceModel _eService) {
     return Obx(() {
       if (controller.optionGroups.isEmpty) {
         return SizedBox();
@@ -253,7 +253,7 @@ class WOHEServiceView extends GetView<EServiceController> {
     });
   }
 
-  Container buildDuration(EService _eService) {
+  Container buildDuration(WOHEServiceModel _eService) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -275,7 +275,7 @@ class WOHEServiceView extends GetView<EServiceController> {
     );
   }
 
-  CarouselSlider buildCarouselSlider(EService _eService) {
+  CarouselSlider buildCarouselSlider(WOHEServiceModel _eService) {
     return CarouselSlider(
       options: CarouselOptions(
         autoPlay: true,
@@ -310,7 +310,7 @@ class WOHEServiceView extends GetView<EServiceController> {
     );
   }
 
-  Container buildCarouselBullets(EService _eService) {
+  Container buildCarouselBullets(WOHEServiceModel _eService) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 100, horizontal: 20),
       child: Row(
@@ -331,7 +331,7 @@ class WOHEServiceView extends GetView<EServiceController> {
     );
   }
 
-  EServiceTitleBarWidget buildEServiceTitleBarWidget(EService _eService) {
+  EServiceTitleBarWidget buildEServiceTitleBarWidget(WOHEServiceModel _eService) {
     return EServiceTitleBarWidget(
       title: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -439,7 +439,7 @@ class WOHEServiceView extends GetView<EServiceController> {
     );
   }
 
-  Widget buildCategories(EService _eService) {
+  Widget buildCategories(WOHEServiceModel _eService) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Wrap(
@@ -475,7 +475,7 @@ class WOHEServiceView extends GetView<EServiceController> {
     );
   }
 
-  Widget buildServiceProvider(EService _eService) {
+  Widget buildServiceProvider(WOHEServiceModel _eService) {
     if (_eService?.eProvider?.hasData ?? false) {
       return GestureDetector(
         onTap: () {
@@ -496,7 +496,7 @@ class WOHEServiceView extends GetView<EServiceController> {
     }
   }
 
-  Widget buildBottomWidget(EService _eService) {
+  Widget buildBottomWidget(WOHEServiceModel _eService) {
     if (_eService.enableBooking == null || !_eService.enableBooking)
       return SizedBox();
     else

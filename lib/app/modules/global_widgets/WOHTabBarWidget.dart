@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TabBarController extends GetxController {
+class WOHTabBarController extends GetxController {
   RxString selectedId;
 
   @override
@@ -14,7 +14,7 @@ class TabBarController extends GetxController {
     super.onInit();
   }
 
-  TabBarController() {
+  WOHTabBarController() {
     selectedId = RxString("");
   }
 
@@ -29,8 +29,8 @@ class TabBarController extends GetxController {
   }
 }
 
-class TabBarWidget extends StatelessWidget implements PreferredSize {
-  TabBarWidget({Key key, required this.tag, required this.tabs, required this.initialSelectedId}) {
+class WOHTabBarWidget extends StatelessWidget implements PreferredSize {
+  WOHTabBarWidget({Key key, required this.tag, required this.tabs, required this.initialSelectedId}) {
     tabs[0] = Padding(padding: EdgeInsetsDirectional.only(start: 15), child: tabs.elementAt(0));
     tabs[tabs.length - 1] = Padding(padding: EdgeInsetsDirectional.only(end: 15), child: tabs[tabs.length - 1]);
   }
@@ -40,7 +40,7 @@ class TabBarWidget extends StatelessWidget implements PreferredSize {
   final List<Widget> tabs;
 
   Widget buildTabBar() {
-    final controller = Get.put(TabBarController(), tag: tag, permanent: true);
+    final controller = Get.put(WOHTabBarController(), tag: tag, permanent: true);
     if (controller.selectedId.firstRebuild) {
       controller.selectedId.value = initialSelectedId.toString();
     }
@@ -63,7 +63,7 @@ class TabBarWidget extends StatelessWidget implements PreferredSize {
   Size get preferredSize => new Size(Get.width, 60);
 }
 
-class TabBarLoadingWidget extends StatelessWidget implements PreferredSize {
+class WOHTabBarLoadingWidget extends StatelessWidget implements PreferredSize {
   Widget buildTabBar() {
     return Container(
       alignment: AlignmentDirectional.centerStart,
@@ -101,8 +101,8 @@ class TabBarLoadingWidget extends StatelessWidget implements PreferredSize {
   Size get preferredSize => new Size(Get.width, 60);
 }
 
-class ChipWidget extends StatelessWidget {
-  ChipWidget({
+class WOHChipWidget extends StatelessWidget {
+  WOHChipWidget({
     Key key,
     required this.text,
     this.onSelected,
@@ -117,7 +117,7 @@ class ChipWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(TabBarController(), tag: tag, permanent: true);
+    final controller = Get.put(WOHTabBarController(), tag: tag, permanent: true);
     return Obx(() {
       return RawChip(
         elevation: 0,

@@ -9,7 +9,7 @@ import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEProviderModel.dart';
 
 class WOHEProviderItemWidget extends StatelessWidget {
-  final EProvider provider;
+  final WOHEProviderModel provider;
 
   WOHEProviderItemWidget({Key key, this.provider}) : super(key: key);
 

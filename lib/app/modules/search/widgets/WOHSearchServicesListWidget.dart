@@ -8,15 +8,15 @@ import '../../category/widgets/WOHServicesListItemWidget.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 
 class WOHSearchServicesListWidget extends StatelessWidget {
-  final List<EService> services;
+  final List<WOHEServiceModel> services;
 
-  WOHSearchServicesListWidget({Key key, List<EService> this.services}) : super(key: key);
+  WOHSearchServicesListWidget({Key key, List<WOHEServiceModel> this.services}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (this.services.isEmpty) {
-        return CircularLoadingWidget(height: 400);
+        return WOHCircularLoadingWidget(height: 400);
       } else {
         return ListView.builder(
           padding: EdgeInsets.only(bottom: 10, top: 10),

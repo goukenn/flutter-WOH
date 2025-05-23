@@ -18,7 +18,7 @@ class WOHBookingRepository {
     return _laravelApiClient.getBookings(statusId, page);
   }
 
-  Future<List<BookingStatus>> getStatuses() {
+  Future<List<WOHBookingStatusModel>> getStatuses() {
     return _laravelApiClient.getBookingStatuses();
   }
 
@@ -34,11 +34,11 @@ class WOHBookingRepository {
     return _laravelApiClient.updateBooking(booking);
   }
 
-  Future<Coupon> coupon(WOHBookingModel booking) {
+  Future<WOHCouponModel> coupon(WOHBookingModel booking) {
     return _laravelApiClient.validateCoupon(booking);
   }
 
-  Future<Review> addReview(Review review) {
+  Future<WOHReviewModel> addReview(WOHReviewModel review) {
     return _laravelApiClient.addReview(review);
   }
 }

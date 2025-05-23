@@ -10,14 +10,14 @@ import '../../../common/ui.dart';
 import '../../models/WOHMediaModel.dart';
 import '../../repositories/WOHUploadRepository.dart';
 
-class ImageFieldController extends GetxController {
+class WOHImageFieldController extends GetxController {
   Rx<File> image = Rx<File>(null);
   String uuid;
   final uploading = false.obs;
   var url = ''.obs;
   WOHUploadRepository _uploadRepository;
 
-  ImageFieldController() {
+  WOHImageFieldController() {
     _uploadRepository = new WOHUploadRepository();
   }
 
@@ -66,8 +66,8 @@ class ImageFieldController extends GetxController {
   }
 }
 
-class ImageFieldWidget extends StatelessWidget {
-  ImageFieldWidget({
+class WOHImageFieldWidget extends StatelessWidget {
+  WOHImageFieldWidget({
     Key key,
     required this.label,
     required this.tag,
@@ -90,7 +90,7 @@ class ImageFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ImageFieldController(), tag: tag);
+    final controller = Get.put(WOHImageFieldController(), tag: tag);
     return Container(
       padding: EdgeInsets.only(top: 8, bottom: 10, left: 20, right: 20),
       margin: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
@@ -157,7 +157,7 @@ class ImageFieldWidget extends StatelessWidget {
   }
 
   Widget buildImage(String initialImage, File image) {
-    final controller = Get.put(ImageFieldController(), tag: tag);
+    final controller = Get.put(WOHImageFieldController(), tag: tag);
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10),
       child: Wrap(

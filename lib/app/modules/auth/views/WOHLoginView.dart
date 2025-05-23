@@ -66,17 +66,17 @@ class WOHLoginView extends GetView<WOHAuthController> {
                     child: Image.asset(
                       'assets/img/photo_2022-11-25_01-12-07.jpg',
                       fit: BoxFit.cover,
-                      width: Responsive.isMobile(context) ? 100 : Get.width/4,
-                      height: Responsive.isMobile(context) ? 100 : Get.width/4,
+                      width: WOHResponsive.isMobile(context) ? 100 : Get.width/4,
+                      height: WOHResponsive.isMobile(context) ? 100 : Get.width/4,
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: Responsive.isMobile(context) ? 5 : 40),
+            SizedBox(height: WOHResponsive.isMobile(context) ? 5 : 40),
               Obx(() {
                 return Container(
-                  padding: EdgeInsets.symmetric(horizontal: Responsive.isMobile(context) ? 10 : 70),
+                  padding: EdgeInsets.symmetric(horizontal: WOHResponsive.isMobile(context) ? 10 : 70),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -141,7 +141,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                               }
                           )),
                           Text("Se souvenir de moi",style: TextStyle(fontFamily: "poppins",fontSize: 12, color: buttonColor)),
-                          //if(Responsive.isMobile(context))...[
+                          //if(WOHResponsive.isMobile(context))...[
                           Spacer(),
                           TextButton(
                             onPressed: () {
@@ -153,7 +153,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                         ],
                       ).paddingSymmetric(horizontal: 30),
 
-                      SizedBox(height: Responsive.isMobile(context) ? 20 : 50),
+                      SizedBox(height: WOHResponsive.isMobile(context) ? 20 : 50),
                       Obx(() => BlockButtonWidget(
                         disabled: false,
                         onPressed: ()async{
@@ -188,11 +188,11 @@ class WOHLoginView extends GetView<WOHAuthController> {
                             child: SpinKitFadingCircle(color: Colors.white, size: 30)),
                         loginPage: true,
                         color: controller.email.value.isNotEmpty && controller.password.value.isNotEmpty ?
-                        Responsive.isTablet(context) ? employeeInterfaceColor : interfaceColor : Responsive.isTablet(context)
+                        WOHResponsive.isTablet(context) ? employeeInterfaceColor : interfaceColor : WOHResponsive.isTablet(context)
                             ? employeeInterfaceColor.withAlpha((255 * 0.3).toInt()) : interfaceColor.withAlpha((255 * 0.3).toInt()),
                       ).paddingSymmetric(vertical: 10, horizontal: 20),),
 
-                      SizedBox(height: Responsive.isMobile(context) ? 5 : 20),
+                      SizedBox(height: WOHResponsive.isMobile(context) ? 5 : 20),
                       /*Row(
                         children: const [
                           Expanded(
@@ -222,7 +222,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                         ],
                       ),
 
-                      SizedBox(height: Responsive.isMobile(context) ? 5 : 20),
+                      SizedBox(height: WOHResponsive.isMobile(context) ? 5 : 20),
                       InkWell(
                         onTap: ()=> controller.signInWithGoogle(),
                         child: Container(
@@ -243,7 +243,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                           ),
                         ),
                       ),*/
-                      //if(Responsive.isMobile(context))
+                      //if(WOHResponsive.isMobile(context))
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

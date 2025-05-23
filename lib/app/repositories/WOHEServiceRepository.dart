@@ -14,11 +14,11 @@ class WOHEServiceRepository {
     this._laravelApiClient = Get.find<WOHLaravelApiClientProvider>();
   }
 
-  Future<List<EService>> getAllWithPagination(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getAllWithPagination(String? categoryId, {int? page}) {
     return _laravelApiClient.getAllEServicesWithPagination(categoryId, page);
   }
 
-  Future<List<EService>> search(String? keywords, List<String> categories, {int? page = 1}) {
+  Future<List<WOHEServiceModel>> search(String? keywords, List<String> categories, {int? page = 1}) {
     return _laravelApiClient.searchEServices(keywords, categories, page);
   }
 
@@ -34,31 +34,31 @@ class WOHEServiceRepository {
     return _laravelApiClient.removeFavoriteEService(favorite);
   }
 
-  Future<List<EService>> getRecommended() {
+  Future<List<WOHEServiceModel>> getRecommended() {
     return _laravelApiClient.getRecommendedEServices();
   }
 
-  Future<List<EService>> getFeatured(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getFeatured(String? categoryId, {int? page}) {
     return _laravelApiClient.getFeaturedEServices(categoryId, page);
   }
 
-  Future<List<EService>> getPopular(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getPopular(String? categoryId, {int? page}) {
     return _laravelApiClient.getPopularEServices(categoryId, page);
   }
 
-  Future<List<EService>> getMostRated(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getMostRated(String? categoryId, {int? page}) {
     return _laravelApiClient.getMostRatedEServices(categoryId, page);
   }
 
-  Future<List<EService>> getAvailable(String? categoryId, {int? page}) {
+  Future<List<WOHEServiceModel>> getAvailable(String? categoryId, {int? page}) {
     return _laravelApiClient.getAvailableEServices(categoryId, page);
   }
 
-  Future<EService> get(String? id) {
+  Future<WOHEServiceModel> get(String? id) {
     return _laravelApiClient.getEService(id);
   }
 
-  Future<List<Review>> getReviews(String? eServiceId) {
+  Future<List<WOHReviewModel>> getReviews(String? eServiceId) {
     return _laravelApiClient.getEServiceReviews(eServiceId);
   }
 

@@ -7,7 +7,7 @@ import '../../../../common/WOHUi.dart';
 import '../../../models/WOHReviewModel.dart';
 
 class WOHReviewItemWidget extends StatelessWidget {
-  final Review review;
+  final WOHReviewModel review;
 
   WOHReviewItemWidget({Key key, this.review}) : super(key: key);
 

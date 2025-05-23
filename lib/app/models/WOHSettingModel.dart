@@ -27,7 +27,7 @@ class WOHSettingModel extends WOHModel {
   bool? enableRazorpay;
   String? distanceUnit;
   bool? enableOtp;
-  List modules;
+  List? modules;
 
   WOHSettingModel(
       {this.appName,
@@ -83,7 +83,7 @@ class WOHSettingModel extends WOHModel {
     distanceUnit = stringFromJson(json, 'distance_unit');
     enableOtp = boolFromJson(json, 'enable_otp');
   }
-
+@override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['app_name'] = this.appName;

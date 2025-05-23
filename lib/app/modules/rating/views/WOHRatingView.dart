@@ -19,7 +19,7 @@ class WOHRatingView extends GetView<RatingController> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Leave a Review".tr,
+          "Leave a WOHReviewModel".tr,
           style: Get.textTheme.headlineSmall,
         ),
         centerTitle: true,
@@ -126,7 +126,7 @@ class WOHRatingView extends GetView<RatingController> {
           SizedBox(height: 20),
           BlockButtonWidget(
               text: Obx(() => !controller.clicked.value ? Text(
-                "Submit Review".tr,
+                "Submit WOHReviewModel".tr,
                 style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),
               ) : SizedBox(height: 30,
                   child: SpinKitThreeBounce(color: Colors.white, size: 20))

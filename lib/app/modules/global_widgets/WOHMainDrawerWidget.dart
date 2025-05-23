@@ -1,5 +1,5 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
-import 'package:app/app/modules/global_widgets/WOHPopUpWidget.dart';
+ 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -18,7 +18,7 @@ import '../root/controllers/WOHRootController.dart' show WOHRootController;
 import '../userBookings/controllers/WOHBookingsController.dart';
 import 'WOHDrawerLinkWidget.dart';
 
-class main_drawer_widget extends StatelessWidget {
+class WOHMainDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
@@ -61,8 +61,8 @@ class main_drawer_widget extends StatelessWidget {
                               if(Get.find<WOHAuthController>().isEmployee.value)
                                 ClipOval(
                                     child: FadeInImage(
-                                      width: Responsive.isMobile(context) ? 100 : 150,
-                                      height: Responsive.isMobile(context) ? 100 : 150,
+                                      width: WOHResponsive.isMobile(context) ? 100 : 150,
+                                      height: WOHResponsive.isMobile(context) ? 100 : 150,
                                       fit: BoxFit.cover,
                                       image: WOHConstants.googleUser ? NetworkImage(WOHConstants.googleImage) : NetworkImage('${WOHConstants.serverPort}/image/business.resource/${currentUser['id']}/image_1920?unique=true&file_response=true', headers: WOHConstants.getTokenHeaders()),
                                       placeholder: AssetImage(
@@ -71,8 +71,8 @@ class main_drawer_widget extends StatelessWidget {
                                           (context, error, stackTrace) {
                                         return Image.asset(
                                             'assets/img/téléchargement (3).png',
-                                            width: Responsive.isMobile(context) ? 100 : 150,
-                                            height: Responsive.isMobile(context) ? 100 : 150,
+                                            width: WOHResponsive.isMobile(context) ? 100 : 150,
+                                            height: WOHResponsive.isMobile(context) ? 100 : 150,
                                             fit: BoxFit.fitWidth);
                                       },
                                     )

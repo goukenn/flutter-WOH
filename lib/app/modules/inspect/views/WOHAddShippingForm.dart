@@ -344,14 +344,14 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
                                   border: controller.categorySelected.contains(controller.categories[index]['id']) ? Border.all(width: 3, color: primaryColor) : null
                               ),
                               width: Get.width,
-                              height: Responsive.isTablet(context) ? 200 : 100,
+                              height: WOHResponsive.isTablet(context) ? 200 : 100,
                               child: Row(
                                 children: <Widget>[
                                   ClipRRect(
                                     borderRadius: BorderRadius.all(Radius.circular(15)),
                                     child: FadeInImage(
                                       width: Get.width/3,
-                                      height: Responsive.isTablet(context) ? 200 : 100,
+                                      height: WOHResponsive.isTablet(context) ? 200 : 100,
                                       fit: BoxFit.cover,
                                       image: NetworkImage('${WOHConstants.serverPort}/image/business.resource.type/${controller.categories[index]["id"]}/image_1920?unique=true&file_response=true',
                                           headers: WOHConstants.getTokenHeaders()),
@@ -362,7 +362,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
                                         return Image.asset(
                                             'assets/img/240_F_142999858_7EZ3JksoU3f4zly0MuY3uqoxhKdUwN5u.jpeg',
                                             width: Get.width/3,
-                                            height: Responsive.isTablet(context) ? 200 : 100,
+                                            height: WOHResponsive.isTablet(context) ? 200 : 100,
                                             fit: BoxFit.fitWidth);
                                       },
                                     ),
@@ -459,7 +459,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
                               borderRadius: BorderRadius.all(Radius.circular(15)),
                               child: FadeInImage(
                                 width: Get.width/3,
-                                height: Responsive.isTablet(context) ? 240 : 150,
+                                height: WOHResponsive.isTablet(context) ? 240 : 150,
                                 fit: BoxFit.cover,
                                 image: NetworkImage('${WOHConstants.serverPort}/image/appointment.product/${controller.services[index]["id"]}/image_1920?unique=true&file_response=true',
                                     headers: WOHConstants.getTokenHeaders()),
@@ -470,7 +470,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
                                   return Image.asset(
                                       'assets/img/240_F_142999858_7EZ3JksoU3f4zly0MuY3uqoxhKdUwN5u.jpeg',
                                       width: Get.width/3,
-                                      height: Responsive.isTablet(context) ? 240 : 150,
+                                      height: WOHResponsive.isTablet(context) ? 240 : 150,
                                       fit: BoxFit.fitWidth);
                                 },
                               ),
@@ -490,7 +490,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              mainAxisExtent: Responsive.isTablet(context) ? 330.0 : 230.0,
+              mainAxisExtent: WOHResponsive.isTablet(context) ? 330.0 : 230.0,
               mainAxisSpacing: 12.0,
               crossAxisSpacing: 10.0,
               childAspectRatio: 1.5,
@@ -513,7 +513,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
         ),
         SizedBox(height: 10),
         Container(
-            height: Responsive.isTablet(context) ? 300 : 200,
+            height: WOHResponsive.isTablet(context) ? 300 : 200,
             child: Column(
               children: [
                 Expanded(
@@ -568,7 +568,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
                                           borderRadius: BorderRadius.all(Radius.circular(15)),
                                           child: FadeInImage(
                                             width: Get.width/4,
-                                            height: Responsive.isTablet(context) ? 200 : 110,
+                                            height: WOHResponsive.isTablet(context) ? 200 : 110,
                                             fit: BoxFit.cover,
                                             image: NetworkImage('${WOHConstants.serverPort}/image/hr.employee/${controller.employees[index]["employee_id"][0]}/image_1920?unique=true&file_response=true',
                                                 headers: WOHConstants.getTokenHeaders()),
@@ -579,7 +579,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
                                               return Image.asset(
                                                   'assets/img/téléchargement (3).png',
                                                   width: Get.width/4,
-                                                  height: Responsive.isTablet(context) ? 200 : 110,
+                                                  height: WOHResponsive.isTablet(context) ? 200 : 110,
                                                   fit: BoxFit.fitWidth);
                                             },
                                           ),
@@ -767,8 +767,8 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
 
   Widget build_overView(BuildContext context){
 
-    double size = Responsive.isTablet(context) ? 25 : 18;
-    double priceSize = Responsive.isTablet(context) ? 30 : 22;
+    double size = WOHResponsive.isTablet(context) ? 25 : 18;
+    double priceSize = WOHResponsive.isTablet(context) ? 30 : 22;
 
     return SingleChildScrollView(
         child: Column(
@@ -789,28 +789,28 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
               color: Colors.blue,
             ),
             SizedBox(height: 20),
-            AccountWidget(
+            WOHAccountWidget(
               icon: Icons.calendar_month_rounded,
               text: "DATE:",
               label: DateFormat("yyyy-MM-dd").format(DateTime.parse(controller.appointmentDate.value)).toString(),
               labelColor: Colors.black,
               textColor: appColor,
             ),
-            AccountWidget(
+            WOHAccountWidget(
                 icon: Icons.date_range_rounded,
                 text: "TEMPS:",
                 label: "${controller.timeDto.value} - ${controller.appointmentEnd.value}",
                 labelColor: Colors.black,
                 textColor: appColor,
             ),
-            AccountWidget(
+            WOHAccountWidget(
                 icon: Icons.person,
                 text: "AGENT:",
                 label: controller.employeeDto['employee_id'][1],
                 labelColor: Colors.black,
                 textColor: appColor,
             ),
-            AccountWidget(
+            WOHAccountWidget(
               icon: Icons.cleaning_services,
               text: "SERVICE:",
               label: !controller.editAppointment.value ? controller.serviceDto['name'].split(">").first : controller.appointmentDto['service_id'][1].split(">").first,
@@ -818,7 +818,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
               textColor: appColor,
             ),
             if(!controller.editAppointment.value)
-            AccountWidget(
+            WOHAccountWidget(
               icon: Icons.timer,
               text: "DUREE:",
               label: "${controller.serviceDuration.value}minutes",

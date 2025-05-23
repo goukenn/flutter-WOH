@@ -6,20 +6,20 @@ import '../../../WOHColorConstants.dart';
 const Color PRIMARY_COLOR = inactive;
 const Color BACKGROUND_COLOR = Color(0xffE2E7F2);
 
-class CustomBottomNavigationBar extends StatefulWidget {
+class WOHCustomBottomNavigationBar extends StatefulWidget {
   final Color backgroundColor;
   final Color itemColor;
-  final List<CustomBottomNavigationItem> children;
+  final List<WOHCustomBottomNavigationItem> children;
   final Function(int) onChange;
   final int currentIndex;
 
-  CustomBottomNavigationBar({this.backgroundColor = BACKGROUND_COLOR, this.itemColor = PRIMARY_COLOR, this.currentIndex = 0, required this.children, this.onChange});
+  WOHCustomBottomNavigationBar({this.backgroundColor = BACKGROUND_COLOR, this.itemColor = PRIMARY_COLOR, this.currentIndex = 0, required this.children, this.onChange});
 
   @override
-  _CustomBottomNavigationBarState createState() => _CustomBottomNavigationBarState();
+  WOHCustomBottomNavigationBarState createState() => WOHCustomBottomNavigationBarState();
 }
 
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+class WOHCustomBottomNavigationBarState extends State<WOHCustomBottomNavigationBar> {
   void _changeIndex(int index) {
     if (widget.onChange != null) {
       widget.onChange(index);
@@ -83,10 +83,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   }
 }
 
-class CustomBottomNavigationItem {
+class WOHCustomBottomNavigationItem {
   final IconData icon;
   final String label;
   final Color color;
 
-  CustomBottomNavigationItem({required this.icon, required this.label, this.color});
+  WOHCustomBottomNavigationItem({required this.icon, required this.label, this.color});
 }

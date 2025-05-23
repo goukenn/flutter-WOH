@@ -11,8 +11,8 @@ import '../../../models/WOHReviewModel.dart';
 import '../../../repositories/WOHEServiceRepository.dart';
 
 class WOHEServiceController extends GetxController {
-  final eService = EService().obs;
-  final reviews = <Review>[].obs;
+  final eService = WOHEServiceModel().obs;
+  final reviews = <WOHReviewModel>[].obs;
   final optionGroups = <OptionGroup>[].obs;
   final currentSlide = 0.obs;
   final quantity = 1.obs;
@@ -26,7 +26,7 @@ class WOHEServiceController extends GetxController {
   @override
   void onInit() async {
     var arguments = Get.arguments as Map<String, dynamic>;
-    eService.value = arguments['eService'] as EService;
+    eService.value = arguments['eService'] as WOHEServiceModel;
     heroTag.value = arguments['heroTag'] as String;
     super.onInit();
   }
@@ -113,7 +113,7 @@ class WOHEServiceController extends GetxController {
     }
   }*/
 
-  void selectOption(OptionGroup optionGroup, Option option) {
+  void selectOption(OptionGroup optionGroup, WOHOptionModel option) {
     optionGroup.options.forEach((e) {
       if (!optionGroup.allowMultiple && option != e) {
         e.checked.value = false;
@@ -122,28 +122,28 @@ class WOHEServiceController extends GetxController {
     option.checked.value = !option.checked.value;
   }
 
-  List<Option> getCheckedOptions() {
+  List<WOHOptionModel> getCheckedOptions() {
     if (optionGroups.isNotEmpty) {
       return optionGroups.map((element) => element.options).expand((element) => element).toList().where((option) => option.checked.value).toList();
     }
     return [];
   }
 
-  TextStyle getTitleTheme(Option option) {
+  TextStyle getTitleTheme(WOHOptionModel option) {
     if (option.checked.value) {
       return Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
     return Get.textTheme.bodyMedium;
   }
 
-  TextStyle getSubTitleTheme(Option option) {
+  TextStyle getSubTitleTheme(WOHOptionModel option) {
     if (option.checked.value) {
       return Get.textTheme.labelSmall!.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
     return Get.textTheme.labelSmall;
   }
 
-  Color getColor(Option option) {
+  Color getColor(WOHOptionModel option) {
     if (option.checked.value) {
       return Get.theme.colorScheme.secondary.withAlpha((255 * 0.1).toInt());
     }

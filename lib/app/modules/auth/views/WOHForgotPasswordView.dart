@@ -93,7 +93,7 @@ class WOHForgotPasswordView extends GetView<WOHAuthController> {
                             child: SpinKitFadingCircle(color: Colors.white, size: 20)),
                         loginPage: true,
                         color: controller.email.value.isNotEmpty ?
-                        Responsive.isTablet(context) ? employeeInterfaceColor : interfaceColor : Responsive.isTablet(context) ? employeeInterfaceColor.withAlpha((255 * 0.3).toInt()) : interfaceColor.withAlpha((255 * 0.3).toInt()),
+                        WOHResponsive.isTablet(context) ? employeeInterfaceColor : interfaceColor : WOHResponsive.isTablet(context) ? employeeInterfaceColor.withAlpha((255 * 0.3).toInt()) : interfaceColor.withAlpha((255 * 0.3).toInt()),
                       ).paddingSymmetric(vertical: 35, horizontal: 20)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

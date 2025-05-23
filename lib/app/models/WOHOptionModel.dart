@@ -1,10 +1,10 @@
 // ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
-import 'package:get/get.dart';
 
 import 'WOHMediaModel.dart';
 import 'parents/WOHModel.dart';
 
 class WOHOptionModel extends WOHModel {
+  @override
   String? id;
   String? optionGroupId;
   String? eServiceId;
@@ -12,7 +12,7 @@ class WOHOptionModel extends WOHModel {
   double? price;
   WOHMediaModel? image;
   String? description;
-  var checked = false.obs;
+  bool? checked; // = false.obs;
 
   WOHOptionModel({this.id, this.optionGroupId, this.eServiceId, this.name, this.price, this.image, this.description, this.checked});
 
@@ -25,17 +25,17 @@ class WOHOptionModel extends WOHModel {
     description = transStringFromJson(json, 'description');
     image = mediaFromJson(json, 'image');
   }
-
+@override
   Map<String, dynamic> toJson() {
     var map = new Map<String, dynamic>();
     map["id"] = id;
     map["name"] = name;
     map["price"] = price;
     map["description"] = description;
-    if (checked != null) map["checked"] = checked.value;
+    if (checked != null) map["checked"] = checked!;//.value!;
     map["option_group_id"] = optionGroupId;
     map["e_service_id"] = eServiceId;
-    map['image'] = this.image.toJson();
+    map['image'] = this.image!.toJson();
       return map;
   }
 

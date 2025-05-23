@@ -22,17 +22,17 @@ class WOHEProviderModel extends WOHModel {
   List<WOHMediaModel>? images;
   String? phoneNumber;
   String? mobileNumber;
-  EProviderType? type;
+  WOHEProviderTypeModel? type;
   List<WOHAvailabilityHourModel>? availabilityHours;
   double? availabilityRange;
   bool? available;
   bool? featured;
   List<WOHAddressModel>? addresses;
-  List<Tax>? taxes;
+  List<WOHTaxModel>? taxes;
 
   List<WOHUserModel>? employees;
   double? rate;
-  List<Review>? reviews;
+  List<WOHReviewModel>? reviews;
   int? totalReviews;
   bool? verified;
   int? bookingsInProgress;
@@ -64,21 +64,22 @@ class WOHEProviderModel extends WOHModel {
     images = mediaListFromJson(json, 'images');
     phoneNumber = stringFromJson(json, 'phone_number');
     mobileNumber = stringFromJson(json, 'mobile_number');
-    type = objectFromJson(json, 'e_provider_type', (v) => EProviderType.fromJson(v));
+    type = objectFromJson(json, 'e_provider_type', (v) => WOHEProviderTypeModel.fromJson(v));
     availabilityHours = listFromJson(json, 'availability_hours', (v) => WOHAvailabilityHourModel.fromJson(v));
     availabilityRange = doubleFromJson(json, 'availability_range');
     available = boolFromJson(json, 'available');
     featured = boolFromJson(json, 'featured');
     addresses = listFromJson(json, 'addresses', (v) => WOHAddressModel.fromJson(v));
-    taxes = listFromJson(json, 'taxes', (v) => Tax.fromJson(v));
+    taxes = listFromJson(json, 'taxes', (v) => WOHTaxModel.fromJson(v));
     employees = listFromJson(json, 'users', (v) => WOHUserModel.fromJson(v));
     rate = doubleFromJson(json, 'rate');
-    reviews = listFromJson(json, 'e_provider_reviews', (v) => Review.fromJson(v));
+    reviews = listFromJson(json, 'e_provider_reviews', (v) => WOHReviewModel.fromJson(v));
     totalReviews = reviews == null  ? intFromJson(json, 'total_reviews') : reviews!.length;
     verified = boolFromJson(json, 'verified');
     bookingsInProgress = intFromJson(json, 'bookings_in_progress');
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;

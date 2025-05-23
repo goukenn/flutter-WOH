@@ -49,7 +49,7 @@ class WOHNotificationsView extends GetView<WOHNotificationsController> {
   Widget notificationsList() {
     return Obx(() {
       if (!controller.notifications.isNotEmpty) {
-        return CircularLoadingWidget(
+        return WOHCircularLoadingWidget(
           height: 300,
           onCompleteText: "Notification List is Empty".tr,
         );

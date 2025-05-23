@@ -11,7 +11,7 @@ import '../../../../main.dart';
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../fidelisation/controller/WOHValidationController.dart';
 import '../../fidelisation/views/WOHAttributePointsView.dart';
-import '../../global_widgets/main_drawer_widget.dart';
+import '../../global_widgets/WOHMainDrawerWidget.dart';
 import '../../global_widgets/WOHNotificationsButtonWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
