@@ -6,13 +6,18 @@ import '../../../WOHColorConstants.dart';
 import '../../../WOHResponsive.dart'; 
 
 class WOHBlockButtonWidget extends StatelessWidget {
-  const WOHBlockButtonWidget({Key? key,required this.text, required this.loginPage, required this.color, required this.onPressed,required this.disabled}) : super(key: key);
+  WOHBlockButtonWidget({super.key,
+  required this.text, 
+  this.loginPage =false, 
+  this.color=null, 
+  required this.onPressed,
+  this.disabled = false});
 
   final Widget text;
-  final bool loginPage;
-  final Color color;
-  final VoidCallback onPressed;
-  final bool disabled;
+  late Color? color;
+  final VoidCallback? onPressed;
+  bool loginPage;
+  bool disabled;
 
   @override
   Widget build(BuildContext context) {

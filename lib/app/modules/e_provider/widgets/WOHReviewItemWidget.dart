@@ -9,7 +9,7 @@ import '../../../models/WOHReviewModel.dart';
 class WOHReviewItemWidget extends StatelessWidget {
   final WOHReviewModel? review;
 
-  WOHReviewItemWidget({Key? key, this.review}) : super(key: key);
+  WOHReviewItemWidget({Key? key, this.review});
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHTabBarWidget.dart';
 import '../controllers/WOHSettingsController.dart';
 
-class WOHSettingsView extends GetView<SettingsController> {
+class WOHSettingsView extends GetView<WOHSettingsController> {
   final _navigatorKey = Get.nestedKey(1);
 
   @override
@@ -65,8 +65,8 @@ class WOHSettingsView extends GetView<SettingsController> {
           )),
       body: WillPopScope(
         onWillPop: () async {
-          if (_navigatorKey.currentState.canPop()) {
-            _navigatorKey.currentState.pop();
+          if (_navigatorKey!.currentState!.canPop()) {
+            _navigatorKey.currentState!.pop();
             return false;
           }
           return true;

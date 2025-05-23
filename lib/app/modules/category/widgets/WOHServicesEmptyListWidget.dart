@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 class WOHServicesEmptyListWidget extends StatelessWidget {
   const WOHServicesEmptyListWidget({
-    Key key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

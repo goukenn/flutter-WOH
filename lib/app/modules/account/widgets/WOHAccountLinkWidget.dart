@@ -3,28 +3,26 @@
  * Copyright (c) 2020 .
  */
 
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/material.dart'; 
 import 'package:get/get.dart';
 
 import '../../../../WOHColorConstants.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 
 class WOHAccountLinkWidget extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
   final String text;
   final String label;
   final bool edit;
-  final Function onChange;
+  final ValueChanged<String> onChange;
 
-  const WOHAccountLinkWidget({
-    Key key,
+  const WOHAccountLinkWidget({super.key,  
     this.icon,
-    this.text,
-    this.label,
+    this.text = '',
+    this.label = '',
     required this.edit,
     required this.onChange
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -67,52 +65,10 @@ class WOHAccountLinkWidget extends StatelessWidget {
           initialValue: label,
           //onSaved: (input) => controller.currentUser.value.password = input,
           onChanged: onChange,
-          validator: (input) => input.length < 3 ? "Should be more than 3 characters" : null,
-          iconData: icon,
+          validator: (input) => input!.length < 3 ? "Should be more than 3 characters" : null,
+          iconData: icon!,
           keyboardType: TextInputType.text,
         )
-      ),
-    );
-  }
-}
-
-class WOHAccountWidget extends StatelessWidget {
-  final IconData icon;
-  final String text;
-  final String label;
-  final Color labelColor;
-  final Color textColor;
-
-  const WOHAccountWidget({
-    Key key,
-    this.icon,
-    this.text,
-    this.label,
-    required this.labelColor,
-    required this.textColor
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 30,
-            child: Icon( icon,color: buttonColor, size: 18),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
-            width: 1,
-            height: 24,
-            color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
-          ),
-          Expanded(
-            child: Text(text, style: TextStyle(color: textColor))
-          ),
-          Text(label, style: TextStyle(color: labelColor))
-        ],
       ),
     );
   }

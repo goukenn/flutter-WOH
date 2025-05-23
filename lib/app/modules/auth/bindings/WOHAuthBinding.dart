@@ -2,7 +2,7 @@
 import 'package:get/get.dart';
 
 import '../../../providers/WOHOdooApiClientProvider.dart';
-import '../../../services/WOHMyAuthService.dart';
+import '../../../services/WOHAuthService.dart'; 
 import '../controllers/WOHAuthController.dart';
 
 class WOHAuthBinding extends Bindings {

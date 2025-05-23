@@ -11,13 +11,13 @@ class WOHNumberButtonView extends StatelessWidget {
   final TextEditingController controller;
 
   const WOHNumberButtonView({
-    Key key,
+    super.key,
     this.number,
     required this.size,
     required this.color,
     required this.controller,
     this.dot
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

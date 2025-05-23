@@ -19,7 +19,7 @@ import '../widgets/WOHEServiceTitleBarWidget.dart';
 import '../widgets/WOHOptionGroupItemWidget.dart';
 import '../widgets/WOHReviewItemWidget.dart';
 
-class WOHEServiceView extends GetView<EServiceController> {
+class WOHEServiceView extends GetView<WOHEServiceController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {

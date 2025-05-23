@@ -100,7 +100,7 @@ class WOHRootController extends GetxController {
         }
       case 2:
         {
-          ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
             content: Text("chargement des données..."),
             duration: Duration(seconds: 3),
           ));

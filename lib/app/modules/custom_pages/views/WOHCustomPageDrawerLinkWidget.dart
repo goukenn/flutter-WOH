@@ -9,8 +9,8 @@ import '../../root/controllers/WOHRootController.dart';
 
 class WOHCustomPageDrawerLinkWidget extends GetView<WOHRootController> {
   const WOHCustomPageDrawerLinkWidget({
-    Key key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

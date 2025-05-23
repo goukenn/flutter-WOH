@@ -11,7 +11,7 @@ import '../../../models/WOHEProviderModel.dart';
 class WOHEProviderItemWidget extends StatelessWidget {
   final WOHEProviderModel provider;
 
-  WOHEProviderItemWidget({Key key, this.provider}) : super(key: key);
+  WOHEProviderItemWidget({super.key, this.provider});
 
   @override
   Widget build(BuildContext context) {

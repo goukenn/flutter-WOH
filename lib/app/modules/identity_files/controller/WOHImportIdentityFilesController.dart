@@ -140,7 +140,7 @@ class WOHImportIdentityFilesController extends GetxController{
       imageHeader: AssetImage("assets/img/istockphoto-1421193265-612x612.jpg"),
       initialDate: DateTime.now().subtract(Duration(days: 1)),
       firstDate: DateTime(2013),
-      height: MediaQuery.of(Get.context).size.height*0.5,
+      height: MediaQuery.of(Get.context!).size.height*0.5,
       lastDate: DateTime(2040),
       styleDatePicker: MaterialRoundedDatePickerStyle(
           textStyleYearButton: TextStyle(
@@ -196,7 +196,7 @@ class WOHImportIdentityFilesController extends GetxController{
                     ListTile(
                       onTap: ()async{
                         await identityFilePicker('camera');
-                        //Navigator.pop(Get.context);
+                        //Navigator.pop(Get.context!);
                         loadIdentityFile.value = !loadIdentityFile.value;
 
                       },
@@ -206,7 +206,7 @@ class WOHImportIdentityFilesController extends GetxController{
                     ListTile(
                       onTap: ()async{
                         await identityFilePicker('gallery');
-                        //Navigator.pop(Get.context);
+                        //Navigator.pop(Get.context!);
                         loadIdentityFile.value = !loadIdentityFile.value;
                       },
                       leading: Icon(FontAwesomeIcons.image),
@@ -252,9 +252,9 @@ class WOHImportIdentityFilesController extends GetxController{
       await _picker.pickImage(source: ImageSource.camera);
       if (pickedImage != null) {
         identificationFile = File(pickedImage.path);
-        Navigator.of(Get.context).pop();
+        Navigator.of(Get.context!).pop();
         //Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Picture saved successfully".tr));
-        //loadIdentityFile.value = !loadIdentityFile.value;//Navigator.of(Get.context).pop();
+        //loadIdentityFile.value = !loadIdentityFile.value;//Navigator.of(Get.context!).pop();
       }
     }
     else{
@@ -262,11 +262,11 @@ class WOHImportIdentityFilesController extends GetxController{
       await _picker.pickImage(source: ImageSource.gallery);
       if (pickedImage != null) {
         identificationFile = File(pickedImage.path);
-        Navigator.of(Get.context).pop();
+        Navigator.of(Get.context!).pop();
         //await sendImages(id, identificationFile );
         //Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Picture saved successfully".tr));
         //loadIdentityFile.value = !loadIdentityFile.value;
-        //Navigator.of(Get.context).pop();
+        //Navigator.of(Get.context!).pop();
       }
 
     }
@@ -299,7 +299,7 @@ class WOHImportIdentityFilesController extends GetxController{
     else {
       buttonPressed.value = false;
       var data = await response.stream.bytesToString();
-      ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content: Text(json.decode(data)['message']),
           backgroundColor: specialColor.withAlpha((255 * 0.4).toInt()),
           duration: Duration(seconds: 2)));

@@ -15,7 +15,7 @@ import '../../global_widgets/WOHNotificationsButtonWidget.dart';
 import '../../global_widgets/WOHPopUpWidget.dart';
 import '../controllers/WOHHomeController.dart';
 
-class WOHHome2View extends GetView<WOHHomeController> {
+class WOHHome2View extends GetView<WOHWOHWOHHomeController> {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<WOHAuthService>(

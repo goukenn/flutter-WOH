@@ -63,7 +63,7 @@ class WOHRatingController extends GetxController {
       clicked.value = false;
       print(data);
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Rating made successfully "));
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
     }
     else {
       var data = await response.stream.bytesToString();

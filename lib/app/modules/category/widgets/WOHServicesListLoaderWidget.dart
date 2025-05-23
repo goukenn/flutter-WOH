@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class WOHServicesListLoaderWidget extends StatelessWidget {
-  WOHServicesListLoaderWidget({Key key}) : super(key: key);
+  WOHServicesListLoaderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class WOHServicesListLoaderWidget extends StatelessWidget {
         itemBuilder: (_, index) {
           return Shimmer.fromColors(
             baseColor: Colors.grey.withAlpha((255 * 0.1).toInt()),
-            highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
+            highlightColor: Colors.grey[200]!.withAlpha((255 * 0.1).toInt()),
             child: Container(
               width: double.maxFinite,
               height: 180,

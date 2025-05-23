@@ -12,7 +12,7 @@ class WOHEServiceTilWidget extends StatelessWidget {
   final Widget? actions;
   final double horizontalPadding;
 
-  const WOHEServiceTilWidget({required Key key, this.title = null, this.content, this.actions, this.horizontalPadding = 0}) : super(key: key);
+  const WOHEServiceTilWidget({super.key, this.title = null, this.content, this.actions, this.horizontalPadding = 0});
 
   @override
   Widget build(BuildContext context) {

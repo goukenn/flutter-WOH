@@ -14,8 +14,8 @@ import '../../../../common/WOHUi.dart';
 
 class WOHLanguagesLoaderWidget extends StatelessWidget {
   const WOHLanguagesLoaderWidget({
-    Key key,
-  }) : super(key: key);
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class WOHLanguagesLoaderWidget extends StatelessWidget {
       decoration: WOHUi.getBoxDecoration(),
       child: Shimmer.fromColors(
         baseColor: Colors.grey.withAlpha((255 * 0.1).toInt()),
-        highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
+        highlightColor: Colors.grey[200]!.withAlpha((255 * 0.1).toInt()),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(

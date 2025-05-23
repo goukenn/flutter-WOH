@@ -277,19 +277,19 @@ class WOHAddShippingForm extends GetView<WOHInspectController> {
             maxWidth: Get.width -20,
             maxHeight: Get.height/1.5,
 
-            child: controller.formStep.value == 0 ? build_barberSelection(Get.context)
-                : controller.formStep.value == 1 ? buildAppointmentTime(Get.context)
-                : build_overView(Get.context)
+            child: controller.formStep.value == 0 ? build_barberSelection(Get.context!)
+                : controller.formStep.value == 1 ? buildAppointmentTime(Get.context!)
+                : build_overView(Get.context!)
         ) :
         LimitedBox(
             maxWidth: Get.width -20,
             maxHeight: Get.height/1.5,
 
-            child: controller.formStep.value == 0 ? build_Category(Get.context)
-                : controller.formStep.value == 1 ? build_hairStyle(Get.context)
-                : controller.formStep.value == 2 ? build_barberSelection(Get.context)
-                : controller.formStep.value == 3 ? buildAppointmentTime(Get.context)
-                : build_overView(Get.context)
+            child: controller.formStep.value == 0 ? build_Category(Get.context!)
+                : controller.formStep.value == 1 ? build_hairStyle(Get.context!)
+                : controller.formStep.value == 2 ? build_barberSelection(Get.context!)
+                : controller.formStep.value == 3 ? buildAppointmentTime(Get.context!)
+                : build_overView(Get.context!)
         )
       )
     );

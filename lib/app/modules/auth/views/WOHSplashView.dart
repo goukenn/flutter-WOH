@@ -15,7 +15,7 @@ class WOHSplashView extends GetView<WOHAuthController>{
       duration: 5000,
       splashIconSize: double.infinity,
       screenFunction: () async{
-        return LoginView();
+        return WOHLoginView();
       },
       splashTransition: SplashTransition.fadeTransition,
       backgroundColor: Colors.white,

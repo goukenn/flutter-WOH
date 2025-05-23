@@ -9,7 +9,7 @@ import '../controllers/WOHCategoriesController.dart';
 import '../widgets/WOHCategoryGridItemWidget.dart';
 import '../widgets/WOHCategoryListItemWidget.dart';
 
-class WOHCategoriesView extends GetView<CategoriesController> {
+class WOHCategoriesView extends GetView<WOHCategoriesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

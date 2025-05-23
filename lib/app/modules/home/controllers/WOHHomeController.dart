@@ -173,7 +173,7 @@ class WOHHomeController extends GetxController {
 
     if (response.statusCode == 200) {
       var result = await response.stream.bytesToString();
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       return json.decode(result)[0];
     }
     else {
@@ -240,7 +240,7 @@ class WOHHomeController extends GetxController {
         }
       case 3:
         {
-          ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
             content: Text("chargement des données..."),
             duration: Duration(seconds: 3),
           ));
@@ -339,7 +339,7 @@ class WOHHomeController extends GetxController {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       var data = await response.stream.bytesToString();
       var service = json.decode(data)[0];
       var duration = service["appointment_duration"]*60;
@@ -352,7 +352,7 @@ class WOHHomeController extends GetxController {
                   child: Row(
                       children: [
                         IconButton(
-                          onPressed: ()=> Navigator.pop(Get.context),
+                          onPressed: ()=> Navigator.pop(Get.context!),
                           icon: Icon(Icons.arrow_back, size: 30),
                         ),
                         SizedBox(width: 30),
@@ -406,7 +406,7 @@ class WOHHomeController extends GetxController {
                         Get.find<WOHBookingsController>().getAppointmentOrder(appointment["order_id"][0]);
                         Get.find<WOHBookingsController>().refreshBookings();
                         currentPage.value = 3;
-                        Navigator.pop(Get.context);
+                        Navigator.pop(Get.context!);
 
                       },
                     ),

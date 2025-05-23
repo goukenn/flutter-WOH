@@ -7,8 +7,8 @@ import '../../../providers/WOHLaravelApiClientProvider.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHProfileController.dart';
 
-class WOHDeleteAccountWidget extends GetView<ProfileController> {
-  WOHDeleteAccountWidget({Key key}) : super(key: key);
+class WOHDeleteAccountWidget extends GetView<WOHProfileController> {
+  WOHDeleteAccountWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

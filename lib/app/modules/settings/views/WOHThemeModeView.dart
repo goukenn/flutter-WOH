@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../common/WOHUi.dart';
 import '../controllers/WOHThemeModeController.dart';
 
-class WOHThemeModeView extends GetView<ThemeModeController> {
+class WOHThemeModeView extends GetView<WOHThemeModeController> {
   final bool hideAppBar;
 
   WOHThemeModeView({this.hideAppBar = false});

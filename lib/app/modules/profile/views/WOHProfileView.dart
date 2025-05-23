@@ -15,7 +15,7 @@ import '../widgets/WOHDeleteAccountWidget.dart';
 import '../widgets/WOHUpdatePasswordWidget.dart';
 
 
-class WOHProfileView extends GetView<ProfileController> {
+class WOHProfileView extends GetView<WOHProfileController> {
   final bool hideAppBar;
 
   WOHProfileView({this.hideAppBar = false}) {

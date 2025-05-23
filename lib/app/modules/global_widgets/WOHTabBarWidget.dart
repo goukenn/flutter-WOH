@@ -30,7 +30,7 @@ class WOHTabBarController extends GetxController {
 }
 
 class WOHTabBarWidget extends StatelessWidget implements PreferredSize {
-  WOHTabBarWidget({Key key, required this.tag, required this.tabs, required this.initialSelectedId}) {
+  WOHTabBarWidget({super.key, required this.tag, required this.tabs, required this.initialSelectedId}) {
     tabs[0] = Padding(padding: EdgeInsetsDirectional.only(start: 15), child: tabs.elementAt(0));
     tabs[tabs.length - 1] = Padding(padding: EdgeInsetsDirectional.only(end: 15), child: tabs[tabs.length - 1]);
   }
@@ -103,12 +103,12 @@ class WOHTabBarLoadingWidget extends StatelessWidget implements PreferredSize {
 
 class WOHChipWidget extends StatelessWidget {
   WOHChipWidget({
-    Key key,
+    super.key,
     required this.text,
     this.onSelected,
     required this.tag,
     required this.id,
-  }) : super(key: key);
+  });
 
   final String text;
   final dynamic id;

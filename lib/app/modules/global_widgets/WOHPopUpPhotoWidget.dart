@@ -7,14 +7,14 @@ import 'package:get/get.dart';
 import '../../../WOHColorConstants.dart';
 
 class WOHPopUpPhotoWidget extends StatelessWidget {
-  const WOHPopUpPhotoWidget({Key key,
+  const WOHPopUpPhotoWidget({super.key,
     required this.cancel,
     required this.confirm,
     required this.onTap,
     required this.icon,
     required this.title,
     required this.url
-  }) : super(key: key);
+  });
 
   final String cancel;
   final String confirm;

@@ -108,9 +108,9 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                           hintText: "John Doe".tr,
                           readOnly: false,
                           initialValue: controller.name.value,
-                          onSaved: (input) => controller.name.value = input,
+                          onSaved: (input) => controller.name.value = input!,
                           onChanged: (input) => controller.name.value = input ,
-                          validator: (input) => input.length < 3 ? "Should be more than 3 characters".tr : null,
+                          validator: (input) => input!.length < 3 ? "Should be more than 3 characters".tr : null,
                           iconData: Icons.person_outline,
                         ),
                         Container(
@@ -147,8 +147,8 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                           readOnly: false,
                           initialValue: controller.email.value,
                           onChanged: (value) => controller.email.value = value,
-                          onSaved: (input) => controller.email.value = input,
-                          validator: (input) => !input.contains('@') ? "Should be a valid email".tr : null,
+                          onSaved: (input) => controller.email.value = input!,
+                          validator: (input) => !input!.contains('@') ? "Should be a valid email".tr : null,
                           iconData: Icons.alternate_email,
                         ),
 
@@ -161,8 +161,8 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                             hintText: "••••••••••••".tr,
                             readOnly: false,
                             initialValue: controller.password.value,
-                            onSaved: (input) => controller.password.value = input,
-                            validator: (input) => input.length < 3 ? "Should be more than 3 characters".tr : null,
+                            onSaved: (input) => controller.password.value = input!,
+                            validator: (input) => input!.length < 3 ? "Should be more than 3 characters".tr : null,
                             obscureText: controller.hidePassword.value,
                             iconData: Icons.lock_outline,
                             keyboardType: TextInputType.visiblePassword,
@@ -188,7 +188,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                               }
                             },
                             labelText: "Confirm Password".tr,
-                            errorText: controller.confirmPassword.value == 'password not matching'?'password not matching':null,
+                            errorText: (controller.confirmPassword.value == 'password not matching'?'password not matching':''),
                             hintText: "••••••••••••".tr,
                             readOnly: false,
                             obscureText: controller.hidePassword.value,
@@ -211,8 +211,8 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                               children: [
                                 Checkbox(
                                   value: controller.accepted.value,
-                                  onChanged: (bool value) {
-                                    controller.accepted.value = value;
+                                  onChanged: (value){
+                                    controller.accepted.value = value!;
                                     print(controller.accepted.value);
                                   },
                                 ),
@@ -250,7 +250,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                     color: controller.accepted.value ? interfaceColor : interfaceColor.withAlpha((255 * 0.3).toInt()),
                     onPressed: controller.accepted.value ? () async{
 
-                      if(WOHConstants.riKey1.currentState.validate()){
+                      if(WOHConstants.riKey1.currentState!.validate()){
                         if(controller.password.value == controller.confirmPassword.value)
                         {
                           await controller.register();

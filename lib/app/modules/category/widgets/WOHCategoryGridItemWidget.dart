@@ -12,7 +12,7 @@ class WOHCategoryGridItemWidget extends StatelessWidget {
   final WOHCategoryModel category;
   final String heroTag;
 
-  WOHCategoryGridItemWidget({Key key, this.category, this.heroTag}) : super(key: key);
+  WOHCategoryGridItemWidget({super.key, this.category, this.heroTag});
 
   @override
   Widget build(BuildContext context) {

@@ -73,8 +73,8 @@ class WOHForgotPasswordView extends GetView<WOHAuthController> {
                         hintText: "johndoe@gmail.com".tr,
                         initialValue: controller.email.value,
                         onChanged: (value)=> controller.email.value = value,
-                        onSaved: (input) => controller.phone.value = input,
-                        validator: (input) => !GetUtils.isEmail(input) ? "Should be a valid email".tr : null,
+                        onSaved: (input) => controller.phone.value = input!,
+                        validator: (input) => !GetUtils.isEmail(input!) ? "Should be a valid email".tr : null,
                         iconData: Icons.alternate_email,
                       ),
                       Obx(() => WOHBlockButtonWidget(

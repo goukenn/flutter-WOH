@@ -9,8 +9,8 @@ import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHProfileController.dart';
 
-class WOHUpdatePasswordWidget extends GetView<ProfileController> {
-  WOHUpdatePasswordWidget({Key key}) : super(key: key);
+class WOHUpdatePasswordWidget extends GetView<WOHProfileController> {
+  WOHUpdatePasswordWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

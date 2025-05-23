@@ -12,8 +12,8 @@ class WOHNotificationsButtonWidget extends GetView<WOHRootController> {
   const WOHNotificationsButtonWidget({
     this.iconColor,
     this.labelColor,
-    Key key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final Color iconColor;
   final Color labelColor;

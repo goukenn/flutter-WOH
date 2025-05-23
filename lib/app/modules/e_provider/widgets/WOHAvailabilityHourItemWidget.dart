@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class WOHAvailabilityHourItemWidget extends StatelessWidget {
   const WOHAvailabilityHourItemWidget({
-    Key key,
+    super.key,
     required MapEntry<String, List<String>> availabilityHour,
     required List<String> data,
   })  : _availabilityHour = availabilityHour,

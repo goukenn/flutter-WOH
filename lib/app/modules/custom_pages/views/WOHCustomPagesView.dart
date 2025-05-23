@@ -14,7 +14,7 @@ import '../../../providers/WOHLaravelApiClientProvider.dart';
 import '../controllers/WOHCustomPagesController.dart';
 import '../widgets/WOHCustomPageLoadingWidget.dart';
 
-class WOHCustomPagesView extends GetView<CustomPagesController> {
+class WOHCustomPagesView extends GetView<WOHCustomPagesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

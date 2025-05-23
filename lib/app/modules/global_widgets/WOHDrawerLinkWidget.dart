@@ -15,13 +15,13 @@ class WOHDrawerLinkWidget extends StatelessWidget {
   final bool drawer;
   final ValueChanged<void> onTap;
   const WOHDrawerLinkWidget({
-    Key key,
+    super.key,
     this.icon,
     this.text,
     this.onTap,
     this.drawer,
     this.special,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

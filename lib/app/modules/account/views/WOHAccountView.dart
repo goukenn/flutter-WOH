@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, sized_box_for_whitespace
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,16 +7,18 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../../WOHColorConstants.dart';
 import '../../../../WOHConstants.dart';
-import '../../../../common/WOHUi.dart';
-import '../../../../WOHConstants.dart';
+import '../../../../common/WOHUi.dart'; 
 import '../../../routes/WOHRoutes.dart';
 import '../../e_service/widgets/WOHEServiceTilWidget.dart';
 import '../../global_widgets/WOHPopUpWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHAccountController.dart';
 import '../widgets/WOHAccountLinkWidget.dart';
+import '../widgets/WOHAccountWidget.dart';
 
-class WOHAccountView extends GetView<AccountController> {
+class WOHAccountView extends GetView<WOHAccountController> {
+  const WOHAccountView({super.key});
+
   @override
   Widget build(BuildContext context) {
     //var _currentUser = Get.find<WOHMyAuthService>().myUser;
@@ -341,7 +343,7 @@ class WOHAccountView extends GetView<AccountController> {
                                         controller.deleteAccount();
                                       },
                                       icon: Icon(
-                                        FontAwesomeIcons.warning,
+                                        FontAwesomeIcons.triangleExclamation,
                                         size: 40,
                                         color: inactive,
                                       ),
@@ -373,7 +375,7 @@ class WOHAccountView extends GetView<AccountController> {
                                         Get.toNamed(WOHRoutes.LOGIN);
                                       },
                                       icon: Icon(
-                                        FontAwesomeIcons.warning,
+                                        FontAwesomeIcons.triangleExclamation,
                                         size: 40,
                                         color: inactive,
                                       ),
@@ -401,7 +403,7 @@ class WOHAccountView extends GetView<AccountController> {
                                   )*/
                             ],
                           ),
-                        ),
+                        ), key: null,
                       ),
               ),
             ],

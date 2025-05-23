@@ -44,7 +44,7 @@ class WOHAccountController extends GetxController {
   final identityPieceSelected = ''.obs;
   final userRatings = 0.0.obs;
 
-  File identificationFile;
+  late File identificationFile;
 
   var edit = false.obs;
   //File identificationFilePhoto;
@@ -59,7 +59,7 @@ class WOHAccountController extends GetxController {
 
 
   final _picker = ImagePicker();
-  File image;
+  late File image;
   var currentState = 0.obs;
   var currentUser = {}.obs;
 
@@ -173,12 +173,12 @@ class WOHAccountController extends GetxController {
   }
 
   chooseBirthDate() async {
-    DateTime pickedDate = await showRoundedDatePicker(
+    DateTime pickedDate =( await showRoundedDatePicker(
 
         context: Get.context!,
 
         imageHeader: AssetImage("assets/img/istockphoto-1421193265-612x612.jpg"),
-        height: MediaQuery.of(Get.context).size.height*0.5,
+        height: MediaQuery.of(Get.context!).size.height*0.5,
         initialDate: DateTime.now().subtract(Duration(days: 1)),
         firstDate: DateTime(1900),
         lastDate: DateTime.now(),
@@ -190,8 +190,8 @@ class WOHAccountController extends GetxController {
         ),
         borderRadius: 16,
         //selectableDayPredicate: disableDate
-    );
-    if (pickedDate != null && pickedDate != birthDate.value) {
+    ))!;
+    if ( pickedDate.toString() != birthDate.value) {
       birthDate.value = DateFormat('dd/MM/yy').format(pickedDate);
     }
   }
@@ -220,7 +220,7 @@ class WOHAccountController extends GetxController {
 
     if (response.statusCode == 200) {
       onRefresh();
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       edit.value = false;
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Profile modifié avec succès"));
     }
@@ -241,20 +241,18 @@ class WOHAccountController extends GetxController {
   profileImagePicker(String source) async {
     if(source=='camera'){
       final XFile pickedImage =
-      await _picker.pickImage(source: ImageSource.camera);
-      if (pickedImage != null) {
+      (await _picker.pickImage(source: ImageSource.camera))!;
+     
         image = File(pickedImage.path);
-        updateProfilePicture(image);
-      }
+        updateProfilePicture(image); 
     }
     else{
       final XFile pickedImage =
-      await _picker.pickImage(source: ImageSource.gallery);
-      if (pickedImage != null) {
+      (await _picker.pickImage(source: ImageSource.gallery))!;
+      
         image = File(pickedImage.path);
         updateProfilePicture(image);
-        Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Picture saved successfully".tr));
-      }
+        Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Picture saved successfully".tr)); 
     }
   }
 
@@ -273,7 +271,7 @@ class WOHAccountController extends GetxController {
                     ListTile(
                       onTap: ()async{
                         await profileImagePicker('camera');
-                        Navigator.pop(Get.context);
+                        Navigator.pop(Get.context!);
 
                       },
                       leading: Icon(FontAwesomeIcons.camera),
@@ -282,7 +280,7 @@ class WOHAccountController extends GetxController {
                     ListTile(
                       onTap: ()async{
                         await profileImagePicker('gallery');
-                        Navigator.pop(Get.context);
+                        Navigator.pop(Get.context!);
                       },
                       leading: Icon(FontAwesomeIcons.image),
                       title: Text('Upload an image', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
@@ -336,7 +334,7 @@ class WOHAccountController extends GetxController {
       onRefresh();
       pictureUpdated.value = true;
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Picture saved successfully".tr));
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
     }
     else {
       var result = await response.stream.bytesToString();

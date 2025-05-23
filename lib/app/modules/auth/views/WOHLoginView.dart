@@ -90,7 +90,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                         onChanged: (value) => {
                           controller.email.value = value
                         },
-                        validator: (input) => input.length < 3 ? "Should be a valid email" : null,
+                        validator: (input) => input!.length < 3 ? "Should be a valid email" : null,
                         iconData: Icons.alternate_email,
                       ),
                       Obx(() {
@@ -103,7 +103,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                           onChanged: (value) => {
                             controller.password.value = value
                           },
-                          validator: (input) => input.length < 3 ? "Should be more than 3 characters" : null,
+                          validator: (input) => input!.length < 3 ? "Should be more than 3 characters" : null,
                           obscureText: controller.hidePassword.value,
                           iconData: Icons.lock_outline,
                           keyboardType: TextInputType.visiblePassword,

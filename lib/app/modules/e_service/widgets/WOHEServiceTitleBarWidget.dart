@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class WOHEServiceTitleBarWidget extends StatelessWidget implements PreferredSize {
   final Widget title;
 
-  const WOHEServiceTitleBarWidget({Key key, required this.title}) : super(key: key);
+  const WOHEServiceTitleBarWidget({super.key, required this.title});
 
   Widget buildTitleBar() {
     return Container(

@@ -7,11 +7,11 @@ import '../controllers/WOHCategoryController.dart';
 class WOHCategoryBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<CategoryController>(
-      () => CategoryController(),
+    Get.lazyPut<WOHCategoryController>(
+      () => WOHCategoryController(),
     );
-    Get.lazyPut<CategoriesController>(
-      () => CategoriesController(),
+    Get.lazyPut<WOHCategoriesController>(
+      () => WOHCategoriesController(),
     );
   }
 }

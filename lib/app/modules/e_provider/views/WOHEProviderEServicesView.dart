@@ -7,7 +7,7 @@ import '../../global_widgets/WOHHomeSearchBarWidget.dart';
 import '../controllers/WOHEServicesController.dart';
 import '../widgets/WOHServicesListWidget.dart';
 
-class WOHEProviderEServicesView extends GetView<EServicesController> {
+class WOHEProviderEServicesView extends GetView<WOHEServicesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

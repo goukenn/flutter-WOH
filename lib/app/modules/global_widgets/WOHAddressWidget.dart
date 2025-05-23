@@ -11,7 +11,7 @@ import 'WOHAddressWidgetState.dart' show WOHAddressWidgetState;
 class WOHAddressWidget extends StatefulWidget {
   const WOHAddressWidget({
     Key? key
-  }) : super(key: key);
+  });
 
   @override
   State<WOHAddressWidget> createState() => WOHAddressWidgetState();

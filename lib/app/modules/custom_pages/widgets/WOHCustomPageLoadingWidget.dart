@@ -13,8 +13,8 @@ import 'package:shimmer/shimmer.dart';
 
 class WOHCustomPageLoadingWidget extends StatelessWidget {
   const WOHCustomPageLoadingWidget({
-    Key key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class WOHCustomPageLoadingWidget extends StatelessWidget {
         itemBuilder: (_, index) {
           return Shimmer.fromColors(
             baseColor: Colors.grey.withAlpha((255 * 0.1).toInt()),
-            highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
+            highlightColor: Colors.grey[200]!.withAlpha((255 * 0.1).toInt()),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

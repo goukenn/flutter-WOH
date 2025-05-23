@@ -13,7 +13,7 @@ class WOHCategoryListItemWidget extends StatelessWidget {
   final String heroTag;
   final bool expanded;
 
-  WOHCategoryListItemWidget({Key key, this.category, this.heroTag, this.expanded}) : super(key: key);
+  WOHCategoryListItemWidget({super.key, this.category, this.heroTag, this.expanded});
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ import '../../global_widgets/WOHLoadingCardsWidget.dart';
 import '../../home/controllers/WOHHomeController.dart';
 import '../controllers/WOHCategoryController.dart';
 
-class WOHCategoryView extends GetView<CategoryController> {
+class WOHCategoryView extends GetView<WOHCategoryController> {
   @override
   Widget build(BuildContext context) {
 

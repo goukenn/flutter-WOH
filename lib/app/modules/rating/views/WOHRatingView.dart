@@ -13,7 +13,7 @@ import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHTextFieldWidget.dart';
 import '../controllers/WOHRatingController.dart';
 
-class WOHRatingView extends GetView<RatingController> {
+class WOHRatingView extends GetView<WOHRatingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

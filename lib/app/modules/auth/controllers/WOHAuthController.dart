@@ -1,7 +1,6 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, await_only_futures
 import 'dart:async';
-import 'dart:convert';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert'; 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,8 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../WOHConstants.dart';
-import '../../../../common/WOHUi.dart';
-import '../../../../WOHConstants.dart';
+import '../../../../common/WOHUi.dart'; 
 import '../../../../WOHResponsive.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
@@ -43,7 +41,7 @@ class WOHAuthController extends GetxController {
   var resources = [].obs;
   var currentUser = {}.obs;
 
-  PackageInfo packageInfo;
+  PackageInfo? packageInfo;
 
   @override
   void onInit() async {
@@ -312,7 +310,7 @@ class WOHAuthController extends GetxController {
       if(data != null){
 
         currentUser.value = data;
-        if(WOHResponsive.isMobile(Get.context)){
+        if(WOHResponsive.isMobile(Get.context!)){
 
           box.write("userData", data);
           Get.showSnackbar(WOHUi.SuccessSnackBar(message: "connexion réussi, bon retour M/Mme ${data['name']}"));
@@ -340,7 +338,7 @@ class WOHAuthController extends GetxController {
           await saveDeviceToken(WOHConstants.deviceToken, partnerData[0]['id']);
         }*/
 
-          ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
             content: Text("Verification des information..."),
             backgroundColor: validateColor.withAlpha((255 * 0.4).toInt()),
             duration: Duration(seconds: 3),
@@ -399,7 +397,7 @@ class WOHAuthController extends GetxController {
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
       if(reason == "signup"){
-        ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content: Text("Mise a jour des information..."),
           duration: Duration(seconds: 2),
         ));
@@ -503,7 +501,7 @@ class WOHAuthController extends GetxController {
       if(employee != null){
         currentUser.value = employee;
         showDialog(
-            context: (Get.context),
+            context: (Get.context!),
             builder: (_){
               return AlertDialog(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -515,7 +513,7 @@ class WOHAuthController extends GetxController {
                         children: [
                           TextButton(onPressed: () {
                             box.write("userData", user);
-                            Navigator.pop(Get.context);
+                            Navigator.pop(Get.context!);
                             Get.showSnackbar(WOHUi.SuccessSnackBar(message: "connexion réussi, bon retour M/Mme ${user['name']}"));
                             Get.toNamed(WOHRoutes.ROOT);
                           },
@@ -524,7 +522,7 @@ class WOHAuthController extends GetxController {
                           TextButton(onPressed: () {
                             isEmployee.value = true;
                             box.write("userData", employee);
-                            Navigator.pop(Get.context);
+                            Navigator.pop(Get.context!);
                             Get.showSnackbar(WOHUi.SuccessSnackBar(message: "connexion réussi, bon retour M/Mme ${employee['display_name']}"));
                             Get.toNamed(WOHRoutes.EMPLOYEE_HOME);
                           },
@@ -639,7 +637,7 @@ class WOHAuthController extends GetxController {
     if (response.statusCode == 200) {
       Get.showSnackbar(WOHUi.InfoSnackBar(message: "Un mail a été envoyé à l'adresse $email"));
       onClick.value = false;
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
     }
     else {
       var data = await response.stream.bytesToString();

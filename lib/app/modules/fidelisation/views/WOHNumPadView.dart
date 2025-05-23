@@ -14,14 +14,14 @@ class WOHNumPadView extends StatelessWidget {
   final Function onSubmit;
 
   const WOHNumPadView({
-    Key key,
+    super.key,
     this.buttonSize = 50,
     this.buttonColor = Colors.white,
     this.iconColor = Colors.amber,
     required this.delete,
     required this.onSubmit,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

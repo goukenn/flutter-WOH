@@ -20,7 +20,7 @@ import '../widgets/WOHEProviderTitleBarWidget.dart';
 import '../widgets/WOHFeaturedCarouselWidget.dart';
 import '../widgets/WOHReviewItemWidget.dart';
 
-class WOHEProviderView extends GetView<EProviderController> {
+class WOHEProviderView extends GetView<WOHEProviderController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -410,7 +410,7 @@ class WOHEProviderView extends GetView<EProviderController> {
       child: (_addresses.isEmpty)
           ? Shimmer.fromColors(
               baseColor: Colors.grey.withAlpha((255 * 0.15).toInt()),
-              highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
+              highlightColor: Colors.grey[200]!.withAlpha((255 * 0.1).toInt()),
               child: Container(
                 width: double.infinity,
                 height: 220,

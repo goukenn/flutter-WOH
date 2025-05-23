@@ -13,7 +13,7 @@ import '../../../routes/WOHRoutes.dart';
 
 class WOHSearchServicesListItemWidget extends StatelessWidget {
   const WOHSearchServicesListItemWidget({
-    Key key,
+    super.key,
     required WOHEServiceModel service,
   })  : _service = service,
         super(key: key);

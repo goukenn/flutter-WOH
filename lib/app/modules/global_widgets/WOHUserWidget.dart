@@ -8,10 +8,10 @@ import '../../../main.dart';
 import '../account/widgets/WOHAccountLinkWidget.dart';
 
 class WOHUserWidget extends StatelessWidget {
-  const WOHUserWidget({Key key,
+  const WOHUserWidget({super.key,
     required this.user,
     this.selected,
-    required this.imageUrl}) : super(key: key);
+    required this.imageUrl});
 
   final String user;
   final bool selected;

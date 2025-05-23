@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class WOHLoadingCardsWidget extends StatelessWidget {
-  const WOHLoadingCardsWidget({Key key}) : super(key: key);
+  const WOHLoadingCardsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

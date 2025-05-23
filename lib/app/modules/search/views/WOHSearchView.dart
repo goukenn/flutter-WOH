@@ -7,7 +7,7 @@ import '../../../../common/WOHUi.dart';
 import '../../global_widgets/WOHFilterBottomSheetWidget.dart';
 import '../controllers/WOHSearchController.dart';
 
-class WOHSearchView extends GetView<SearchController> {
+class WOHSearchView extends GetView<WOHSearchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

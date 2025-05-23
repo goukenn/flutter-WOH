@@ -12,7 +12,7 @@ class WOHCircularLoadingWidget extends StatefulWidget {
   final ValueChanged<void> onComplete;
   final String onCompleteText;
 
-  WOHCircularLoadingWidget({Key key, this.height, this.onComplete, this.onCompleteText}) : super(key: key);
+  WOHCircularLoadingWidget({super.key, this.height, this.onComplete, this.onCompleteText});
 
   @override
   WOHCircularLoadingWidgetState createState() => WOHCircularLoadingWidgetState();

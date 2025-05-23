@@ -11,6 +11,7 @@ import '../../../models/WOHSettingModel.dart';
 import '../../../repositories/WOHUserRepository.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHAuthService.dart';
+import '../../../services/WOHMyAuthService.dart';
 import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
@@ -186,7 +187,7 @@ class WOHPhoneVerificationView extends GetView<WOHAuthController> {
                           "Verify".tr,
                           style: Get.textTheme.titleLarge!.merge(TextStyle(color: Get.theme.primaryColor)),
                         ): SizedBox(height: 30,
-                            child: SpinKitThreeBounce(color: Colors.white, size: 20)), loginPage: false,
+                            child: SpinKitThreeBounce(color: Colors.white, size: 20)), loginPage: false, color: Colors.white, disabled: false,
                       ).paddingSymmetric(vertical: 30, horizontal: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

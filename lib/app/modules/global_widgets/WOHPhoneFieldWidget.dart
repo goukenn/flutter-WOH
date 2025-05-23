@@ -13,7 +13,7 @@ import '../../../WOHColorConstants.dart';
 
 class WOHPhoneFieldWidget extends StatelessWidget {
   const WOHPhoneFieldWidget(
-      {Key key,
+      {super.key,
       this.onSaved,
       this.onChanged,
       this.initialValue,
@@ -29,7 +29,7 @@ class WOHPhoneFieldWidget extends StatelessWidget {
       this.suffix,
       this.initialCountryCode,
       this.countries})
-      : super(key: key);
+     ;
 
   final FormFieldSetter<PhoneNumber> onSaved;
   final ValueChanged<PhoneNumber> onChanged;

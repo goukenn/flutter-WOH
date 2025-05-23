@@ -11,7 +11,7 @@ import '../../../common/ui.dart';
 
 class WOHTextFieldWidget extends StatelessWidget {
   const WOHTextFieldWidget({
-    Key key,
+    super.key,
     this.initialValue,
     this.onSaved,
     this.onChanged,
@@ -32,7 +32,7 @@ class WOHTextFieldWidget extends StatelessWidget {
     this.onTap,
     this.readOnly,
     this.maxLines
-  }) : super(key: key);
+  });
 
   final FormFieldSetter<String> onSaved;
   final ValueChanged<String> onChanged;

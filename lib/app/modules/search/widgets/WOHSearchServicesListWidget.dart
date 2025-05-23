@@ -10,7 +10,7 @@ import '../../global_widgets/WOHCircularLoadingWidget.dart';
 class WOHSearchServicesListWidget extends StatelessWidget {
   final List<WOHEServiceModel> services;
 
-  WOHSearchServicesListWidget({Key key, List<WOHEServiceModel> this.services}) : super(key: key);
+  WOHSearchServicesListWidget({super.key, List<WOHEServiceModel> this.services});
 
   @override
   Widget build(BuildContext context) {

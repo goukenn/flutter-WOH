@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../controllers/WOHAuthController.dart';
 
 class WOHPolitique extends GetView<WOHAuthController> {
+  const WOHPolitique({super.key});
+
 
   @override
   Widget build(BuildContext context) {

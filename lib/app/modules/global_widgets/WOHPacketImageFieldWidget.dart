@@ -56,7 +56,7 @@ class WOHPacketImageFieldController extends GetxController {
 
 class WOHPacketImageFieldWidget extends StatelessWidget {
   WOHPacketImageFieldWidget({
-    Key key,
+    super.key,
     required this.label,
     required this.tag,
     required this.field,
@@ -65,7 +65,7 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
     required this.uploadCompleted,
     this.initialImage,
     required this.reset,
-  }) : super(key: key);
+  });
 
   final String label;
   final String placeholder;
@@ -185,7 +185,7 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
                                     ListTile(
                                       onTap: ()async{
                                         await controller.pickImage(ImageSource.camera, field, uploadCompleted);
-                                        Navigator.pop(Get.context);
+                                        Navigator.pop(Get.context!);
                                       },
                                       leading: Icon(FontAwesomeIcons.camera),
                                       title: Text('Take a picture', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),
@@ -193,7 +193,7 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
                                     ListTile(
                                       onTap: ()async{
                                         await controller.pickImage(ImageSource.gallery, field, uploadCompleted);
-                                        Navigator.pop(Get.context);
+                                        Navigator.pop(Get.context!);
                                       },
                                       leading: Icon(FontAwesomeIcons.image),
                                       title: Text('Upload an image', style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 15))),

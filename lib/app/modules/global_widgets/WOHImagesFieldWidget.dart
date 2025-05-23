@@ -67,7 +67,7 @@ class WOHImagesFieldController extends GetxController {
 
 class WOHImagesFieldWidget extends StatelessWidget {
   WOHImagesFieldWidget({
-    Key key,
+    super.key,
     required this.label,
     required this.tag,
     required this.field,
@@ -76,7 +76,7 @@ class WOHImagesFieldWidget extends StatelessWidget {
     required this.uploadCompleted,
     this.initialImages,
     required this.reset,
-  }) : super(key: key);
+  });
 
   final String label;
   final String placeholder;

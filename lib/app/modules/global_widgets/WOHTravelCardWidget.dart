@@ -9,7 +9,7 @@ import '../../../main.dart';
 import 'WOHBlockButtonWidget.dart';
 
 class WOHTravelCardWidget extends StatelessWidget {
-  const WOHTravelCardWidget({Key key,
+  const WOHTravelCardWidget({super.key,
     this.user,
     this.isUser,
     this.travelState,
@@ -24,7 +24,7 @@ class WOHTravelCardWidget extends StatelessWidget {
     required this.depDate,
     required this.travelBy,
     required this.price,
-    required this.text}) : super(key: key);
+    required this.text});
 
   final Color color;
   final String user;

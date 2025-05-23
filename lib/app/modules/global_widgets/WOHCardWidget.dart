@@ -8,28 +8,27 @@ import '../../../main.dart';
 import '../userBookings/controllers/WOHBookingsController.dart';
 
 class WOHCardWidget extends StatelessWidget {
-  const WOHCardWidget({Key key,
-
-    this.agent,
-    this.service,
-    this.price,
+  const WOHCardWidget({super.key, 
+    this.agent='',
+    this.service='',
+    this.price=0,
     this.imageUrl,
     this.onTap,
     required this.shippingDateStart,
     required this.shippingDateEnd,
     required this.code,
     required this.bookingState
-  }) : super(key: key);
+  });
 
   final String code;
-  final String imageUrl;
+  final String? imageUrl;
   final String agent;
   final String service;
   final String shippingDateStart;
   final String shippingDateEnd;
   final String bookingState;
   final double price;
-  final Function onTap;
+  final Function? onTap;
 
   @override
   Widget build(BuildContext context) {

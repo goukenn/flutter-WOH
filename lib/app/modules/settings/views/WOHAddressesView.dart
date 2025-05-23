@@ -8,7 +8,7 @@ import '../../../services/WOHSettingsService.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHAddressController.dart';
 
-class WOHAddressesView extends GetView<AddressController> {
+class WOHAddressesView extends GetView<WOHAddressController> {
   final bool hideAppBar;
 
   WOHAddressesView({this.hideAppBar = false});
