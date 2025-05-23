@@ -95,7 +95,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
               ]
             ),
             SizedBox(height: 40),
-            DrawerLinkWidget(
+            WOHDrawerLinkWidget(
                 special: false,
                 drawer: false,
                 icon: Icons.dashboard,
@@ -106,7 +106,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
                   Get.find<WOHHomeController>().currentPage.value = 0;
                 }
             ),
-            DrawerLinkWidget(
+            WOHDrawerLinkWidget(
                 special: false,
                 drawer: false,
                 icon: Icons.note_alt_sharp,
@@ -118,7 +118,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
                   Get.find<WOHHomeController>().currentPage.value = 1;
                 }
             ),
-            DrawerLinkWidget(
+            WOHDrawerLinkWidget(
                 special: false,
                 drawer: false,
                 icon: Icons.receipt_long,
@@ -130,7 +130,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
                   Get.find<WOHHomeController>().currentPage.value = 2;
                 }
             ),
-            DrawerLinkWidget(
+            WOHDrawerLinkWidget(
                 special: false,
                 drawer: false,
                 icon: Icons.settings,
@@ -141,7 +141,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
                   Get.find<WOHHomeController>().currentPage.value = 3;
                 }
             ),
-            DrawerLinkWidget(
+            WOHDrawerLinkWidget(
               special: false,
               drawer: false,
               icon: Icons.qr_code,
@@ -164,7 +164,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
               ),
             ),
             CustomPageDrawerLinkWidget(),
-            DrawerLinkWidget(
+            WOHDrawerLinkWidget(
               special: true,
               drawer: false,
               icon: Icons.logout,

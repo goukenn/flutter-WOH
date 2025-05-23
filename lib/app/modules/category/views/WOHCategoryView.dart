@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, sort_child_properties_last
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -43,7 +43,7 @@ class WOHCategoryView extends GetView<WOHCategoryController> {
           Card(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Text('${controller.currentPage.value} / ${controller.totalPages.value}', textAlign: TextAlign.center, style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 14, color: appColor)))
+                child: Text('${controller.currentPage.value} / ${controller.totalPages.value}', textAlign: TextAlign.center, style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 14, color: appColor)))
               )
           ),
           InkWell(
@@ -107,7 +107,7 @@ class WOHCategoryView extends GetView<WOHCategoryController> {
                     radius: 20,
                     child: Obx(() => Center(
                       child: Text(controller.travelList.length.toString(),
-                          style: Get.textTheme.headlineSmall.merge(TextStyle(color: interfaceColor))),
+                          style: Get.textTheme.headlineSmall!.merge(TextStyle(color: interfaceColor))),
                     )),
                   )
                 )
@@ -175,7 +175,7 @@ class WOHCategoryView extends GetView<WOHCategoryController> {
                   Obx(() => Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: controller.loading.value ?
-                      LoadingCardWidget() :
+                      WOHLoadingCardsWidget() :
                       ListView.builder(
                         padding: EdgeInsets.only(bottom: 10, top: 10),
                         primary: false,
@@ -188,7 +188,7 @@ class WOHCategoryView extends GetView<WOHCategoryController> {
                           return GestureDetector(
                             child: SizedBox(
                               width: MediaQuery.of(context).size.width/1.2,
-                              child: TravelCardWidget(
+                              child: WOHTravelCardWidget(
                                   isUser: false,
                                   homePage: false,
                                   travelBy: controller.travelList[index]['booking_type'],

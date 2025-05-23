@@ -88,7 +88,7 @@ class WOHCategoriesView extends GetView<WOHCategoriesController> {
                           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                           itemCount: controller.categories.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return CategoryGridItemWidget(category: controller.categories.elementAt(index), heroTag: "heroTag");
+                            return WOHCategoryGridItemWidget(category: controller.categories.elementAt(index), heroTag: "heroTag");
                           },
                           mainAxisSpacing: 15.0,
                           crossAxisSpacing: 15.0,
@@ -109,7 +109,7 @@ class WOHCategoriesView extends GetView<WOHCategoriesController> {
                             return SizedBox(height: 10);
                           },
                           itemBuilder: (context, index) {
-                            return CategoryListItemWidget(
+                            return WOHCategoryListItemWidget(
                               heroTag: 'category_list',
                               expanded: index == 0,
                               category: controller.categories.elementAt(index),

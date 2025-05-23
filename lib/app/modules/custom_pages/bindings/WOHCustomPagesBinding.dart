@@ -6,8 +6,8 @@ import '../controllers/WOHCustomPagesController.dart';
 class WOHCustomPagesBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<CustomPagesController>(
-      () => CustomPagesController(),
+    Get.lazyPut<WOHCustomPagesController>(
+      () => WOHCustomPagesController(),
     );
   }
 }

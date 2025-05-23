@@ -8,7 +8,7 @@ import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHEProviderController.dart';
 
-class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
+class WOHFeaturedCarouselWidget extends GetWidget<WOHEProviderController> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,14 +40,14 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
                   child: Column(
                     children: [
                       Hero(
-                        tag: 'featured_carousel' + _service.id,
+                        tag: 'featured_carousel' + _service.id!,
                         child: ClipRRect(
                           borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
                           child: CachedNetworkImage(
                             height: 140,
                             width: double.infinity,
                             fit: BoxFit.cover,
-                            imageUrl: _service.firstImageUrl,
+                            imageUrl: _service.firstImageUrl!,
                             placeholder: (context, url) => Image.asset(
                               'assets/img/loading.gif',
                               fit: BoxFit.cover,
@@ -76,7 +76,7 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
                               style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.hintColor)),
                             ),
                             Wrap(
-                              children: WOHUi.getStarsList(_service.rate),
+                              children: WOHUi.getStarsList(_service.rate!),
                             ),
                             SizedBox(height: 10),
                             Wrap(
@@ -92,14 +92,14 @@ class WOHFeaturedCarouselWidget extends GetWidget<EProviderController> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    if (_service.getOldPrice > 0)
+                                    if (_service.getOldPrice! > 0)
                                       WOHUi.getPrice(
-                                        _service.getOldPrice,
+                                        _service.getOldPrice!,
                                         style: Get.textTheme.bodyLarge!.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
                                         unit: _service.getUnit,
                                       ),
                                     WOHUi.getPrice(
-                                      _service.getPrice,
+                                      _service.getPrice!,
                                       style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.colorScheme.secondary)),
                                       unit: _service.getUnit,
                                     ),

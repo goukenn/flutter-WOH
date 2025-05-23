@@ -95,7 +95,7 @@ class WOHTravelCardWidget extends StatelessWidget {
                                     text: TextSpan(
                                         children: [
                                           TextSpan(text: departureCity, style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 12, color: interfaceColor))),
-                                          TextSpan(text: "\n$departureCountry".toUpperCase(), style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: appColor)))
+                                          TextSpan(text: "\n$departureCountry".toUpperCase(), style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 12, color: appColor)))
                                         ]
                                     ))
                             ),
@@ -109,10 +109,10 @@ class WOHTravelCardWidget extends StatelessWidget {
                                     text: TextSpan(
                                         children: [
                                           TextSpan(text: arrivalCity, style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 12, color: interfaceColor))),
-                                          TextSpan(text: "\n$arrivalCountry".toUpperCase(), style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: appColor)))
+                                          TextSpan(text: "\n$arrivalCountry".toUpperCase(), style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 12, color: appColor)))
                                         ]
                                     ))
-                              //Text(arrTown, style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 18)))
+                              //Text(arrTown, style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 18)))
                             ),
                           ],
                         ),
@@ -129,7 +129,7 @@ class WOHTravelCardWidget extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(FontAwesomeIcons.shoppingBag, size: 25, color: appColor),
-                                    Text(' /kg:   $qty', style: Get.textTheme.headlineSmall.merge(TextStyle(color: appColor))),
+                                    Text(' /kg:   $qty', style: Get.textTheme.headlineSmall!.merge(TextStyle(color: appColor))),
                                   ]
                                 ),
                                 SizedBox(height: 5),
@@ -143,13 +143,13 @@ class WOHTravelCardWidget extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Expanded(
-                                          child: Text(this.depDate, style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: appColor))
+                                          child: Text(this.depDate, style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: appColor))
                                           )
                                       ),
                                       Container(
                                         padding: EdgeInsets.all(10),
                                         alignment: Alignment.center,
-                                        child: Text(travelState == "negotiating" ? "PUBLISHED" : travelState.toUpperCase(), style: Get.textTheme.displayLarge.merge(TextStyle(color: travelState == 'accepted' ? interfaceColor : travelState == 'negotiating' ? validateColor : travelState == "pending" ? inactive : travelState == "completed" ? doneStatus : specialColor, fontSize: 12))),
+                                        child: Text(travelState == "negotiating" ? "PUBLISHED" : travelState.toUpperCase(), style: Get.textTheme.displayLarge!.merge(TextStyle(color: travelState == 'accepted' ? interfaceColor : travelState == 'negotiating' ? validateColor : travelState == "pending" ? inactive : travelState == "completed" ? doneStatus : specialColor, fontSize: 12))),
                                         decoration: BoxDecoration(
                                             border: Border.all(
                                               color: travelState == 'accepted' ? interfaceColor : travelState == 'negotiating' ? validateColor : travelState == "pending" ? inactive : travelState == "completed" ? doneStatus : specialColor,
@@ -250,7 +250,7 @@ class WOHTravelCardWidget extends StatelessWidget {
                                   ]
                                 )
                             ),
-                            Text(this.depDate, style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: appColor)))
+                            Text(this.depDate, style: Get.textTheme.displayLarge!.merge(TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: appColor)))
                           ]
                       )
                     )

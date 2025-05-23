@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, prefer_const_constructors_in_immutables
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,7 @@ import '../../../models/WOHReviewModel.dart';
 class WOHReviewItemWidget extends StatelessWidget {
   final WOHReviewModel? review;
 
-  WOHReviewItemWidget({Key? key, this.review});
+  WOHReviewItemWidget({super.key, this.review});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class WOHReviewItemWidget extends StatelessWidget {
                   height: 65,
                   width: 65,
                   fit: BoxFit.cover,
-                  imageUrl: review.user.avatar.thumb,
+                  imageUrl: review!.user!.avatar!.thumb!,
                   placeholder: (context, url) => Image.asset(
                     'assets/img/loading.gif',
                     fit: BoxFit.cover,
@@ -45,14 +45,14 @@ class WOHReviewItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      review!.user.name,
+                      review!.user!.name!,
                       overflow: TextOverflow.fade,
                       softWrap: false,
                       maxLines: 2,
                       style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.hintColor)),
                     ),
                     Text(
-                      review?.user.bio,
+                      review!.user!.bio!,
                       overflow: TextOverflow.ellipsis,
                       style: Get.textTheme.labelSmall,
                     ),
@@ -66,7 +66,7 @@ class WOHReviewItemWidget extends StatelessWidget {
                   label: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(review.rate.toString(), style: Get.textTheme.bodyLarge!.merge(TextStyle(color: Get.theme.primaryColor))),
+                      Text(review!.rate!.toString(), style: Get.textTheme.bodyLarge!.merge(TextStyle(color: Get.theme.primaryColor))),
                       Icon(
                         Icons.star_border,
                         color: Get.theme.primaryColor,
@@ -80,7 +80,7 @@ class WOHReviewItemWidget extends StatelessWidget {
               ),
             ],
           ),
-          WOHUi.removeHtml(review.review, style: Get.textTheme.bodyLarge),
+          WOHUi.removeHtml(review!.review!, style: Get.textTheme.bodyLarge),
         ],
       ),
     );

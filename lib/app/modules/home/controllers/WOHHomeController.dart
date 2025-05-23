@@ -31,7 +31,7 @@ class WOHHomeController extends GetxController {
   var clientPoint = 5.obs;
   var userId = 0.obs;
   var userName = "".obs;
-  List<HomeList> homeList = HomeList.homeList;
+  List<WOHHomeView> homeList = WOHHomeView.homeList;
   var multiple = true.obs;
   var userDto = {}.obs;
   var items = [].obs;
@@ -40,7 +40,7 @@ class WOHHomeController extends GetxController {
   var done = 0.0.obs;
   var missed = 0.0.obs;
   var cancel = 0.0.obs;
-  Timer timer;
+  late Timer timer;
 
   WOHHomeController() {
     //_sliderRepo = new WOHSliderRepository();
@@ -235,7 +235,8 @@ class WOHHomeController extends GetxController {
         }
       case 2:
         {
-          await navigateTo();
+          // await 
+          navigateTo();
           break;
         }
       case 3:
@@ -250,12 +251,14 @@ class WOHHomeController extends GetxController {
         }
       case 4:
         {
-          await launchInstagram();
+          // await 
+          launchInstagram();
           break;
         }
       case 5:
         {
-          await avisClients();
+          // await 
+          avisClients();
           break;
         }
     }

@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, use_key_in_widget_constructors
 /*
  * File name: WOHCustomPagesView.dart
  * Last modified: 2022.02.18 at 19:24:11
@@ -9,8 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/WOHUi.dart';
-import '../../../providers/WOHLaravelApiClientProvider.dart';
+import '../../../../common/WOHUi.dart'; 
 import '../controllers/WOHCustomPagesController.dart';
 import '../widgets/WOHCustomPageLoadingWidget.dart';
 
@@ -21,7 +20,7 @@ class WOHCustomPagesView extends GetView<WOHCustomPagesController> {
         appBar: AppBar(
           title: Obx(() {
             return Text(
-              controller.customPage.value.title.tr,
+              controller.customPage.value.title!.tr,
               style: Get.textTheme.titleLarge,
             );
           }),
@@ -41,12 +40,12 @@ class WOHCustomPagesView extends GetView<WOHCustomPagesController> {
           child: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             child: Obx(() {
-              if (controller.customPage.value.content.isEmpty) {
-                return CustomPageLoadingWidget();
+              if (controller.customPage.value.content!.isEmpty) {
+                return WOHCustomPageLoadingWidget();
               } else {
                 return Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: WOHUi.applyHtml(controller.customPage.value.content),
+                  child: WOHUi.applyHtml(controller.customPage.value.content!),
                 );
               }
             }),

@@ -9,6 +9,8 @@ import '../controllers/WOHSettingsController.dart';
 class WOHSettingsView extends GetView<WOHSettingsController> {
   final _navigatorKey = Get.nestedKey(1);
 
+  WOHSettingsView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

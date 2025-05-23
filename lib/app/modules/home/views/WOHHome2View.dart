@@ -8,14 +8,13 @@ import '../../../../WOHColorConstants.dart';
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
 import '../../../../WOHConstants.dart';
 import '../../../routes/WOHRoutes.dart';
-import '../../../services/WOHAuthService.dart';
-import '../../../services/WOHMyAuthService.dart';
+import '../../../services/WOHAuthService.dart'; 
 import '../../fidelisation/controller/WOHValidationController.dart';
 import '../../global_widgets/WOHNotificationsButtonWidget.dart';
 import '../../global_widgets/WOHPopUpWidget.dart';
 import '../controllers/WOHHomeController.dart';
 
-class WOHHome2View extends GetView<WOHWOHWOHHomeController> {
+class WOHHome2View extends GetView<WOHHomeController> {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<WOHAuthService>(

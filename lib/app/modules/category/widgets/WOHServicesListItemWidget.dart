@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, sort_child_properties_last
 /*
  * Copyright (c) 2020 .
  */
@@ -15,8 +15,7 @@ class WOHServicesListItemWidget extends StatelessWidget {
   const WOHServicesListItemWidget({
     super.key,
     required WOHEServiceModel service,
-  })  : _service = service,
-        super(key: key);
+  })  : _service = service;
 
   final WOHEServiceModel _service;
 
@@ -36,14 +35,14 @@ class WOHServicesListItemWidget extends StatelessWidget {
             Column(
               children: [
                 Hero(
-                  tag: 'service_list_item' + _service.id,
+                  tag: 'service_list_item' + _service.id!,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
                     child: CachedNetworkImage(
                       height: 80,
                       width: 80,
                       fit: BoxFit.cover,
-                      imageUrl: _service.firstImageUrl,
+                      imageUrl: _service.firstImageUrl!,
                       placeholder: (context, url) => Image.asset(
                         'assets/img/loading.gif',
                         fit: BoxFit.cover,
@@ -54,7 +53,7 @@ class WOHServicesListItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (_service.eProvider.available)
+                if (_service.eProvider!.available!)
                   Container(
                     width: 80,
                     child: Text("Available".tr,
@@ -71,7 +70,7 @@ class WOHServicesListItemWidget extends StatelessWidget {
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
                   ),
-                if (!_service.eProvider.available)
+                if (!_service.eProvider!.available!)
                   Container(
                     width: 80,
                     child: Text("Offline".tr,
@@ -142,14 +141,14 @@ class WOHServicesListItemWidget extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          if (_service.getOldPrice > 0)
+                          if (_service.getOldPrice! > 0)
                             WOHUi.getPrice(
-                              _service.getOldPrice,
+                              _service.getOldPrice!,
                               style: Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.focusColor, decoration: TextDecoration.lineThrough)),
                               unit: _service.getUnit,
                             ),
                           WOHUi.getPrice(
-                            _service.getPrice,
+                            _service.getPrice!,
                             style: Get.textTheme.titleLarge,
                             unit: _service.getUnit,
                           ),
@@ -167,7 +166,7 @@ class WOHServicesListItemWidget extends StatelessWidget {
                       SizedBox(width: 5),
                       Flexible(
                         child: Text(
-                          _service.eProvider.name,
+                          _service.eProvider!.name!,
                           maxLines: 1,
                           overflow: TextOverflow.fade,
                           softWrap: false,
@@ -187,7 +186,7 @@ class WOHServicesListItemWidget extends StatelessWidget {
                       Flexible(
                         child: Text(
                           // TODO eProvider address
-                          _service.eProvider.firstAddress,
+                          _service.eProvider!.firstAddress,
                           maxLines: 1,
                           overflow: TextOverflow.fade,
                           softWrap: false,
@@ -199,10 +198,10 @@ class WOHServicesListItemWidget extends StatelessWidget {
                   Divider(height: 8, thickness: 1),
                   Wrap(
                     spacing: 5,
-                    children: List.generate(_service.categories.length, (index) {
+                    children: List.generate(_service.categories!.length, (index) {
                       return Container(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                        child: Text(_service.categories.elementAt(index).name, style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 10))),
+                        child: Text(_service.categories!.elementAt(index).name!, style: Get.textTheme.labelSmall!.merge(TextStyle(fontSize: 10))),
                         decoration: BoxDecoration(
                             color: Get.theme.primaryColor,
                             border: Border.all(

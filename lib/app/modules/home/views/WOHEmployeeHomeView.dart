@@ -1,4 +1,5 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, use_key_in_widget_constructors
+import 'package:com_igkdev_new_app/app/modules/fidelisation/views/WOHAttributePointsView.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,12 +11,11 @@ import '../../../../WOHColorConstants.dart';
 import '../../../../WOHConstants.dart';
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../fidelisation/controller/WOHValidationController.dart';
-import '../../fidelisation/views/WOHAttributePointsView.dart';
 import '../../global_widgets/WOHMainDrawerWidget.dart';
 import '../../global_widgets/WOHNotificationsButtonWidget.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
-import '../../userBookings/views/WOHBookingsView.dart';
+import '../../userBookings/views/WOHBookingsView.dart'; 
 import '../../userBookings/views/WOHFacturationView.dart';
 import '../../userBookings/views/WOHInterfacePOSView.dart';
 import '../controllers/WOHHomeController.dart';
@@ -68,14 +68,14 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
             => showDialog(
               context: context,
               builder: (_) {
-                return MainDrawerWidget();
+                return WOHMainDrawerWidget();
               },
             ),
           ),
           title: Obx(() => Text( controller.currentPage.value == 0 ?
           WOHConstants.AppName+", Tableau de bord" : controller.currentPage.value == 1 ? WOHConstants.AppName+",  Mes rendez-vous"
               : controller.currentPage.value == 2 ? WOHConstants.AppName+", Facturation" : controller.currentPage.value == 3 ? WOHConstants.AppName+", Interface POS" : WOHConstants.AppName+", Attribuer des points",
-            style: Get.textTheme.titleLarge.merge(TextStyle(color: employeeInterfaceColor)),
+            style: Get.textTheme.titleLarge!.merge(TextStyle(color: employeeInterfaceColor)),
           )),
           centerTitle: true,
           automaticallyImplyLeading: false,
@@ -98,9 +98,9 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
                     width: Get.width,
                     child: Obx(() => controller.currentPage.value == 0 ? build_dashboardView(context)
                         : controller.currentPage.value == 1 ? WOHBookingsView()
-                        : controller.currentPage.value == 2 ? WOHEmployeeReceipt()
+                        : controller.currentPage.value == 2 ? WOHFacturationView()
                         : controller.currentPage.value == 3 ? WOHInterfacePOSView()
-                        : AttributionView()
+                        : WOHAttributePointsView()
                     ),
                   );
                 }
@@ -128,7 +128,7 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
                     text: TextSpan(
                         children: [
                           TextSpan(text: hour > 12 ? "Bonsoir M/Mme ${currentUser['name']} 👋🏼" : "Bonjour M/Mme ${currentUser['name']} 👋🏼",
-                              style: Get.textTheme.headlineMedium.merge(TextStyle(color: appColor, fontSize: 30))
+                              style: Get.textTheme.headlineMedium!.merge(TextStyle(color: appColor, fontSize: 30))
                           ),
                           /*TextSpan(text: "\nVous avez ✅ ${appointmentsPaid.length} rendez-vous approuvés et ⏰ ${appointmentsPending.length} rendez-vous planifié",
                                         style: TextStyle(color: appColor, fontSize: 15)),*/
@@ -160,7 +160,7 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
                   legendPosition: LegendPosition.right,
                   showLegends: true,
                   legendShape: BoxShape.circle,
-                  legendTextStyle: Get.textTheme.headlineMedium.merge(TextStyle(fontSize: 30))
+                  legendTextStyle: Get.textTheme.headlineMedium!.merge(TextStyle(fontSize: 30))
                 ),
                 chartValuesOptions: ChartValuesOptions(
                   showChartValueBackground: true,

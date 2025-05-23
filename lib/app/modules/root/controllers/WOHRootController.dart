@@ -22,13 +22,13 @@ class WOHRootController extends GetxController {
   final customPages = <WOHCustomPageModel>[].obs;
   WOHNotificationsController _notificationController;
   //WOHNotificationRepository _notificationRepository;
-  CustomPageRepository _customPageRepository;
+  WOHCustomPageRepository _customPageRepository;
   PackageInfo packageInfo;
 
   WOHRootController() {
     //_notificationRepository = new WOHNotificationRepository();
     _notificationController = new WOHNotificationsController();
-    _customPageRepository = new CustomPageRepository();
+    _customPageRepository = new WOHCustomPageRepository();
   }
 
   @override

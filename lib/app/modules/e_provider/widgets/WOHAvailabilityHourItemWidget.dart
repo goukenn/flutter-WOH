@@ -8,8 +8,7 @@ class WOHAvailabilityHourItemWidget extends StatelessWidget {
     required MapEntry<String, List<String>> availabilityHour,
     required List<String> data,
   })  : _availabilityHour = availabilityHour,
-        _data = data,
-        super(key: key);
+        _data = data;
 
   final MapEntry<String, List<String>> _availabilityHour;
   final List<String> _data;
@@ -21,6 +20,7 @@ class WOHAvailabilityHourItemWidget extends StatelessWidget {
       children: [
         Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
                   Text(_availabilityHour.key.tr).paddingSymmetric(vertical: 5),
                 ] +
@@ -30,28 +30,26 @@ class WOHAvailabilityHourItemWidget extends StatelessWidget {
                     style: Get.textTheme.labelSmall,
                   );
                 }),
-            crossAxisAlignment: CrossAxisAlignment.start,
           ),
         ),
         Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: List.generate(_availabilityHour.value.length, (index) {
             return Container(
               margin: EdgeInsets.symmetric(vertical: 3),
               width: 125,
-              child: Text(
-                _availabilityHour.value.elementAt(index),
-                style: Get.textTheme.bodyLarge,
-                textAlign: TextAlign.center,
-              ),
               decoration: BoxDecoration(
                 color: Get.theme.focusColor.withAlpha((255 * 0.15).toInt()),
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              child: Text(
+                _availabilityHour.value.elementAt(index),
+                style: Get.textTheme.bodyLarge,
+                textAlign: TextAlign.center,
+              ),
             );
           }),
-          //mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
         ),
       ],
     );

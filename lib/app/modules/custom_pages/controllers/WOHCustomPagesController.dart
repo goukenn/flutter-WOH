@@ -7,10 +7,10 @@ import '../../../repositories/WOHCustomPageRepository.dart';
 
 class WOHCustomPagesController extends GetxController {
   final customPage = WOHCustomPageModel().obs;
-  CustomPageRepository _customPageRepository;
+  late WOHCustomPageRepository _customPageRepository;
 
   WOHCustomPagesController() {
-    _customPageRepository = CustomPageRepository();
+    _customPageRepository = WOHCustomPageRepository();
   }
 
   @override
@@ -37,7 +37,7 @@ class WOHCustomPagesController extends GetxController {
 
   Future<void> getCustomPage() async {
     try {
-      customPage.value = await _customPageRepository.get(customPage.value.id);
+      customPage.value = await _customPageRepository.get(customPage.value.id!);
     } catch (e) {
       print(e.toString());
       //Get.showSnackbar(WOHUi.ErrorSnackBar(message: e.toString()));

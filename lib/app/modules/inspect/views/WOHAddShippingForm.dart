@@ -35,7 +35,7 @@ class WOHAddShippingForm extends GetView<WOHInspectController> {
                 controller.editAppointment.value ?
                 "Transfert de " +controller.appointmentDto['name'] :
                 "Prendre rendez-vous",
-                style: Get.textTheme.titleLarge.merge(TextStyle(color: Colors.white)),
+                style: Get.textTheme.titleLarge!.merge(TextStyle(color: Colors.white)),
               )
           ),
           centerTitle: true,
@@ -82,7 +82,7 @@ class WOHAddShippingForm extends GetView<WOHInspectController> {
                       child: Text(
                         controller.editAppointment.value ? "TRANSFERER" : "SOUMETRE",
                         textAlign: TextAlign.center,
-                        style: Get.textTheme.headlineSmall.merge(TextStyle(color: Get.theme.primaryColor)),
+                        style: Get.textTheme.headlineSmall!.merge(TextStyle(color: Get.theme.primaryColor)),
                       )
                   ) : SizedBox(height: 20,
                       child: SpinKitFadingCircle(color: Colors.white, size: 20)), loginPage: false,

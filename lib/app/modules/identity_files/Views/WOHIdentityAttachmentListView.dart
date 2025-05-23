@@ -63,7 +63,7 @@ class WOHIdentityAttachmentListView extends GetView<WOHImportIdentityFilesContro
               )
           ),
           controller.loadAttachments.value ?
-          Expanded(child: WOHLoadingCardWidget()) :
+          Expanded(child: WOHLoadingCardsWidget()) :
           controller.attachmentFiles.isNotEmpty ?
           Expanded(
               child: ListView.builder(
@@ -187,7 +187,7 @@ class WOHIdentityAttachmentListView extends GetView<WOHImportIdentityFilesContro
                                                 child: Row(
                                                   children: [
                                                     Expanded(
-                                                      child: Text("Id Number", style: Get.textTheme.bodyMedium.merge(TextStyle(color: appColor))),
+                                                      child: Text("Id Number", style: Get.textTheme.bodyMedium!.merge(TextStyle(color: appColor))),
                                                     ),
                                                     Container(
                                                       margin: EdgeInsets.symmetric(horizontal: 12),

@@ -21,9 +21,9 @@ class WOHCustomPageDrawerLinkWidget extends GetView<WOHRootController> {
       return Column(
         children: List.generate(controller.customPages.length, (index) {
           var _page = controller.customPages.elementAt(index);
-          return DrawerLinkWidget(
+          return WOHDrawerLinkWidget(
             icon: getDrawerLinkIcon(_page),
-            text: _page.title,
+            text: _page.title!,
             onTap: (e) async {
               //print(_page.id);
               await Get.offAndToNamed(WOHRoutes.CUSTOM_PAGES, arguments: _page);

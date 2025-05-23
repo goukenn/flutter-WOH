@@ -43,7 +43,7 @@ class WOHThemeModeView extends GetView<WOHThemeModeController> {
                     groupValue: controller.selectedThemeMode.value,
                     activeColor: Get.theme.colorScheme.secondary,
                     onChanged: (value) {
-                      controller.changeThemeMode(value);
+                      controller.changeThemeMode(value!);
                     },
                     title: Text("Light Theme".tr, style: Get.textTheme.bodyMedium),
                   ),
@@ -52,7 +52,7 @@ class WOHThemeModeView extends GetView<WOHThemeModeController> {
                     groupValue: controller.selectedThemeMode.value,
                     activeColor: Get.theme.colorScheme.secondary,
                     onChanged: (value) {
-                      controller.changeThemeMode(value);
+                      controller.changeThemeMode(value!);
                     },
                     title: Text("Dark Theme".tr, style: Get.textTheme.bodyMedium),
                   ),
@@ -61,7 +61,7 @@ class WOHThemeModeView extends GetView<WOHThemeModeController> {
                     groupValue: controller.selectedThemeMode.value,
                     activeColor: Get.theme.colorScheme.secondary,
                     onChanged: (value) {
-                      controller.changeThemeMode(value);
+                      controller.changeThemeMode(value!);
                     },
                     title: Text("System Theme".tr, style: Get.textTheme.bodyMedium),
                   ),
