@@ -46,11 +46,11 @@ class WOHAttributePointsView extends GetView<WOHValidationController> {
                 SizedBox(height: Get.height/8),
                 controller.found.value ?
                   ListTile(
-                    title: Text(controller.client['name'], style: Get.textTheme.headline4.merge(TextStyle(fontSize: 30))),
-                    subtitle: Text("Points: ${controller.client['client_points']}, Bonus: ${controller.client['client_bonus']}", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20))),
+                    title: Text(controller.client['name'], style: Get.textTheme.headlineMedium.merge(TextStyle(fontSize: 30))),
+                    subtitle: Text("Points: ${controller.client['client_points']}, Bonus: ${controller.client['client_bonus']}", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20))),
                   ) : ListTile(
                   leading: Icon(Icons.info_outline, size: 30,),
-                  title: Text("Scanner le code Qr pour attribuer des points...", style: Get.textTheme.headline4.merge(TextStyle(fontSize: 20))),
+                  title: Text("Scanner le code Qr pour attribuer des points...", style: Get.textTheme.headlineMedium.merge(TextStyle(fontSize: 20))),
                 ),
                 SizedBox(height: 20),
                 Text("Nombre de points: ", style: TextStyle( fontSize: 30)),

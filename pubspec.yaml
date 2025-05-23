@@ -47,7 +47,7 @@ dependencies:
   #spinKit
   flutter_spinkit: ^5.1.0
   #qr Code
-  qr_flutter: ^4.0.0
+  qr_flutter: ^4.1.0
   barcode_scan2: ^4.2.1
   # GET
   # DIO

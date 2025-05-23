@@ -9,7 +9,7 @@ class WOHContactView extends GetWidget<WOHHomeController> {
   Widget build(BuildContext context) {
     return Material(
       child: AlertDialog(
-        title: Text('Vous souhaitez conatcter le service WillOnHair au +97798345348734', style: Get.textTheme.headline4),
+        title: Text('Vous souhaitez conatcter le service WillOnHair au +97798345348734', style: Get.textTheme.headlineMedium),
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import 'package:http/http.dart' as http;
 import '../../../models/WOHMyUserModel.dart';
 import '../../../routes/WOHRoutes.dart';
@@ -135,7 +135,7 @@ class WOHImportIdentityFilesController extends GetxController{
   deliveryDate() async {
     DateTime pickedDate = await showRoundedDatePicker(
 
-      context: Get.context,
+      context: Get.context!,
 
       imageHeader: AssetImage("assets/img/istockphoto-1421193265-612x612.jpg"),
       initialDate: DateTime.now().subtract(Duration(days: 1)),
@@ -160,7 +160,7 @@ class WOHImportIdentityFilesController extends GetxController{
   expiryDate() async {
     DateTime pickedDate = await showRoundedDatePicker(
 
-      context: Get.context,
+      context: Get.context!,
 
       imageHeader: AssetImage("assets/img/istockphoto-1421193265-612x612.jpg"),
       initialDate: DateTime.now().subtract(Duration(days: 1)),
@@ -183,7 +183,7 @@ class WOHImportIdentityFilesController extends GetxController{
 
   selectCameraOrGalleryIdentityFile()async{
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         builder: (_){
           return AlertDialog(
             shape: RoundedRectangleBorder(

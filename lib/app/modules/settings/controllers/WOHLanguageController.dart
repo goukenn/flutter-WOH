@@ -15,7 +15,7 @@ class WOHLanguageController extends GetxController {
   }
 
   /*void updateLocale(value) async {
-    await Get.find<TranslationService>().loadTranslation(locale: value);
+    await Get.find<WOHTranslationService>().loadTranslation(locale: value);
     if (value.contains('_')) {
       // en_US
       Get.updateLocale(Locale(value.split('_').elementAt(0), value.split('_').elementAt(1)));

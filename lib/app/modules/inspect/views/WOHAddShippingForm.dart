@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../../WOHResponsive.dart';
 import '../../account/widgets/WOHAccountLinkWidget.dart';
 import '../../auth/controllers/WOHAuthController.dart';
@@ -17,7 +17,7 @@ import '../../global_widgets/WOHBlockButtonWidget.dart';
 import '../../userBookings/widgets/WOHBookingsListLoaderWidget.dart';
 import '../controllers/WOHInspectController.dart';
 
-class WOHAddShippingForm extends GetView<OWHInspectController> {
+class WOHAddShippingForm extends GetView<WOHInspectController> {
 
   List bookings = [];
 
@@ -210,7 +210,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
             }
           }else{
             showDialog(
-                context: Get.context,
+                context: Get.context!,
                 builder: (_){
                   return SpinKitFadingCircle(color: Colors.white, size: 50);
                 });
@@ -311,7 +311,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
         SizedBox(height: 20),
         Expanded(
           child: Obx(() => controller.loadCategories.value ?
-          BookingsListLoaderWidget() :
+          WOHBookingsListLoaderWidget() :
           ListView.builder(
               itemCount: controller.categories.length,
               shrinkWrap: true,
@@ -419,7 +419,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
         Expanded(
           child: Obx(() => controller.loadServices.value ?
 
-          BookingsListLoaderWidget() :
+          WOHBookingsListLoaderWidget() :
 
               GridView(
             padding: const EdgeInsets.only(top: 0, left: 12, right: 12),
@@ -477,7 +477,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
                             ),
                             SizedBox(height: 10),
                             Text(controller.services[index]
-                            ["name"].split(">").first, style: Get.textTheme.headline4),
+                            ["name"].split(">").first, style: Get.textTheme.headlineMedium),
                             Text(controller.services[index]
                             ["product_price"].toString()+" €", style: Get.textTheme.displayMedium),
                             SizedBox(height: 10)
@@ -585,7 +585,7 @@ class WOHAddShippingForm extends GetView<OWHInspectController> {
                                           ),
                                         ),
                                         SizedBox(height: 20),
-                                        Text(controller.employees[index]['display_name'], style: Get.textTheme.headline4)
+                                        Text(controller.employees[index]['display_name'], style: Get.textTheme.headlineMedium)
                                       ],
                                     )
                                 ))

@@ -10,7 +10,7 @@ import '../../../../common/WOHWOHMapsUtil.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEProviderModel.dart';
 import '../../../models/WOHMediaModel.dart';
-import '../../../providers/laravel_provider.dart';
+import '../../../providers/WOHLaravelApiClientProvider.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHEProviderController.dart';

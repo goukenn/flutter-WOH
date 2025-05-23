@@ -7,7 +7,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../../WOHColorConstants.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
+import '../../../../WOHPalette.dart';
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHBookingsController.dart';
@@ -93,7 +94,7 @@ class WOHInterfacePOSView extends GetView<WOHBookingsController> {
                                       showDialog(
                                           context: context,
                                           barrierDismissible: false,
-                                          builder: (BuildContext context) => BookingsListItemWidget()
+                                          builder: (BuildContext context) => WOHBookingsListItemWidget()
                                       );
                                       controller.refreshEmployeeBookings();
                                     },
@@ -209,8 +210,8 @@ class WOHInterfacePOSView extends GetView<WOHBookingsController> {
                                                                                 fit: BoxFit.fitWidth);
                                                                           },
                                                                         ),
-                                                                        Text(controller.servicesByCategory[index]["name"].split(">").first + " $duration mins", style: Get.textTheme.headline4),
-                                                                        Text("${controller.servicesByCategory[index]["product_price"]} EUR", style: Get.textTheme.headline4)
+                                                                        Text(controller.servicesByCategory[index]["name"].split(">").first + " $duration mins", style: Get.textTheme.headlineMedium),
+                                                                        Text("${controller.servicesByCategory[index]["product_price"]} EUR", style: Get.textTheme.headlineMedium)
                                                                       ]
                                                                     )
                                                                 )
@@ -306,7 +307,7 @@ class WOHInterfacePOSView extends GetView<WOHBookingsController> {
                                                                                     height: 100,
                                                                                     child: Column(
                                                                                         children: [
-                                                                                          Text("Voulez-vous vraiment Supprimer cette ligne?", style: Get.textTheme.headline4),
+                                                                                          Text("Voulez-vous vraiment Supprimer cette ligne?", style: Get.textTheme.headlineMedium),
                                                                                           SizedBox(height: 30),
                                                                                           Row(
                                                                                               mainAxisAlignment: MainAxisAlignment.center,
@@ -317,7 +318,9 @@ class WOHInterfacePOSView extends GetView<WOHBookingsController> {
                                                                                                       size: 14,
                                                                                                     ),
                                                                                                     style: ElevatedButton.styleFrom(
-                                                                                                        primary: inactive),
+                                                                                                        // primary: inactive
+                                                                                                        foregroundColor: inactive
+                                                                                                        ),
                                                                                                     onPressed: () {
                                                                                                       Navigator.of(context).pop();
                                                                                                     },
@@ -329,7 +332,9 @@ class WOHInterfacePOSView extends GetView<WOHBookingsController> {
                                                                                                         size: 14
                                                                                                     ),
                                                                                                     style: ElevatedButton.styleFrom(
-                                                                                                        primary: specialColor),
+                                                                                                        // primary: specialColor
+                                                                                                        foregroundColor: specialColor
+                                                                                                        ),
                                                                                                     onPressed: () {
                                                                                                       String value = '';
                                                                                                       String type = "";
@@ -683,7 +688,7 @@ class WOHInterfacePOSView extends GetView<WOHBookingsController> {
             height: 120,
             child: Column(
                 children: [
-                  Text("Voulez-vous vraiment Terminer le rendez-vous ${controller.selectedAppointment['display_name']} ?", style: Get.textTheme.headline4),
+                  Text("Voulez-vous vraiment Terminer le rendez-vous ${controller.selectedAppointment['display_name']} ?", style: Get.textTheme.headlineMedium),
                   SizedBox(height: 30),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -694,7 +699,9 @@ class WOHInterfacePOSView extends GetView<WOHBookingsController> {
                               size: 17,
                             ),
                             style: ElevatedButton.styleFrom(
-                                primary: inactive),
+                                // primary: inactive
+                                foregroundColor: inactive
+                                ),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
@@ -706,7 +713,9 @@ class WOHInterfacePOSView extends GetView<WOHBookingsController> {
                               size: 17,
                             ),
                             style: ElevatedButton.styleFrom(
-                                primary: validateColor),
+                                // primary: validateColor
+                                foregroundColor: validateColor
+                                ),
                             onPressed: () {
                               showDialog(
                                   context: context,

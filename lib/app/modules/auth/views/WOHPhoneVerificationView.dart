@@ -134,7 +134,7 @@ class WOHPhoneVerificationView extends GetView<WOHAuthController> {
                         child: WOHTextFieldWidget(
                           labelText: "Verification Code".tr,
                           hintText: "- - - - - -".tr,
-                          style: Get.textTheme.headline4!.merge(TextStyle(letterSpacing: 8)),
+                          style: Get.textTheme.headlineMedium!.merge(TextStyle(letterSpacing: 8)),
                           textAlign: TextAlign.center,
                           readOnly: false,
                           keyboardType: TextInputType.number,

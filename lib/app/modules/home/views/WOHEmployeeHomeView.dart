@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pie_chart/pie_chart.dart';
 import '../../../../WOHColorConstants.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../fidelisation/controller/WOHValidationController.dart';
 import '../../fidelisation/views/WOHAttributePointsView.dart';
@@ -79,7 +79,7 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
           )),
           centerTitle: true,
           automaticallyImplyLeading: false,
-          actions: [ NotificationsButtonWidget() ],
+          actions: [ WOHNotificationsButtonWidget() ],
         ),
         backgroundColor: background,
         body: RefreshIndicator(
@@ -128,7 +128,7 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
                     text: TextSpan(
                         children: [
                           TextSpan(text: hour > 12 ? "Bonsoir M/Mme ${currentUser['name']} 👋🏼" : "Bonjour M/Mme ${currentUser['name']} 👋🏼",
-                              style: Get.textTheme.headline4.merge(TextStyle(color: appColor, fontSize: 30))
+                              style: Get.textTheme.headlineMedium.merge(TextStyle(color: appColor, fontSize: 30))
                           ),
                           /*TextSpan(text: "\nVous avez ✅ ${appointmentsPaid.length} rendez-vous approuvés et ⏰ ${appointmentsPending.length} rendez-vous planifié",
                                         style: TextStyle(color: appColor, fontSize: 15)),*/
@@ -160,7 +160,7 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
                   legendPosition: LegendPosition.right,
                   showLegends: true,
                   legendShape: BoxShape.circle,
-                  legendTextStyle: Get.textTheme.headline4.merge(TextStyle(fontSize: 30))
+                  legendTextStyle: Get.textTheme.headlineMedium.merge(TextStyle(fontSize: 30))
                 ),
                 chartValuesOptions: ChartValuesOptions(
                   showChartValueBackground: true,
@@ -194,7 +194,7 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
         Padding(
             padding: EdgeInsets.only(left: 15),
             child: Text("Rendez-vous en attente",
-                style: Get.textTheme.displayMedium.merge(TextStyle(color: appColor, fontSize: 30)
+                style: Get.textTheme.displayMedium!.merge(TextStyle(color: appColor, fontSize: 30)
                 )
             )
         ),
@@ -209,22 +209,22 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
               showCheckboxColumn: false,
               columns: [
                 DataColumn(
-                  label: Text("Reference", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Reference", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Service", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Service", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Client", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Client", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Date/heure", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Date/heure", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
                   label: Text(""),
                 ),
                 DataColumn(
-                  label: Text("Stage", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Stage", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
               ],
               rows: List.generate(
@@ -246,18 +246,18 @@ class WOHEmployeeHomeView extends GetView<WOHHomeController> {
                         },
                         cells: [
                           DataCell(Obx(() =>
-                              Text(controller.items[index]["name"], style: Get.textTheme.headline4)
+                              Text(controller.items[index]["name"], style: Get.textTheme.headlineMedium)
                           )),
                           DataCell(Obx(() =>
-                              Text(controller.items[index]['service_id'][1].split(">").first, style: Get.textTheme.headline4)
+                              Text(controller.items[index]['service_id'][1].split(">").first, style: Get.textTheme.headlineMedium)
                           )),
                           DataCell(Obx(() =>
-                              Text(controller.items[index]['partner_id'][1], style: Get.textTheme.headline4)
+                              Text(controller.items[index]['partner_id'][1], style: Get.textTheme.headlineMedium)
                           )),
-                          DataCell(Text("$start - $end", style: Get.textTheme.headline4)),
+                          DataCell(Text("$start - $end", style: Get.textTheme.headlineMedium)),
                           DataCell(SizedBox()),
                           DataCell(Obx(()=>
-                              Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.displayMedium.merge(
+                              Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.displayMedium!.merge(
                                   TextStyle(color: bookingState == 'reserved' ? newStatus : bookingState == 'done' ? doneStatus : bookingState == 'cancel' ? inactive : specialColor)))
                           )
                           )

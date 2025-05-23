@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../../WOHResponsive.dart';
 
 class WOHValidationController extends GetxController {
@@ -52,7 +52,7 @@ class WOHValidationController extends GetxController {
       client.value = user;
       if(WOHResponsive.isMobile(Get.context)){
         showDialog(
-            context: Get.context,
+            context: Get.context!,
             builder: (_){
               return AlertDialog(
                 title: Text(client['name'], style: TextStyle(fontSize: 16)),

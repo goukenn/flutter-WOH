@@ -8,7 +8,7 @@ import 'package:hive_flutter/adapters.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHHelper.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../../WOHResponsive.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';
@@ -183,7 +183,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                         },
                         text: !controller.loading.value? Text(
                           "Connexion",
-                          style: Get.textTheme.headline4!.merge(TextStyle(color: Get.theme.primaryColor)),
+                          style: Get.textTheme.headlineMedium!.merge(TextStyle(color: Get.theme.primaryColor)),
                         ): SizedBox(height: 30,
                             child: SpinKitFadingCircle(color: Colors.white, size: 30)),
                         loginPage: true,
@@ -247,7 +247,7 @@ class WOHLoginView extends GetView<WOHAuthController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Vous n'avez pas encore de compte?",style: Get.textTheme.headline4),
+                          Text("Vous n'avez pas encore de compte?",style: Get.textTheme.headlineMedium),
                           TextButton(
                             onPressed: () {
                               Get.toNamed(WOHRoutes.REGISTER);

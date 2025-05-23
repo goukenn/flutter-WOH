@@ -8,7 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../WOHConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../e_service/widgets/WOHEServiceTilWidget.dart';
 import '../../global_widgets/WOHPopUpWidget.dart';
@@ -330,7 +330,7 @@ class WOHAccountView extends GetView<AccountController> {
                                 onTap: () {
                                   showDialog(
                                     context: context,
-                                    builder: (_) => PopUpWidget(
+                                    builder: (_) => WOHPopUpWidget(
                                       title:
                                           "Voulez vous vraiment Suprimer votre compte? Vous allez perdre tous vos données et points dde fidélté... veillez confirmer votre choix",
                                       cancel: 'Annuler',
@@ -360,7 +360,7 @@ class WOHAccountView extends GetView<AccountController> {
                                 onTap: () {
                                   showDialog(
                                     context: context,
-                                    builder: (_) => PopUpWidget(
+                                    builder: (_) => WOHPopUpWidget(
                                       title:
                                           "Voulez vous vraiment vous déconnecter? veillez confirmer votre choix",
                                       cancel: 'Annuler',

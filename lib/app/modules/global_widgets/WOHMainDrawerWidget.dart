@@ -52,7 +52,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
                           ),
                           accountName: Text(
                             currentUser['name'],
-                            style: Theme.of(context).textTheme.displayMedium.merge(TextStyle(color: employeeInterfaceColor, fontSize: 15)),
+                            style: Theme.of(context).textTheme.displayMedium!.merge(TextStyle(color: employeeInterfaceColor, fontSize: 15)),
                           ),
                           accountEmail: Text(""
                           ),
@@ -172,7 +172,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
               onTap: (e) async {
                 showDialog(
                     context: context,
-                    builder: (_)=>  PopUpWidget(
+                    builder: (_)=>  WOHPopUpWidget(
                       title: "Vous serez redirigé vers la page de connexion! Voulez-vous vraiment vous déconnecter?",
                       cancel: 'Annuler',
                       confirm: 'Déconnexion',
@@ -193,11 +193,11 @@ class WOHMainDrawerWidget extends StatelessWidget {
               dense: true,
               title: Text(
                 "Version",
-                style: Get.textTheme.headline4,
+                style: Get.textTheme.headlineMedium,
               ),
               trailing: Text(
                 Get.find<WOHRootController>().packageInfo.version.toString(),
-                style: Get.textTheme.headline4,
+                style: Get.textTheme.headlineMedium,
               ),
             )
           ],

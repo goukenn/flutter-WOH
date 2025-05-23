@@ -6,8 +6,9 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../routes/WOHRoutes.dart';
+import '../../../services/WOHAuthService.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../../fidelisation/controller/WOHValidationController.dart';
 import '../../global_widgets/WOHNotificationsButtonWidget.dart';
@@ -38,14 +39,14 @@ class WOHHome2View extends GetView<WOHHomeController> {
         actions: [
           Row(
             children: [
-              NotificationsButtonWidget(),
+              WOHNotificationsButtonWidget(),
               Padding(
                   padding: EdgeInsets.only(right: 10),
                   child: IconButton(
                       onPressed: (){
                         showDialog(
                             context: context,
-                            builder: (_)=>  PopUpWidget(
+                            builder: (_)=>  WOHPopUpWidget(
                               title: "Voulez vous vraiment vous déconnecter? veillez confirmer votre choix",
                               cancel: 'Annuler',
                               confirm: 'Confirmer',
@@ -112,6 +113,13 @@ class WOHHome2View extends GetView<WOHHomeController> {
                                 top: 0, left: 12, right: 12),
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.vertical,
+                            gridDelegate:
+                            SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: controller.multiple.value ? 2 : 1,
+                              mainAxisSpacing: 12.0,
+                              crossAxisSpacing: 12.0,
+                              childAspectRatio: 1.5,
+                            ),
                             children: List<Widget>.generate(
                               controller.homeList.length,
                                   (int index) {
@@ -147,8 +155,7 @@ class WOHHome2View extends GetView<WOHHomeController> {
                                                       ColorFilter.mode(
                                                           Colors
                                                               .black
-                                                              .withOpacity(
-                                                              0.2),
+                                                              .withAlpha((255 * 0.2).toInt()),
                                                           BlendMode.darken),
                                                     ),
                                                     borderRadius:
@@ -195,13 +202,6 @@ class WOHHome2View extends GetView<WOHHomeController> {
                                     )
                                 );
                               },
-                            ),
-                            gridDelegate:
-                            SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: controller.multiple.value ? 2 : 1,
-                              mainAxisSpacing: 12.0,
-                              crossAxisSpacing: 12.0,
-                              childAspectRatio: 1.5,
                             ),
                           ));
                         }

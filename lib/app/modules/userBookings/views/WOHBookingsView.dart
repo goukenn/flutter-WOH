@@ -5,9 +5,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../../../../WOHPalette.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../../WOHColorConstants.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../auth/controllers/WOHAuthController.dart';
 import '../../global_widgets/WOHCardWidget.dart';
@@ -91,7 +92,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
                               width: Get.width/2,
                               child: TextFormField(
                                 //controller: controller.textEditingController,
-                                  style: Get.textTheme.headline4,
+                                  style: Get.textTheme.headlineMedium,
                                   onChanged: (value)=> controller.filterSearchAppointment(value),
                                   autofocus: false,
                                   cursorColor: Get.theme.focusColor,
@@ -144,7 +145,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
                       height: Get.height,
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                       decoration: WOHUi.getBoxDecoration(color: backgroundColor),
-                      child:  controller.isLoading.value ? BookingsListLoaderWidget() :
+                      child:  controller.isLoading.value ? WOHBookingsListLoaderWidget() :
                       controller.items.isNotEmpty ?
                       Get.find<WOHAuthController>().isEmployee.value ? MyAppointments(context) : MyBookings(context)
                           : SizedBox(
@@ -216,10 +217,10 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
 
                       },
                         cells: [
-                          DataCell(Text(controller.items[index]["name"], style: Get.textTheme.headline4)),
-                          DataCell(Text(controller.items[index]['service_id'][1].split(">").first, style: Get.textTheme.headline4)),
-                          DataCell(Text(controller.items[index]['partner_id'][1], style: Get.textTheme.headline4)),
-                          DataCell(Text("$start - $end", style: Get.textTheme.headline4)),
+                          DataCell(Text(controller.items[index]["name"], style: Get.textTheme.headlineMedium)),
+                          DataCell(Text(controller.items[index]['service_id'][1].split(">").first, style: Get.textTheme.headlineMedium)),
+                          DataCell(Text(controller.items[index]['partner_id'][1], style: Get.textTheme.headlineMedium)),
+                          DataCell(Text("$start - $end", style: Get.textTheme.headlineMedium)),
                           DataCell(SizedBox()),
                           DataCell(Text(controller.items[index]['state'].toUpperCase(), style: Get.textTheme.displayMedium!.merge(
                               TextStyle(color: bookingState == 'reserved' ? newStatus : bookingState == 'done' ? doneStatus : bookingState == 'cancel' ? specialColor : inactive)))
@@ -273,7 +274,7 @@ class WOHBookingsView extends GetView<WOHBookingsController> {
                         await controller.getServiceDto(controller.items[index]['service_id'][0], controller.items[index], true);
 
                       },
-                      child: CardWidget(
+                      child: WOHCardWidget(
                         shippingDateStart: controller.items[index]['datetime_start'],
                         shippingDateEnd: controller.items[index]['datetime_end'],
                         imageUrl: "${WOHConstants.serverPort}/image/hr.employee/$employeeId/image_1920?unique=true&file_response=true",

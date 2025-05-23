@@ -1,9 +1,9 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, use_super_parameters, prefer_const_constructors_in_immutables
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class WOHBookingsListLoaderWidget extends StatelessWidget {
-  WOHBookingsListLoaderWidget({Key key}) : super(key: key);
+  WOHBookingsListLoaderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class WOHBookingsListLoaderWidget extends StatelessWidget {
         itemBuilder: (_, index) {
           return Shimmer.fromColors(
             baseColor: Colors.grey.withAlpha((255 * 0.1).toInt()),
-            highlightColor: Colors.grey[200].withAlpha((255 * 0.1).toInt()),
+            highlightColor: Colors.grey[200]!.withAlpha((255 * 0.1).toInt()),
             child: Container(
               width: double.maxFinite,
               height: 180,

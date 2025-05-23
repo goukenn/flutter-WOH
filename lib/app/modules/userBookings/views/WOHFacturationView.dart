@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../WOHColorConstants.dart';
+import '../../../../WOHPalette.dart';
 import '../../../../common/WOHUi.dart';
 import '../../userBookings/controllers/WOHBookingsController.dart';
 import '../widgets/WOHBookingsListLoaderWidget.dart';
@@ -50,7 +51,7 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                                   width: Get.width/2,
                                   child: TextFormField(
                                     //controller: controller.textEditingController,
-                                      style: Get.textTheme.headline4,
+                                      style: Get.textTheme.headlineMedium,
                                       onChanged: (value)=> controller.filterSearchInvoice(value),
                                       autofocus: false,
                                       cursorColor: Get.theme.focusColor,
@@ -103,7 +104,7 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                           height: Get.height,
                           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                           decoration: WOHUi.getBoxDecoration(color: backgroundColor),
-                          child:  controller.isLoading.value ? BookingsListLoaderWidget() :
+                          child:  controller.isLoading.value ? WOHBookingsListLoaderWidget() :
                           controller.receipts.isNotEmpty ?
                           MyAppointments(context)
                               : SizedBox(
@@ -113,7 +114,7 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                                   children: [
                                     SizedBox(height: MediaQuery.of(context).size.height/4),
                                     FaIcon(FontAwesomeIcons.folderOpen, color: inactive.withAlpha((255 * 0.3).toInt()),size: 80),
-                                    Text('Aucun rendez-vous trouvé', style: Get.textTheme.headlineSmall.merge(TextStyle(color: inactive.withAlpha((255 * 0.3).toInt())))),
+                                    Text('Aucun rendez-vous trouvé', style: Get.textTheme.headlineSmall!.merge(TextStyle(color: inactive.withAlpha((255 * 0.3).toInt())))),
                                   ]
                               )
                           )
@@ -138,19 +139,19 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
               showCheckboxColumn: false,
               columns: [
                 DataColumn(
-                  label: Text("Reference", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Reference", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Client", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Client", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Facturation", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Facturation", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("Total", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("Total", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
                 DataColumn(
-                  label: Text("état du paiement", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                  label: Text("état du paiement", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                 ),
               ],
               rows: List.generate(
@@ -197,8 +198,8 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                                             RichText(
                                                 text: TextSpan(
                                                     children: [
-                                                      TextSpan(text: "Facture Client\n", style: Get.textTheme.headline4),
-                                                      TextSpan(text: controller.receipts[index]["display_name"], style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 30)))
+                                                      TextSpan(text: "Facture Client\n", style: Get.textTheme.headlineMedium),
+                                                      TextSpan(text: controller.receipts[index]["display_name"], style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 30)))
                                                     ]
                                                 )
                                             ),
@@ -208,8 +209,8 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                                                 RichText(
                                                     text: TextSpan(
                                                         children: [
-                                                          TextSpan(text: "Client    ", style: Get.textTheme.headline4),
-                                                          TextSpan(text: controller.receipts[index]["invoice_partner_display_name"], style: Get.textTheme.displayMedium.merge(TextStyle(color: employeeInterfaceColor)))
+                                                          TextSpan(text: "Client    ", style: Get.textTheme.headlineMedium),
+                                                          TextSpan(text: controller.receipts[index]["invoice_partner_display_name"], style: Get.textTheme.displayMedium!.merge(TextStyle(color: employeeInterfaceColor)))
                                                         ]
                                                     )
                                                 ),
@@ -217,7 +218,7 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                                                 RichText(
                                                     text: TextSpan(
                                                         children: [
-                                                          TextSpan(text: "Date de WOHFacturation   ", style: Get.textTheme.headline4),
+                                                          TextSpan(text: "Date de WOHFacturation   ", style: Get.textTheme.headlineMedium),
                                                           TextSpan(text: controller.receipts[index]["invoice_date"], style: Get.textTheme.displayMedium)
                                                         ]
                                                     )
@@ -228,7 +229,7 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                                             RichText(
                                                 text: TextSpan(
                                                     children: [
-                                                      TextSpan(text: "Référence du paiement   ", style: Get.textTheme.headline4),
+                                                      TextSpan(text: "Référence du paiement   ", style: Get.textTheme.headlineMedium),
                                                       TextSpan(text: controller.receipts[index]["payment_reference"], style: Get.textTheme.displayMedium)
                                                     ]
                                                 )
@@ -244,30 +245,30 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                                                   showCheckboxColumn: false,
                                                   columns: [
                                                     DataColumn(
-                                                      label: Text("Article", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("Article", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                     DataColumn(
-                                                      label: Text("Quantité", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("Quantité", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                     DataColumn(
-                                                      label: Text("Prix", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("Prix", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                     DataColumn(
-                                                      label: Text("DISCOUNT(FIXED)", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("DISCOUNT(FIXED)", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                     DataColumn(
-                                                      label: Text("SOUS-TOTAL", style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 20, color: Colors.white))),
+                                                      label: Text("SOUS-TOTAL", style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 20, color: Colors.white))),
                                                     ),
                                                   ],
                                                   rows: List.generate(controller.invoiceArticles.length,
                                                           (index) =>
                                                           DataRow(
                                                               cells: [
-                                                                DataCell(Text(controller.invoiceArticles[index]["product_id"][1].split(">").first, style: Get.textTheme.headline4)),
-                                                                DataCell(Text(controller.invoiceArticles[index]["quantity"].toString(), style: Get.textTheme.headline4)),
-                                                                DataCell(Text(controller.invoiceArticles[index]['price_unit'].toString(), style: Get.textTheme.headline4)),
-                                                                DataCell(Text(controller.invoiceArticles[index]['discount_fixed'].toString(), style: Get.textTheme.headline4)),
-                                                                DataCell(Text(controller.invoiceArticles[index]['price_subtotal'].toString(), style: Get.textTheme.headline4)),
+                                                                DataCell(Text(controller.invoiceArticles[index]["product_id"][1].split(">").first, style: Get.textTheme.headlineMedium)),
+                                                                DataCell(Text(controller.invoiceArticles[index]["quantity"].toString(), style: Get.textTheme.headlineMedium)),
+                                                                DataCell(Text(controller.invoiceArticles[index]['price_unit'].toString(), style: Get.textTheme.headlineMedium)),
+                                                                DataCell(Text(controller.invoiceArticles[index]['discount_fixed'].toString(), style: Get.textTheme.headlineMedium)),
+                                                                DataCell(Text(controller.invoiceArticles[index]['price_subtotal'].toString(), style: Get.textTheme.headlineMedium)),
                                                               ]
                                                           )
                                                   ),
@@ -283,17 +284,17 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                                               Column(
                                                   crossAxisAlignment: CrossAxisAlignment.end,
                                                   children: [
-                                                    Text("Montant HT:", style: Get.textTheme.headline4),
-                                                    Text("TVA 0%:", style: Get.textTheme.headline4),
-                                                    Text("Total:", style: Get.textTheme.headline4)
+                                                    Text("Montant HT:", style: Get.textTheme.headlineMedium),
+                                                    Text("TVA 0%:", style: Get.textTheme.headlineMedium),
+                                                    Text("Total:", style: Get.textTheme.headlineMedium)
                                                   ]
                                               ),
                                               Column(
                                                   crossAxisAlignment: CrossAxisAlignment.end,
                                                   children: [
-                                                    Text(controller.invoiceArticles[index]['discount_fixed'].toString(), style: Get.textTheme.headline4),
-                                                    Text("0.00", style: Get.textTheme.headline4),
-                                                    Text(controller.invoiceArticles[index]['discount_fixed'].toString(), style: Get.textTheme.headline4)
+                                                    Text(controller.invoiceArticles[index]['discount_fixed'].toString(), style: Get.textTheme.headlineMedium),
+                                                    Text("0.00", style: Get.textTheme.headlineMedium),
+                                                    Text(controller.invoiceArticles[index]['discount_fixed'].toString(), style: Get.textTheme.headlineMedium)
                                                   ]
                                               )
                                             ],
@@ -312,12 +313,12 @@ class WOHFacturationView extends GetView<WOHBookingsController> {
                           }
                         },
                         cells: [
-                          DataCell(Text(controller.receipts[index]["display_name"], style: Get.textTheme.headline4)),
-                          DataCell(Text(controller.receipts[index]['invoice_partner_display_name'], style: Get.textTheme.headline4)),
-                          DataCell(Text(controller.receipts[index]['invoice_date'], style: Get.textTheme.headline4)),
-                          DataCell(Text(controller.receipts[index]['amount_total_signed'].toString(), style: Get.textTheme.headline4)),
+                          DataCell(Text(controller.receipts[index]["display_name"], style: Get.textTheme.headlineMedium)),
+                          DataCell(Text(controller.receipts[index]['invoice_partner_display_name'], style: Get.textTheme.headlineMedium)),
+                          DataCell(Text(controller.receipts[index]['invoice_date'], style: Get.textTheme.headlineMedium)),
+                          DataCell(Text(controller.receipts[index]['amount_total_signed'].toString(), style: Get.textTheme.headlineMedium)),
                           DataCell(
-                              Text(controller.receipts[index]['payment_state'].toUpperCase(), style: Get.textTheme.displayMedium.merge(
+                              Text(controller.receipts[index]['payment_state'].toUpperCase(), style: Get.textTheme.displayMedium!.merge(
                                   TextStyle(color: bookingState == 'paid' ? validateColor : specialColor)))
                           )
                         ]

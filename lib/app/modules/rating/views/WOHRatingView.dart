@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../services/WOHAuthService.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';

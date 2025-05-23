@@ -57,7 +57,7 @@ class WOHUserWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
-                          child: Text(user, style: Get.textTheme.headline4!.merge(TextStyle(fontSize: 13, color: buttonColor)), overflow: TextOverflow.ellipsis,)
+                          child: Text(user, style: Get.textTheme.headlineMedium!.merge(TextStyle(fontSize: 13, color: buttonColor)), overflow: TextOverflow.ellipsis,)
                       )
                     ]
                 )

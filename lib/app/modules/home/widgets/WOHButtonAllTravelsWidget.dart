@@ -39,7 +39,7 @@ class WOHButtonAllTravelsWidget extends StatelessWidget implements PreferredSize
                 maxLines: 1,
                 softWrap: false,
                 overflow: TextOverflow.fade,
-                style: Get.textTheme.headline4!.merge(TextStyle(color: Colors.white)),
+                style: Get.textTheme.headlineMedium!.merge(TextStyle(color: Colors.white)),
               ),
             ],
           )

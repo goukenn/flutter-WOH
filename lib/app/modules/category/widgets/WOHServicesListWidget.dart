@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../providers/laravel_provider.dart';
+import '../../../providers/WOHLaravelApiClientProvider.dart';
 import '../controllers/WOHCategoryController.dart';
 import 'WOHServicesListItemWidget.dart';
 

@@ -174,7 +174,7 @@ class WOHPacketImageFieldWidget extends StatelessWidget {
               return GestureDetector(
                   onTap: () {
                     showDialog(
-                        context: Get.context,
+                        context: Get.context!,
                         builder: (_){
                           return AlertDialog(
                             content: Container(

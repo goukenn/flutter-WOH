@@ -1,17 +1,17 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, prefer_const_constructors_in_immutables
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/WOHUi.dart';
-import '../../../providers/laravel_provider.dart';
-import '../../../services/translation_service.dart';
+import '../../../providers/WOHLaravelApiClientProvider.dart';
+import '../../../services/WOHTranslationService.dart'; 
 import '../controllers/WOHLanguageController.dart';
 import '../widgets/WOHLanguagesLoaderWidget.dart';
 
-class WOHLanguageView extends GetView<LanguageController> {
+class WOHLanguageView extends GetView<WOHLanguageController> {
   final bool hideAppBar;
 
-  WOHLanguageView({this.hideAppBar = false});
+  WOHLanguageView({super.key, this.hideAppBar = false});
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +36,16 @@ class WOHLanguageView extends GetView<LanguageController> {
           primary: true,
           children: [
             Obx(() {
-              if (Get.find<WOHLaravelApiClientProvider>().isLoading(task: 'getTranslations')) {
-                return LanguagesLoaderWidget();
+              if (Get.find<WOHLaravelApiClientProvider>().isLoading(task: 'getTranslations', tasks: [])) {
+                return WOHLanguagesLoaderWidget();
               }
               return Container(
                 padding: EdgeInsets.symmetric(vertical: 5),
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 decoration: WOHUi.getBoxDecoration(),
                 child: Column(
-                  children: List.generate(TranslationService.languages.length, (index) {
-                    var _lang = TranslationService.languages.elementAt(index);
+                  children: List.generate(WOHTranslationService.languages.length, (index) {
+                    var _lang = WOHTranslationService.languages.elementAt(index);
                     return RadioListTile(
                       value: _lang,
                       groupValue: Get.locale.toString(),

@@ -12,8 +12,8 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
+import '../../../../common/WOHUi.dart'; 
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
 
@@ -175,7 +175,7 @@ class WOHAccountController extends GetxController {
   chooseBirthDate() async {
     DateTime pickedDate = await showRoundedDatePicker(
 
-        context: Get.context,
+        context: Get.context!,
 
         imageHeader: AssetImage("assets/img/istockphoto-1421193265-612x612.jpg"),
         height: MediaQuery.of(Get.context).size.height*0.5,
@@ -199,7 +199,7 @@ class WOHAccountController extends GetxController {
   updateProfile()async{
 
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         builder: (_){
           return SpinKitFadingCircle(color: Colors.white, size: 50);
         });
@@ -260,7 +260,7 @@ class WOHAccountController extends GetxController {
 
   selectCameraOrGallery()async{
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         builder: (_){
           return AlertDialog(
             shape: RoundedRectangleBorder(
@@ -329,7 +329,7 @@ class WOHAccountController extends GetxController {
 
     if (response.statusCode == 200) {
       showDialog(
-          context: Get.context,
+          context: Get.context!,
           builder: (_){
             return SpinKitFadingCircle(color: Colors.white, size: 50);
           });

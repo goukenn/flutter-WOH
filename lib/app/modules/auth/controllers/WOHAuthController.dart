@@ -8,8 +8,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import '../../../../WOHColorConstants.dart';
+import '../../../../WOHConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../../WOHResponsive.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHMyAuthService.dart';
@@ -507,7 +508,7 @@ class WOHAuthController extends GetxController {
               return AlertDialog(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                   title: Text("Connexion réussi", style: Get.textTheme.displayLarge),
-                  content: Text("Voulez-vous vous connecter en tant qu'employee ou client?\n", style: Get.textTheme.headline4),
+                  content: Text("Voulez-vous vous connecter en tant qu'employee ou client?\n", style: Get.textTheme.headlineMedium),
                   actions: [
                     Row(
                         mainAxisAlignment: MainAxisAlignment.end,

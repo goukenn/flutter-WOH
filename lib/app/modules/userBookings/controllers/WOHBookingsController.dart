@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, avoid_function_literals_in_foreach_calls, curly_braces_in_flow_control_structures, sized_box_for_whitespace
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -8,8 +8,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../WOHColorConstants.dart';
+import '../../../../WOHPalette.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import 'package:http/http.dart' as http;
 import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../routes/WOHRoutes.dart';
@@ -66,14 +67,14 @@ class WOHBookingsController extends GetxController {
 
   selectDate()async{
 
-    final DateTimeRange result = await showDateRangePicker(
-      context: Get.context,
+    final DateTimeRange result = (await showDateRangePicker(
+      context: Get.context!,
       locale: Locale("fr", "FR"),
       firstDate: DateTime(2000),
       lastDate: DateTime(2030, 12, 31).add(Duration(days: 30)),
       currentDate: DateTime.now(),
       saveText: 'Confirmer',
-    );
+    ))!;
     items.value = sample;
 
     List<String> dates = result.toString().split(" - ");
@@ -110,14 +111,14 @@ class WOHBookingsController extends GetxController {
 
   selectDateInterval()async{
 
-    final DateTimeRange result = await showDateRangePicker(
-      context: Get.context,
+    final DateTimeRange result = (await showDateRangePicker(
+      context: Get.context!,
       locale: Locale("fr", "FR"),
       firstDate: DateTime(2000),
       lastDate: DateTime(2030, 12, 31).add(Duration(days: 30)),
       currentDate: DateTime.now(),
       saveText: 'Confirmer',
-    );
+    ))!;
     receipts.value = invoice;
 
     List<String> dates = result.toString().split(" - ");
@@ -209,8 +210,8 @@ class WOHBookingsController extends GetxController {
     Get.lazyPut<WOHOdooApiClientProvider>(
           () => WOHOdooApiClientProvider(),
     );
-    Get.lazyPut<OWHInspectController>(
-          () => OWHInspectController(),
+    Get.lazyPut<WOHInspectController>(
+          () => WOHInspectController(),
     );
   }
 
@@ -445,12 +446,12 @@ class WOHBookingsController extends GetxController {
         }
       }
       resources.value = sample;
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       var resourceId = 0;
       var resourceName = '';
 
       showDialog(
-          context: Get.context,
+          context: Get.context!,
           builder: (_){
             return AlertDialog(
 
@@ -465,7 +466,7 @@ class WOHBookingsController extends GetxController {
                       IconButton(
                           onPressed: ()=> {
                             selectedResource.clear(),
-                            Navigator.pop(Get.context)
+                            Navigator.pop(Get.context!)
                           },
                           icon: Icon(Icons.close, size: 30, color: Colors.black)
                       )
@@ -529,7 +530,7 @@ class WOHBookingsController extends GetxController {
                                                     )
                                                 ),
                                                 SizedBox(height: 10),
-                                                Text(resources[item]["display_name"], style: Get.textTheme.headline4!.merge(TextStyle(color: selectedResource.contains(resources[item]) ?
+                                                Text(resources[item]["display_name"], style: Get.textTheme.headlineMedium!.merge(TextStyle(color: selectedResource.contains(resources[item]) ?
                                                 employeeInterfaceColor : Colors.black))
                                                 ),
                                                 SizedBox(height: 10)
@@ -583,9 +584,9 @@ class WOHBookingsController extends GetxController {
                               data.remove(a);
                             }
                           }
-                          Get.lazyPut(() => OWHInspectController());
-                          Get.find<OWHInspectController>().updateAppointment(selectedAppointment, data);
-                          Get.find<OWHInspectController>().editAppointment.value = true;
+                          Get.lazyPut(() => WOHInspectController());
+                          Get.find<WOHInspectController>().updateAppointment(selectedAppointment, data);
+                          Get.find<WOHInspectController>().editAppointment.value = true;
                           Get.toNamed(WOHRoutes.ADD_SHIPPING_FORM);
                         },
                         child: Container(
@@ -614,7 +615,7 @@ class WOHBookingsController extends GetxController {
   transferAppointment(int resourceId, String resourceName)async{
     var box = GetStorage();
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         builder: (_){
           return SpinKitFadingCircle(color: Colors.white, size: 50);
         });
@@ -631,18 +632,18 @@ class WOHBookingsController extends GetxController {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       print(await response.stream.bytesToString());
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Rendez-vous à été transféré a $resourceName avec succès".tr ));
       selectedAppointment.clear();
       var data = await getUserInfo(userDto['id']);
       box.write("userDto", data);
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
 
     }
     else {
       var data = await response.stream.bytesToString();
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       Get.showSnackbar(WOHUi.ErrorSnackBar(message: json.decode(data)['message']));
       print(response.reasonPhrase);
     }
@@ -702,7 +703,7 @@ class WOHBookingsController extends GetxController {
 
   launchURL(var link) async {
     if(link.toString() != "false"){
-      ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
         content: Text(link.toString()),
         backgroundColor: validateColor.withAlpha((255 * 0.4).toInt()),
         margin: EdgeInsets.only(
@@ -718,7 +719,7 @@ class WOHBookingsController extends GetxController {
         throw Exception('Could not launch $url');
       }
     }else{
-      ScaffoldMessenger.of(Get.context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
         content: Text("Error occurred...[$link]"),
         margin: EdgeInsets.only(
             bottom: Get.height - 160,
@@ -734,7 +735,7 @@ class WOHBookingsController extends GetxController {
   getReceipts()async{
 
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         barrierDismissible: false,
         builder: (_){
           return SpinKitFadingCircle(color: Colors.white, size: 50);
@@ -766,11 +767,11 @@ class WOHBookingsController extends GetxController {
       invoice = sample;
       totalInvoice.value = total;
       print(receipts);
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
     }
     else {
       print(response.reasonPhrase);
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
     }
 
   }
@@ -800,12 +801,12 @@ class WOHBookingsController extends GetxController {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       var data = await response.stream.bytesToString();
       var service = json.decode(data)[0];
       var duration = service["appointment_duration"]*60;
       showDialog(
-          context: Get.context,
+          context: Get.context!,
           builder: (_){
             return AlertDialog(
               title: Align(
@@ -813,7 +814,7 @@ class WOHBookingsController extends GetxController {
                   child: Row(
                     children: [
                       IconButton(
-                        onPressed: ()=> Navigator.pop(Get.context),
+                        onPressed: ()=> Navigator.pop(Get.context!),
                         icon: Icon(Icons.arrow_back, size: 30),
                       ),
                       SizedBox(width: 30),
@@ -864,20 +865,20 @@ class WOHBookingsController extends GetxController {
                       child: Text("Annuler le rendez-vous"),
                       onPressed: ()=>{
 
-                        Navigator.pop(Get.context),
+                        Navigator.pop(Get.context!),
                         if(client){
                           showDialog(
-                              context: Get.context,
+                              context: Get.context!,
                               builder: (_){
                                 return AlertDialog(
                                     title: Text("Annuler le rendez-vous"),
-                                    content: Text('Voulez vous vraiment annuler votre rendez-vous?', style: Get.textTheme.headline4),
+                                    content: Text('Voulez vous vraiment annuler votre rendez-vous?', style: Get.textTheme.headlineMedium),
                                     actions: [
                                       Row(
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
                                             TextButton(
-                                                onPressed: ()=> Navigator.pop(Get.context),
+                                                onPressed: ()=> Navigator.pop(Get.context!),
                                                 child: Text('Retour')
                                             ),
                                             SizedBox(width: 10),
@@ -903,7 +904,7 @@ class WOHBookingsController extends GetxController {
 
                         Get.lazyPut(() => WOHHomeController()),
 
-                        Navigator.pop(Get.context),
+                        Navigator.pop(Get.context!),
 
                         selectedAppointment.value = appointment,
                         getAppointmentOrder(appointment["order_id"][0]),
@@ -971,10 +972,10 @@ class WOHBookingsController extends GetxController {
   }
 
   cancelBooking(int id) async{
-    Navigator.pop(Get.context);
+    Navigator.pop(Get.context!);
 
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         builder: (_){
           return SpinKitFadingCircle(color: Colors.white, size: 50);
         });
@@ -991,7 +992,7 @@ class WOHBookingsController extends GetxController {
 
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       refreshBookings();
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Votre rendez-vous à été annulé avec succès".tr ));
     }
@@ -1074,12 +1075,12 @@ class WOHBookingsController extends GetxController {
 
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       refreshBookings();
       selectedAppointment.value = {};
       orderDto.value = {};
       Get.showSnackbar(WOHUi.SuccessSnackBar(message: "Ce rendez-vous à été traité avec succès".tr ));
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
     }
     else {
       var data = await response.stream.bytesToString();
@@ -1104,8 +1105,8 @@ class WOHBookingsController extends GetxController {
       var result = await response.stream.bytesToString();
       if(item == "remise"){
         getAppointmentOrder(selectedAppointment['order_id'][0]);
-        Navigator.pop(Get.context);
-        Navigator.pop(Get.context);
+        Navigator.pop(Get.context!);
+        Navigator.pop(Get.context!);
         Get.showSnackbar(WOHUi.InfoSnackBar(message: "Reduction effectué avec  succès!"));
       }else{
 
@@ -1121,8 +1122,8 @@ class WOHBookingsController extends GetxController {
           getAppointmentOrder(selectedAppointment['order_id'][0]);
           if(item == "remove"){
             extraServices.remove(item);
-            Navigator.pop(Get.context);
-            Navigator.pop(Get.context);
+            Navigator.pop(Get.context!);
+            Navigator.pop(Get.context!);
             Get.showSnackbar(WOHUi.InfoSnackBar(message: "Bonus retiré!!!"));
           }else{
             extraServices.remove(item);
@@ -1141,7 +1142,7 @@ class WOHBookingsController extends GetxController {
     if(box.read("bonus") != null){
       bonus.value = box.read("bonus");
       showDialog(
-          context: Get.context,
+          context: Get.context!,
           builder: (BuildContext context) =>
               AlertDialog(
                   contentPadding: EdgeInsets.all(10),
@@ -1155,7 +1156,7 @@ class WOHBookingsController extends GetxController {
                         InkWell(
                           onTap: (){
                             bonusList.clear();
-                            Navigator.pop(Get.context);
+                            Navigator.pop(Get.context!);
                           },
                           child: Container(
                               width: 150,
@@ -1210,7 +1211,7 @@ class WOHBookingsController extends GetxController {
   proceedGetBonus()async{
     var box = GetStorage();
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         builder: (_){
           return SpinKitFadingCircle(color: Colors.white, size: 50);
         });
@@ -1230,10 +1231,10 @@ class WOHBookingsController extends GetxController {
       var values = json.decode(data);
       bonus.value = values;
       box.write("bonus", values);
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
 
       showDialog(
-          context: Get.context,
+          context: Get.context!,
           builder: (BuildContext context) =>
               AlertDialog(
                   contentPadding: EdgeInsets.all(10),
@@ -1247,7 +1248,7 @@ class WOHBookingsController extends GetxController {
                         InkWell(
                           onTap: (){
                             bonusList.clear();
-                            Navigator.pop(Get.context);
+                            Navigator.pop(Get.context!);
                           },
                           child: Container(
                               width: 150,
@@ -1339,7 +1340,7 @@ class WOHBookingsController extends GetxController {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(bonus[index]['discount_management'].toString().toUpperCase(), style: Get.textTheme.displayMedium),
-                                          Text(bonus[index]['list_price'].abs().toInt().toString(), style: Get.textTheme.displayMedium.
+                                          Text(bonus[index]['list_price'].abs().toInt().toString(), style: Get.textTheme.displayMedium
                                          !.merge(TextStyle(fontSize: 100, color: bonusList.contains(bonus[index]) ? interfaceColor : Colors.black))
                                           )
                                         ]
@@ -1415,7 +1416,7 @@ class WOHBookingsController extends GetxController {
     if(box.read('remise') != null){
       remise.value = box.read('remise');
       showDialog(
-          context: Get.context,
+          context: Get.context!,
           builder: (BuildContext context) =>
               AlertDialog(
                   contentPadding: EdgeInsets.all(10),
@@ -1429,7 +1430,7 @@ class WOHBookingsController extends GetxController {
                         InkWell(
                           onTap: (){
                             remiseList.clear();
-                            Navigator.pop(Get.context);
+                            Navigator.pop(Get.context!);
                           },
                           child: Container(
                               width: 150,
@@ -1480,7 +1481,7 @@ class WOHBookingsController extends GetxController {
 
     }else{
       showDialog(
-          context: Get.context,
+          context: Get.context!,
           builder: (_){
             return SpinKitFadingCircle(color: Colors.white, size: 50);
           });
@@ -1497,14 +1498,14 @@ class WOHBookingsController extends GetxController {
 
       if (response.statusCode == 200) {
         var result = await response.stream.bytesToString();
-        Navigator.pop(Get.context);
+        Navigator.pop(Get.context!);
         var data = json.decode(result);
         box.write("remise", data);
 
         remise.value = data;
 
         showDialog(
-            context: Get.context,
+            context: Get.context!,
             builder: (BuildContext context) =>
                 AlertDialog(
                     contentPadding: EdgeInsets.all(10),
@@ -1518,7 +1519,7 @@ class WOHBookingsController extends GetxController {
                           InkWell(
                             onTap: (){
                               remiseList.clear();
-                              Navigator.pop(Get.context);
+                              Navigator.pop(Get.context!);
                             },
                             child: Container(
                                 width: 150,
@@ -1610,8 +1611,7 @@ class WOHBookingsController extends GetxController {
                                         border: remiseList.contains(remise[index]) ? Border.all(width: 2, color: interfaceColor) : null
                                     ),
                                     child: Center(
-                                        child: Text(remise[index]['list_price'].toInt().toString()+ " €", style: Get.textTheme.headline4.
-                                       !.merge(TextStyle(fontSize: 30, color: remiseList.contains(remise[index]) ? interfaceColor : Colors.black))
+                                        child: Text(remise[index]['list_price'].toInt().toString()+ " €", style: Get.textTheme.headlineMedium!.merge(TextStyle(fontSize: 30, color: remiseList.contains(remise[index]) ? interfaceColor : Colors.black))
                                         )
                                     )
                                 )
@@ -1643,8 +1643,8 @@ class WOHBookingsController extends GetxController {
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
       getAppointmentOrder(selectedAppointment['order_id'][0]);
-      Navigator.pop(Get.context);
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
+      Navigator.pop(Get.context!);
       print(data);
     }
     else {
@@ -1657,7 +1657,7 @@ class WOHBookingsController extends GetxController {
   removeLine(int id, String type)async{
 
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         barrierDismissible: false,
         builder: (_){
           return SpinKitFadingCircle(color: Colors.white, size: 50);
@@ -1710,7 +1710,7 @@ class WOHBookingsController extends GetxController {
   Future getInvoiceLine(List ids)async {
 
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         barrierDismissible: false,
         builder: (_){
           return SpinKitFadingCircle(color: Colors.white, size: 50);
@@ -1729,7 +1729,7 @@ class WOHBookingsController extends GetxController {
     if (response.statusCode == 200) {
       var data = await response.stream.bytesToString();
       invoiceArticles.value = json.decode(data);
-      Navigator.pop(Get.context);
+      Navigator.pop(Get.context!);
       return json.decode(data);
     }
     else {

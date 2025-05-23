@@ -6,7 +6,7 @@ import '../widgets/WOHContactView.dart';
 class WOHHomeView {
   WOHHomeView({
     this.imagePath = '',
-    this.title
+    required this.title
   });
 
   String imagePath;

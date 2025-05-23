@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../models/WOHBookingModel.dart';
 import '../../../models/WOHReviewModel.dart';
 import '../../../repositories/WOHBookingRepository.dart';

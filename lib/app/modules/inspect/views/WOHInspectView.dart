@@ -7,7 +7,7 @@ import '../../../providers/WOHOdooApiClientProvider.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../controllers/WOHInspectController.dart';
 
-class WOHInspectView extends GetView<OWHInspectController> {
+class WOHInspectView extends GetView<WOHInspectController> {
 
   @override
   Widget build(BuildContext context) {

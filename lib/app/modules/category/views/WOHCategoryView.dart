@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../WOHConstants.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHTravelCardWidget.dart';
 import '../../global_widgets/WOHLoadingCardsWidget.dart';
@@ -85,7 +85,7 @@ class WOHCategoryView extends GetView<CategoryController> {
                 padding: EdgeInsets.all(5),
                 alignment: Alignment.center,
                 width: 120,
-                child: Text(controller.travelType.value.toUpperCase(), style: Get.textTheme.displayMedium.merge(TextStyle(color: Colors.white))),
+                child: Text(controller.travelType.value.toUpperCase(), style: Get.textTheme.displayMedium!.merge(TextStyle(color: Colors.white))),
                 decoration: BoxDecoration(
                     color: controller.travelType.value != "air" ? Colors.white.withAlpha((255 * 0.4).toInt()) : interfaceColor.withAlpha((255 * 0.4).toInt()),
                     border: Border.all(

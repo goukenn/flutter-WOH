@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../models/WOHMyUserModel.dart';
 import '../../../repositories/WOHUserRepository.dart';
 import '../../../routes/WOHRoutes.dart';
@@ -132,7 +132,7 @@ class WOHProfileController extends GetxController {
   chooseBirthDate() async {
     DateTime pickedDate = await showRoundedDatePicker(
 
-        context: Get.context,
+        context: Get.context!,
 
         imageHeader: AssetImage("assets/img/istockphoto-1421193265-612x612.jpg"),
         initialDate: DateTime.now().subtract(Duration(days: 1)),

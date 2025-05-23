@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../WOHConstants.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../global_widgets/WOHLoadingCardsWidget.dart';
 import '../controller/WOHImportIdentityFilesController.dart';

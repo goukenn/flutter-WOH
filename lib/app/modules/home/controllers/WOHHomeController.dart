@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../WOHColorConstants.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../models/WOHAddressModel.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHSettingsService.dart';
@@ -155,7 +155,7 @@ class WOHHomeController extends GetxController {
   getEmployeeData(var ids)async{
 
     showDialog(
-        context: Get.context,
+        context: Get.context!,
         barrierDismissible: false,
         builder: (_){
           return SpinKitFadingCircle(color: Colors.white, size: 50);
@@ -344,7 +344,7 @@ class WOHHomeController extends GetxController {
       var service = json.decode(data)[0];
       var duration = service["appointment_duration"]*60;
       showDialog(
-          context: Get.context,
+          context: Get.context!,
           builder: (_){
             return AlertDialog(
               title: Align(

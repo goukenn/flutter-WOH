@@ -94,7 +94,7 @@ class WOHTravelCardWidget extends StatelessWidget {
                                 child: RichText(
                                     text: TextSpan(
                                         children: [
-                                          TextSpan(text: departureCity, style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 12, color: interfaceColor))),
+                                          TextSpan(text: departureCity, style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 12, color: interfaceColor))),
                                           TextSpan(text: "\n$departureCountry".toUpperCase(), style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: appColor)))
                                         ]
                                     ))
@@ -108,7 +108,7 @@ class WOHTravelCardWidget extends StatelessWidget {
                                 child: RichText(
                                     text: TextSpan(
                                         children: [
-                                          TextSpan(text: arrivalCity, style: Get.textTheme.displayMedium.merge(TextStyle(fontSize: 12, color: interfaceColor))),
+                                          TextSpan(text: arrivalCity, style: Get.textTheme.displayMedium!.merge(TextStyle(fontSize: 12, color: interfaceColor))),
                                           TextSpan(text: "\n$arrivalCountry".toUpperCase(), style: Get.textTheme.displayLarge.merge(TextStyle(fontSize: 12, color: appColor)))
                                         ]
                                     ))

@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../WOHColorConstants.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../services/WOHMyAuthService.dart';
 import '../../global_widgets/WOHImageFieldWidget.dart';
 import '../../global_widgets/WOHPhoneFieldWidget.dart';

@@ -6,8 +6,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
 import '../../../../WOHColorConstants.dart';
+import '../../../../WOHPalette.dart';
 import '../../../../common/animation_controllers/WOHDelayedAnimation.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../controllers/WOHBookingsController.dart';
 
 class WOHBookingsListItemWidget extends GetView<WOHBookingsController> {

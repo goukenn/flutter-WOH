@@ -113,7 +113,7 @@ void initServices() async {
     // await Get.putAsync(() => WOHLaravelApiClientProvider().init());
     // await Get.putAsync(() => WOHFirebaseProviderProvider().init());
     // await Get.putAsync(() => WOHSettingsService().init());
-    //await Get.putAsync(() => TranslationService().init());
+    //await Get.putAsync(() => WOHTranslationService().init());
     Get.log('All services started...');
 
     final box = GetStorage();
@@ -164,10 +164,10 @@ void mainMM() async {
         },
         getPages: WOHThemeAppPages.routes,
         // localizationsDelegates: GlobalMaterialLocalizations.delegates,
-        //supportedLocales: Get.find<TranslationService>().supportedLocales(),
-        //translationsKeys: Get.find<TranslationService>().translations,
-        //locale: Get.find<TranslationService>().getLocale(),
-        //fallbackLocale: Get.find<TranslationService>().getLocale(),
+        //supportedLocales: Get.find<WOHTranslationService>().supportedLocales(),
+        //translationsKeys: Get.find<WOHTranslationService>().translations,
+        //locale: Get.find<WOHTranslationService>().getLocale(),
+        //fallbackLocale: Get.find<WOHTranslationService>().getLocale(),
         debugShowCheckedModeBanner: false,
         defaultTransition: Transition.cupertino,
         themeMode: Get.find<WOHSettingsService>().getThemeMode(),

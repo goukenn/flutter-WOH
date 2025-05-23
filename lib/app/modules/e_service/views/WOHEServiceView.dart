@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../../../common/WOHUi.dart';
 import '../../../models/WOHEServiceModel.dart';
 import '../../../models/WOHMediaModel.dart';
-import '../../../providers/laravel_provider.dart';
+import '../../../providers/WOHLaravelApiClientProvider.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHAuthService.dart';
 import '../../global_widgets/WOHBlockButtonWidget.dart';

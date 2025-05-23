@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/WOHUi.dart';
-import '../../../providers/laravel_provider.dart';
+import '../../../providers/WOHLaravelApiClientProvider.dart'; 
 import '../../root/controllers/WOHRootController.dart';
 import '../controllers/WOHProfileController.dart';
 

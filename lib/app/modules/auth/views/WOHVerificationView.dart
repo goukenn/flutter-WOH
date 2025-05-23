@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHHelper.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../models/WOHMyUserModel.dart';
 import '../../../models/WOHSettingModel.dart';
 import '../../../repositories/WOHUserRepository.dart';
@@ -132,7 +132,7 @@ class WOHVerificationView extends GetView<WOHAuthController> {
                         child: WOHTextFieldWidget(
                           labelText: "Verification Code".tr,
                           hintText: "- - - - - -".tr,
-                          style: Get.textTheme.headline4!.merge(TextStyle(letterSpacing: 8)),
+                          style: Get.textTheme.headlineMedium!.merge(TextStyle(letterSpacing: 8)),
                           textAlign: TextAlign.center,
                           readOnly: false,
                           keyboardType: TextInputType.number,

@@ -9,7 +9,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../WOHColorConstants.dart';
 import '../../../../common/WOHHelper.dart';
 import '../../../../common/WOHUi.dart';
-import '../../../../main.dart';
+import '../../../../WOHConstants.dart';
 import '../../../models/WOHSettingModel.dart';
 import '../../../routes/WOHRoutes.dart';
 import '../../../services/WOHSettingsService.dart';
@@ -260,7 +260,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                     } : null,
                     text: !controller.loading.value?Text(
                       "SOUMETRE".tr,
-                      style: Get.textTheme.headline4!.merge(TextStyle(color: Get.theme.primaryColor)),
+                      style: Get.textTheme.headlineMedium!.merge(TextStyle(color: Get.theme.primaryColor)),
                     ): SizedBox(height: 20,
                         child: SpinKitFadingCircle(color: Colors.white, size: 30)), loginPage: false,
                   ).paddingOnly(top: 15, bottom: 5, right: 20, left: 20),
@@ -269,7 +269,7 @@ class WOHRegisterView extends GetView<WOHAuthController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                  Text("Vous avez déjà un compte?".tr, style: Get.textTheme.headline4),
+                  Text("Vous avez déjà un compte?".tr, style: Get.textTheme.headlineMedium),
                     TextButton(
                       onPressed: () {
                         Get.toNamed(WOHRoutes.LOGIN);

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
-import '../../../providers/laravel_provider.dart';
+import '../../../providers/WOHLaravelApiClientProvider.dart';
 import '../../global_widgets/WOHCircularLoadingWidget.dart';
 import '../controllers/WOHCategoriesController.dart';
 import '../widgets/WOHCategoryGridItemWidget.dart';
