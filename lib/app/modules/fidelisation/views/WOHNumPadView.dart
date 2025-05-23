@@ -5,7 +5,7 @@ import '../../../../WOHColorConstants.dart';
 
 // KeyPad widget
 // This widget is reusable and its buttons are customizable (color, size)
-class NumPad extends StatelessWidget {
+class WOHNumPadView extends StatelessWidget {
   final double buttonSize;
   final Color buttonColor;
   final Color iconColor;
@@ -13,7 +13,7 @@ class NumPad extends StatelessWidget {
   final Function delete;
   final Function onSubmit;
 
-  const NumPad({
+  const WOHNumPadView({
     Key key,
     this.buttonSize = 50,
     this.buttonColor = Colors.white,
@@ -32,22 +32,22 @@ class NumPad extends StatelessWidget {
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // implement the number keys (from 0 to 9) with the NumberButton widget
-            // the NumberButton widget is defined in the bottom of this file
+            // implement the number keys (from 0 to 9) with the OVHNumberButtonView widget
+            // the OVHNumberButtonView widget is defined in the bottom of this file
             children: [
-              NumberButton(
+              OVHNumberButtonView(
                 number: 1,
                 size: buttonSize,
                 color: buttonColor,
                 controller: controller,
               ),
-              NumberButton(
+              OVHNumberButtonView(
                 number: 2,
                 size: buttonSize,
                 color: buttonColor,
                 controller: controller,
               ),
-              NumberButton(
+              OVHNumberButtonView(
                 number: 3,
                 size: buttonSize,
                 color: buttonColor,
@@ -59,19 +59,19 @@ class NumPad extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              NumberButton(
+              OVHNumberButtonView(
                 number: 4,
                 size: buttonSize,
                 color: buttonColor,
                 controller: controller,
               ),
-              NumberButton(
+              OVHNumberButtonView(
                 number: 5,
                 size: buttonSize,
                 color: buttonColor,
                 controller: controller,
               ),
-              NumberButton(
+              OVHNumberButtonView(
                 number: 6,
                 size: buttonSize,
                 color: buttonColor,
@@ -83,19 +83,19 @@ class NumPad extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              NumberButton(
+              OVHNumberButtonView(
                 number: 7,
                 size: buttonSize,
                 color: buttonColor,
                 controller: controller,
               ),
-              NumberButton(
+              OVHNumberButtonView(
                 number: 8,
                 size: buttonSize,
                 color: buttonColor,
                 controller: controller,
               ),
-              NumberButton(
+              OVHNumberButtonView(
                 number: 9,
                 size: buttonSize,
                 color: buttonColor,
@@ -116,14 +116,14 @@ class NumPad extends StatelessWidget {
                 ),
                 iconSize: 30,
               ),
-              NumberButton(
+              OVHNumberButtonView(
                 number: 0,
                 size: buttonSize,
                 color: buttonColor,
                 controller: controller,
               ),
               // this button is used to submit the entered value
-              NumberButton(
+              OVHNumberButtonView(
                 dot: ".",
                 size: buttonSize,
                 color: buttonColor,
@@ -132,54 +132,6 @@ class NumPad extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class NumberButton extends StatelessWidget {
-  final int number;
-  final double size;
-  final Color color;
-  final String dot;
-  final TextEditingController controller;
-
-  const NumberButton({
-    Key key,
-    this.number,
-    required this.size,
-    required this.color,
-    required this.controller,
-    this.dot
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          // primary: color,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(size / 2),
-          ),
-        ),
-        onPressed: () {
-          if(number != null) {
-            controller.text += number.toString();
-          }else {
-            controller.text += dot.toString();
-          }
-        },
-        child: Center(
-          child: Text(
-            number != null ?
-            number.toString() : dot.toString(),
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, color: appColor, fontSize: 30),
-          ),
-        ),
       ),
     );
   }

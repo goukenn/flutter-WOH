@@ -17,7 +17,7 @@ class WOHBookingModel extends WOHModel {
   bool? cancel;
   double? duration;
   int? quantity;
-  BookingStatus? status;
+  WOHBookingStatusModel? status;
   WOHUserModel? user;
   EService? eService;
   EProvider? eProvider;

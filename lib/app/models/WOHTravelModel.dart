@@ -5,102 +5,49 @@
 
 import 'dart:convert';
 
-WOHTravelModel travelsFromJson(String? str) => WOHTravelModel.fromJson(json.decode(str));
+import 'package:com_igkdev_new_app/WOHResponse.dart';
+
+WOHTravelModel travelsFromJson(String str) => WOHTravelModel.fromJson(json.decode(str));
 
 String? travelsToJson(WOHTravelModel data) => json.encode(data.toJson());
 
 class WOHTravelModel {
-  Response response;
+  WOHResponse? response;
 
   WOHTravelModel({
     this.response,
   });
 
   factory WOHTravelModel.fromJson(Map<String, dynamic> json) => WOHTravelModel(
-    response: Response.fromJson(json["response"]),
+    response: WOHResponse.fromJson(json["response"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "response": response.toJson(),
+    "response": response!.toJson(),
   };
 }
 
-class Response {
-  int? id;
-  String? travelType;
-  String? departureTown;
-  String? arrivalTown;
-  bool? validation;
-  DateTime? departureDate;
-  DateTime? arrivalDate;
-  int? kiloQty;
-  int? pricePerKilo;
-  String? typeOfLuggageAccepted;
-  WOHUserModel? user;
 
-  Response({
-    this.id,
-    this.travelType,
-    this.departureTown,
-    this.arrivalTown,
-    this.validation,
-    this.departureDate,
-    this.arrivalDate,
-    this.kiloQty,
-    this.pricePerKilo,
-    this.typeOfLuggageAccepted,
-    this.user,
-  });
+// class WOHUserModel{
+//   int? userId;
+//   String? userName;
+//   String? userEmail;
 
-  factory Response.fromJson(Map<String, dynamic> json) => Response(
-    id: json["id"],
-    travelType: json["travel_type"],
-    departureTown: json["departure_town"],
-    arrivalTown: json["arrival_town"],
-    validation: json["validation"],
-    departureDate: DateTime.parse(json["departure_date"]),
-    arrivalDate: DateTime.parse(json["arrival_date"]),
-    kiloQty: json["kilo_qty"],
-    pricePerKilo: json["price_per_kilo"],
-    typeOfLuggageAccepted: json["type_of_luggage_accepted"],
-    user: WOHUserModel.fromJson(json["user"]),
-  );
+//   WOHUserModel({
+//     this.userId,
+//     this.userName,
+//     this.userEmail,
+//   });
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "travel_type": travelType,
-    "departure_town": departureTown,
-    "arrival_town": arrivalTown,
-    "validation": validation,
-    "departure_date": "${departureDate.year.toString().padLeft(4, '0')}-${departureDate.month.toString().padLeft(2, '0')}-${departureDate.day.toString().padLeft(2, '0')}",
-    "arrival_date": "${arrivalDate.year.toString().padLeft(4, '0')}-${arrivalDate.month.toString().padLeft(2, '0')}-${arrivalDate.day.toString().padLeft(2, '0')}",
-    "kilo_qty": kiloQty,
-    "price_per_kilo": pricePerKilo,
-    "type_of_luggage_accepted": typeOfLuggageAccepted,
-    "user": user.toJson(),
-  };
-}
+//   factory WOHUserModel.fromJson(Map<String, dynamic> json) => WOHUserModel(
+//     userId: json["user_id"],
+//     userName: json["user_name"],
+//     userEmail: json["user_email"],
+//   );
 
-class WOHUserModel? {
-  int? userId;
-  String? userName;
-  String? userEmail;
-
-  WOHUserModel({
-    this.userId,
-    this.userName,
-    this.userEmail,
-  });
-
-  factory WOHUserModel.fromJson(Map<String, dynamic> json) => WOHUserModel(
-    userId: json["user_id"],
-    userName: json["user_name"],
-    userEmail: json["user_email"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "user_id": userId,
-    "user_name": userName,
-    "user_email": userEmail,
-  };
-}
+//   Map<String, dynamic> toJson() => {
+//     "user_id": userId,
+//     "user_name": userName,
+//     "user_email": userEmail,
+//   };
+// }

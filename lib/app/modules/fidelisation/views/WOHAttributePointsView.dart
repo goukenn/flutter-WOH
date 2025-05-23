@@ -7,7 +7,7 @@ import '../../../../../common/ui.dart';
 import '../../../../../color_constants.dart';
 import '../../home/controllers/WOHHomeController.dart';
 import '../controller/WOHValidationController.dart';
-import 'WOHNumPad.dart';
+import 'WOHNumPadView.dart';
 
 class WOHAttributePointsView extends GetView<WOHValidationController> {
 
@@ -75,7 +75,7 @@ class WOHAttributePointsView extends GetView<WOHValidationController> {
                     padding: EdgeInsets.symmetric(vertical: 30),
                     width: Get.width/1.5,
                     height: Get.height/1.8,
-                    child: NumPad(
+                    child: WOHNumPadView(
                       buttonSize: 120,
                       buttonColor: Colors.white,
                       iconColor: Colors.blueGrey,
