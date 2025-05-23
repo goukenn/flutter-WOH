@@ -10,11 +10,13 @@ import '../../../WOHResponsive.dart';
 import '../../routes/WOHRoutes.dart';
 import '../../services/WOHAuthService.dart';
 import '../auth/controllers/WOHAuthController.dart'; 
+import '../custom_pages/views/WOHCustomPageDrawerLinkWidget.dart';
 import '../fidelisation/controller/WOHValidationController.dart';
 import '../home/controllers/WOHHomeController.dart';
 import '../root/controllers/WOHRootController.dart' show WOHRootController;
 import '../userBookings/controllers/WOHBookingsController.dart';
 import 'WOHDrawerLinkWidget.dart';
+import 'WOHPopUpWidget.dart';
 
 class WOHMainDrawerWidget extends StatelessWidget {
   @override
@@ -161,7 +163,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
                 color: Get.theme.focusColor.withAlpha((255 * 0.3).toInt()),
               ),
             ),
-            CustomPageDrawerLinkWidget(),
+            WOHCustomPageDrawerLinkWidget(),
             WOHDrawerLinkWidget(
               special: true,
               drawer: false,
@@ -170,7 +172,7 @@ class WOHMainDrawerWidget extends StatelessWidget {
               onTap: (e) async {
                 showDialog(
                     context: context,
-                    builder: (_)=>  WOHPopUpWidget(
+                    builder: (_) => WOHPopUpWidget(
                       title: "Vous serez redirigé vers la page de connexion! Voulez-vous vraiment vous déconnecter?",
                       cancel: 'Annuler',
                       confirm: 'Déconnexion',

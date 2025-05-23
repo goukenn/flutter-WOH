@@ -15,7 +15,7 @@ class WOHNotificationsController extends GetxController {
   final notifications = [].obs;
   final travelId = 0.obs;
   final chatInfo = {}.obs;
-  WOHNotificationRepository _notificationRepository;
+  late WOHNotificationRepository _notificationRepository;
 
   WOHNotificationsController() {
     _notificationRepository = new WOHNotificationRepository();
@@ -27,7 +27,7 @@ class WOHNotificationsController extends GetxController {
     super.onInit();
   }
 
-  Future refreshNotifications({bool showMessage}) async {
+  Future refreshNotifications({bool showMessage=true}) async {
     //await getBackgroundMessage();
     notifications.clear();
     var backendList = await getNotifications();

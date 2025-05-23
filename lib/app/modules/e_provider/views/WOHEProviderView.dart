@@ -100,7 +100,7 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                             children: [
                               Text(_eProvider.rate.toString(), style: Get.textTheme.displayLarge),
                               Wrap(
-                                children: WOHUi.getStarsList(_eProvider.rate, size: 32),
+                                children: WOHUi.getStarsList(_eProvider.rate!, size: 32),
                               ),
                               Text(
                                 "Reviews (%s)".trArgs([_eProvider.totalReviews.toString()]),
@@ -511,7 +511,7 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
       margin: EdgeInsets.symmetric(vertical: 100, horizontal: 20),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: _eProvider.images.map((WOHMediaModel media) {
+        children: _eProvider.images!.map((WOHMediaModel media) {
           return Container(
             width: 20.0,
             height: 5.0,
@@ -520,15 +520,15 @@ class WOHEProviderView extends GetView<WOHEProviderController> {
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
                 ),
-                color: controller.currentSlide.value == _eProvider.images.indexOf(media) ? Get.theme.hintColor : Get.theme.primaryColor.withAlpha((255 * 0.4).toInt())),
+                color: controller.currentSlide.value == _eProvider.images!.indexOf(media) ? Get.theme.hintColor : Get.theme.primaryColor.withAlpha((255 * 0.4).toInt())),
           );
         }).toList(),
       ),
     );
   }
 
-  EProviderTitleBarWidget buildEProviderTitleBarWidget(WOHEProviderModel _eProvider) {
-    return EProviderTitleBarWidget(
+  WOHEProviderTitleBarWidget buildEProviderTitleBarWidget(WOHEProviderModel _eProvider) {
+    return WOHEProviderTitleBarWidget(
       title: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,

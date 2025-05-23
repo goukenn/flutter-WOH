@@ -9,21 +9,17 @@ import 'package:image_picker/image_picker.dart';
 import '../../repositories/WOHUploadRepository.dart';
 
 class WOHPacketImageFieldController extends GetxController {
-  Rx<File> image = Rx<File>(null);
-  String uuid;
+  Rx<File?> image = Rx<File>(null);
+  late String uuid;
   final uploading = false.obs;
   var url = ''.obs;
-  WOHUploadRepository _uploadRepository;
+  late WOHUploadRepository _uploadRepository;
 
   WOHPacketImageFieldController() {
     _uploadRepository = new WOHUploadRepository();
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
+ 
   void reset() {
     image.value = null;
     uploading.value = false;

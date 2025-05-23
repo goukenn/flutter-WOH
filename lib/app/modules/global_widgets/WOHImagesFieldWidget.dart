@@ -2,12 +2,12 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:com_igkdev_new_app/WOHConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../common/WOHUi.dart';
-import '../../../common/ui.dart';
+import '../../../common/WOHUi.dart'; 
 import '../../../common/WOHUuid.dart';
 import '../../models/WOHMediaModel.dart';
 import '../../repositories/WOHUploadRepository.dart';
@@ -16,16 +16,13 @@ class WOHImagesFieldController extends GetxController {
   final images = <File>[].obs;
   List<String> uuids = <String>[];
   final uploading = false.obs;
-  WOHUploadRepository _uploadRepository;
+  late WOHUploadRepository _uploadRepository;
 
   WOHImagesFieldController() {
-    _uploadRepository = new WOHUploadRepository();
+    _uploadRepository = new WOHUploadRepository( WOHConstants.getClientProvider('odoo'));
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
+ 
 
   void reset() {
     images.clear();
@@ -67,8 +64,8 @@ class WOHImagesFieldWidget extends StatelessWidget {
     required this.label,
     required this.tag,
     required this.field,
-    this.placeholder,
-    this.buttonText,
+    this.placeholder = '',
+    this.buttonText = '',
     required this.uploadCompleted,
     this.initialImages,
     required this.reset,
@@ -79,7 +76,7 @@ class WOHImagesFieldWidget extends StatelessWidget {
   final String buttonText;
   final String tag;
   final String field;
-  final List<WOHMediaModel> initialImages;
+  final List<WOHMediaModel>? initialImages;
   final ValueChanged<String> uploadCompleted;
   final ValueChanged<List<String>> reset;
 
@@ -119,7 +116,7 @@ class WOHImagesFieldWidget extends StatelessWidget {
                 },
                 shape: StadiumBorder(),
                 color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
-                child: Text(buttonText ?? "Reset".tr, style: Get.textTheme.bodyLarge),
+                child: Text(buttonText, style: Get.textTheme.bodyLarge),
                 elevation: 0,
                 hoverElevation: 0,
                 focusElevation: 0,
@@ -128,7 +125,7 @@ class WOHImagesFieldWidget extends StatelessWidget {
             ],
           ),
           Obx(() {
-            return buildImages(initialImages, controller.images);
+            return buildImages(initialImages!, controller.images);
           })
         ],
       ),
@@ -156,7 +153,7 @@ class WOHImagesFieldWidget extends StatelessWidget {
     thumbs.addAll(
       (initialImages
               .where((image) {
-                return !WOHUuid.isUuid(image.id);
+                return !WOHUuid.isUuid(image.id!);
               })
               .map((image) => ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -174,8 +171,7 @@ class WOHImagesFieldWidget extends StatelessWidget {
                       errorWidget: (context, url, error) => Icon(Icons.error_outline),
                     ),
                   ))
-              .toList() ??
-          []),
+              .toList()),
     );
     thumbs.addAll(images
             .map((image) => ClipRRect(
@@ -187,8 +183,7 @@ class WOHImagesFieldWidget extends StatelessWidget {
                     height: 100,
                   ),
                 ))
-            .toList() ??
-        []);
+            .toList());
 
     thumbs.add(
       Obx(() {

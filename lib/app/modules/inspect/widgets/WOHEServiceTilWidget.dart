@@ -14,13 +14,13 @@ class WOHEServiceTilWidget extends StatelessWidget {
   final List<Widget> actions;
   final double horizontalPadding;
 
-  const WOHEServiceTilWidget({super.key, this.title2, this.title, this.content, this.actions, this.horizontalPadding});
+  const WOHEServiceTilWidget({super.key, required this.title2, required this.title, required this.content, required this.actions, required this.horizontalPadding});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 10, right: 10, left: 10),
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding ?? 10, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 15),
       decoration: WOHUi.getBoxDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

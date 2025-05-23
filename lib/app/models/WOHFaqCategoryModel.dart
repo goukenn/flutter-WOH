@@ -2,6 +2,7 @@
 import 'parents/WOHModel.dart';
 
 class WOHFaqCategoryModel extends WOHModel {
+  @override
   String? id;
   String? name;
 

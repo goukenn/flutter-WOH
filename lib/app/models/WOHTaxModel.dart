@@ -2,6 +2,7 @@
 import 'parents/WOHModel.dart';
 
 class WOHTaxModel extends WOHModel {
+  @override
   String? id;
   String? name;
   String? type;

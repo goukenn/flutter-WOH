@@ -37,7 +37,7 @@ class WOHCustomBottomNavigationBarState extends State<WOHCustomBottomNavigationB
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: widget.children.map((item) {
-          var color = item.color ?? widget.itemColor;
+          var color = item.color;
           var icon = item.icon;
           var label = item.label;
           int index = widget.children.indexOf(item);
@@ -64,7 +64,7 @@ class WOHCustomBottomNavigationBarState extends State<WOHCustomBottomNavigationB
                       ? Expanded(
                           flex: 2,
                           child: Text(
-                            label ?? '',
+                            label,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.center,
                             style: TextStyle(color: widget.currentIndex == index ? color : color.withAlpha((255 * 0.5).toInt())),

@@ -8,6 +8,7 @@ import 'dart:core';
 import 'parents/WOHModel.dart';
 
 class WOHExperienceModel extends WOHModel {
+  @override
   String? id;
   String? title;
   String? description;
@@ -20,6 +21,7 @@ class WOHExperienceModel extends WOHModel {
     description = transStringFromJson(json, 'description');
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;

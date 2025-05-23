@@ -46,7 +46,7 @@ class WOHAuthController extends GetxController {
   @override
   void onInit() async {
 
-    var box = (await GetStorage());
+    var box = (GetStorage());
     if(box.read('userEmail')!=null){
       email.value = box.read('userEmail');
     }

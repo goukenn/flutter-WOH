@@ -18,22 +18,22 @@ class WOHEServiceTilWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding ?? 20, vertical: 15),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 15),
       decoration: WOHUi.getBoxDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Expanded(child: title),
-              actions
+              Expanded(child: title!),
+              actions!
             ],
           ),
           Divider(
             height: 26,
             thickness: 1.2,
           ),
-          content,
+          content!,
         ],
       ),
     );

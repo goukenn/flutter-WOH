@@ -7,18 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../WOHColorConstants.dart';
-import '../../../common/WOHUi.dart'; 
+import '../../../common/WOHUi.dart';
+
 class WOHTextFieldWidget extends StatelessWidget {
-  const WOHTextFieldWidget(// Map<dynamic, Object> map, 
-  {  
+  const WOHTextFieldWidget( // Map<dynamic, Object> map,
+  {
     super.key,
     this.initialValue = "",
     this.onSaved,
     this.onChanged,
     this.validator,
     this.keyboardType,
-    this.hintText= "",
-    this.errorText='',
+    this.hintText = "",
+    this.errorText = '',
     required this.iconData,
     this.labelText = "",
     this.obscureText = false,
@@ -31,12 +32,12 @@ class WOHTextFieldWidget extends StatelessWidget {
     this.suffix,
     this.onTap,
     this.readOnly = false,
-    this.maxLines = 0
+    this.maxLines = 0,
   });
 
   final FormFieldSetter<String>? onSaved;
   final ValueChanged<String>? onChanged;
-  final Function? onTap;
+  final GestureTapCallback? onTap;
   final FormFieldValidator<String>? validator;
   final TextInputType? keyboardType;
   final String hintText;
@@ -59,20 +60,34 @@ class WOHTextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
-      margin: EdgeInsets.only(left: 5, right: 5, top: topMargin, bottom: bottomMargin),
+      margin: EdgeInsets.only(
+        left: 5,
+        right: 5,
+        top: topMargin,
+        bottom: bottomMargin,
+      ),
       decoration: BoxDecoration(
-          color: Get.theme.primaryColor,
-          borderRadius: buildBorderRadius,
-          boxShadow: [
-            BoxShadow(color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), blurRadius: 10, offset: Offset(0, 5)),
-          ],
-          border: Border.all(color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()))),
+        color: Get.theme.primaryColor,
+        borderRadius: buildBorderRadius,
+        boxShadow: [
+          BoxShadow(
+            color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()),
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+        border: Border.all(
+          color: Get.theme.focusColor.withAlpha((255 * 0.05).toInt()),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            labelText ?? "",
-            style: Get.textTheme.bodyMedium!.merge(TextStyle(color: labelColor)),
+            labelText,
+            style: Get.textTheme.bodyMedium!.merge(
+              TextStyle(color: labelColor),
+            ),
             textAlign: textAlign ?? TextAlign.start,
           ),
           TextFormField(
@@ -87,7 +102,9 @@ class WOHTextFieldWidget extends StatelessWidget {
             minLines: maxLines,
             validator: validator,
             enabled: editable,
-            style: style ?? Get.textTheme.bodyMedium!.merge(TextStyle(color: labelColor)),
+            style:
+                style ??
+                Get.textTheme.bodyMedium!.merge(TextStyle(color: labelColor)),
             obscureText: obscureText,
             textAlign: textAlign ?? TextAlign.start,
             decoration: WOHUi.getInputDecoration(
@@ -119,14 +136,14 @@ class WOHTextFieldWidget extends StatelessWidget {
   double get topMargin {
     if ((isFirst)) {
       return 20;
-    } else    return 0;
-  
+    }
+    return 0;
   }
 
   double get bottomMargin {
     if ((isLast)) {
       return 10;
-    } else    return 0;
-  
+    } 
+    return 0;
   }
 }

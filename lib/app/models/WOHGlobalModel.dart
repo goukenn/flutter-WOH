@@ -28,6 +28,7 @@ class WOHGlobalModel extends WOHModel {
     failed = intFromJson(json, 'failed');
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['mock_base_url'] = this.mockBaseUrl;

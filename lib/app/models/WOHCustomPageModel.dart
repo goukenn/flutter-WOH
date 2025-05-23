@@ -2,6 +2,7 @@
 import 'parents/WOHModel.dart';
 
 class WOHCustomPageModel extends WOHModel {
+  @override
   String? id;
   String? title;
   String? content;

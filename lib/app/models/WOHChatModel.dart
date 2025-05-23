@@ -6,6 +6,7 @@ import "parents/WOHModel.dart";
 import 'WOHUserModel.dart';
 
 class WOHChatModel extends WOHModel {
+  @override
   String? id = UniqueKey().toString();
 
   // message text
@@ -25,8 +26,8 @@ class WOHChatModel extends WOHModel {
     try {
       id = jsonMap.id;
       text = jsonMap.get('text') != null ? jsonMap.get('text').toString() : '';
-      time = jsonMap.get('time') != null ? jsonMap.get('time') : 0;
-      userId = jsonMap.get('user') != null ? jsonMap.get('user').toString() : null;
+      time = jsonMap.get('time') ?? 0;
+      userId = jsonMap.get('user')?.toString();
     } catch (e) {
       id = null;
       text = '';

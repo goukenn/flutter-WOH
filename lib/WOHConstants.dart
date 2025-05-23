@@ -2,9 +2,12 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:get/get.dart'; 
+import 'package:get/get.dart';
+
+import 'app/providers/WOHOdooApiClientProvider.dart'; 
 
 class WOHConstants {
+  static const tag = '[WOH]';
   // + | declare class const
   static const serverPort = "https://willonhair.shintheo.com/api/v1";
   static const apiKey = "NMMAG3K4IVS0L6VYEPXLJ1Z0RR77AR67";
@@ -26,5 +29,9 @@ class WOHConstants {
     headers['Authorization'] = authorization;
     headers['accept'] = 'application/json';
     return headers;
+  }
+
+  static getClientProvider(String name){
+    return WOHOdooApiClientProvider();
   }
 }

@@ -19,7 +19,7 @@ class WOHPopUpPhotoWidget extends StatelessWidget {
   final String confirm;
   final String title;
   final Widget icon;
-  final Function onTap;
+  final VoidCallback? onTap;
   final String url;
 
   @override

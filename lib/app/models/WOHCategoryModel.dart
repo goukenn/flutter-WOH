@@ -29,6 +29,7 @@ class WOHCategoryModel extends WOHModel {
     subCategories = listFromJson(json, 'sub_categories', (v) => WOHCategoryModel.fromJson(v));
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;

@@ -7,12 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class WOHTabBarController extends GetxController {
-  RxString selectedId;
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  late RxString selectedId; 
 
   WOHTabBarController() {
     selectedId = RxString("");

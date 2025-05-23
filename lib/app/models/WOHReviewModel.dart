@@ -26,6 +26,7 @@ class WOHReviewModel extends WOHModel {
     eService = objectFromJson(json, 'e_service', (v) => WOHEServiceModel.fromJson(v));
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;

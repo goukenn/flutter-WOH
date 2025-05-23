@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
  
-import '../../../common/WOHUi.dart';
-import '../../providers/WOHOdooApiClientProvider.dart';
+import '../../../WOHConstants.dart';
+import '../../../common/WOHUi.dart'; 
 import '../../repositories/WOHUploadRepository.dart';
 
 class WOHImageFieldController extends GetxController {
@@ -17,14 +17,10 @@ class WOHImageFieldController extends GetxController {
   late WOHUploadRepository _uploadRepository;
 
   WOHImageFieldController() {
-    _uploadRepository = new WOHUploadRepository(WOHOdooApiClientProvider());
+    _uploadRepository = new WOHUploadRepository(WOHConstants.getClientProvider('odoo'));
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
+ 
   void reset() {
     image.value = null;
     uploading.value = false;
@@ -64,10 +60,10 @@ class WOHImageFieldWidget extends StatelessWidget {
     required this.label,
     required this.tag,
     required this.field,
-    this.placeholder,
-    this.buttonText,
+    this.placeholder = '',
+    this.buttonText = '',
+    this.initialImage = '',
     required this.uploadCompleted,
-    this.initialImage,
     required this.reset,
   });
 
@@ -113,11 +109,11 @@ class WOHImageFieldWidget extends StatelessWidget {
               MaterialButton(
                 onPressed: () async {
                   await controller.deleteUploaded();
-                  reset(controller.uuid);
+                  reset(controller.uuid!);
                 },
                 shape: StadiumBorder(),
                 color: Get.theme.focusColor.withAlpha((255 * 0.1).toInt()), 
-                child: Text(buttonText ?? "Reset".tr, style: Get.textTheme.bodyLarge),
+                child: Text(buttonText, style: Get.textTheme.bodyLarge),
                 elevation: 0,
                 hoverElevation: 0,
                 focusElevation: 0,
@@ -126,7 +122,7 @@ class WOHImageFieldWidget extends StatelessWidget {
             ],
           ),
           Obx(() {
-            return buildImage(initialImage, controller.image.value);
+            return buildImage(initialImage, controller.image.value!);
           })
         ],
       ),

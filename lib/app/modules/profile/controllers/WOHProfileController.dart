@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_function_declarations_over_variables,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_function_declarations_over_variables,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors, invalid_use_of_protected_member
 import 'package:flutter/material.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:get/get.dart';
@@ -48,8 +48,8 @@ class WOHProfileController extends GetxController {
   TextEditingController depTown = TextEditingController();
   TextEditingController arrTown = TextEditingController();
 
-  GlobalKey<FormState> profileForm;
-  WOHUserRepository _userRepository;
+  late GlobalKey<FormState> profileForm;
+  late WOHUserRepository _userRepository;
 
   WOHProfileController() {
     _userRepository = new WOHUserRepository();
@@ -61,7 +61,7 @@ class WOHProfileController extends GetxController {
     list = box.read("allCountries");
     countries.value = list;
 
-    print('List is sssssss:   ' + countries.value.toString());
+    print('[WOH] - List is sssssss:   ' + countries.value.toString());
     profileForm = new GlobalKey<FormState>();
 
     user.value = Get.find<WOHMyAuthService>().myUser.value;
@@ -85,10 +85,10 @@ class WOHProfileController extends GetxController {
   }
 
   void saveProfileForm() async {
-    Get.focusScope.unfocus();
-    if (profileForm.currentState.validate()) {
+    Get.focusScope!.unfocus();
+    if (profileForm.currentState!.validate()) {
       //try {
-      profileForm.currentState.save();
+      profileForm.currentState?.save();
 
       await _userRepository.update(user.value);
       user.value = (await _userRepository.get(user.value.id!))!;
@@ -148,7 +148,7 @@ class WOHProfileController extends GetxController {
       borderRadius: 16,
       selectableDayPredicate: disableDate,
     );
-    if (pickedDate != null && pickedDate != birthDate.value) {
+    if ((pickedDate != null) && pickedDate.toString() != birthDate.value) {
       birthDate.value = DateFormat('dd/MM/yy').format(pickedDate);
       user.value.birthday = DateFormat('yyyy-MM-dd').format(pickedDate);
     }

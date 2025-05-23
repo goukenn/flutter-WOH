@@ -2,6 +2,7 @@
 import 'parents/WOHModel.dart';
 
 class WOHFaqModel extends WOHModel {
+  @override
   String? id;
   String? question;
   String? answer;

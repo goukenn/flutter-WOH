@@ -8,6 +8,7 @@ import 'dart:core';
 import 'parents/WOHModel.dart';
 
 class WOHEProviderTypeModel extends WOHModel {
+  @override
   String? id;
   String? name;
   double? commission;
@@ -20,6 +21,7 @@ class WOHEProviderTypeModel extends WOHModel {
     commission = doubleFromJson(json, 'commission');
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;

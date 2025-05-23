@@ -22,6 +22,7 @@ class WOHGalleryModel extends WOHModel {
     description = transStringFromJson(json, 'description');
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;

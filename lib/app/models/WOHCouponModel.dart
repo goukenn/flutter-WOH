@@ -2,6 +2,7 @@
 import 'parents/WOHModel.dart';
 
 class WOHCouponModel extends WOHModel {
+  @override
   String? id;
   String? code;
   double? discount;

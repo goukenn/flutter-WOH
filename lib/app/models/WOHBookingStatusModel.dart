@@ -2,6 +2,7 @@
 import 'parents/WOHModel.dart';
 
 class WOHBookingStatusModel extends WOHModel {
+  @override
   String? id;
   String? status;
   int? order;
