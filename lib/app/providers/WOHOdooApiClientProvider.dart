@@ -1,7 +1,6 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, unused_field
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:dio/dio.dart' as dio;
 // import 'package:dio_http_cache/dio_http_cache.dart';
@@ -9,26 +8,23 @@ import 'package:get_storage/get_storage.dart';
 
 import 'package:http/http.dart' as http;
 
-import 'package:flutter/foundation.dart' as foundation;
 import 'package:get/get.dart';
 
 import '../../WOHConstants.dart';
 import '../../common/WOHUi.dart';
-import '../../main.dart';
 import '../models/WOHMyUserModel.dart';
-import '../services/WOHAuthService.dart';
 import '../services/WOHMyAuthService.dart';
 import 'WOHApiClient.dart';
 import 'WOHDioClient.dart';
 
 class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
-  WOHDioClient _httpClient;
-  dio.Options _optionsNetwork;
-  dio.Options _optionsCache;
+  late WOHDioClient _httpClient;
+  dio.Options? _optionsNetwork;
+  dio.Options? _optionsCache;
 
   WOHOdooApiClientProvider() {
-    this.baseUrl = this.globalService.global.value.laravelBaseUrl;
-    _httpClient = WOHDioClient(this.baseUrl, new dio.Dio());
+    this.baseUrl = this.globalService.global.value.laravelBaseUrl!;
+    _httpClient = WOHDioClient(this.baseUrl, new dio.Dio(), interceptors: []);
   }
 
   Future<WOHOdooApiClientProvider> init() async {
@@ -37,7 +33,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
     return this;
   }
 
-  bool isLoading({String? task, List<String> tasks}) {
+  bool isLoading({required String task, required List<String> tasks}) {
     return _httpClient.isLoading(task: task, tasks: tasks);
   }
 
@@ -49,7 +45,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
     var response = await _httpClient.postUri(
       _uri,
       data: json.encode(user.toJson()),
-      options: _optionsNetwork,
+      options: _optionsNetwork!,
     );
     if (response.data['success'] == true) {
       return true;
@@ -188,7 +184,7 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
 
   Future<String> uploadImage(File file, WOHMyUserModel myUser) async {
 
-    if (Get.find<WOHAuthService>().myUser.value.email==null) {
+    if (Get.find<WOHMyAuthService>().myUser.value.email==null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");
     }
 
@@ -215,12 +211,13 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
     else {
       print(response.reasonPhrase);
     }
+    return '';
   }
 
 
 
   Future<String> uploadRoadPacketImage(imageFiles, bookingId) async {
-    if (Get.find<WOHAuthService>().myUser.value.email==null) {
+    if (Get.find<WOHMyAuthService>().myUser.value.email==null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");
     }
     final box = GetStorage();
@@ -246,13 +243,14 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
     else {
       print(response.reasonPhrase);
     }
+    return '';
   }
 
 
 
   Future<String> uploadAirPacketImage(imageFiles, bookingId) async {
 
-    if (Get.find<WOHAuthService>().myUser.value.email==null) {
+    if (Get.find<WOHMyAuthService>().myUser.value.email==null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");
     }
     final box = GetStorage();
@@ -278,15 +276,16 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
     else {
       print(response.reasonPhrase);
     }
+    return '';
   }
 
 
   Future<bool> deleteUploaded(String uuid) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ deleteUploaded() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("uploads/clear").replace(queryParameters: _queryParameters);
     printUri(StackTrace.current, _uri);
@@ -300,11 +299,11 @@ class WOHOdooApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<bool> deleteAllUploaded(List<String> uuids) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ deleteUploaded() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("uploads/clear").replace(queryParameters: _queryParameters);
     printUri(StackTrace.current, _uri);

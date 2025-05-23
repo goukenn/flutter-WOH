@@ -23,19 +23,19 @@ class WOHPaymentRepository {
     return _laravelApiClient.getWallets();
   }
 
-  Future<List<WOHWalletTransactionModel>> getWalletTransactions(WOHWalletModel? wallet) {
+  Future<List<WOHWalletTransactionModel>> getWalletTransactions(WOHWalletModel wallet) {
     return _laravelApiClient.getWalletTransactions(wallet);
   }
 
-  Future<WOHWalletModel> createWallet(WOHWalletModel? wallet) {
+  Future<WOHWalletModel> createWallet(WOHWalletModel wallet) {
     return _laravelApiClient.createWallet(wallet);
   }
 
-  Future<WOHWalletModel> updateWallet(WOHWalletModel? wallet) {
+  Future<WOHWalletModel> updateWallet(WOHWalletModel wallet) {
     return _laravelApiClient.updateWallet(wallet);
   }
 
-  Future<bool> deleteWallet(WOHWalletModel? wallet) {
+  Future<bool> deleteWallet(WOHWalletModel wallet) {
     return _laravelApiClient.deleteWallet(wallet);
   }
 
@@ -43,7 +43,7 @@ class WOHPaymentRepository {
     return _laravelApiClient.createPayment(booking);
   }
 
-  Future<WOHPaymentModel> createWalletPayment(WOHBookingModel booking, WOHWalletModel? wallet) {
+  Future<WOHPaymentModel> createWalletPayment(WOHBookingModel booking, WOHWalletModel wallet) {
     return _laravelApiClient.createWalletPayment(booking, wallet);
   }
 

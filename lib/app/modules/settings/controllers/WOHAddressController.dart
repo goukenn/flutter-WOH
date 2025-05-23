@@ -27,7 +27,7 @@ class WOHAddressController extends GetxController {
 
   Future getAddresses() async {
     try {
-      if (Get.find<WOHAuthService>().myUser.value.email == null) {
+      if (Get.find<WOHMyAuthService>().myUser.value.email == null) {
         addresses.assignAll(await _settingRepository.getAddresses());
       }
     } catch (e) {

@@ -22,7 +22,7 @@ class WOHPhoneVerificationView extends GetView<WOHAuthController> {
 
   @override
   Widget build(BuildContext context) {
-    final Rx<WOHMyUserModel> currentUser = Get.find<WOHAuthService>().myUser;
+    final Rx<WOHMyUserModel> currentUser = Get.find<WOHMyAuthService>().myUser;
     WOHUserRepository _userRepository;
 
     _userRepository = WOHUserRepository();
@@ -150,25 +150,25 @@ class WOHPhoneVerificationView extends GetView<WOHAuthController> {
                           if(controller.smsSent.value.isNotEmpty){
                             controller.verifyClicked.value = true;
 
-                            Get.find<WOHAuthService>().myUser.value = await _userRepository.get(controller.authUserId.value);
-                            if(Get.find<WOHAuthService>().myUser.value.id != null){
+                            Get.find<WOHMyAuthService>().myUser.value = await _userRepository.get(controller.authUserId.value);
+                            if(Get.find<WOHMyAuthService>().myUser.value.id != null){
                               var foundDeviceToken= false;
 
-                              if(Get.find<WOHAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
+                              if(Get.find<WOHMyAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
                               {
-                                for(int i = 0; i<Get.find<WOHAuthService>().myUser.value.deviceTokenIds.length;i++){
-                                  if(WOHConstants.deviceToken==Get.find<WOHAuthService>().myUser.value.deviceTokenIds[i]){
+                                for(int i = 0; i<Get.find<WOHMyAuthService>().myUser.value.deviceTokenIds.length;i++){
+                                  if(WOHConstants.deviceToken==Get.find<WOHMyAuthService>().myUser.value.deviceTokenIds[i]){
                                     foundDeviceToken = true;
                                   }
                                 }
 
                               }
                               else{
-                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
+                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHMyAuthService>().myUser.value.id);
                               }
 
                               if(!foundDeviceToken){
-                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
+                                await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHMyAuthService>().myUser.value.id);
                               }
                               controller.loading.value = false;
                               Get.showSnackbar(WOHUi.SuccessSnackBar(message: "You logged in successfully " ));

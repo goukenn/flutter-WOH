@@ -73,10 +73,10 @@ class WOHDioClient {
 
   Future<dynamic> get(
     String uri, {
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
   }) async {
     try {
       var response = await _dio.get(
@@ -98,9 +98,9 @@ class WOHDioClient {
 
   Future<dynamic> getUri(
     Uri uri, {
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onReceiveProgress,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
   }) async {
     WOHCustomTrace programInfo = WOHCustomTrace(StackTrace.current);
     try {
@@ -139,13 +139,13 @@ class WOHDioClient {
   }
 
   Future<dynamic> post(
-    String? uri, {
+    String uri, {
     data,
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) async {
     try {
       var response = await _dio.post(
@@ -168,10 +168,10 @@ class WOHDioClient {
   Future<dynamic> postUri(
     Uri uri, {
     data,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) async {
     WOHCustomTrace programInfo = WOHCustomTrace(StackTrace.current);
     try {
@@ -196,13 +196,13 @@ class WOHDioClient {
   }
 
   Future<dynamic> put(
-    String? uri, {
+    String uri, {
     data,
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) async {
     try {
       var response = await _dio.put(
@@ -225,10 +225,10 @@ class WOHDioClient {
   Future<dynamic> putUri(
     Uri uri, {
     data,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) async {
     WOHCustomTrace programInfo = WOHCustomTrace(StackTrace.current);
     try {
@@ -253,13 +253,13 @@ class WOHDioClient {
   }
 
   Future<dynamic> patch(
-    String? uri, {
+    String uri, {
     data,
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) async {
     try {
       var response = await _dio.patch(
@@ -282,10 +282,10 @@ class WOHDioClient {
   Future<dynamic> patchUri(
     Uri uri, {
     data,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) async {
     WOHCustomTrace programInfo = WOHCustomTrace(StackTrace.current);
     try {
@@ -314,7 +314,7 @@ class WOHDioClient {
     data,
     Map<String, dynamic>? queryParameters,
     Options? options,
-    CancelToken. cancelToken,
+    CancelToken? cancelToken,
   }) async {
     try {
       var response = await _dio.delete(
@@ -358,7 +358,7 @@ class WOHDioClient {
     }
   }
 
-  bool isLoading({String? task, List<String>? tasks}) {
+  bool isLoading({required String task, required List<String> tasks}) {
     return _progress.any((_task) => _progress.contains(_task));
    // return _progress.contains(task);
   }

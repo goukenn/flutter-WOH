@@ -671,7 +671,7 @@ class WOHBookingsController extends GetxController {
   }
 
   uploadProfileImage(File file, int id) async {
-    if (Get.find<WOHAuthService>().myUser.value.email==null) {
+    if (Get.find<WOHMyAuthService>().myUser.value.email==null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");
     }
 

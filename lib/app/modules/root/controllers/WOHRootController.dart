@@ -57,7 +57,7 @@ class WOHRootController extends GetxController {
           () => WOHOdooApiClientProvider(),
     );
     Get.lazyPut(()=> WOHHomeController());
-    //print(Get.find<WOHAuthService>().myUser.value.name);
+    //print(Get.find<WOHMyAuthService>().myUser.value.name);
     currentIndex.value = _index;
     await refreshPage(_index);
   }

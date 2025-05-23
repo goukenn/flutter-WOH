@@ -1,22 +1,17 @@
-// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable
+// ignore_for_file:avoid_init_to_null,avoid_print,constant_identifier_names,file_names,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_interpolation_to_compose_strings,unnecessary_new,unnecessary_this,unused_local_variable, unnecessary_brace_in_string_interps
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:dio/dio.dart' as dio;
 
-import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:path_provider/path_provider.dart';
 
 
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:get/get.dart';
 
 import '../../caches/WOHBuildCacheOptions.dart';
-import '../../common/WOHUuid.dart';
 import '../models/WOHAddressModel.dart';
 import '../models/WOHAwardModel.dart';
 import '../models/WOHBookingModel.dart';
-import '../models/WOHBookingStatusModel.dart';
 import '../models/WOHCategoryModel.dart';
 import '../models/WOHCouponModel.dart';
 import '../models/WOHCustomPageModel.dart';
@@ -43,13 +38,13 @@ import 'WOHApiClient.dart';
 import 'WOHDioClient.dart';
 
 class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
-  WOHDioClient _httpClient;
+  late WOHDioClient _httpClient;
   late dio.Options _optionsNetwork;
   late dio.Options _optionsCache;
 
   WOHLaravelApiClientProvider() {
-    this.baseUrl = this.globalService.global.value.laravelBaseUrl;
-    _httpClient = WOHDioClient(this.baseUrl, new dio.Dio());
+    this.baseUrl = this.globalService.global.value.laravelBaseUrl!;
+    _httpClient = WOHDioClient(this.baseUrl, new dio.Dio(), interceptors: []);
 
   }
 
@@ -59,13 +54,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     return this;
   }
 
-  bool? isLoading({String task, List<String> tasks}) {
+  bool isLoading({required String task, required List<String> tasks}) {
     return _httpClient.isLoading(task: task, tasks: tasks);
   }
 
   void setLocale(String locale) {
-    _optionsNetwork.headers['Accept-Language'] = locale;
-    _optionsCache.headers['Accept-Language'] = locale;
+    _optionsNetwork.headers?['Accept-Language'] = locale;
+    _optionsCache.headers?['Accept-Language'] = locale;
   }
 
   void forceRefresh() {
@@ -94,11 +89,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHUserModel> getUser(WOHUserModel user) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getUser() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("user").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -163,11 +158,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHUserModel> updateUser(WOHUserModel user) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ updateUser() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("users/${user.id}").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -185,11 +180,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<bool> deleteUser(WOHUserModel user) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ deleteUser() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("users").replace(queryParameters: _queryParameters);
     var response = await _httpClient.deleteUri(
@@ -204,12 +199,12 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<List<WOHAddressModel>> getAddresses() async {
-    if (Get.find<WOHAuthService>().myUser.value.email == null) {
+    if (Get.find<WOHMyAuthService>().myUser.value.email == null) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getAddresses() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
-      'search': "user_id:${WOHAuthService.user.value.id}",
+      'api_token': authService.apiToken,
+      'search': "user_id:${authService.user.value.id}",
       'searchFields': 'user_id:=',
       'orderBy': 'id',
       'sortedBy': 'desc',
@@ -253,7 +248,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'search': 'categories.id:$categoryId',
       'searchFields': 'categories.id:=',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     if (!_address.isUnknown()) {
       _queryParameters['myLat'] = _address.latitude.toString();
@@ -293,16 +288,16 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<List<WOHFavoriteModel>> getFavoritesEServices() async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getFavoritesEServices() ]");
     }
     var _queryParameters = {
       'with': 'eService;options;eService.eProvider',
-      'search': 'user_id:${WOHAuthService.user.value.id}',
+      'search': 'user_id:${authService.user.value.id}',
       'searchFields': 'user_id:=',
       'orderBy': 'created_at',
       'sortBy': 'desc',
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("favorites").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -315,11 +310,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHFavoriteModel> addFavoriteEService(WOHFavoriteModel favorite) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You must have an account to be able to add services to favorite".tr + "[ addFavoriteEService() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("favorites").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -337,11 +332,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<bool> removeFavoriteEService(WOHFavoriteModel favorite) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You must have an account to be able to add services to favorite".tr + "[ removeFavoriteEService() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("favorites/1").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -361,8 +356,8 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     var _queryParameters = {
       'with': 'eProvider;eProvider.taxes;categories',
     };
-    if (WOHAuthService.isAuth) {
-      _queryParameters['api_token'] = WOHAuthService.apiToken;
+    if (authService.isAuth) {
+      _queryParameters['api_token'] = authService.apiToken;
     }
     Uri _uri = getApiBaseUri("e_services/$id").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -459,7 +454,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'e_provider_id:=;featured:=',
       'searchJoin': 'and',
       'limit': '5',
-      'offset': ((page - 1) * 5).toString()
+      'offset': ((page! - 1) * 5).toString()
     };
     Uri _uri = getApiBaseUri("e_services").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -479,7 +474,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'e_provider_id:=',
       'rating': 'true',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     Uri _uri = getApiBaseUri("e_services").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -498,7 +493,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'e_provider_id:=',
       'available_e_provider': 'true',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     Uri _uri = getApiBaseUri("e_services").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -518,7 +513,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'e_provider_id:=',
       'rating': 'true',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     Uri _uri = getApiBaseUri("e_services").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -549,7 +544,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'e_provider_id:=',
       'searchJoin': 'and',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     Uri _uri = getApiBaseUri("e_services").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -601,7 +596,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'categories.id:=;featured:=',
       'searchJoin': 'and',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     if (!_address.isUnknown()) {
       _queryParameters['myLat'] = _address.latitude.toString();
@@ -626,7 +621,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'categories.id:=',
       'rating': 'true',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     if (!_address.isUnknown()) {
       _queryParameters['myLat'] = _address.latitude.toString();
@@ -651,7 +646,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'categories.id:=',
       'rating': 'true',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     if (!_address.isUnknown()) {
       _queryParameters['myLat'] = _address.latitude.toString();
@@ -675,7 +670,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'categories.id:=',
       'available_e_provider': 'true',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     if (!_address.isUnknown()) {
       _queryParameters['myLat'] = _address.latitude.toString();
@@ -783,13 +778,13 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   Future<List<WOHBookingModel>> getBookings(String statusId, int? page) async {
     var _queryParameters = {
       'with': 'bookingStatus;payment;payment.paymentStatus',
-      'api_token': WOHAuthService.apiToken,
-      // 'search': 'user_id:${WOHAuthService.user.value.id}',
+      'api_token': authService.apiToken,
+      // 'search': 'user_id:${authService.user.value.id}',
       'search': 'booking_status_id:${statusId}',
       'orderBy': 'created_at',
       'sortedBy': 'desc',
       'limit': '4',
-      'offset': ((page - 1) * 4).toString()
+      'offset': ((page! - 1) * 4).toString()
     };
     Uri _uri = getApiBaseUri("userBookings").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -821,7 +816,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   Future<WOHBookingModel> getBooking(String bookingId) async {
     var _queryParameters = {
       'with': 'bookingStatus;user;payment;payment.paymentMethod;payment.paymentStatus',
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("userBookings/${bookingId}").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -835,11 +830,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
 
   Future<WOHCouponModel> validateCoupon(WOHBookingModel booking) async {
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
-      'code': booking.coupon.code ?? '',
-      'e_service_id': booking.eService.id ?? '',
-      'e_provider_id': booking.eService.eProvider.id ?? '',
-      'categories_id': booking.eService.categories.map((e) => e.id).join(",") ?? '',
+      'api_token': authService.apiToken,
+      'code': booking.coupon?.code ?? '',
+      'e_service_id': booking.eService?.id ?? '',
+      'e_provider_id': booking.eService?.eProvider?.id ?? '',
+      'categories_id': booking.eService?.categories?.map((e) => e.id).join(",") ?? '',
     };
     Uri _uri = getApiBaseUri("coupons").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -852,11 +847,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHBookingModel> updateBooking(WOHBookingModel booking) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ updateBooking() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("userBookings/${booking.id}").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -869,11 +864,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHBookingModel> addBooking(WOHBookingModel booking) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ addBooking() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("userBookings").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -886,11 +881,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHReviewModel> addReview(WOHReviewModel review) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ addReview() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("e_service_reviews").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -903,7 +898,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<List<WOHPaymentMethodModel>> getPaymentMethods() async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getPaymentMethods() ]");
     }
     var _queryParameters = {
@@ -912,7 +907,7 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
       'searchFields': 'enabled:=',
       'orderBy': 'order',
       'sortBy': 'asc',
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("payment_methods").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -925,11 +920,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<List<WOHWalletModel>> getWallets() async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getWallets() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("wallets").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -941,12 +936,12 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<WOHWalletModel> createWallet(WOHWalletModel? _wallet) async {
-    if (!WOHAuthService.isAuth) {
+  Future<WOHWalletModel> createWallet(WOHWalletModel _wallet) async {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ createWallet() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("wallets").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -958,12 +953,12 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<WOHWalletModel> updateWallet(WOHWalletModel? _wallet) async {
-    if (!WOHAuthService.isAuth) {
+  Future<WOHWalletModel> updateWallet(WOHWalletModel _wallet) async {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ updateWallet() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("wallets/${_wallet.id}").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -975,12 +970,12 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<bool> deleteWallet(WOHWalletModel? _wallet) async {
-    if (!WOHAuthService.isAuth) {
+  Future<bool> deleteWallet(WOHWalletModel _wallet) async {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ deleteWallet() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("wallets/${_wallet.id}").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -992,12 +987,12 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<List<WOHWalletTransactionModel>> getWalletTransactions(WOHWalletModel? wallet) async {
-    if (!WOHAuthService.isAuth) {
+  Future<List<WOHWalletTransactionModel>> getWalletTransactions(WOHWalletModel wallet) async {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getWalletTransactions() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
       'with': 'user',
       'search': 'wallet_id:${wallet.id}',
       'searchFields': 'wallet_id:=',
@@ -1013,11 +1008,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHPaymentModel> createPayment(WOHBookingModel _booking) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ createPayment() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("payments/cash").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -1029,12 +1024,12 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
     }
   }
 
-  Future<WOHPaymentModel> createWalletPayment(WOHBookingModel _booking, WOHWalletModel? _wallet) async {
-    if (!WOHAuthService.isAuth) {
+  Future<WOHPaymentModel> createWalletPayment(WOHBookingModel _booking, WOHWalletModel _wallet) async {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ createPayment() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("payments/wallets/${_wallet.id}").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -1047,11 +1042,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   String getPayPalUrl(WOHBookingModel _booking) {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getPayPalUrl() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
       'booking_id': _booking.id,
     };
     Uri _uri = getBaseUri("payments/paypal/express-checkout").replace(queryParameters: _queryParameters);
@@ -1059,11 +1054,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   String getRazorPayUrl(WOHBookingModel _booking) {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getRazorPayUrl() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
       'booking_id': _booking.id,
     };
     Uri _uri = getBaseUri("payments/razorpay/checkout").replace(queryParameters: _queryParameters);
@@ -1071,11 +1066,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   String getStripeUrl(WOHBookingModel _booking) {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getStripeUrl() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
       'booking_id': _booking.id,
     };
     Uri _uri = getBaseUri("payments/stripe/checkout").replace(queryParameters: _queryParameters);
@@ -1083,11 +1078,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   String getPayStackUrl(WOHBookingModel _booking) {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getPayStackUrl() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
       'booking_id': _booking.id,
     };
     Uri _uri = getBaseUri("payments/paystack/checkout").replace(queryParameters: _queryParameters);
@@ -1095,11 +1090,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   String getPayMongoUrl(WOHBookingModel _booking) {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getPayMongoUrl() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
       'booking_id': _booking.id,
     };
     Uri _uri = getBaseUri("payments/paymongo/checkout").replace(queryParameters: _queryParameters);
@@ -1107,11 +1102,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   String getFlutterWaveUrl(WOHBookingModel _booking) {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getFlutterWaveUrl() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
       'booking_id': _booking.id,
     };
     Uri _uri = getBaseUri("payments/flutterwave/checkout").replace(queryParameters: _queryParameters);
@@ -1119,11 +1114,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   String getStripeFPXUrl(WOHBookingModel _booking) {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getStripeFPXUrl() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
       'booking_id': _booking.id,
     };
     Uri _uri = getBaseUri("payments/stripe-fpx/checkout").replace(queryParameters: _queryParameters);
@@ -1131,18 +1126,18 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<List<WOHNotificationModel>> getNotifications() async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ getNotifications() ]");
     }
     var _queryParameters = {
-      'search': 'notifiable_id:${WOHAuthService.user.value.id}',
+      'search': 'notifiable_id:${authService.user.value.id}',
       'searchFields': 'notifiable_id:=',
       'searchJoin': 'and',
       'orderBy': 'created_at',
       'sortedBy': 'desc',
       'limit': '50',
       'only': 'id;type;data;read_at;created_at',
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("notifications").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -1155,28 +1150,30 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHNotificationModel> markAsReadNotification(WOHNotificationModel notification) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ markAsReadNotification() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("notifications/${notification.id}").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
+    // mark runed pam undefined 
     // var response = await _httpClient.putUri(_uri, data: notification.markReadMap(), options: _optionsNetwork);
     // if (response.data['success'] == true) {
-    //   return Notification.fromJson(response.data['data']);
+    //   return WOHNotificationModel.fromJson(response.data['data']);
     // } else {
     //   throw new Exception(response.data['message']);
     // }
+    throw 'not implements';
   }
 
   Future<bool> sendNotification(List<WOHUserModel> users, WOHUserModel from, String type, String text, String id) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ sendNotification() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     var data = {
       'users': users.map((e) => e.id).toList(),
@@ -1197,11 +1194,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<WOHNotificationModel> removeNotification(WOHNotificationModel notification) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ removeNotification() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("notifications/${notification.id}").replace(queryParameters: _queryParameters);
     Get.log(_uri.toString());
@@ -1214,15 +1211,15 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<int> getNotificationsCount() async {
-    print(WOHAuthService.isAuth);
-    if (!WOHAuthService.isAuth) {
+    print(authService.isAuth);
+    if (!authService.isAuth) {
       return 0;
     }
     var _queryParameters = {
-      'search': 'notifiable_id:${WOHAuthService.user.value.id}',
+      'search': 'notifiable_id:${authService.user.value.id}',
       'searchFields': 'notifiable_id:=',
       'searchJoin': 'and',
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("notifications/count").replace(queryParameters: _queryParameters);
 
@@ -1343,12 +1340,12 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
 
   /*Future<String> uploadImage(File file, String field) async {
 
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ uploadImage() ]");
     }
     String fileName = file.path.split('/').last;
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("uploads/store").replace(queryParameters: _queryParameters);
     printUri(StackTrace.current, _uri);
@@ -1367,11 +1364,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<bool> deleteUploaded(String uuid) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ deleteUploaded() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("uploads/clear").replace(queryParameters: _queryParameters);
     printUri(StackTrace.current, _uri);
@@ -1385,11 +1382,11 @@ class WOHLaravelApiClientProvider extends GetxService with WOHApiClient {
   }
 
   Future<bool> deleteAllUploaded(List<String> uuids) async {
-    if (!WOHAuthService.isAuth) {
+    if (!authService.isAuth) {
       throw new Exception("You don't have the permission to access to this area!".tr + "[ deleteUploaded() ]");
     }
     var _queryParameters = {
-      'api_token': WOHAuthService.apiToken,
+      'api_token': authService.apiToken,
     };
     Uri _uri = getApiBaseUri("uploads/clear").replace(queryParameters: _queryParameters);
     printUri(StackTrace.current, _uri);

@@ -23,7 +23,7 @@ class WOHVerificationView extends GetView<WOHAuthController> {
 
   @override
   Widget build(BuildContext context) {
-    final Rx<WOHMyUserModel> currentUser = Get.find<WOHAuthService>().myUser;
+    final Rx<WOHMyUserModel> currentUser = Get.find<WOHMyAuthService>().myUser;
     WOHUserRepository _userRepository;
 
     _userRepository = WOHUserRepository();
@@ -149,17 +149,17 @@ class WOHVerificationView extends GetView<WOHAuthController> {
 
                             var foundDeviceToken= false;
 
-                            if(Get.find<WOHAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
+                            if(Get.find<WOHMyAuthService>().myUser.value.deviceTokenIds.isNotEmpty)
                             {
-                              for(int i = 0; i<Get.find<WOHAuthService>().myUser.value.deviceTokenIds.length;i++){
-                                if(WOHConstants.deviceToken == Get.find<WOHAuthService>().myUser.value.deviceTokenIds[i]){
+                              for(int i = 0; i<Get.find<WOHMyAuthService>().myUser.value.deviceTokenIds.length;i++){
+                                if(WOHConstants.deviceToken == Get.find<WOHMyAuthService>().myUser.value.deviceTokenIds[i]){
                                   foundDeviceToken = true;
                                 }
                               }
                             }
                             /*
                             if(!foundDeviceToken){
-                              await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHAuthService>().myUser.value.id);
+                              await controller.saveDeviceToken(WOHConstants.deviceToken, Get.find<WOHMyAuthService>().myUser.value.id);
                             }*/
                             controller.verifyClicked.value = false;
 

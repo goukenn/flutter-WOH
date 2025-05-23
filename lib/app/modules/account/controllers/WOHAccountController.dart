@@ -19,7 +19,7 @@ import '../../../services/WOHMyAuthService.dart';
 
 class WOHAccountController extends GetxController {
 
-  //final Rx<WOHMyUserModel> currentUser = Get.find<WOHAuthService>().myUser;
+  //final Rx<WOHMyUserModel> currentUser = Get.find<WOHMyAuthService>().myUser;
   final updatePassword = false.obs;
   final deleteUser = false.obs;
   final hidePassword = true.obs;
@@ -409,7 +409,7 @@ class WOHAccountController extends GetxController {
     };
     var request = http.Request('POST', Uri.parse('${WOHConstants.serverPort}/create/fcm.device.token?values={'
         '"token": "${WOHConstants.deviceToken}",'
-        '"partner_id": ${Get.find<WOHAuthService>().myUser.value.id}}'));
+        '"partner_id": ${Get.find<WOHMyAuthService>().myUser.value.id}}'));
 
     request.headers.addAll(headers);
 
