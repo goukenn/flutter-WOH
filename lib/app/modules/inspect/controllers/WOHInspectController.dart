@@ -188,21 +188,21 @@ class WOHInspectController extends GetxController {
   }
 
   TextStyle getTitleTheme(WOHOptionModel option) {
-    if (option.checked.value) {
+    if (option.checked!) {
       return Get.textTheme.bodyMedium!.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
     return Get.textTheme.bodyMedium!;
   }
 
   TextStyle getSubTitleTheme(WOHOptionModel option) {
-    if (option.checked.value) {
+    if (option.checked!) {
       return Get.textTheme.labelSmall!.merge(TextStyle(color: Get.theme.colorScheme.secondary));
     }
     return Get.textTheme.labelSmall!;
   }
 
   Color getColor(WOHOptionModel option) {
-    if (option.checked.value) {
+    if (option.checked!) {
       return Get.theme.colorScheme.secondary.withAlpha(20)
       // .withAlpha((255 * 0.1).toInt())
       ;

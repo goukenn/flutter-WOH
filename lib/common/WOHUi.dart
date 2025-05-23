@@ -255,7 +255,7 @@ class WOHUi {
   }) {
     var _setting = Get.find<WOHSettingsService>();
     if (style != null) {
-      style = style!.merge(TextStyle(fontSize: style.fontSize! + 2));
+      style = style.merge(TextStyle(fontSize: style.fontSize! + 2));
     }
     try {
       if (myPrice == 0) {
@@ -311,7 +311,7 @@ class WOHUi {
         ),
       );
     } else {
-      return style!.merge(
+      return style.merge(
         TextStyle(fontWeight: FontWeight.w300, fontSize: style.fontSize! - 4),
       );
     }

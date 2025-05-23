@@ -44,7 +44,7 @@ class WOHHomeController extends GetxController {
   WOHHomeController() {
     //_sliderRepo = new WOHSliderRepository();
     //_categoryRepository = new WOHCategoryRepository();
-    //_eServiceRepository = new EServiceRepository();
+    //_eServiceRepository = new WOHEServiceRepository();
   }
 
   @override
