@@ -1,4 +1,4 @@
-// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
+// ignore_for_file:avoid_function_literals_in_foreach_calls,avoid_init_to_null,avoid_print,avoid_unnecessary_containers,constant_identifier_names,empty_catches,empty_constructor_bodies,file_names,library_private_types_in_public_api,no_leading_underscores_for_local_identifiers,non_constant_identifier_names,overridden_fields,prefer_collection_literals,prefer_const_constructors_in_immutables,prefer_final_fields,prefer_function_declarations_over_variables,prefer_interpolation_to_compose_strings,sized_box_for_whitespace,sort_child_properties_last,unnecessary_new,unnecessary_null_comparison,unnecessary_this,unused_field,unused_local_variable,use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,11 +16,11 @@ class WOHEServicesController extends GetxController {
   final page = 0.obs;
   final isLoading = true.obs;
   final isDone = false.obs;
-  EProviderRepository _eProviderRepository;
-  ScrollController scrollController = ScrollController();
+  late WOHEProviderRepository _eProviderRepository;
+  late ScrollController scrollController = ScrollController();
 
   WOHEServicesController() {
-    _eProviderRepository = new EProviderRepository();
+    _eProviderRepository = new WOHEProviderRepository();
   }
 
   @override
@@ -40,7 +40,7 @@ class WOHEServicesController extends GetxController {
     scrollController.dispose();
   }
 
-  Future refreshEServices({bool showMessage}) async {
+  Future refreshEServices({bool showMessage=true}) async {
     toggleSelected(selected.value);
     await loadEServicesOfCategory(filter: selected.value);
     if (showMessage == true) {
@@ -48,7 +48,7 @@ class WOHEServicesController extends GetxController {
     }
   }
 
-  bool isSelected(CategoryFilter filter) => selected == filter;
+  bool isSelected(CategoryFilter filter) => selected.value == filter;
 
   void toggleSelected(CategoryFilter filter) {
     this.eServices.clear();
@@ -60,30 +60,32 @@ class WOHEServicesController extends GetxController {
     }
   }
 
-  Future loadEServicesOfCategory({CategoryFilter filter}) async {
+  Future loadEServicesOfCategory({required CategoryFilter filter}) async {
     try {
       isLoading.value = true;
       isDone.value = false;
       this.page.value++;
       List<WOHEServiceModel> _eServices = [];
+      var l = eProvider.value.id!;
       switch (filter) {
         case CategoryFilter.ALL:
-          _eServices = await _eProviderRepository.getEServices(eProvider.value.id, page: this.page.value);
+          _eServices = await _eProviderRepository.getEServices(l, page: this.page.value);
           break;
         case CategoryFilter.FEATURED:
-          _eServices = await _eProviderRepository.getFeaturedEServices(eProvider.value.id, page: this.page.value);
+          _eServices = await _eProviderRepository.getFeaturedEServices(l, page: this.page.value);
           break;
         case CategoryFilter.POPULAR:
-          _eServices = await _eProviderRepository.getPopularEServices(eProvider.value.id, page: this.page.value);
+          _eServices = await _eProviderRepository.getPopularEServices(l, page: this.page.value);
           break;
         case CategoryFilter.RATING:
-          _eServices = await _eProviderRepository.getMostRatedEServices(eProvider.value.id, page: this.page.value);
+          _eServices = await _eProviderRepository.getMostRatedEServices(l, page: this.page.value);
           break;
         case CategoryFilter.AVAILABILITY:
-          _eServices = await _eProviderRepository.getAvailableEServices(eProvider.value.id, page: this.page.value);
+          _eServices = await _eProviderRepository.getAvailableEServices(l, page: this.page.value);
           break;
-        default:
-          _eServices = await _eProviderRepository.getEServices(eProvider.value.id, page: this.page.value);
+        // default:
+        //   _eServices = await _eProviderRepository.getEServices(l, page: this.page.value);
+        //   break;
       }
       if (_eServices.isNotEmpty) {
         this.eServices.addAll(_eServices);
